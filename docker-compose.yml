@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: smartcoach-db
+    environment:
+      POSTGRES_USER: smartcoach
+      POSTGRES_PASSWORD: smartcoach123
+      POSTGRES_DB: smartcoach
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: 
+      context: ./apps/backend
+    container_name: smartcoach-backend
+    environment:
+      DATABASE_URL: "postgresql://smartcoach:smartcoach123@postgres:5432/smartcoach"
+      JWT_SECRET: "your-super-secret-jwt-key"
+      JWT_REFRESH_SECRET: "your-super-secret-refresh-jwt-key"
+      AI_SERVICE_URL: "http://ai-service:8000"
+      CORS_ORIGIN: "http://localhost:3000"
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+
+  ai-service:
+    build:
+      context: ./apps/ai-service
+    container_name: smartcoach-ai
+    ports:
+      - "8000:8000"
+    environment:
+      CORS_ORIGIN: "http://localhost:3000"
+
+  frontend:
+    build:
+      context: ./apps/frontend
+    container_name: smartcoach-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:4000/api"
+      NEXT_PUBLIC_SOCKET_URL: "http://localhost:4000"
+
+volumes:
+  postgres_data:

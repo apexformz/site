@@ -1,0 +1,105 @@
+// This is your Prisma schema file
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(uuid())
+  email           String   @unique
+  password_hash   String
+  name            String
+  avatar_url      String?
+  preferred_sport String   @default("cricket")
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+  stats           UserStats?
+  sessions        TrainingSession[]
+  achievements    Achievement[]
+  leaderboard     LeaderboardEntry[]
+  refresh_tokens  RefreshToken[]
+}
+
+model RefreshToken {
+  id         String   @id @default(uuid())
+  token      String   @unique
+  user_id    String
+  expires_at DateTime
+  created_at DateTime @default(now())
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model UserStats {
+  id             String   @id @default(uuid())
+  user_id        String   @unique
+  xp             Int      @default(0)
+  level          Int      @default(1)
+  streak         Int      @default(0)
+  longest_streak Int      @default(0)
+  total_sessions Int      @default(0)
+  best_score     Float    @default(0)
+  last_session_date DateTime?
+  updated_at     DateTime @updatedAt
+
+  user           User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Achievement {
+  id         String   @id @default(uuid())
+  user_id    String
+  type       String
+  earned_at  DateTime @default(now())
+
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, type])
+}
+
+model TrainingSession {
+  id               String   @id @default(uuid())
+  user_id          String
+  sport            String
+  duration_s       Int      @default(0)
+  score            Float    @default(0)
+  feedback_summary String   @default("")
+  xp_earned        Int      @default(0)
+  frame_count      Int      @default(0)
+  created_at       DateTime @default(now())
+
+  user             User        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  frames           PoseFrame[]
+}
+
+model PoseFrame {
+  id           String   @id @default(uuid())
+  session_id   String
+  timestamp_ms Int
+  keypoints    Json
+  angles       Json
+  feedback     Json
+  frame_score  Float    @default(0)
+  created_at   DateTime @default(now())
+
+  session      TrainingSession @relation(fields: [session_id], references: [id], onDelete: Cascade)
+}
+
+model LeaderboardEntry {
+  id         String   @id @default(uuid())
+  user_id    String
+  sport      String
+  weekly_xp  Int      @default(0)
+  all_time_xp Int     @default(0)
+  rank       Int      @default(0)
+  updated_at DateTime @updatedAt
+
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, sport])
+}

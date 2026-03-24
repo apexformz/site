@@ -1,0 +1,58 @@
+{
+  "cricket": {
+    "batting_stance": {
+      "left_elbow": 160,
+      "right_elbow": 90,
+      "left_shoulder": 45,
+      "right_shoulder": 45,
+      "left_hip": 170,
+      "right_hip": 170,
+      "left_knee": 160,
+      "right_knee": 160,
+      "left_ankle": 90,
+      "right_ankle": 90
+    }
+  },
+  "tennis": {
+    "serve_trophy": {
+      "left_elbow": 170,
+      "right_elbow": 90,
+      "left_shoulder": 135,
+      "right_shoulder": 90,
+      "left_hip": 170,
+      "right_hip": 170,
+      "left_knee": 150,
+      "right_knee": 140,
+      "left_ankle": 110,
+      "right_ankle": 120
+    }
+  },
+  "yoga": {
+    "warrior_2": {
+      "left_elbow": 180,
+      "right_elbow": 180,
+      "left_shoulder": 90,
+      "right_shoulder": 90,
+      "left_hip": 110,
+      "right_hip": 180,
+      "left_knee": 90,
+      "right_knee": 180,
+      "left_ankle": 90,
+      "right_ankle": 90
+    }
+  },
+  "running": {
+    "mid_stride": {
+      "left_elbow": 90,
+      "right_elbow": 90,
+      "left_shoulder": 45,
+      "right_shoulder": 135,
+      "left_hip": 145,
+      "right_hip": 180,
+      "left_knee": 90,
+      "right_knee": 160,
+      "left_ankle": 90,
+      "right_ankle": 110
+    }
+  }
+}
