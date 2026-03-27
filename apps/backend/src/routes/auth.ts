@@ -85,9 +85,9 @@ router.post(
         },
       };
       return res.status(201).json(response);
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Register error:', error);
-      return res.status(500).json({ success: false, error: 'Server error' });
+      return res.status(500).json({ success: false, error: `Server error: ${error.message}` });
     }
   }
 );

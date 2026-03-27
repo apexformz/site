@@ -8,9 +8,11 @@
     "packages/types"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev --workspace=apps/backend\" \"npm run dev --workspace=apps/frontend\"",
+    "dev": "npm run db:generate --workspace=apps/backend && concurrently \"npm run dev --workspace=apps/backend\" \"npm run dev --workspace=apps/frontend\"",
     "build": "npm run build --workspaces",
-    "test": "npm run test --workspaces --if-present"
+    "test": "npm run test --workspaces --if-present",
+    "postinstall": "npm run db:generate --workspace=apps/backend",
+    "db:push": "cd apps/backend && npx prisma db push --accept-data-loss"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
