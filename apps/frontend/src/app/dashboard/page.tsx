@@ -12,7 +12,8 @@ import {
   ChevronRight, 
   Star,
   Zap,
-  LayoutGrid
+  LayoutGrid,
+  Target
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import { User, UserStats, TrainingSession, Sport, getXpForNextLevel } from '@smartcoach/types';
@@ -46,12 +47,18 @@ export default function DashboardPage() {
     loadData();
   }, [router]);
 
-  const SPORTS: any[] = [
+  const [showAll, setShowAll] = useState(false);
+  
+  const ALL_SPORTS: any[] = [
     { id: 'cricket', title: 'Cricket', icon: Activity, color: 'from-blue-500 to-cyan-400', difficulty: 'Intermediate', description: 'Master your batting stance and bowling action.' },
     { id: 'tennis', title: 'Tennis', icon: Star, color: 'from-yellow-400 to-orange-500', difficulty: 'Advanced', description: 'Perfect your serve and backhand technique.' },
     { id: 'yoga', title: 'Yoga', icon: Zap, color: 'from-emerald-400 to-teal-500', difficulty: 'Beginner', description: 'Balance and form correction for core poses.' },
-    { id: 'running', title: 'Running', icon: TrendingUp, color: 'from-red-500 to-rose-400', difficulty: 'Beginner', description: 'AI-driven gait analysis and stride correction.' }
+    { id: 'running', title: 'Running', icon: TrendingUp, color: 'from-red-500 to-rose-400', difficulty: 'Beginner', description: 'AI-driven gait analysis and stride correction.' },
+    { id: 'boxing', title: 'Boxing', icon: Target, color: 'from-purple-500 to-indigo-400', difficulty: 'Advanced', description: 'Refine your guard, punches, and footwork.' },
+    { id: 'football', title: 'Football', icon: Trophy, color: 'from-orange-400 to-amber-500', difficulty: 'Intermediate', description: 'Improve your kick accuracy and body balance.' }
   ];
+
+  const displaySports = showAll ? ALL_SPORTS : ALL_SPORTS.slice(0, 4);
 
   if (isLoading) return (
     <div className="h-screen flex items-center justify-center bg-background">
@@ -142,13 +149,16 @@ export default function DashboardPage() {
                 <h2 className="text-3xl font-black uppercase italic leading-none mb-2">Choose Your <span className="text-primary">Discipline</span></h2>
                 <p className="text-white/40 text-sm font-medium">Select a sport to launch AI real-time analysis.</p>
               </div>
-              <button className="flex items-center gap-2 text-xs font-bold text-white/30 hover:text-white transition-colors">
-                <LayoutGrid className="w-4 h-4" /> BROWSE ALL
+              <button 
+                onClick={() => setShowAll(!showAll)}
+                className={`flex items-center gap-2 text-xs font-bold transition-colors ${showAll ? 'text-primary' : 'text-white/30 hover:text-white'}`}
+              >
+                <LayoutGrid className="w-4 h-4" /> {showAll ? 'SHOW FEATURED' : 'BROWSE ALL'}
               </button>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {SPORTS.map(sport => (
+              {displaySports.map((sport: any) => (
                 <SportCard 
                   key={sport.id}
                   {...sport}

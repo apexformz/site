@@ -31,7 +31,7 @@ router.post(
     body('email').isEmail().normalizeEmail(),
     body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
     body('name').trim().isLength({ min: 2 }),
-    body('preferred_sport').isIn(['cricket', 'tennis', 'yoga', 'running']),
+    body('preferred_sport').isIn(['cricket', 'tennis', 'yoga', 'running', 'boxing', 'football']),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);

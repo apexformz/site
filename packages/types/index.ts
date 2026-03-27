@@ -1,6 +1,6 @@
 // Shared TypeScript types for all SmartCoach services
 
-export type Sport = 'cricket' | 'tennis' | 'yoga' | 'running';
+export type Sport = 'cricket' | 'tennis' | 'yoga' | 'running' | 'boxing' | 'football';
 
 export interface Keypoint {
   x: number;

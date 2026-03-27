@@ -54,5 +54,33 @@
       "left_ankle": 90,
       "right_ankle": 110
     }
+  },
+  "boxing": {
+    "guard_stance": {
+      "left_elbow": 60,
+      "right_elbow": 60,
+      "left_shoulder": 60,
+      "right_shoulder": 60,
+      "left_hip": 170,
+      "right_hip": 170,
+      "left_knee": 160,
+      "right_knee": 160,
+      "left_ankle": 90,
+      "right_ankle": 90
+    }
+  },
+  "football": {
+    "kick_prepare": {
+      "left_elbow": 120,
+      "right_elbow": 120,
+      "left_shoulder": 45,
+      "right_shoulder": 45,
+      "left_hip": 140,
+      "right_hip": 110,
+      "left_knee": 170,
+      "right_knee": 90,
+      "left_ankle": 90,
+      "right_ankle": 110
+    }
   }
 }

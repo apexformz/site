@@ -42,7 +42,9 @@ export default function RegisterPage() {
     { id: 'cricket', label: 'Cricket' },
     { id: 'tennis', label: 'Tennis' },
     { id: 'yoga', label: 'Yoga' },
-    { id: 'running', label: 'Running' }
+    { id: 'running', label: 'Running' },
+    { id: 'boxing', label: 'Boxing' },
+    { id: 'football', label: 'Football' }
   ];
 
   return (
