@@ -30,10 +30,10 @@ async def analyze_frame(request: Request):
     """
     data = await request.json()
     sport = data.get("sport", "cricket")
-    keypoints_data = data.get("keypoints", {})
-    keypoints = keypoints_data.get("keypoints", [])
+    keypoints = data.get("keypoints", [])
+    hands = data.get("hands", [])
     
-    analysis_result = analyze_pose(sport, keypoints, data.get("pose_name"))
+    analysis_result = analyze_pose(sport, keypoints, data.get("pose_name"), hands)
     return analysis_result
 
 @router.get("/poses/{sport}")

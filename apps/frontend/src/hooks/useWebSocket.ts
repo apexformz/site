@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { io, Socket } from 'socket.io-client';
-import { FrameAnalysis, PoseKeypoints } from '@smartcoach/types';
+import { FrameAnalysis, PoseKeypoints, Hand } from '@smartcoach/types';
 
 const getSocketUrl = () => {
   if (process.env.NEXT_PUBLIC_SOCKET_URL) return process.env.NEXT_PUBLIC_SOCKET_URL;
@@ -86,9 +86,9 @@ export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
     }
   }, []);
 
-  const submitFrame = useCallback((keypoints: PoseKeypoints, sport: string, poseName?: string) => {
+  const submitFrame = useCallback((keypoints: PoseKeypoints, hands: Hand[] | null, sport: string, poseName?: string) => {
     if (socketRef.current?.connected) {
-      socketRef.current.emit('frame:submit', { keypoints, sport, poseName });
+      socketRef.current.emit('frame:submit', { keypoints, hands, sport, poseName });
     }
   }, []);
 

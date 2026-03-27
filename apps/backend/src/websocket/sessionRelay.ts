@@ -7,7 +7,7 @@ import axios from 'axios';
 import http from 'http';
 import https from 'https';
 import { verifyToken } from '../utils/auth.utils';
-import { PoseKeypoints, FrameAnalysis } from '@smartcoach/types';
+import { PoseKeypoints, FrameAnalysis, Hand } from '@smartcoach/types';
 
 // Optimize for high-frequency frame analysis with persistent connections
 const aiHttpClient = axios.create({
@@ -57,7 +57,7 @@ export function initializeWebSocket(server: HttpServer) {
       logger.info(`🚀 Starting AI session: ${sessionId} | Sport: ${sport} | Pose: ${poseName || 'default'}`);
     });
 
-    socket.on('frame:submit', async (data: { keypoints: PoseKeypoints; sport: string; poseName?: string }) => {
+    socket.on('frame:submit', async (data: { keypoints: PoseKeypoints; hands: Hand[] | null; sport: string; poseName?: string }) => {
       if (!activeSessionId) return;
 
       // Server-side console visibility (Sampled at 1Hz to show it's working)
@@ -71,6 +71,7 @@ export function initializeWebSocket(server: HttpServer) {
         const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://localhost:8000';
         const response = await aiHttpClient.post<FrameAnalysis>(`${aiServiceUrl}/analyze`, {
           keypoints: data.keypoints.keypoints,
+          hands: data.hands,
           sport: data.sport,
           pose_name: data.poseName || activePoseName,
         });
@@ -86,7 +87,7 @@ export function initializeWebSocket(server: HttpServer) {
           data: {
             session_id: activeSessionId,
             timestamp_ms: data.keypoints.timestamp_ms,
-            keypoints: data.keypoints as any,
+            keypoints: { ...data.keypoints, hands: data.hands } as any,
             angles: analysis.joint_angles as any,
             feedback: analysis.feedback as any,
             frame_score: analysis.frame_score,

@@ -15,6 +15,19 @@ export interface PoseKeypoints {
   timestamp_ms: number;
 }
 
+export interface HandKeypoint extends Keypoint {}
+
+export interface Hand {
+  keypoints: HandKeypoint[];
+  score: number;
+  handedness: 'Left' | 'Right';
+}
+
+export interface HandDetectionResult {
+  hands: Hand[];
+  timestamp_ms: number;
+}
+
 export interface JointAngles {
   left_elbow: number;
   right_elbow: number;

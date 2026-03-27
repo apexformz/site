@@ -51,11 +51,47 @@ def compute_joint_angles(keypoints: List[Dict[str, Any]]) -> Dict[str, float]:
     # Filter out unseen joints
     return {k: v for k, v in angles.items() if v >= 0}
 
-def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = None) -> Dict[str, Any]:
+def analyze_hands(hands: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    Analyzes finger joint angles to detect grip quality.
+    """
+    hand_feedback = []
+    
+    for hand in hands:
+        side = hand.get('handedness', 'Hand')
+        kps = hand.get('keypoints', [])
+        if len(kps) < 21:
+            continue
+            
+        # Indices for Index Finger (5, 6, 7, 8)
+        index_angle = calculate_angle(kps[5], kps[6], kps[7])
+        # Indices for Middle Finger (9, 10, 11, 12)
+        middle_angle = calculate_angle(kps[9], kps[10], kps[11])
+        
+        # Simple Logic: If fingers are highly bent (< 100), it's a "Tight Grip"
+        if index_angle > 0 and index_angle < 100:
+            hand_feedback.append({
+                "joint": f"{side} Index",
+                "severity": "good",
+                "message": f"{side} grip looks firm.",
+                "angle_actual": round(index_angle, 1)
+            })
+        elif index_angle >= 100:
+            hand_feedback.append({
+                "joint": f"{side} Index",
+                "severity": "warning",
+                "message": f"Open {side} palm detected. Ensure firm grip.",
+                "angle_actual": round(index_angle, 1)
+            })
+
+    return hand_feedback
+
+def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = None, hands: List[Dict[str, Any]] = []) -> Dict[str, Any]:
     """
     Compare current pose to reference and generate real-time feedback.
     """
     actual_angles = compute_joint_angles(keypoints)
+    hand_feedback = analyze_hands(hands)
     
     # Selection logic: use provided pose_name or fall back to first one
     if sport not in REFERENCE_POSES:
@@ -106,6 +142,10 @@ def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = N
     # 0 error = 100 score. 90 degree error = 0 score
     frame_score = max(0, min(100, 100 - (avg_error * (100 / 90))))
     
+    # Boost score slightly if hand feedback is good
+    if any(h['severity'] == 'good' for h in hand_feedback):
+        frame_score = min(100, frame_score + 5)
+
     overall_severity = "good"
     if frame_score < 50:
         overall_severity = "error"
@@ -116,5 +156,5 @@ def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = N
         "frame_score": round(frame_score, 1),
         "overall_severity": overall_severity,
         "joint_angles": actual_angles,
-        "feedback": feedback
+        "feedback": feedback + hand_feedback
     }

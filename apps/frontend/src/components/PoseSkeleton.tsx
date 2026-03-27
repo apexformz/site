@@ -1,16 +1,33 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
-import { PoseKeypoints, FrameAnalysis } from '@smartcoach/types';
+import { PoseKeypoints, FrameAnalysis, Hand } from '@smartcoach/types';
 
 interface PoseSkeletonProps {
   pose: PoseKeypoints | null;
+  hands?: Hand[] | null;
   analysis: FrameAnalysis | null;
   width: number;
   height: number;
   videoWidth?: number;
   videoHeight?: number;
 }
+
+/**
+ * Hand Skeleton Connections (21-point MediaPipe/HandPose standard)
+ */
+const HAND_CONNECTIONS = [
+  // Thumb
+  [0, 1], [1, 2], [2, 3], [3, 4],
+  // Index
+  [0, 5], [5, 6], [6, 7], [7, 8],
+  // Middle
+  [0, 9], [9, 10], [10, 11], [11, 12],
+  // Ring
+  [0, 13], [13, 14], [14, 15], [15, 16],
+  // Pinky
+  [0, 17], [17, 18], [18, 19], [19, 20]
+];
 
 /**
  * Universal Athletic Connections (Compatible with 17-point MoveNet and 33-point BlazePose)
@@ -37,11 +54,20 @@ const UNIVERSAL_CONNECTIONS = [
 
   // Legs
   ['left_hip', 'left_knee'], ['left_knee', 'left_ankle'],
-  ['right_hip', 'right_knee'], ['right_knee', 'right_ankle']
+  ['right_hip', 'right_knee'], ['right_knee', 'right_ankle'],
+  
+  // BlazePose Specific: Feet
+  ['left_ankle', 'left_heel'], ['left_heel', 'left_foot_index'], ['left_ankle', 'left_foot_index'],
+  ['right_ankle', 'right_heel'], ['right_heel', 'right_foot_index'], ['right_ankle', 'right_foot_index'],
+
+  // BlazePose Specific: Hands (Wrist to Pinky/Index/Thumb base)
+  ['left_wrist', 'left_pinky'], ['left_wrist', 'left_index'], ['left_wrist', 'left_thumb'],
+  ['right_wrist', 'right_pinky'], ['right_wrist', 'right_index'], ['right_wrist', 'right_thumb']
 ];
 
 export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({ 
   pose, 
+  hands,
   analysis, 
   width, 
   height,
@@ -52,7 +78,7 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || !pose) return;
+    if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -68,66 +94,120 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
     const scaleX = width / videoWidth;
     const scaleY = height / videoHeight;
 
-    const kpMap = new Map();
-    pose.keypoints.forEach(kp => kpMap.set(kp.name, kp));
+    // --- DRAW BODY SKELETON ---
+    if (pose) {
+      const kpMap = new Map();
+      pose.keypoints.forEach(kp => kpMap.set(kp.name, kp));
 
-    // Draw Universal Mesh
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    
-    UNIVERSAL_CONNECTIONS.forEach(([p1, p2]) => {
-      const kp1 = kpMap.get(p1);
-      const kp2 = kpMap.get(p2);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      
+      UNIVERSAL_CONNECTIONS.forEach(([p1, p2]) => {
+        const kp1 = kpMap.get(p1);
+        const kp2 = kpMap.get(p2);
 
-      if (kp1 && kp2 && kp1.score > 0.15 && kp2.score > 0.15) {
-        // Semantic joint check for feedback coloring
-        const joint1 = p1.includes('_') ? p1.split('_')[1] : p1;
-        const joint2 = p2.includes('_') ? p2.split('_')[1] : p2;
+        if (kp1 && kp2 && kp1.score > 0.15 && kp2.score > 0.15) {
+          const joint1 = p1.includes('_') ? p1.split('_')[1] : p1;
+          const joint2 = p2.includes('_') ? p2.split('_')[1] : p2;
 
-        const hasError = analysis?.feedback.some(f => {
-          const fj = f.joint.toLowerCase();
-          return fj.includes(joint1) || fj.includes(joint2);
+          const hasError = analysis?.feedback.some(f => {
+            const fj = f.joint.toLowerCase();
+            return fj.includes(joint1) || fj.includes(joint2);
+          });
+
+          ctx.beginPath();
+          ctx.moveTo(width - (kp1.x * scaleX), kp1.y * scaleY);
+          ctx.lineTo(width - (kp2.x * scaleX), kp2.y * scaleY);
+          
+          if (hasError) {
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = '#ff4757';
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#ff4757';
+          } else {
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = '#00d4ff';
+            ctx.shadowBlur = 0;
+          }
+          ctx.stroke();
+        }
+      });
+
+      // Draw Body Junctions
+      pose.keypoints.forEach(kp => {
+        if (kp.score > 0.15) {
+          const x = width - (kp.x * scaleX);
+          const y = kp.y * scaleY;
+
+          ctx.beginPath();
+          ctx.arc(x, y, 3, 0, 2 * Math.PI);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+          ctx.shadowBlur = 5;
+          ctx.shadowColor = '#00d4ff';
+          ctx.strokeStyle = '#00d4ff';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      });
+    }
+
+    // --- DRAW HAND SKELETONS ---
+    if (hands && hands.length > 0) {
+      // Diagnostic Tether
+      if (pose) {
+        const bodyWrist = pose.keypoints.find(kp => kp.name === 'left_wrist' || kp.name === 'right_wrist');
+        if (bodyWrist && bodyWrist.score > 0.3) {
+          ctx.beginPath();
+          ctx.setLineDash([5, 5]);
+          ctx.moveTo(width - (bodyWrist.x * scaleX), bodyWrist.y * scaleY);
+          ctx.lineTo(width - (hands[0].keypoints[0].x * scaleX), hands[0].keypoints[0].y * scaleY);
+          ctx.strokeStyle = 'rgba(255, 255, 0, 0.5)';
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+      }
+
+      hands.forEach(hand => {
+        // Hand Bone Connections
+        HAND_CONNECTIONS.forEach(([i1, i2]) => {
+          const kp1 = hand.keypoints[i1];
+          const kp2 = hand.keypoints[i2];
+
+          if (kp1 && kp2) {
+            ctx.beginPath();
+            ctx.moveTo(width - (kp1.x * scaleX), kp1.y * scaleY);
+            ctx.lineTo(width - (kp2.x * scaleX), kp2.y * scaleY);
+            
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = '#ffffff';
+            ctx.shadowBlur = 0;
+            ctx.stroke();
+          }
         });
 
-        ctx.beginPath();
-        // Mirroring X coordinate for natural "mirror" effect
-        ctx.moveTo(width - (kp1.x * scaleX), kp1.y * scaleY);
-        ctx.lineTo(width - (kp2.x * scaleX), kp2.y * scaleY);
-        
-        if (hasError) {
-          ctx.lineWidth = 4;
-          ctx.strokeStyle = '#ff4757';
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = '#ff4757';
-        } else {
-          ctx.lineWidth = 2; // Stabilized line width
-          ctx.strokeStyle = '#00d4ff';
-          ctx.shadowBlur = 0;
-        }
-        ctx.stroke();
-      }
-    });
+        // Hand Joint Landmarks
+        hand.keypoints.forEach((kp, i) => {
+          const x = width - (kp.x * scaleX);
+          const y = kp.y * scaleY;
 
-    // Draw Neural Junctions
-    pose.keypoints.forEach(kp => {
-      if (kp.score > 0.15) {
-        const x = width - (kp.x * scaleX);
-        const y = kp.y * scaleY;
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, 2 * Math.PI);
+          
+          const isTip = [4, 8, 12, 16, 20].includes(i);
+          if (isTip) {
+            ctx.fillStyle = hand.handedness === 'Left' ? '#ff3e3e' : '#00d4ff';
+          } else {
+            ctx.fillStyle = '#ffffff';
+          }
 
-        ctx.beginPath();
-        ctx.arc(x, y, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = '#ffffff';
-        ctx.fill();
-        ctx.shadowBlur = 5;
-        ctx.shadowColor = '#00d4ff';
-        ctx.strokeStyle = '#00d4ff';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-    });
+          ctx.fill();
+        });
+      });
+    }
 
     ctx.shadowBlur = 0;
-  }, [pose, analysis, width, height, videoWidth, videoHeight]);
+  }, [pose, hands, analysis, width, height, videoWidth, videoHeight]);
 
   return (
     <canvas 
