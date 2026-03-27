@@ -1,17 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
 import { ApiResponse } from '@smartcoach/types';
+import { verifyToken } from '../utils/auth.utils';
 
 export interface AuthRequest extends Request {
   userId?: string;
   userEmail?: string;
-}
-
-interface JwtPayload {
-  userId: string;
-  email: string;
-  iat: number;
-  exp: number;
 }
 
 export function authenticateToken(req: AuthRequest, res: Response, next: NextFunction): void {
@@ -25,12 +18,12 @@ export function authenticateToken(req: AuthRequest, res: Response, next: NextFun
   }
 
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
+    const payload = verifyToken(token, process.env.JWT_SECRET as string);
     req.userId = payload.userId;
     req.userEmail = payload.email;
     next();
-  } catch (err) {
-    const response: ApiResponse<null> = { success: false, error: 'Invalid or expired token' };
+  } catch (err: any) {
+    const response: ApiResponse<null> = { success: false, error: err.message.toUpperCase() };
     res.status(401).json(response);
   }
 }

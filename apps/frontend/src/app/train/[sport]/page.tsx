@@ -29,8 +29,10 @@ export default function TrainingPage() {
   const [frameCount, setFrameCount] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [averageScore, setAverageScore] = useState(0);
+  const [dimensions, setDimensions] = useState({ width: 1280, height: 720 });
+  const [isAiPulsing, setIsAiPulsing] = useState(false);
 
-  const { detectPose, isLoading: isModelLoading } = usePoseDetection();
+  const { detectPose, isLoading: isModelLoading, error: modelError } = usePoseDetection();
   
   const onFeedback = useCallback((analysis: FrameAnalysis) => {
     setCurrentAnalysis(analysis);
@@ -78,21 +80,47 @@ export default function TrainingPage() {
     };
   }, [isCameraActive]);
 
-  // Main Detection Loop with 30 FPS throttle (GPU accelerated)
+  // Resize Observer for pixel-perfect skeleton alignment
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry) {
+        setDimensions({
+          width: entry.contentRect.width,
+          height: entry.contentRect.height
+        });
+      }
+    });
+    
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Main Detection Loop with 30 FPS throttle
   useEffect(() => {
     let animationId: number;
     let lastTime = 0;
-    const throttleMs = 1000 / 30; // 30 FPS
+    const throttleMs = 1000 / 30;
     
     async function loop(timestamp: number) {
       if (timestamp - lastTime >= throttleMs) {
         if (videoRef.current && isCameraActive) {
-          const pose = await detectPose(videoRef.current);
-          if (pose) {
-            setCurrentPose(pose);
-            if (isRecording && isConnected) {
-              submitFrame(pose, sport, poseName);
+          try {
+            const pose = await detectPose(videoRef.current);
+            if (pose) {
+              setCurrentPose(pose);
+              // Diagnostic pulse logic: flash when detecting
+              setIsAiPulsing(true);
+              setTimeout(() => setIsAiPulsing(false), 150);
+
+              if (isRecording && isConnected) {
+                submitFrame(pose, sport, poseName);
+              }
             }
+          } catch (err) {
+            console.error('Frame detection error:', err);
           }
         }
         lastTime = timestamp;
@@ -195,8 +223,10 @@ export default function TrainingPage() {
               <PoseSkeleton 
                 pose={currentPose} 
                 analysis={currentAnalysis}
-                width={containerRef.current?.clientWidth || 1280}
-                height={containerRef.current?.clientHeight || 720}
+                width={dimensions.width}
+                height={dimensions.height}
+                videoWidth={videoRef.current?.videoWidth}
+                videoHeight={videoRef.current?.videoHeight}
               />
               
               {/* Camera Overlays */}
@@ -206,7 +236,10 @@ export default function TrainingPage() {
               <div className="absolute top-6 left-6 z-20">
                 <div className="flex flex-col">
                   <span className="text-2xl font-black uppercase italic text-primary leading-none tracking-tighter">SmartCoach AI</span>
-                  <span className="text-xs text-secondary/60 font-medium tracking-widest pl-1">{sport} {poseName ? `/ ${poseName.replace('_', ' ')}` : '/ LIVE INFERENCE'}</span>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-xs text-secondary/60 font-medium tracking-widest uppercase">{sport} {poseName ? `/ ${poseName.replace('_', ' ')}` : '/ LIVE INFERENCE'}</span>
+                    <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${isAiPulsing ? 'bg-primary shadow-glow shadow-primary' : 'bg-white/10'}`} />
+                  </div>
                 </div>
               </div>
 
@@ -246,10 +279,28 @@ export default function TrainingPage() {
             </div>
           )}
           
-          {isModelLoading && isCameraActive && (
+          {isModelLoading && isCameraActive && !modelError && (
             <div className="absolute inset-0 glass-card bg-black/80 flex flex-col items-center justify-center z-[100]">
               <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mb-6" />
-              <p className="text-primary font-bold tracking-widest animate-pulse">LOADING AI POSE ENGINE...</p>
+              <p className="text-primary font-bold tracking-widest animate-pulse font-mono">INITIALIZING HIGH-FIDELITY AI...</p>
+            </div>
+          )}
+
+          {modelError && (
+            <div className="absolute inset-0 glass-card bg-black/80 flex flex-col items-center justify-center z-[110] p-12 text-center">
+              <div className="w-20 h-20 rounded-full bg-accent-danger/20 flex items-center justify-center mb-6">
+                 <X className="w-10 h-10 text-accent-danger" />
+              </div>
+              <h2 className="text-2xl font-black uppercase italic text-white mb-2">AI Engine Failed</h2>
+              <p className="text-white/60 text-sm max-w-sm mb-8 leading-relaxed">
+                {modelError}. This usually happens if your browser blocks hardware acceleration or doesn't support the 33-point tracking model.
+              </p>
+              <button 
+                onClick={() => window.location.reload()}
+                className="btn-primary px-12 py-3 text-xs tracking-[0.2em]"
+              >
+                RELOAD AI ENGINE
+              </button>
             </div>
           )}
         </div>

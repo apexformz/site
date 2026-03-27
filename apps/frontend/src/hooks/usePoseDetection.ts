@@ -8,35 +8,43 @@ export function usePoseDetection() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Initialize detector with GPU acceleration
   useEffect(() => {
+    let isMounted = true;
+
     async function initDetector() {
       try {
-        // Force WebGL backend for GPU acceleration
+        console.log('🤖 Initializing High-Performance AI Engine (Thunder)...');
+        
+        // Ensure TFJS is ready and using WebGL on RTX 5070
+        await tf.ready();
         await tf.setBackend('webgl');
         
-        // Performance flags for Windows/GPU
-        tf.env().set('WEBGL_CPU_FORWARD', false);
-        tf.env().set('WEBGL_FORCE_F16_TEXTURES', true);
-        
-        await tf.ready();
         console.log('TFJS Backend:', tf.getBackend());
 
         const model = poseDetection.SupportedModels.MoveNet;
         const detectorConfig = {
-          modelType: poseDetection.movenet.modelType.SINGLEPOSE_LIGHTNING,
+          modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER,
           enableSmoothing: true
         };
+        
         const newDetector = await poseDetection.createDetector(model, detectorConfig);
-        setDetector(newDetector);
-        setIsLoading(false);
-      } catch (err) {
-        console.error('Failed to init MoveNet:', err);
-        setError('Failed to initialize AI detector.');
-        setIsLoading(false);
+        
+        if (isMounted) {
+          setDetector(newDetector);
+          setIsLoading(false);
+          console.log('✅ AI Pose Engine Ready (MoveNet Thunder 17-point)');
+        }
+      } catch (err: any) {
+        console.error('❌ Failed to init Pose Engine:', err);
+        if (isMounted) {
+          setError(`AI Engine Error: ${err.message || 'Check hardware acceleration'}`);
+          setIsLoading(false);
+        }
       }
     }
+
     initDetector();
+    return () => { isMounted = false; };
   }, []);
 
   const detectPose = useCallback(
@@ -48,21 +56,22 @@ export function usePoseDetection() {
           flipHorizontal: false // Already handled by CSS mirror in UI
         });
         
-        if (poses.length > 0) {
+        if (poses && poses.length > 0) {
           const pose = poses[0];
           return {
-            keypoints: (pose.keypoints || []).map((kp) => ({
+            keypoints: (pose.keypoints || []).map((kp, index) => ({
+              // MoveNet Thunder returns absolute pixel coordinates
               x: kp.x,
               y: kp.y,
               score: kp.score || 0,
-              name: kp.name || '',
+              name: kp.name || `point_${index}`,
             })) as Keypoint[],
             score: pose.score || 0,
             timestamp_ms: Date.now(),
           };
         }
       } catch (err) {
-        console.error('Detection error:', err);
+        // Silent loop error
       }
       return null;
     },

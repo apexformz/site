@@ -19,6 +19,9 @@ export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const onFeedbackRef = useRef(onFeedback);
   
+  // Track current session for auto-reconnection
+  const sessionStateRef = useRef<{ sessionId: string, sport: string, poseName?: string } | null>(null);
+  
   useEffect(() => {
     onFeedbackRef.current = onFeedback;
   }, [onFeedback]);
@@ -37,15 +40,21 @@ export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
       auth: { token },
       transports: ['websocket'],
       reconnection: true,
-      reconnectionAttempts: 10,
+      reconnectionAttempts: 20,
       reconnectionDelay: 1000,
-      timeout: 10000,
+      timeout: 15000,
     });
 
     socket.on('connect', () => {
       console.log('✅ Connected to AI Feedback Relay');
       setIsConnected(true);
       setConnectionError(null);
+      
+      // Auto-restore session if we were recording
+      if (sessionStateRef.current) {
+        console.log('🔄 Restoring AI training session after reconnect...');
+        socket.emit('session:start', sessionStateRef.current);
+      }
     });
 
     socket.on('connect_error', (err) => {
@@ -61,25 +70,19 @@ export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
     socket.on('disconnect', (reason) => {
       console.warn('⚠️ Disconnected from AI Relay:', reason);
       setIsConnected(false);
-      if (reason === 'io server disconnect') {
-        // the disconnection was initiated by the server, you need to reconnect manually
-        socket.connect();
-      }
     });
 
     socketRef.current = socket;
 
     return () => {
-      console.log('🔌 Cleaning up WebSocket connection');
       socket.disconnect();
     };
   }, []);
 
   const startSession = useCallback((sessionId: string, sport: string, poseName?: string) => {
+    sessionStateRef.current = { sessionId, sport, poseName };
     if (socketRef.current?.connected) {
       socketRef.current.emit('session:start', { sessionId, sport, poseName });
-    } else {
-      console.warn('Cannot start session: WebSocket not connected');
     }
   }, []);
 
@@ -90,6 +93,7 @@ export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
   }, []);
 
   const stopSession = useCallback(() => {
+    sessionStateRef.current = null;
     if (socketRef.current?.connected) {
       socketRef.current.emit('session:stop');
     }

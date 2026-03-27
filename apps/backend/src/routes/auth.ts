@@ -8,7 +8,7 @@ import { ApiResponse, AuthTokens, RegisterRequest, LoginRequest } from '@smartco
 import logger from '../utils/logger';
 import crypto from 'crypto';
 
-import { generateAuthTokens } from '../utils/auth.utils';
+import { generateAuthTokens, verifyToken } from '../utils/auth.utils';
 
 const router = Router();
 
@@ -148,18 +148,14 @@ router.post('/refresh', async (req: Request, res: Response) => {
   if (!refresh_token) {
     return res.status(401).json({ success: false, error: 'Refresh token required' });
   }
-
   try {
-    const payload = jwt.verify(refresh_token, process.env.JWT_REFRESH_SECRET as string) as {
-      userId: string;
-      email: string;
-    };
+    const payload = verifyToken(refresh_token, process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET as string);
 
     const hashed = crypto.createHash('sha256').update(refresh_token).digest('hex');
     const stored = await prisma.refreshToken.findUnique({ where: { token: hashed } });
 
     if (!stored || stored.expires_at < new Date()) {
-      return res.status(401).json({ success: false, error: 'Refresh token expired or invalid' });
+      return res.status(401).json({ success: false, error: 'REFRESH TOKEN EXPIRED OR REVOKED' });
     }
 
     // Rotate token
@@ -175,8 +171,8 @@ router.post('/refresh', async (req: Request, res: Response) => {
     });
 
     return res.json({ success: true, data: { access_token, refresh_token: new_refresh, expires_in: 900 } });
-  } catch {
-    return res.status(401).json({ success: false, error: 'Invalid refresh token' });
+  } catch (err: any) {
+    return res.status(401).json({ success: false, error: err.message.toUpperCase() });
   }
 });
 
