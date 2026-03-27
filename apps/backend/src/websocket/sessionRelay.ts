@@ -4,7 +4,16 @@ import jwt from 'jsonwebtoken';
 import { prisma } from '../utils/prisma';
 import logger from '../utils/logger';
 import axios from 'axios';
+import http from 'http';
+import https from 'https';
 import { PoseKeypoints, FrameAnalysis } from '@smartcoach/types';
+
+// Optimize for high-frequency frame analysis with persistent connections
+const aiHttpClient = axios.create({
+  httpAgent: new http.Agent({ keepAlive: true, maxSockets: 100 }),
+  httpsAgent: new https.Agent({ keepAlive: true, maxSockets: 100 }),
+  timeout: 1000,
+});
 
 export function initializeWebSocket(server: HttpServer) {
   const io = new Server(server, {
@@ -48,9 +57,9 @@ export function initializeWebSocket(server: HttpServer) {
       if (!activeSessionId) return;
 
       try {
-        // Forward to AI Service
+        // Forward to AI Service with connection pooling
         const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://localhost:8000';
-        const response = await axios.post<FrameAnalysis>(`${aiServiceUrl}/analyze`, {
+        const response = await aiHttpClient.post<FrameAnalysis>(`${aiServiceUrl}/analyze`, {
           keypoints: data.keypoints,
           sport: data.sport,
         });

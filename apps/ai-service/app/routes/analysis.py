@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
 from app.services.pose_analyzer import analyze_pose
@@ -20,16 +20,20 @@ class AnalyzeRequest(BaseModel):
     keypoints: PoseKeypoints
     sport: str
 
+# ... 
 @router.post("/analyze")
-async def analyze_frame(request: AnalyzeRequest):
+async def analyze_frame(request: Request):
     """
     Receives current video frame keypoints, calculates angles, compares to reference,
     and returns immediate score and actionable feedback.
+    Bypasses Pydantic for maximum performance on the hot path.
     """
-    # Convert Pydantic to dict list for the analyzer
-    kp_dicts = [kp.dict() for kp in request.keypoints.keypoints]
+    data = await request.json()
+    sport = data.get("sport", "cricket")
+    keypoints_data = data.get("keypoints", {})
+    keypoints = keypoints_data.get("keypoints", [])
     
-    analysis_result = analyze_pose(request.sport, kp_dicts)
+    analysis_result = analyze_pose(sport, keypoints)
     return analysis_result
 
 @router.post("/analyze/batch")

@@ -11,7 +11,7 @@ router.use(authenticateToken);
 // POST /api/sessions
 router.post(
   '/',
-  [body('sport').isIn(['cricket', 'tennis', 'yoga', 'running'])],
+  [body('sport').isIn(['cricket', 'tennis', 'yoga', 'running', 'boxing', 'football'])],
   async (req: AuthRequest, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ success: false, error: errors.array()[0].msg });
@@ -45,9 +45,38 @@ router.patch(
     const { duration_s, score, feedback_summary, frame_count } = req.body;
 
     try {
-      const session = await prisma.trainingSession.findUnique({ where: { id } });
+      const session = await prisma.trainingSession.findUnique({ 
+        where: { id },
+        include: { frames: true }
+      });
       if (!session) return res.status(404).json({ success: false, error: 'Session not found' });
       if (session.user_id !== req.userId) return res.status(403).json({ success: false, error: 'Forbidden' });
+
+      // Generate a better feedback summary by analyzing frame history
+      let finalSummary = feedback_summary;
+      if (session.frames.length > 0) {
+        const jointIssues: Record<string, number> = {};
+        session.frames.forEach(frame => {
+          const feedback = frame.feedback as any[];
+          feedback.forEach(f => {
+            if (f.severity === 'error' || f.severity === 'warning') {
+              jointIssues[f.joint] = (jointIssues[f.joint] || 0) + 1;
+            }
+          });
+        });
+
+        const sortedIssues = Object.entries(jointIssues)
+          .sort(([, a], [, b]) => b - a)
+          .slice(0, 3);
+          
+        if (sortedIssues.length > 0) {
+          const issueStrings = sortedIssues.map(([joint, count]) => {
+            const percentage = Math.round((count / session.frames.length) * 100);
+            return `• ${joint.replace('_', ' ')} detected out of position in ${percentage}% of frames.`;
+          });
+          finalSummary = `Technical Summary:\n${issueStrings.join('\n')}`;
+        }
+      }
 
       // Calculate XP
       const xpEarned = GamificationEngine.calculateSessionXp(duration_s, score);
@@ -55,7 +84,13 @@ router.patch(
       // Save session
       const updatedSession = await prisma.trainingSession.update({
         where: { id },
-        data: { duration_s, score, feedback_summary, frame_count, xp_earned: xpEarned },
+        data: { 
+          duration_s, 
+          score, 
+          feedback_summary: finalSummary, 
+          frame_count, 
+          xp_earned: xpEarned 
+        },
       });
 
       // Update global gamification stats securely via transaction

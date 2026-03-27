@@ -16,7 +16,7 @@ import {
   Star
 } from 'lucide-react';
 import { api } from '@/lib/api';
-import { TrainingSession, PoseFrame, ACHIEVEMENT_META } from '@smartcoach/types';
+import { TrainingSession, PoseFrame } from '@smartcoach/types';
 
 export default function ResultsPage() {
   const { sessionId } = useParams();
@@ -99,12 +99,15 @@ export default function ResultsPage() {
                <Target className="w-4 h-4" /> AI Analysis Feedback
              </h3>
              <div className="flex flex-col gap-4">
-               {session.feedback_summary.split('\n').map((line, i) => (
-                 <div key={i} className="flex items-start gap-4 p-4 border border-white/5 bg-white/5 rounded-xl">
-                   <Zap className="w-4 h-4 text-primary mt-1 shrink-0" />
-                   <p className="text-sm text-white/70 font-medium leading-relaxed">{line}</p>
-                 </div>
-               ))}
+                {session.feedback_summary.split('\n').map((line, i) => {
+                  const isTechnical = line.trim().startsWith('•') || line.trim().startsWith('Technical');
+                  return (
+                    <div key={i} className={`flex items-start gap-4 p-4 rounded-xl transition-all ${isTechnical ? 'border border-primary/20 bg-primary/5 shadow-glow shadow-primary/5' : 'border border-white/5 bg-white/5'}`}>
+                      <Zap className={`w-4 h-4 mt-1 shrink-0 ${isTechnical ? 'text-primary' : 'text-white/20'}`} />
+                      <p className={`text-sm font-medium leading-relaxed ${isTechnical ? 'text-white' : 'text-white/60'}`}>{line}</p>
+                    </div>
+                  );
+                })}
              </div>
           </section>
 
