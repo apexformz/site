@@ -133,9 +133,30 @@ export default function TrainingPage() {
       }
       animationId = requestAnimationFrame(loop);
     }
-    
+    /*
+     ### 1. Edge AI & Computer Vision (Holistic 2.0)
+    - **Engine**: Unified **MediaPipe Holistic** API for synchronized body, hand, and face tracking.
+    - **Fidelity**: 33-point body skeleton, 21-point dual-hand landmarks, and 468-point high-density face mesh.
+    - **Rendering**: Aspect-ratio aware coordinate remapping for pixel-perfect alignment on `object-cover` video streams.
+    - **Technical Map**: Pure data-driven tessellation stripped of artificial outlines, featuring an engineered synthetic neck structure.
+    ```mermaid
+    graph TD
+        Client["Next.js 14 Frontend (Browser)"]
+        Backend["Express API Gateway"]
+        AIService["Python FastAPI AI Service"]
+        Db[("PostgreSQL")]
+        Holistic["MediaPipe Holistic (Unified Engine)"]
+        
+        Client -- "1. Video Frame" --> Holistic
+        Holistic -- "2. Pose (33) / Hands (42) / Face (468)" --> Client
+        Client -- "3. Stream Keypoints (WS)" --> Backend
+        Backend -- "4. Analyze Pose (HTTP)" --> AIService
+        AIService -- "5. Joint Angles / Feedback" --> Backend
+        Backend -- "6. Real-time Feedback (WS)" --> Client
+        Backend -- "7. Persist Session" --> Db
+    ```
+    */
     animationId = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(animationId);
   }, [detectHolistic, hardResetHolistic, isCameraActive, isRecording, isConnected, sport, submitFrame, poseName]);
 
   // Session timer

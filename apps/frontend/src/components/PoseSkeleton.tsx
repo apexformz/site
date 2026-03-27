@@ -120,11 +120,14 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       
+      const prevPoseRef = { current: pose }; // Simple closure for smoothing in this pass
+
       UNIVERSAL_CONNECTIONS.forEach(([p1, p2]) => {
         const kp1 = kpMap.get(p1);
         const kp2 = kpMap.get(p2);
 
-        if (kp1 && kp2 && kp1.score > 0.15 && kp2.score > 0.15) {
+        // Lower threshold (0.05) to prevent "coming and going" in close-ups
+        if (kp1 && kp2 && kp1.score > 0.05 && kp2.score > 0.05) {
           const joint1 = p1.includes('_') ? p1.split('_')[1] : p1;
           const joint2 = p2.includes('_') ? p2.split('_')[1] : p2;
 
@@ -137,30 +140,111 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
           ctx.moveTo(getX(kp1.x / videoWidth), getY(kp1.y / videoHeight));
           ctx.lineTo(getX(kp2.x / videoWidth), getY(kp2.y / videoHeight));
           
+          // Adaptive opacity based on score (to prevent harsh flickering)
+          const avgScore = (kp1.score + kp2.score) / 2;
+          ctx.globalAlpha = Math.min(1.0, avgScore * 2); 
+
           if (hasError) {
             ctx.lineWidth = 4;
             ctx.strokeStyle = '#ff4757';
             ctx.shadowBlur = 10;
             ctx.shadowColor = '#ff4757';
           } else {
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 2.5; // Slightly thicker for "Technical Map" stability
             ctx.strokeStyle = '#00d4ff';
-            ctx.shadowBlur = 0;
+            ctx.shadowBlur = 4;
+            ctx.shadowColor = 'rgba(0, 212, 255, 0.5)';
           }
           ctx.stroke();
+          ctx.globalAlpha = 1.0;
         }
       });
 
+      // 1.5. VOLUMETRIC 'MICRO-TRACK' ARM MESH (User Request: Diamond Structure)
+      const drawArmMesh = (p1Name: string, p2Name: string, isForearm = false) => {
+        const kp1 = kpMap.get(p1Name);
+        const kp2 = kpMap.get(p2Name);
+        if (!kp1 || !kp2 || kp1.score < 0.2 || kp2.score < 0.2) return;
+
+        const x1 = getX(kp1.x / videoWidth);
+        const y1 = getY(kp1.y / videoHeight);
+        const x2 = getX(kp2.x / videoWidth);
+        const y2 = getY(kp2.y / videoHeight);
+
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        const len = Math.hypot(dx, dy);
+        if (len < 10) return;
+
+        const nx = -dy / len; 
+        const ny = dx / len;  
+
+        // Anatomical Tapering: Wider at start, Narrower at end
+        const startOffset = width * (isForearm ? 0.025 : 0.035);
+        const endOffset = width * (isForearm ? 0.015 : 0.025);
+        const midOffset = (startOffset + endOffset) / 1.5;
+
+        // Intermediate Muscle Node Points (at 50% of the bone)
+        const mx = (x1 + x2) / 2;
+        const my = (y1 + y2) / 2;
+
+        const pts = [
+          { x: x1 + nx * startOffset, y: y1 + ny * startOffset }, // P1_L
+          { x: x1 - nx * startOffset, y: y1 - ny * startOffset }, // P1_R
+          { x: mx + nx * midOffset,   y: my + ny * midOffset },   // MID_L
+          { x: mx - nx * midOffset,   y: my - ny * midOffset },   // MID_R
+          { x: x2 + nx * endOffset,   y: y2 + ny * endOffset },   // P2_L
+          { x: x2 - nx * endOffset,   y: y2 - ny * endOffset }    // P2_R
+        ];
+
+        // Draw Diamond Triangulation
+        ctx.beginPath();
+        ctx.strokeStyle = '#00d4ff'; // Bright Main Blue (Solid)
+        ctx.lineWidth = 0.6;
+        ctx.globalAlpha = 1.0; 
+        
+        // Perimeter
+        ctx.moveTo(pts[0].x, pts[0].y); ctx.lineTo(pts[2].x, pts[2].y); ctx.lineTo(pts[4].x, pts[4].y);
+        ctx.moveTo(pts[1].x, pts[1].y); ctx.lineTo(pts[3].x, pts[3].y); ctx.lineTo(pts[5].x, pts[5].y);
+        
+        // Zig-Zag Internal Structure (Embedding the bone)
+        ctx.moveTo(pts[0].x, pts[0].y); ctx.lineTo(mx, my);     ctx.lineTo(pts[1].x, pts[1].y);
+        ctx.moveTo(pts[2].x, pts[2].y); ctx.lineTo(x1, y1);     ctx.lineTo(pts[3].x, pts[3].y);
+        ctx.moveTo(pts[2].x, pts[2].y); ctx.lineTo(x2, y2);     ctx.lineTo(pts[3].x, pts[3].y);
+        ctx.moveTo(pts[4].x, pts[4].y); ctx.lineTo(mx, my);     ctx.lineTo(pts[5].x, pts[5].y);
+        
+        ctx.stroke();
+
+        // Draw Micro-Tracking Junction Dots (Exclusive Golden Yellow)
+        ctx.fillStyle = '#FFD700'; 
+        pts.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 1.2, 0, 2 * Math.PI);
+          ctx.fill();
+        });
+      };
+
+      // Apply to Arms (Tapered Architecture)
+      drawArmMesh('left_shoulder', 'left_elbow', false);
+      drawArmMesh('left_elbow', 'left_wrist', true);
+      drawArmMesh('right_shoulder', 'right_elbow', false);
+      drawArmMesh('right_elbow', 'right_wrist', true);
+
       // Draw Body Junctions
       pose.keypoints.forEach(kp => {
-        if (kp.score > 0.15) {
+        if (kp.score > 0.05) {
+          const ax = getX(kp.x / videoWidth);
+          const ay = getY(kp.y / videoHeight);
+          
+          ctx.globalAlpha = Math.min(1.0, kp.score * 2);
           ctx.beginPath();
-          ctx.arc(getX(kp.x / videoWidth), getY(kp.y / videoHeight), 3, 0, 2 * Math.PI);
+          ctx.arc(ax, ay, 3.5, 0, 2 * Math.PI); // Larger Junctions for Volume
           ctx.fillStyle = '#ffffff';
           ctx.fill();
           ctx.strokeStyle = '#00d4ff';
-          ctx.lineWidth = 1;
+          ctx.lineWidth = 1.8;
           ctx.stroke();
+          ctx.globalAlpha = 1.0;
         }
       });
     }
@@ -190,36 +274,45 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
       });
     }
 
-    // --- DRAW FACE MESH (Pure Technical Map) ---
+    // --- DRAW FACE MESH (Structured Technical Map) ---
     if (face && face.length > 0) {
       ctx.beginPath();
-      ctx.strokeStyle = 'rgba(0, 212, 255, 0.8)'; // Increased Opacity
-      ctx.lineWidth = 0.8; // Increased Thickness
+      ctx.strokeStyle = 'rgba(0, 212, 255, 0.8)';
+      ctx.lineWidth = 0.8;
       
-      for (let i = 0; i < face.length; i++) {
+      const step = 2; // Downsample for structured look and performance
+      for (let i = 0; i < face.length; i += step) {
         const kp1 = face[i];
         if (!kp1) continue;
         const x1 = getX(kp1.x / videoWidth);
         const y1 = getY(kp1.y / videoHeight);
 
-        [i + 1, i + 2, i + 30, i + 31].forEach(nextIdx => {
-          const idx = nextIdx % face.length;
-          const kp2 = face[idx];
-          if (kp2) {
-             const x2 = getX(kp2.x / videoWidth);
-             const y2 = getY(kp2.y / videoHeight);
-             const dist = Math.hypot(x1 - x2, y1 - y2);
-             
-             if (dist < (width * 0.05)) { 
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-             }
+        // Find nearest neighbors for structure
+        const neighbors: { x: number, y: number, d: number }[] = [];
+        const searchStep = 3; 
+        for (let j = 0; j < face.length; j += searchStep) {
+          if (i === j) continue;
+          const kp2 = face[j];
+          if (!kp2) continue;
+          const x2 = getX(kp2.x / videoWidth);
+          const y2 = getY(kp2.y / videoHeight);
+          const d = Math.hypot(x1 - x2, y1 - y2);
+          
+          if (d < (width * 0.035)) { // Tighter radius for cleaner lines
+             neighbors.push({ x: x2, y: y2, d });
           }
+        }
+
+        // Connect only to the 2 closest neighbors (Pure Structural Logic)
+        neighbors.sort((a, b) => a.d - b.d);
+        neighbors.slice(0, 2).forEach(n => {
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(n.x, n.y);
         });
       }
       ctx.stroke();
 
-      ctx.fillStyle = '#ffffff'; 
+      ctx.fillStyle = '#ffffff'; // Revert Face Dots to White
       for (let i = 0; i < face.length; i++) {
         const kp = face[i];
         if (!kp) continue;
@@ -284,7 +377,7 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
           });
           ctx.stroke();
 
-          // Draw Glowing Junction Dots
+          // Draw Glowing Junction Dots (Revert to White/Cyan)
           nodes.forEach(n => {
             ctx.beginPath();
             ctx.arc(getX(n.x), getY(n.y), 2.2, 0, 2 * Math.PI);
