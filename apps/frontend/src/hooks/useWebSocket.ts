@@ -9,6 +9,11 @@ const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:4000'
 export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
   const socketRef = useRef<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
+  const onFeedbackRef = useRef(onFeedback);
+  
+  useEffect(() => {
+    onFeedbackRef.current = onFeedback;
+  }, [onFeedback]);
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -25,7 +30,7 @@ export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
     });
 
     socket.on('feedback:result', (analysis: FrameAnalysis) => {
-      onFeedback(analysis);
+      onFeedbackRef.current(analysis);
     });
 
     socket.on('disconnect', () => {

@@ -8,11 +8,20 @@ export function usePoseDetection() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Initialize detector
+  // Initialize detector with GPU acceleration
   useEffect(() => {
     async function initDetector() {
       try {
+        // Force WebGL backend for GPU acceleration
+        await tf.setBackend('webgl');
+        
+        // Performance flags for Windows/GPU
+        tf.env().set('WEBGL_CPU_FORWARD', false);
+        tf.env().set('WEBGL_FORCE_F16_TEXTURES', true);
+        
         await tf.ready();
+        console.log('TFJS Backend:', tf.getBackend());
+
         const model = poseDetection.SupportedModels.MoveNet;
         const detectorConfig = {
           modelType: poseDetection.movenet.modelType.SINGLEPOSE_LIGHTNING,

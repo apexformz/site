@@ -33,10 +33,13 @@ export default function TrainingPage() {
   
   const onFeedback = useCallback((analysis: FrameAnalysis) => {
     setCurrentAnalysis(analysis);
-    setFrameCount(prev => prev + 1);
-    setAverageScore(prev => (prev * frameCount + analysis.frame_score) / (frameCount + 1));
-    if (analysis.frame_score > bestScore) setBestScore(analysis.frame_score);
-  }, [frameCount, bestScore]);
+    setFrameCount(prev => {
+      const nextCount = prev + 1;
+      setAverageScore(currentAvg => (currentAvg * prev + analysis.frame_score) / nextCount);
+      return nextCount;
+    });
+    setBestScore(prev => Math.max(prev, analysis.frame_score));
+  }, []);
 
   const { isConnected, startSession, submitFrame, stopSession } = useWebSocket(onFeedback);
 
@@ -71,24 +74,29 @@ export default function TrainingPage() {
     };
   }, [isCameraActive]);
 
-  // Main Detection Loop
+  // Main Detection Loop with 30 FPS throttle (GPU accelerated)
   useEffect(() => {
     let animationId: number;
+    let lastTime = 0;
+    const throttleMs = 1000 / 30; // 30 FPS
     
-    async function loop() {
-      if (videoRef.current && isCameraActive) {
-        const pose = await detectPose(videoRef.current);
-        if (pose) {
-          setCurrentPose(pose);
-          if (isRecording && isConnected) {
-            submitFrame(pose, sport);
+    async function loop(timestamp: number) {
+      if (timestamp - lastTime >= throttleMs) {
+        if (videoRef.current && isCameraActive) {
+          const pose = await detectPose(videoRef.current);
+          if (pose) {
+            setCurrentPose(pose);
+            if (isRecording && isConnected) {
+              submitFrame(pose, sport);
+            }
           }
         }
+        lastTime = timestamp;
       }
       animationId = requestAnimationFrame(loop);
     }
     
-    loop();
+    animationId = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(animationId);
   }, [detectPose, isCameraActive, isRecording, isConnected, sport, submitFrame]);
 
