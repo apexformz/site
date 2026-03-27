@@ -161,29 +161,44 @@ export function useHolisticDetection() {
         }
 
         const hands: Hand[] = [];
-        if (results.leftHandLandmarks && results.leftHandLandmarks.length > 0) {
-          hands.push({
-            handedness: 'Left',
+        
+        // Helper to snap hand to body wrist
+        const processHand = (landmarks: any[], handedness: 'Left' | 'Right') => {
+          if (!landmarks || landmarks.length === 0) return null;
+
+          const wristName = handedness === 'Left' ? 'left_wrist' : 'right_wrist';
+          const bodyWrist = results.poseLandmarks?.[handedness === 'Left' ? 15 : 16]; // BlazePose indices for wrists
+
+          let offsetX = 0;
+          let offsetY = 0;
+
+          // SEAMLESS INTEGRATION: Determine if we should snap the hand to the body wrist
+          if (bodyWrist && bodyWrist.visibility > 0.5) {
+            // Calculate the spatial delta between the Hand's wrist and Body's wrist
+            const handWrist = landmarks[0];
+            offsetX = (bodyWrist.x - handWrist.x) * video.videoWidth;
+            offsetY = (bodyWrist.y - handWrist.y) * video.videoHeight;
+          }
+
+          return {
+            handedness,
             score: 0.9,
-            keypoints: results.leftHandLandmarks.map((kp: any, i: number) => ({
-              x: kp.x * video.videoWidth,
-              y: kp.y * video.videoHeight,
+            keypoints: landmarks.map((kp: any, i: number) => ({
+              x: (kp.x * video.videoWidth) + offsetX, // Apply snapping offset
+              y: (kp.y * video.videoHeight) + offsetY,
               score: 1.0,
-              name: `left_hand_${i}`
+              name: `${handedness.toLowerCase()}_hand_${i}`
             })) as HandKeypoint[]
-          });
+          };
+        };
+
+        if (results.leftHandLandmarks) {
+          const hand = processHand(results.leftHandLandmarks, 'Left');
+          if (hand) hands.push(hand);
         }
-        if (results.rightHandLandmarks && results.rightHandLandmarks.length > 0) {
-          hands.push({
-            handedness: 'Right',
-            score: 0.9,
-            keypoints: results.rightHandLandmarks.map((kp: any, i: number) => ({
-              x: kp.x * video.videoWidth,
-              y: kp.y * video.videoHeight,
-              score: 1.0,
-              name: `right_hand_${i}`
-            })) as HandKeypoint[]
-          });
+        if (results.rightHandLandmarks) {
+          const hand = processHand(results.rightHandLandmarks, 'Right');
+          if (hand) hands.push(hand);
         }
 
         // Diagnostic periodic log
