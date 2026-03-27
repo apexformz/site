@@ -112,7 +112,7 @@ export function useHolisticDetection() {
   }, []);
 
   const detectHolistic = useCallback(
-    async (video: HTMLVideoElement): Promise<{ pose: PoseKeypoints | null, hands: Hand[] | null } | null> => {
+    async (video: HTMLVideoElement): Promise<{ pose: PoseKeypoints | null, hands: Hand[] | null, face: any[] | null } | null> => {
       if (!globalHolistic || !video || video.readyState < 2) {
         if (globalHolistic && video && video.readyState < 2) {
            console.warn('⏳ Video not ready yet (readyState < 2)');
@@ -138,6 +138,7 @@ export function useHolisticDetection() {
           return null;
         }
 
+        // 1. Pose
         let pose: PoseKeypoints | null = null;
         if (results.poseLandmarks && results.poseLandmarks.length > 0) {
           const BLAZEPOSE_KEYPOINT_NAMES = [
@@ -160,31 +161,23 @@ export function useHolisticDetection() {
           };
         }
 
+        // 2. Hands (with Anchor Snapping)
         const hands: Hand[] = [];
-        
-        // Helper to snap hand to body wrist
         const processHand = (landmarks: any[], handedness: 'Left' | 'Right') => {
           if (!landmarks || landmarks.length === 0) return null;
-
-          const wristName = handedness === 'Left' ? 'left_wrist' : 'right_wrist';
-          const bodyWrist = results.poseLandmarks?.[handedness === 'Left' ? 15 : 16]; // BlazePose indices for wrists
-
+          const bodyWrist = results.poseLandmarks?.[handedness === 'Left' ? 15 : 16];
           let offsetX = 0;
           let offsetY = 0;
-
-          // SEAMLESS INTEGRATION: Determine if we should snap the hand to the body wrist
           if (bodyWrist && bodyWrist.visibility > 0.5) {
-            // Calculate the spatial delta between the Hand's wrist and Body's wrist
             const handWrist = landmarks[0];
             offsetX = (bodyWrist.x - handWrist.x) * video.videoWidth;
             offsetY = (bodyWrist.y - handWrist.y) * video.videoHeight;
           }
-
           return {
             handedness,
             score: 0.9,
             keypoints: landmarks.map((kp: any, i: number) => ({
-              x: (kp.x * video.videoWidth) + offsetX, // Apply snapping offset
+              x: (kp.x * video.videoWidth) + offsetX,
               y: (kp.y * video.videoHeight) + offsetY,
               score: 1.0,
               name: `${handedness.toLowerCase()}_hand_${i}`
@@ -201,12 +194,22 @@ export function useHolisticDetection() {
           if (hand) hands.push(hand);
         }
 
-        // Diagnostic periodic log
-        if (!pose && hands.length === 0 && Math.random() > 0.98) {
-          console.log('ℹ️ Holistic Frame processed: No person detected in field of view.');
+        // 3. Face Mesh (Detailed 468 Points)
+        let face: any[] | null = null;
+        if (results.faceLandmarks) {
+          face = results.faceLandmarks.map((kp: any) => ({
+            x: kp.x * video.videoWidth,
+            y: kp.y * video.videoHeight,
+            z: kp.z // Keep depth for potentially cooler mesh effects later
+          }));
         }
 
-        return { pose, hands: hands.length > 0 ? hands : null };
+        // Diagnostic periodic log
+        if (!pose && hands.length === 0 && !face && Math.random() > 0.98) {
+          console.log('ℹ️ Holistic Frame processed: No entities detected.');
+        }
+
+        return { pose, hands: hands.length > 0 ? hands : null, face };
       } catch (err: any) {
         console.error('❌ Holistic send error:', err);
         setError(`Runtime Error: ${err.message}`);

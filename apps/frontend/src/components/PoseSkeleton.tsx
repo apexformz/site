@@ -6,6 +6,7 @@ import { PoseKeypoints, FrameAnalysis, Hand } from '@smartcoach/types';
 interface PoseSkeletonProps {
   pose: PoseKeypoints | null;
   hands?: Hand[] | null;
+  face?: any[] | null;
   analysis: FrameAnalysis | null;
   width: number;
   height: number;
@@ -40,10 +41,6 @@ const UNIVERSAL_CONNECTIONS = [
   ['nose', 'left_eye_inner'], ['left_eye_inner', 'left_eye'], ['right_eye_inner', 'right_eye'],
   ['mouth_left', 'mouth_right'],
 
-  // Head-to-Body (User Request)
-  ['nose', 'left_shoulder'], ['nose', 'right_shoulder'],
-  ['left_ear', 'left_shoulder'], ['right_ear', 'right_shoulder'],
-
   // Upper Body
   ['left_shoulder', 'right_shoulder'],
   ['left_shoulder', 'left_elbow'], ['left_elbow', 'left_wrist'],
@@ -68,6 +65,7 @@ const UNIVERSAL_CONNECTIONS = [
 export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({ 
   pose, 
   hands,
+  face,
   analysis, 
   width, 
   height,
@@ -86,13 +84,33 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
     // High performance clear
     ctx.clearRect(0, 0, width, height);
 
-    // Guard: Prevent NaN or 0 scaling
-    if (!videoWidth || !videoHeight || videoWidth === 0 || videoHeight === 0) {
-      return;
+    // 1. Calculate Aspect-Ratio Aware Scaling (Object-Cover Correction)
+    const vRatio = videoWidth / videoHeight;
+    const cRatio = width / height;
+    
+    let renderWidth = width;
+    let renderHeight = height;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if (vRatio > cRatio) {
+      // Video is wider than canvas (sides are clipped)
+      renderHeight = height;
+      renderWidth = height * vRatio;
+      offsetX = (width - renderWidth) / 2;
+    } else {
+      // Video is taller than canvas (top/bottom are clipped)
+      renderWidth = width;
+      renderHeight = width / vRatio;
+      offsetY = (height - renderHeight) / 2;
     }
 
-    const scaleX = width / videoWidth;
-    const scaleY = height / videoHeight;
+    // Helper for precise coordinate mapping (takes 0-1 normalized values)
+    const getX = (val: number) => {
+      // Handle Mirroring: (1 - val)
+      return ( (1 - val) * renderWidth) + offsetX;
+    };
+    const getY = (val: number) => (val * renderHeight) + offsetY;
 
     // --- DRAW BODY SKELETON ---
     if (pose) {
@@ -116,8 +134,8 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
           });
 
           ctx.beginPath();
-          ctx.moveTo(width - (kp1.x * scaleX), kp1.y * scaleY);
-          ctx.lineTo(width - (kp2.x * scaleX), kp2.y * scaleY);
+          ctx.moveTo(getX(kp1.x / videoWidth), getY(kp1.y / videoHeight));
+          ctx.lineTo(getX(kp2.x / videoWidth), getY(kp2.y / videoHeight));
           
           if (hasError) {
             ctx.lineWidth = 4;
@@ -136,15 +154,10 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
       // Draw Body Junctions
       pose.keypoints.forEach(kp => {
         if (kp.score > 0.15) {
-          const x = width - (kp.x * scaleX);
-          const y = kp.y * scaleY;
-
           ctx.beginPath();
-          ctx.arc(x, y, 3, 0, 2 * Math.PI);
+          ctx.arc(getX(kp.x / videoWidth), getY(kp.y / videoHeight), 3, 0, 2 * Math.PI);
           ctx.fillStyle = '#ffffff';
           ctx.fill();
-          ctx.shadowBlur = 5;
-          ctx.shadowColor = '#00d4ff';
           ctx.strokeStyle = '#00d4ff';
           ctx.lineWidth = 1;
           ctx.stroke();
@@ -155,43 +168,134 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
     // --- DRAW HAND SKELETONS ---
     if (hands && hands.length > 0) {
       hands.forEach(hand => {
-        // Hand Bone Connections
         HAND_CONNECTIONS.forEach(([i1, i2]) => {
           const kp1 = hand.keypoints[i1];
           const kp2 = hand.keypoints[i2];
-
           if (kp1 && kp2) {
             ctx.beginPath();
-            ctx.moveTo(width - (kp1.x * scaleX), kp1.y * scaleY);
-            ctx.lineTo(width - (kp2.x * scaleX), kp2.y * scaleY);
-            
+            ctx.moveTo(getX(kp1.x / videoWidth), getY(kp1.y / videoHeight));
+            ctx.lineTo(getX(kp2.x / videoWidth), getY(kp2.y / videoHeight));
             ctx.lineWidth = 2;
-            ctx.strokeStyle = '#00d4ff'; // Matched with body
-            ctx.shadowBlur = 0;
+            ctx.strokeStyle = '#00d4ff';
             ctx.stroke();
           }
         });
-
-        // Hand Joint Landmarks
         hand.keypoints.forEach((kp, i) => {
-          const x = width - (kp.x * scaleX);
-          const y = kp.y * scaleY;
-
-          ctx.beginPath();
-          ctx.arc(x, y, 2.5, 0, 2 * Math.PI);
-          
-          // Use primary blue for joints, but white for tips for better visibility
           const isTip = [4, 8, 12, 16, 20].includes(i);
+          ctx.beginPath();
+          ctx.arc(getX(kp.x / videoWidth), getY(kp.y / videoHeight), isTip ? 3 : 2, 0, 2 * Math.PI);
           ctx.fillStyle = isTip ? '#ffffff' : '#00d4ff';
           ctx.fill();
-
-          ctx.shadowBlur = 4;
-          ctx.shadowColor = '#00d4ff';
-          ctx.strokeStyle = '#00d4ff';
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
         });
       });
+    }
+
+    // --- DRAW FACE MESH (Pure Technical Map) ---
+    if (face && face.length > 0) {
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(0, 212, 255, 0.8)'; // Increased Opacity
+      ctx.lineWidth = 0.8; // Increased Thickness
+      
+      for (let i = 0; i < face.length; i++) {
+        const kp1 = face[i];
+        if (!kp1) continue;
+        const x1 = getX(kp1.x / videoWidth);
+        const y1 = getY(kp1.y / videoHeight);
+
+        [i + 1, i + 2, i + 30, i + 31].forEach(nextIdx => {
+          const idx = nextIdx % face.length;
+          const kp2 = face[idx];
+          if (kp2) {
+             const x2 = getX(kp2.x / videoWidth);
+             const y2 = getY(kp2.y / videoHeight);
+             const dist = Math.hypot(x1 - x2, y1 - y2);
+             
+             if (dist < (width * 0.05)) { 
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+             }
+          }
+        });
+      }
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffffff'; 
+      for (let i = 0; i < face.length; i++) {
+        const kp = face[i];
+        if (!kp) continue;
+        ctx.beginPath();
+        ctx.arc(getX(kp.x / videoWidth), getY(kp.y / videoHeight), 0.5, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+
+      // 3. HOLISTIC FUSION: Detailed Neck Mesh (User Request)
+      if (pose) {
+        const kpMap = new Map();
+        pose.keypoints.forEach(kp => kpMap.set(kp.name, kp));
+
+        const leftS = kpMap.get('left_shoulder');
+        const rightS = kpMap.get('right_shoulder');
+        const chin = face[152];
+        const leftJ = face[172];
+        const rightJ = face[397];
+
+        if (leftS && rightS && chin && leftJ && rightJ) {
+          // Normalize inputs
+          const p = {
+            ls: { x: leftS.x / videoWidth, y: leftS.y / videoHeight },
+            rs: { x: rightS.x / videoWidth, y: rightS.y / videoHeight },
+            ch: { x: chin.x / videoWidth, y: chin.y / videoHeight },
+            lj: { x: leftJ.x / videoWidth, y: leftJ.y / videoHeight },
+            rj: { x: rightJ.x / videoWidth, y: rightJ.y / videoHeight }
+          };
+
+          // Synthesize Intermediate Neck Nodes (to form the "structure" from image 2)
+          const midL = { x: (p.lj.x + p.ls.x) / 2, y: (p.lj.y + p.ls.y) / 2 };
+          const midR = { x: (p.rj.x + p.rs.x) / 2, y: (p.rj.y + p.rs.y) / 2 };
+          const midC = { x: (p.ch.x * 0.6 + (p.ls.x + p.rs.x) * 0.2), y: (p.ch.y * 0.6 + (p.ls.y + p.rs.y) * 0.2) };
+          const chestC = { x: (p.ls.x + p.rs.x) / 2, y: (p.ls.y + p.rs.y) / 2 + 0.05 };
+
+          const nodes = [
+            { id: 'lj', ...p.lj }, { id: 'ch', ...p.ch }, { id: 'rj', ...p.rj },
+            { id: 'ml', ...midL }, { id: 'mc', ...midC }, { id: 'mr', ...midR },
+            { id: 'ls', ...p.ls }, { id: 'rs', ...p.rs }, { id: 'cc', ...chestC }
+          ];
+
+          const connections = [
+            ['lj', 'ml'], ['ch', 'mc'], ['rj', 'mr'],
+            ['ml', 'ls'], ['mr', 'rs'], ['mc', 'cc'],
+            ['ml', 'mc'], ['mc', 'mr'],
+            ['ml', 'ch'], ['mr', 'ch'],
+            ['ls', 'cc'], ['rs', 'cc'],
+            ['lj', 'ch'], ['rj', 'ch']
+          ];
+
+          ctx.beginPath();
+          ctx.strokeStyle = '#00f2ff'; // Brighter Solid Cyan
+          ctx.lineWidth = 1.2; // Thicker for structure
+
+          connections.forEach(([id1, id2]) => {
+            const n1 = nodes.find(n => n.id === id1);
+            const n2 = nodes.find(n => n.id === id2);
+            if (n1 && n2) {
+              ctx.moveTo(getX(n1.x), getY(n1.y));
+              ctx.lineTo(getX(n2.x), getY(n2.y));
+            }
+          });
+          ctx.stroke();
+
+          // Draw Glowing Junction Dots
+          nodes.forEach(n => {
+            ctx.beginPath();
+            ctx.arc(getX(n.x), getY(n.y), 2.2, 0, 2 * Math.PI);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            ctx.strokeStyle = '#00d4ff';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          });
+        }
+      }
     }
 
     ctx.shadowBlur = 0;

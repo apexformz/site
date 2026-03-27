@@ -25,6 +25,7 @@ export default function TrainingPage() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [currentPose, setCurrentPose] = useState<PoseKeypoints | null>(null);
   const [currentHands, setCurrentHands] = useState<Hand[] | null>(null);
+  const [currentFace, setCurrentFace] = useState<any[] | null>(null);
   const [currentAnalysis, setCurrentAnalysis] = useState<FrameAnalysis | null>(null);
   const [sessionDuration, setSessionDuration] = useState(0);
   const [frameCount, setFrameCount] = useState(0);
@@ -115,6 +116,7 @@ export default function TrainingPage() {
             if (result?.pose) {
               setCurrentPose(result.pose);
               setCurrentHands(result.hands);
+              setCurrentFace(result.face);
               
               setIsAiPulsing(true);
               setTimeout(() => setIsAiPulsing(false), 150);
@@ -227,6 +229,7 @@ export default function TrainingPage() {
               <PoseSkeleton 
                 pose={currentPose} 
                 hands={currentHands}
+                face={currentFace}
                 analysis={currentAnalysis}
                 width={dimensions.width}
                 height={dimensions.height}
