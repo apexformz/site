@@ -8,21 +8,9 @@ import { ApiResponse, AuthTokens, RegisterRequest, LoginRequest } from '@smartco
 import logger from '../utils/logger';
 import crypto from 'crypto';
 
-const router = Router();
+import { generateAuthTokens } from '../utils/auth.utils';
 
-function generateTokens(userId: string, email: string) {
-  const access_token = jwt.sign(
-    { userId, email },
-    process.env.JWT_SECRET as string,
-    { expiresIn: process.env.JWT_EXPIRES_IN || '15m' }
-  );
-  const refresh_token = jwt.sign(
-    { userId, email },
-    process.env.JWT_REFRESH_SECRET as string,
-    { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d' }
-  );
-  return { access_token, refresh_token };
-}
+const router = Router();
 
 // POST /api/auth/register
 router.post(
@@ -63,7 +51,7 @@ router.post(
         data: { user_id: user.id, sport: preferred_sport },
       });
 
-      const { access_token, refresh_token } = generateTokens(user.id, user.email);
+      const { access_token, refresh_token } = generateAuthTokens(user.id, user.email);
 
       // Store refresh token
       await prisma.refreshToken.create({
@@ -118,7 +106,7 @@ router.post(
         return res.status(401).json({ success: false, error: 'Invalid credentials' });
       }
 
-      const { access_token, refresh_token } = generateTokens(user.id, user.email);
+      const { access_token, refresh_token } = generateAuthTokens(user.id, user.email);
 
       await prisma.refreshToken.create({
         data: {
@@ -176,7 +164,7 @@ router.post('/refresh', async (req: Request, res: Response) => {
 
     // Rotate token
     await prisma.refreshToken.delete({ where: { id: stored.id } });
-    const { access_token, refresh_token: new_refresh } = generateTokens(payload.userId, payload.email);
+    const { access_token, refresh_token: new_refresh } = generateAuthTokens(payload.userId, payload.email);
 
     await prisma.refreshToken.create({
       data: {

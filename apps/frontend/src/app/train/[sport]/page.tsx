@@ -45,7 +45,7 @@ export default function TrainingPage() {
     setBestScore(prev => Math.max(prev, analysis.frame_score));
   }, []);
 
-  const { isConnected, startSession, submitFrame, stopSession } = useWebSocket(onFeedback);
+  const { isConnected, connectionError, startSession, submitFrame, stopSession } = useWebSocket(onFeedback);
 
   // Toggle Camera
   useEffect(() => {
@@ -222,6 +222,7 @@ export default function TrainingPage() {
                   duration={sessionDuration}
                   frameCount={frameCount}
                   isConnected={isConnected}
+                  connectionError={connectionError}
                 />
               </div>
 

@@ -9,11 +9,42 @@ interface TrainingStatsProps {
   duration: number;
   frameCount: number;
   isConnected: boolean;
+  connectionError?: string | null;
 }
 
-export const TrainingStats: React.FC<TrainingStatsProps> = ({ score, duration, frameCount, isConnected }) => {
+export const TrainingStats: React.FC<TrainingStatsProps> = ({ 
+  score, 
+  duration, 
+  frameCount, 
+  isConnected,
+  connectionError 
+}) => {
   return (
     <div className="flex flex-col gap-4">
+      {/* Connection Status & Error */}
+      <div className="flex flex-col gap-2">
+        <div className={`flex items-center gap-2 px-4 py-2 glass-card border-none ${isConnected ? 'bg-secondary/20' : 'bg-accent-danger/20'}`}>
+          <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-secondary animate-pulse' : 'bg-accent-danger'}`} />
+          <span className="text-sm font-bold uppercase tracking-widest">
+            AI {isConnected ? 'Online' : 'Offline'}
+          </span>
+        </div>
+        
+        {!isConnected && connectionError && (
+          <div className="px-3 py-1.5 bg-accent-danger/10 border border-accent-danger/20 rounded-lg max-w-[200px]">
+            <p className="text-[10px] text-accent-danger font-bold uppercase leading-tight">
+              Error: {connectionError}
+            </p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="mt-1.5 text-[9px] text-white/60 hover:text-white underline uppercase tracking-widest transition-colors"
+            >
+              Try Reconnect
+            </button>
+          </div>
+        )}
+      </div>
+
       {/* Real-time Score Ring */}
       <div className="relative w-32 h-32 flex items-center justify-center">
         <svg className="w-full h-full transform -rotate-90">

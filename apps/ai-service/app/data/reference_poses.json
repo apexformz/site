@@ -2,31 +2,73 @@
   "cricket": {
     "batting_stance": { "left_elbow": 160, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
     "bowling_loadup": { "left_elbow": 180, "right_elbow": 45, "left_shoulder": 90, "right_shoulder": 160, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90 },
-    "fielding_ready": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 120, "right_hip": 120, "left_knee": 110, "right_knee": 110, "left_ankle": 90, "right_ankle": 90 }
+    "fielding_ready": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 120, "right_hip": 120, "left_knee": 110, "right_knee": 110, "left_ankle": 90, "right_ankle": 90 },
+    "cover_drive": { "left_elbow": 140, "right_elbow": 90, "left_shoulder": 60, "right_shoulder": 40, "left_hip": 130, "right_hip": 170, "left_knee": 90, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "pull_shot": { "left_elbow": 170, "right_elbow": 160, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "wicket_keeping": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 45, "right_hip": 45, "left_knee": 45, "right_knee": 45, "left_ankle": 90, "right_ankle": 90 },
+    "spin_release": { "left_elbow": 160, "right_elbow": 110, "left_shoulder": 110, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90 },
+    "backfoot_defense": { "left_elbow": 130, "right_elbow": 100, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "slip_catching": { "left_elbow": 110, "right_elbow": 110, "left_shoulder": 40, "right_shoulder": 40, "left_hip": 110, "right_hip": 110, "left_knee": 100, "right_knee": 100, "left_ankle": 90, "right_ankle": 90 },
+    "sweep_shot": { "left_elbow": 160, "right_elbow": 150, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 90, "right_hip": 45, "left_knee": 45, "right_knee": 90, "left_ankle": 90, "right_ankle": 90 }
   },
   "tennis": {
     "serve_trophy": { "left_elbow": 170, "right_elbow": 90, "left_shoulder": 135, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 150, "right_knee": 140, "left_ankle": 110, "right_ankle": 120 },
     "forehand_top": { "left_elbow": 160, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
-    "ready_position": { "left_elbow": 130, "right_elbow": 130, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 }
+    "ready_position": { "left_elbow": 130, "right_elbow": 130, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 },
+    "backhand_split": { "left_elbow": 140, "right_elbow": 160, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 130, "right_knee": 130, "left_ankle": 90, "right_ankle": 90 },
+    "volley_ready": { "left_elbow": 110, "right_elbow": 110, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 160, "right_hip": 160, "left_knee": 150, "right_knee": 150, "left_ankle": 90, "right_ankle": 90 },
+    "overhead_smash": { "left_elbow": 170, "right_elbow": 170, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90 },
+    "return_stance": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 130, "right_hip": 130, "left_knee": 120, "right_knee": 120, "left_ankle": 90, "right_ankle": 90 },
+    "slice_backhand": { "left_elbow": 150, "right_elbow": 140, "left_shoulder": 45, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "half_volley": { "left_elbow": 140, "right_elbow": 140, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 100, "right_hip": 100, "left_knee": 70, "right_knee": 70, "left_ankle": 90, "right_ankle": 90 },
+    "drop_shot": { "left_elbow": 130, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 60, "left_hip": 180, "right_hip": 180, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 }
   },
   "yoga": {
     "warrior_2": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 110, "right_hip": 180, "left_knee": 90, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
     "tree_pose": { "left_elbow": 170, "right_elbow": 170, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 90, "right_hip": 180, "left_knee": 30, "right_knee": 180, "left_ankle": 120, "right_ankle": 90 },
-    "downward_dog": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 180, "right_shoulder": 180, "left_hip": 90, "right_hip": 90, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 }
+    "downward_dog": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 180, "right_shoulder": 180, "left_hip": 90, "right_hip": 90, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "triangle_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 60, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "cobra_pose": { "left_elbow": 150, "right_elbow": 150, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "plank_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "bridge_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 180, "right_shoulder": 180, "left_hip": 150, "right_hip": 150, "left_knee": 90, "right_knee": 90, "left_ankle": 90, "right_ankle": 90 },
+    "childs_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 30, "right_hip": 30, "left_knee": 30, "right_knee": 30, "left_ankle": 90, "right_ankle": 90 },
+    "cat_cow": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 90, "right_hip": 90, "left_knee": 90, "right_knee": 90, "left_ankle": 90, "right_ankle": 90 },
+    "chair_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 100, "right_hip": 100, "left_knee": 100, "right_knee": 100, "left_ankle": 90, "right_ankle": 90 }
   },
   "running": {
     "mid_stride": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 135, "left_hip": 145, "right_hip": 180, "left_knee": 90, "right_knee": 160, "left_ankle": 90, "right_ankle": 110 },
     "starting_block": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 80, "right_shoulder": 80, "left_hip": 45, "right_hip": 45, "left_knee": 90, "right_knee": 90, "left_ankle": 90, "right_ankle": 90 },
-    "sprint_form": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 120, "right_shoulder": 60, "left_hip": 120, "right_hip": 170, "left_knee": 60, "right_knee": 180, "left_ankle": 110, "right_ankle": 90 }
+    "sprint_form": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 120, "right_shoulder": 60, "left_hip": 120, "right_hip": 170, "left_knee": 60, "right_knee": 180, "left_ankle": 110, "right_ankle": 90 },
+    "heel_strike": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 180, "right_hip": 160, "left_knee": 180, "right_knee": 150, "left_ankle": 90, "right_ankle": 120 },
+    "knee_drive": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 130, "right_shoulder": 60, "left_hip": 100, "right_hip": 180, "left_knee": 45, "right_knee": 170, "left_ankle": 110, "right_ankle": 90 },
+    "arm_swing": { "left_elbow": 110, "right_elbow": 70, "left_shoulder": 140, "right_shoulder": 50, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90 },
+    "uphill_lean": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 160, "right_hip": 160, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 },
+    "downhill_brake": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 40, "right_shoulder": 40, "left_hip": 150, "right_hip": 150, "left_knee": 130, "right_knee": 130, "left_ankle": 110, "right_ankle": 110 },
+    "recovery_phase": { "left_elbow": 100, "right_elbow": 100, "left_shoulder": 120, "right_shoulder": 60, "left_hip": 180, "right_hip": 130, "left_knee": 180, "right_knee": 100, "left_ankle": 90, "right_ankle": 90 },
+    "posture_check": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 }
   },
   "boxing": {
     "guard_stance": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
     "lead_jab": { "left_elbow": 175, "right_elbow": 60, "left_shoulder": 90, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
-    "right_cross": { "left_elbow": 60, "right_elbow": 175, "left_shoulder": 60, "right_shoulder": 95, "left_hip": 170, "right_hip": 150, "left_knee": 160, "right_knee": 140, "left_ankle": 90, "right_ankle": 110 }
+    "right_cross": { "left_elbow": 60, "right_elbow": 175, "left_shoulder": 60, "right_shoulder": 95, "left_hip": 170, "right_hip": 150, "left_knee": 160, "right_knee": 140, "left_ankle": 90, "right_ankle": 110 },
+    "lead_hook": { "left_elbow": 90, "right_elbow": 60, "left_shoulder": 90, "right_shoulder": 60, "left_hip": 150, "right_hip": 170, "left_knee": 140, "right_knee": 160, "left_ankle": 110, "right_ankle": 90 },
+    "lead_uppercut": { "left_elbow": 45, "right_elbow": 60, "left_shoulder": 45, "right_shoulder": 60, "left_hip": 160, "right_hip": 170, "left_knee": 140, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "rear_uppercut": { "left_elbow": 60, "right_elbow": 45, "left_shoulder": 60, "right_shoulder": 45, "left_hip": 170, "right_hip": 160, "left_knee": 160, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 },
+    "bob_and_weave": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 110, "right_hip": 110, "left_knee": 90, "right_knee": 90, "left_ankle": 90, "right_ankle": 90 },
+    "slip_left": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 40, "left_hip": 160, "right_hip": 170, "left_knee": 150, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "slip_right": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 40, "right_shoulder": 60, "left_hip": 170, "right_hip": 160, "left_knee": 160, "right_knee": 150, "left_ankle": 90, "right_ankle": 90 },
+    "pivot_check": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 150, "right_hip": 150, "left_knee": 160, "right_knee": 160, "left_ankle": 120, "right_ankle": 90 }
   },
   "football": {
     "kick_prepare": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 140, "right_hip": 110, "left_knee": 170, "right_knee": 90, "left_ankle": 90, "right_ankle": 110 },
     "header_jump": { "left_elbow": 110, "right_elbow": 110, "left_shoulder": 140, "right_shoulder": 140, "left_hip": 180, "right_hip": 180, "left_knee": 150, "right_knee": 150, "left_ankle": 90, "right_ankle": 90 },
-    "ready_stance": { "left_elbow": 140, "right_elbow": 140, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 }
+    "ready_stance": { "left_elbow": 140, "right_elbow": 140, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 },
+    "throw_in": { "left_elbow": 160, "right_elbow": 160, "left_shoulder": 170, "right_shoulder": 170, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "goalkeeper_dive": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 160, "right_hip": 160, "left_knee": 140, "right_knee": 140, "left_ankle": 110, "right_ankle": 110 },
+    "chest_trap": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 40, "right_shoulder": 40, "left_hip": 160, "right_hip": 160, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "sprint_dribble": { "left_elbow": 110, "right_elbow": 110, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 140, "right_hip": 170, "left_knee": 90, "right_knee": 160, "left_ankle": 110, "right_ankle": 90 },
+    "sliding_tackle": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 60, "right_hip": 180, "left_knee": 60, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "volley_kick": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 160, "right_hip": 90, "left_knee": 170, "right_knee": 45, "left_ankle": 90, "right_ankle": 110 },
+    "penalty_look": { "left_elbow": 140, "right_elbow": 140, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 }
   }
 }
