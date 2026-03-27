@@ -162,7 +162,7 @@ export default function DashboardPage() {
                 <SportCard 
                   key={sport.id}
                   {...sport}
-                  onClick={() => router.push(`/train/${sport.id}`)}
+                  onClick={() => router.push(`/train/${sport.id}/setup`)}
                 />
               ))}
             </div>

@@ -33,8 +33,18 @@ async def analyze_frame(request: Request):
     keypoints_data = data.get("keypoints", {})
     keypoints = keypoints_data.get("keypoints", [])
     
-    analysis_result = analyze_pose(sport, keypoints)
+    analysis_result = analyze_pose(sport, keypoints, data.get("pose_name"))
     return analysis_result
+
+@router.get("/poses/{sport}")
+async def get_sport_poses(sport: str):
+    """
+    Returns available reference poses for a given sport.
+    """
+    from app.services.pose_analyzer import REFERENCE_POSES
+    if sport not in REFERENCE_POSES:
+        return {"success": False, "error": "Sport not found"}
+    return {"success": True, "poses": list(REFERENCE_POSES[sport].keys())}
 
 @router.post("/analyze/batch")
 async def analyze_batch(requests: List[AnalyzeRequest]):

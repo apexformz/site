@@ -2,7 +2,6 @@
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { Camera, CameraOff, X, Play, RotateCcw, ChevronLeft } from 'lucide-react';
 import { usePoseDetection } from '@/hooks/usePoseDetection';
 import { useWebSocket } from '@/hooks/useWebSocket';
@@ -14,6 +13,8 @@ import { api } from '@/lib/api';
 
 export default function TrainingPage() {
   const { sport } = useParams() as { sport: Sport };
+  const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const poseName = searchParams?.get('pose') || undefined;
   const router = useRouter();
   
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -35,7 +36,10 @@ export default function TrainingPage() {
     setCurrentAnalysis(analysis);
     setFrameCount(prev => {
       const nextCount = prev + 1;
-      setAverageScore(currentAvg => (currentAvg * prev + analysis.frame_score) / nextCount);
+      setAverageScore(currentAvg => {
+        const newScore = (currentAvg * prev + analysis.frame_score) / nextCount;
+        return Number.isNaN(newScore) ? analysis.frame_score : newScore;
+      });
       return nextCount;
     });
     setBestScore(prev => Math.max(prev, analysis.frame_score));
@@ -87,7 +91,7 @@ export default function TrainingPage() {
           if (pose) {
             setCurrentPose(pose);
             if (isRecording && isConnected) {
-              submitFrame(pose, sport);
+              submitFrame(pose, sport, poseName);
             }
           }
         }
@@ -98,7 +102,7 @@ export default function TrainingPage() {
     
     animationId = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(animationId);
-  }, [detectPose, isCameraActive, isRecording, isConnected, sport, submitFrame]);
+  }, [detectPose, isCameraActive, isRecording, isConnected, sport, submitFrame, poseName]);
 
   // Session timer
   useEffect(() => {
@@ -116,7 +120,7 @@ export default function TrainingPage() {
         const { data } = await api.post('/sessions', { sport });
         if (data.success && data.data) {
           setSessionId(data.data.id);
-          startSession(data.data.id, sport);
+          startSession(data.data.id, sport, poseName);
           setIsRecording(true);
           setSessionDuration(0);
           setFrameCount(0);
@@ -133,7 +137,7 @@ export default function TrainingPage() {
           await api.patch(`/sessions/${sessionId}`, {
             duration_s: sessionDuration,
             score: averageScore,
-            feedback_summary: `Completed ${sport} training session with avg score ${Math.round(averageScore)}`,
+            feedback_summary: `Completed ${sport} (${poseName || 'standard'}) training session with avg score ${Math.round(averageScore)}`,
             frame_count: frameCount
           });
           stopSession();
@@ -150,7 +154,7 @@ export default function TrainingPage() {
     <div className="flex h-screen bg-black overflow-hidden select-none">
       {/* Sidebar Controls */}
       <div className="w-20 bg-background/50 border-r border-white/10 flex flex-col items-center py-8 gap-8 z-50">
-        <button onClick={() => router.push('/dashboard')} className="p-3 glass-card hover:bg-white/10 transition-colors">
+        <button onClick={() => router.push(`/train/${sport}/setup`)} className="p-3 glass-card hover:bg-white/10 transition-colors">
           <ChevronLeft className="w-6 h-6" />
         </button>
         
@@ -202,7 +206,7 @@ export default function TrainingPage() {
               <div className="absolute top-6 left-6 z-20">
                 <div className="flex flex-col">
                   <span className="text-2xl font-black uppercase italic text-primary leading-none tracking-tighter">SmartCoach AI</span>
-                  <span className="text-xs text-secondary/60 font-medium tracking-widest pl-1">{sport} / LIVE INFERENCE</span>
+                  <span className="text-xs text-secondary/60 font-medium tracking-widest pl-1">{sport} {poseName ? `/ ${poseName.replace('_', ' ')}` : '/ LIVE INFERENCE'}</span>
                 </div>
               </div>
 

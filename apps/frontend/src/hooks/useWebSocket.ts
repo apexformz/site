@@ -44,12 +44,12 @@ export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
     };
   }, []);
 
-  const startSession = (sessionId: string, sport: string) => {
-    socketRef.current?.emit('session:start', { sessionId, sport });
+  const startSession = (sessionId: string, sport: string, poseName?: string) => {
+    socketRef.current?.emit('session:start', { sessionId, sport, poseName });
   };
 
-  const submitFrame = (keypoints: PoseKeypoints, sport: string) => {
-    socketRef.current?.emit('frame:submit', { keypoints, sport });
+  const submitFrame = (keypoints: PoseKeypoints, sport: string, poseName?: string) => {
+    socketRef.current?.emit('frame:submit', { keypoints, sport, poseName });
   };
 
   const stopSession = () => {

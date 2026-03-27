@@ -51,18 +51,23 @@ def compute_joint_angles(keypoints: List[Dict[str, Any]]) -> Dict[str, float]:
     # Filter out unseen joints
     return {k: v for k, v in angles.items() if v >= 0}
 
-def analyze_pose(sport: str, keypoints: List[Dict[str, Any]]) -> Dict[str, Any]:
+def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = None) -> Dict[str, Any]:
     """
     Compare current pose to reference and generate real-time feedback.
     """
     actual_angles = compute_joint_angles(keypoints)
     
-    # Simple selection logic: grab first pose for the sport
+    # Selection logic: use provided pose_name or fall back to first one
     if sport not in REFERENCE_POSES:
         sport = "cricket" # default fallback
         
-    pose_name = list(REFERENCE_POSES[sport].keys())[0]
-    ref_angles = REFERENCE_POSES[sport][pose_name]
+    sport_poses = REFERENCE_POSES[sport]
+    if pose_name and pose_name in sport_poses:
+        ref_angles = sport_poses[pose_name]
+    else:
+        # Fallback to the first available pose for this sport
+        pose_name = list(sport_poses.keys())[0]
+        ref_angles = sport_poses[pose_name]
 
     feedback = []
     total_error = 0

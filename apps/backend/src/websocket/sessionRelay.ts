@@ -44,16 +44,18 @@ export function initializeWebSocket(server: HttpServer) {
 
     let activeSessionId: string | null = null;
     let activeSport: string | null = null;
+    let activePoseName: string | null = null;
     let frameBuffer: any[] = []; // In a real app we would buffer frames to save to DB at end
 
-    socket.on('session:start', async ({ sessionId, sport }) => {
+    socket.on('session:start', async ({ sessionId, sport, poseName }) => {
       activeSessionId = sessionId;
       activeSport = sport;
+      activePoseName = poseName;
       socket.join(`session:${sessionId}`);
-      logger.info(`Session started: ${sessionId} for User ${userId}`);
+      logger.info(`Session started: ${sessionId} for Sport ${sport} (Pose: ${poseName})`);
     });
 
-    socket.on('frame:submit', async (data: { keypoints: PoseKeypoints; sport: string }) => {
+    socket.on('frame:submit', async (data: { keypoints: PoseKeypoints; sport: string; poseName?: string }) => {
       if (!activeSessionId) return;
 
       try {
@@ -62,6 +64,7 @@ export function initializeWebSocket(server: HttpServer) {
         const response = await aiHttpClient.post<FrameAnalysis>(`${aiServiceUrl}/analyze`, {
           keypoints: data.keypoints,
           sport: data.sport,
+          pose_name: data.poseName || activePoseName,
         });
 
         const analysis = response.data;
