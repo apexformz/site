@@ -154,20 +154,6 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
 
     // --- DRAW HAND SKELETONS ---
     if (hands && hands.length > 0) {
-      // Diagnostic Tether
-      if (pose) {
-        const bodyWrist = pose.keypoints.find(kp => kp.name === 'left_wrist' || kp.name === 'right_wrist');
-        if (bodyWrist && bodyWrist.score > 0.3) {
-          ctx.beginPath();
-          ctx.setLineDash([5, 5]);
-          ctx.moveTo(width - (bodyWrist.x * scaleX), bodyWrist.y * scaleY);
-          ctx.lineTo(width - (hands[0].keypoints[0].x * scaleX), hands[0].keypoints[0].y * scaleY);
-          ctx.strokeStyle = 'rgba(255, 255, 0, 0.5)';
-          ctx.stroke();
-          ctx.setLineDash([]);
-        }
-      }
-
       hands.forEach(hand => {
         // Hand Bone Connections
         HAND_CONNECTIONS.forEach(([i1, i2]) => {
@@ -179,8 +165,8 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
             ctx.moveTo(width - (kp1.x * scaleX), kp1.y * scaleY);
             ctx.lineTo(width - (kp2.x * scaleX), kp2.y * scaleY);
             
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = '#00d4ff'; // Matched with body
             ctx.shadowBlur = 0;
             ctx.stroke();
           }
@@ -192,16 +178,18 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
           const y = kp.y * scaleY;
 
           ctx.beginPath();
-          ctx.arc(x, y, 4, 0, 2 * Math.PI);
+          ctx.arc(x, y, 2.5, 0, 2 * Math.PI);
           
+          // Use primary blue for joints, but white for tips for better visibility
           const isTip = [4, 8, 12, 16, 20].includes(i);
-          if (isTip) {
-            ctx.fillStyle = hand.handedness === 'Left' ? '#ff3e3e' : '#00d4ff';
-          } else {
-            ctx.fillStyle = '#ffffff';
-          }
-
+          ctx.fillStyle = isTip ? '#ffffff' : '#00d4ff';
           ctx.fill();
+
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = '#00d4ff';
+          ctx.strokeStyle = '#00d4ff';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
         });
       });
     }

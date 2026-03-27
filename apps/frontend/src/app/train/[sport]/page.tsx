@@ -33,7 +33,7 @@ export default function TrainingPage() {
   const [dimensions, setDimensions] = useState({ width: 1280, height: 720 });
   const [isAiPulsing, setIsAiPulsing] = useState(false);
 
-  const { detectHolistic, isLoading: isAiLoading, error: aiError } = useHolisticDetection();
+  const { detectHolistic, hardResetHolistic, isLoading: isAiLoading, error: aiError } = useHolisticDetection();
   
   const onFeedback = useCallback((analysis: FrameAnalysis) => {
     setCurrentAnalysis(analysis);
@@ -134,7 +134,7 @@ export default function TrainingPage() {
     
     animationId = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(animationId);
-  }, [detectHolistic, isCameraActive, isRecording, isConnected, sport, submitFrame, poseName]);
+  }, [detectHolistic, hardResetHolistic, isCameraActive, isRecording, isConnected, sport, submitFrame, poseName]);
 
   // Session timer
   useEffect(() => {
@@ -236,20 +236,42 @@ export default function TrainingPage() {
               
               {/* Debug AI HUD */}
               <div className="absolute top-4 left-4 z-50 bg-black/80 p-3 rounded-lg border border-white/10 text-[10px] font-mono select-none pointer-events-none">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className={`w-2 h-2 rounded-full ${isAiLoading ? 'bg-yellow-500 animate-pulse' : (aiError ? 'bg-red-500' : 'bg-green-500')}`}></div>
-                  <span className="font-bold">HOLISTIC AI: {isAiLoading ? 'INITIALIZING' : (aiError ? 'ERROR' : 'ONLINE')}</span>
+                <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className={`w-2 h-2 rounded-full ${isAiLoading ? 'bg-yellow-500 animate-pulse' : (aiError ? 'bg-red-500' : 'bg-green-500')}`}></div>
+                    <span className="font-bold uppercase tracking-tighter">
+                      HOLISTIC AI: {isAiLoading ? 'LOADING' : (aiError ? 'ERROR' : 'READY')}
+                    </span>
+                    {/* Heartbeat Pulse */}
+                    <div className="w-1 h-3 bg-white/10 rounded-full overflow-hidden">
+                      <div className={`w-full h-full bg-cyan-400 opacity-50 ${isCameraActive && !isAiLoading ? 'animate-pulse' : ''}`}></div>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); hardResetHolistic(); }}
+                    className="pointer-events-auto ml-4 px-2 py-1 bg-white/10 hover:bg-white/20 rounded text-[8px] uppercase font-bold text-white/70"
+                  >
+                    Reset AI
+                  </button>
                 </div>
-                {aiError && <div className="text-red-400 mt-1 max-w-[200px] break-words uppercase font-bold">{aiError}</div>}
+                {aiError && <div className="text-red-400 mt-1 max-w-[200px] break-words uppercase font-bold text-[8px]">{aiError}</div>}
                 {isCameraActive && (
-                  <div className="mt-2 text-white/60 border-t border-white/10 pt-2">
-                    <div>Hands: {currentHands?.length || 0}</div>
+                  <div className="mt-2 text-white/60 border-t border-white/20 pt-2 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1">
+                        HANDS: {currentHands?.length || 0} 
+                        {currentHands && <div className="w-1 h-1 bg-cyan-400 rounded-full animate-ping"></div>}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        POSE 33: {currentPose ? 'OK' : 'OFF'}
+                        {currentPose && <div className="w-1 h-1 bg-primary rounded-full animate-ping"></div>}
+                      </div>
+                    </div>
                     {currentHands && currentHands.length > 0 && (
-                      <div className="text-[8px] text-cyan-400">
-                        {currentHands[0].handedness} Wrist: {Math.round(currentHands[0].keypoints[0].x)}, {Math.round(currentHands[0].keypoints[0].y)}
+                      <div className="text-[8px] text-cyan-400/80 bg-cyan-400/5 px-1 rounded">
+                        {currentHands[0].handedness} WRIST: {Math.round(currentHands[0].keypoints[0].x)},{Math.round(currentHands[0].keypoints[0].y)}
                       </div>
                     )}
-                    <div>Pose 33: {currentPose ? 'OK' : 'OFF'}</div>
                   </div>
                 )}
               </div>

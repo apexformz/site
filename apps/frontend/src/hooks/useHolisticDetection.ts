@@ -6,7 +6,7 @@ import { PoseKeypoints, Hand, HandKeypoint } from '@smartcoach/types';
 // ever exists, even if React re-renders or strict mode fires twice.
 let globalHolistic: any = null;
 let globalHolisticPromise: Promise<any> | null = null;
-let globalResults: any = null;
+let resultResolver: ((value: any) => void) | null = null;
 
 async function getHolisticInstance() {
   if (typeof window === 'undefined') return null;
@@ -36,17 +36,20 @@ async function getHolisticInstance() {
       });
 
       instance.setOptions({
-        modelComplexity: 1,
+        modelComplexity: 0, // 0=Lite (Fastest), 1=Full, 2=Heavy. 0 is better for low-spec or floor poses.
         smoothLandmarks: true,
         enableSegmentation: false,
         smoothSegmentation: true,
         refineFaceLandmarks: true,
-        minDetectionConfidence: 0.5,
-        minTrackingConfidence: 0.5
+        minDetectionConfidence: 0.2, // Extremely permissive for initial lock
+        minTrackingConfidence: 0.2
       });
 
       instance.onResults((results: any) => {
-        globalResults = results;
+        if (resultResolver) {
+          resultResolver(results);
+          resultResolver = null;
+        }
       });
 
       await instance.initialize();
@@ -68,18 +71,14 @@ export function useHolisticDetection() {
 
   useEffect(() => {
     let isMounted = true;
-    
     async function init() {
       if (globalHolistic) {
         setIsLoading(false);
         return;
       }
-
       try {
         await getHolisticInstance();
-        if (isMounted) {
-          setIsLoading(false);
-        }
+        if (isMounted) setIsLoading(false);
       } catch (err: any) {
         console.error('❌ Holistic Singleton Error:', err);
         if (isMounted) {
@@ -88,22 +87,59 @@ export function useHolisticDetection() {
         }
       }
     }
-
     init();
     return () => { isMounted = false; };
   }, []);
 
+  const hardResetHolistic = useCallback(async () => {
+    console.log('🔄 Manual Hard Reset of Holistic AI Engine...');
+    setIsLoading(true);
+    setError(null);
+    try {
+      if (globalHolistic) {
+        await globalHolistic.close();
+      }
+      globalHolistic = null;
+      globalHolisticPromise = null;
+      await getHolisticInstance();
+      setIsLoading(false);
+      console.log('✅ Holistic Engine Reset and Ready');
+    } catch (err: any) {
+      console.error('❌ Holistic Reset Failed:', err);
+      setError(`Reset Failed: ${err.message}`);
+      setIsLoading(false);
+    }
+  }, []);
+
   const detectHolistic = useCallback(
     async (video: HTMLVideoElement): Promise<{ pose: PoseKeypoints | null, hands: Hand[] | null } | null> => {
-      if (!globalHolistic || !video) return null;
+      if (!globalHolistic || !video || video.readyState < 2) {
+        if (globalHolistic && video && video.readyState < 2) {
+           console.warn('⏳ Video not ready yet (readyState < 2)');
+        }
+        return null;
+      }
       
       try {
+        const resultPromise = new Promise((resolve) => {
+          resultResolver = resolve;
+        });
+
+        // 1.5s timeout for inference to prevent UI hang
+        const timeoutPromise = new Promise((resolve) => {
+          setTimeout(() => resolve(null), 1500);
+        });
+
         await globalHolistic.send({ image: video });
-        const results = globalResults;
-        if (!results) return null;
+        const results = await Promise.race([resultPromise, timeoutPromise]) as any;
+        
+        if (!results) {
+          console.warn('⚠️ Holistic: Inference Timeout');
+          return null;
+        }
 
         let pose: PoseKeypoints | null = null;
-        if (results.poseLandmarks) {
+        if (results.poseLandmarks && results.poseLandmarks.length > 0) {
           const BLAZEPOSE_KEYPOINT_NAMES = [
              'nose', 'left_eye_inner', 'left_eye', 'left_eye_outer', 'right_eye_inner', 'right_eye', 'right_eye_outer',
              'left_ear', 'right_ear', 'mouth_left', 'mouth_right', 'left_shoulder', 'right_shoulder', 'left_elbow',
@@ -125,7 +161,7 @@ export function useHolisticDetection() {
         }
 
         const hands: Hand[] = [];
-        if (results.leftHandLandmarks) {
+        if (results.leftHandLandmarks && results.leftHandLandmarks.length > 0) {
           hands.push({
             handedness: 'Left',
             score: 0.9,
@@ -137,7 +173,7 @@ export function useHolisticDetection() {
             })) as HandKeypoint[]
           });
         }
-        if (results.rightHandLandmarks) {
+        if (results.rightHandLandmarks && results.rightHandLandmarks.length > 0) {
           hands.push({
             handedness: 'Right',
             score: 0.9,
@@ -150,14 +186,20 @@ export function useHolisticDetection() {
           });
         }
 
+        // Diagnostic periodic log
+        if (!pose && hands.length === 0 && Math.random() > 0.98) {
+          console.log('ℹ️ Holistic Frame processed: No person detected in field of view.');
+        }
+
         return { pose, hands: hands.length > 0 ? hands : null };
-      } catch (err) {
-        console.warn('Holistic frame drop:', err);
+      } catch (err: any) {
+        console.error('❌ Holistic send error:', err);
+        setError(`Runtime Error: ${err.message}`);
       }
       return null;
     },
     []
   );
 
-  return { detectHolistic, isLoading, error };
+  return { detectHolistic, hardResetHolistic, isLoading, error };
 }
