@@ -14,7 +14,7 @@ export const ActionableFeedback: React.FC<ActionableFeedbackProps> = ({ feedback
   const displayFeedbacks = feedbacks
     .filter(f => f.severity !== 'good')
     .sort((a, b) => (a.severity === 'error' ? -1 : 1))
-    .slice(0, 3);
+    .slice(0, 6);
 
   return (
     <div className="flex flex-col gap-2 w-full max-w-sm">

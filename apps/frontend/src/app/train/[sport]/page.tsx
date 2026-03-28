@@ -31,7 +31,9 @@ export default function TrainingPage() {
   const [frameCount, setFrameCount] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [averageScore, setAverageScore] = useState(0);
+  const [throttledAnalysis, setThrottledAnalysis] = useState<FrameAnalysis | null>(null);
   const [dimensions, setDimensions] = useState({ width: 1280, height: 720 });
+  const lastFeedbackUpdateRef = useRef<number>(0);
   const [isAiPulsing, setIsAiPulsing] = useState(false);
 
   const { detectHolistic, hardResetHolistic, isLoading: isAiLoading, error: aiError } = useHolisticDetection();
@@ -47,6 +49,13 @@ export default function TrainingPage() {
       return nextCount;
     });
     setBestScore(prev => Math.max(prev, analysis.frame_score));
+
+    // VISUAL THROTTLE: Only update UI feedback 5-6 times per second to avoid 'spam'
+    const now = Date.now();
+    if (now - lastFeedbackUpdateRef.current > 180) { // ~5.5 updates per second
+      setThrottledAnalysis(analysis);
+      lastFeedbackUpdateRef.current = now;
+    }
   }, []);
 
   const { isConnected, connectionError, startSession, submitFrame, stopSession } = useWebSocket(onFeedback);
@@ -222,9 +231,11 @@ export default function TrainingPage() {
         </button>
       </div>
 
-      {/* Viewport Area */}
-      <main className="flex-1 relative flex items-center justify-center p-4">
-        <div ref={containerRef} className="relative w-full h-full max-w-5xl aspect-video glass-card overflow-hidden bg-black/40 border-primary/20 flex items-center justify-center shadow-2xl">
+      {/* Main Content Area (Camera + Right Feedback Sidebar) */}
+      <main className="flex-1 flex overflow-hidden">
+        {/* Left/Center Viewport Area */}
+        <div className="flex-1 relative flex items-center justify-center p-4">
+          <div ref={containerRef} className="relative w-full h-full max-w-5xl aspect-video glass-card overflow-hidden bg-black/40 border-primary/20 flex items-center justify-center shadow-2xl">
           {isCameraActive ? (
             <>
               <video
@@ -302,11 +313,6 @@ export default function TrainingPage() {
                 </div>
               </div>
 
-              {/* Feedback Stack */}
-              <div className="absolute top-6 right-6 z-30">
-                <ActionableFeedback feedbacks={currentAnalysis?.feedback || []} />
-              </div>
-
               {/* Stats Overlay */}
               <div className="absolute bottom-6 left-6 z-30">
                 <TrainingStats 
@@ -362,6 +368,28 @@ export default function TrainingPage() {
               >
                 RELOAD AI ENGINE
               </button>
+            </div>
+          )}
+          </div>
+        </div>
+
+        {/* Right Sidebar: AI Recommendations (User Request: Move off camera screen) */}
+        <div className="w-80 bg-background/30 border-l border-white/10 p-6 flex flex-col gap-6 overflow-y-auto z-40">
+          <div className="flex flex-col gap-1">
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-white/40 mb-2">Real-Time Recommendations</h3>
+            <div className="h-px w-10 bg-primary/40" />
+          </div>
+          
+          <ActionableFeedback feedbacks={throttledAnalysis?.feedback || []} />
+
+          {isRecording && (
+            <div className="mt-auto pt-6 border-t border-white/5">
+              <div className="bg-primary/10 rounded-xl p-4 border border-primary/20">
+                <p className="text-[10px] text-primary font-bold uppercase tracking-widest mb-1">Session Data</p>
+                <div className="text-2xl font-black italic text-white leading-none tracking-tight">
+                  {Math.round(averageScore)}% <span className="text-[10px] not-italic text-white/40 uppercase">Avg Acc</span>
+                </div>
+              </div>
             </div>
           )}
         </div>
