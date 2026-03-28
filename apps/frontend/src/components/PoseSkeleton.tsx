@@ -136,9 +136,10 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
           const joint1 = p1.includes('_') ? p1.split('_')[1] : p1;
           const joint2 = p2.includes('_') ? p2.split('_')[1] : p2;
 
-          const hasError = analysis?.feedback.some(f => {
-            const fj = f.joint.toLowerCase();
-            return fj.includes(joint1) || fj.includes(joint2);
+          // Highlight error joints in red
+          const hasError = analysis?.issues?.some(i => {
+            const jointName = i.joint.toLowerCase();
+            return jointName.includes(joint1) || jointName.includes(joint2);
           });
 
           ctx.beginPath();

@@ -1,8 +1,29 @@
 {
   "cricket": {
-    "batting_stance": { "left_elbow": 160, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
-    "bowling_loadup": { "left_elbow": 180, "right_elbow": 45, "left_shoulder": 90, "right_shoulder": 160, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90 },
-    "fielding_ready": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 120, "right_hip": 120, "left_knee": 110, "right_knee": 110, "left_ankle": 90, "right_ankle": 90 },
+    "batting_stance": { 
+      "left_elbow": 160, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_elbow_low": "Point your front elbow towards the bowler for a steadier base.",
+        "left_shoulder_high": "Relax your lead shoulder towards the off-side.",
+        "left_knee_bent": "Keep your knees slightly flexed and ready to move."
+      }
+    },
+    "bowling_loadup": { 
+      "left_elbow": 180, "right_elbow": 45, "left_shoulder": 90, "right_shoulder": 160, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "right_elbow_straight": "Keep your bowling arm tucked in tight during the jump.",
+        "left_shoulder_low": "Lead with your non-bowling arm to generate more power.",
+        "right_shoulder_low": "Reach higher with your bowling arm at the peak of your load-up."
+      }
+    },
+    "fielding_ready": { 
+      "left_elbow": 120, "right_elbow": 120, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 120, "right_hip": 120, "left_knee": 110, "right_knee": 110, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_hip_high": "Stay lower to the ground to react faster to the ball.",
+        "left_knee_straight": "Keep your weight on the balls of your feet with knees bent.",
+        "left_shoulder_high": "Keep your hands out front and shoulders relaxed."
+      }
+    },
     "cover_drive": { "left_elbow": 140, "right_elbow": 90, "left_shoulder": 60, "right_shoulder": 40, "left_hip": 130, "right_hip": 170, "left_knee": 90, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
     "pull_shot": { "left_elbow": 170, "right_elbow": 160, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
     "wicket_keeping": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 45, "right_hip": 45, "left_knee": 45, "right_knee": 45, "left_ankle": 90, "right_ankle": 90 },
@@ -12,9 +33,22 @@
     "sweep_shot": { "left_elbow": 160, "right_elbow": 150, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 90, "right_hip": 45, "left_knee": 45, "right_knee": 90, "left_ankle": 90, "right_ankle": 90 }
   },
   "tennis": {
-    "serve_trophy": { "left_elbow": 170, "right_elbow": 90, "left_shoulder": 135, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 150, "right_knee": 140, "left_ankle": 110, "right_ankle": 120 },
+    "serve_trophy": { 
+      "left_elbow": 170, "right_elbow": 90, "left_shoulder": 135, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 150, "right_knee": 140, "left_ankle": 110, "right_ankle": 120,
+      "cues": {
+        "right_elbow_low": "Keep your hitting elbow high in the 'Trophy' position.",
+        "left_shoulder_low": "Reach higher with your tossing arm to find your rhythm.",
+        "left_knee_straight": "Keep a deep knee bend to explode upwards into the serve."
+      }
+    },
     "forehand_top": { "left_elbow": 160, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
-    "ready_position": { "left_elbow": 130, "right_elbow": 130, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 },
+    "ready_position": { 
+      "left_elbow": 130, "right_elbow": 130, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_knee_straight": "Stay low in your ready stance with knees bent and weight on toes.",
+        "left_shoulder_high": "Keep your racket out in front and shoulders relaxed."
+      }
+    },
     "backhand_split": { "left_elbow": 140, "right_elbow": 160, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 130, "right_knee": 130, "left_ankle": 90, "right_ankle": 90 },
     "volley_ready": { "left_elbow": 110, "right_elbow": 110, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 160, "right_hip": 160, "left_knee": 150, "right_knee": 150, "left_ankle": 90, "right_ankle": 90 },
     "overhead_smash": { "left_elbow": 170, "right_elbow": 170, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90 },
@@ -24,19 +58,96 @@
     "drop_shot": { "left_elbow": 130, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 60, "left_hip": 180, "right_hip": 180, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 }
   },
   "yoga": {
-    "warrior_2": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 110, "right_hip": 180, "left_knee": 90, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
-    "tree_pose": { "left_elbow": 170, "right_elbow": 170, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 90, "right_hip": 180, "left_knee": 30, "right_knee": 180, "left_ankle": 120, "right_ankle": 90 },
-    "downward_dog": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 180, "right_shoulder": 180, "left_hip": 90, "right_hip": 90, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
-    "triangle_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 60, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
-    "cobra_pose": { "left_elbow": 150, "right_elbow": 150, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
-    "plank_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
-    "bridge_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 180, "right_shoulder": 180, "left_hip": 150, "right_hip": 150, "left_knee": 90, "right_knee": 90, "left_ankle": 90, "right_ankle": 90 },
+    "warrior_2": { 
+      "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 110, "right_hip": 180, "left_knee": 90, "right_knee": 180, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_shoulder_low": "Keep your arms parallel to the floor.",
+        "left_knee_straight": "Deepen the bend in your front knee.",
+        "right_hip_bent": "Keep your back leg strong and straight."
+      }
+    },
+    "squats": {
+      "left_elbow": 160, "right_elbow": 160, "left_shoulder": 140, "right_shoulder": 140, "left_hip": 60, "right_hip": 60, "left_knee": 70, "right_knee": 70, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_knee_in": "Ensure your knees stay tracked over your toes.",
+        "left_hip_high": "Lower your hips further for maximum engagement.",
+        "left_shoulder_forward": "Keep your chest lifted and spine neutral."
+      }
+    },
+    "tree_pose": { 
+      "left_elbow": 170, "right_elbow": 170, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 90, "right_hip": 180, "left_knee": 30, "right_knee": 180, "left_ankle": 120, "right_ankle": 90,
+      "cues": {
+        "left_knee_high": "Open your hip further, bringing your knee out to the side.",
+        "left_ankle_low": "Ensure your foot is pressed firmly against your inner thigh, not the knee joint.",
+        "left_shoulder_low": "Reach your arms higher to lengthen your entire body."
+      }
+    },
+    "downward_dog": { 
+      "left_elbow": 180, "right_elbow": 180, "left_shoulder": 180, "right_shoulder": 180, "left_hip": 90, "right_hip": 90, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_knee_bent": "Try to press your heels toward the mat and straighten your legs.",
+        "left_hip_low": "Push firmly through your palms to lift your hips higher and lengthen your spine.",
+        "left_shoulder_bent": "Keep your arms strong and straight, pushing the floor away."
+      }
+    },
+    "triangle_pose": { 
+      "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 60, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_shoulder_low": "Reach your top arm straight up to form a vertical line.",
+        "left_hip_high": "Tuck your bottom hip under to stay in one plane.",
+        "right_knee_bent": "Keep both legs strong and active throughout the stretch."
+      }
+    },
+    "cobra_pose": { 
+      "left_elbow": 150, "right_elbow": 150, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_elbow_straight": "Keep a slight bend in your elbows to avoid locking them.",
+        "left_shoulder_high": "Drop your shoulders away from your ears to lengthen your neck.",
+        "left_hip_low": "Ensure your pelvis stays grounded on the mat."
+      }
+    },
+    "plank_pose": { 
+      "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_hip_low": "Engage your core and lift your hips; don't let your lower back sag.",
+        "left_hip_high": "Lower your hips to create a straight line from head to heels.",
+        "left_shoulder_low": "Keep your weight centered over your wrists."
+      }
+    },
+    "bridge_pose": { 
+      "left_elbow": 180, "right_elbow": 180, "left_shoulder": 180, "right_shoulder": 180, "left_hip": 150, "right_hip": 150, "left_knee": 90, "right_knee": 90, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_hip_low": "Squeeze your glutes and lift your hips higher towards the ceiling.",
+        "left_knee_straight": "Keep your knees directly over your ankles.",
+        "left_shoulder_low": "Roll your shoulders underneath you to support the lift."
+      }
+    },
     "childs_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 30, "right_hip": 30, "left_knee": 30, "right_knee": 30, "left_ankle": 90, "right_ankle": 90 },
-    "cat_cow": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 90, "right_hip": 90, "left_knee": 90, "right_knee": 90, "left_ankle": 90, "right_ankle": 90 },
-    "chair_pose": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 100, "right_hip": 100, "left_knee": 100, "right_knee": 100, "left_ankle": 90, "right_ankle": 90 }
+    "cat_cow": { 
+      "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 90, "right_hip": 90, "left_knee": 90, "right_knee": 90, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_shoulder_high": "Push through your hands to round your back during the 'Cat' phase.",
+        "left_hip_high": "Tilt your tailbone up and let your belly sink for the 'Cow' phase."
+      }
+    },
+    "chair_pose": { 
+      "left_elbow": 180, "right_elbow": 180, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 100, "right_hip": 100, "left_knee": 100, "right_knee": 100, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_knee_forward": "Shift more weight into your heels; try to see your toes.",
+        "left_shoulder_low": "Lift your chest and reach your arms up towards the sky.",
+        "left_hip_high": "Sit deeper as if you are lowering into an invisible chair."
+      }
+    }
   },
   "running": {
-    "mid_stride": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 135, "left_hip": 145, "right_hip": 180, "left_knee": 90, "right_knee": 160, "left_ankle": 90, "right_ankle": 110 },
+    "mid_stride": { 
+      "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 135, "left_hip": 145, "right_hip": 180, "left_knee": 90, "right_knee": 160, "left_ankle": 90, "right_ankle": 110,
+      "cues": {
+        "left_elbow_straight": "Keep your elbows bent at 90 degrees for a more efficient stride.",
+        "left_knee_high": "Drive your leading knee forward to generate more power.",
+        "right_hip_bent": "Maintain an upright posture and avoid leaning too far forward."
+      }
+    },
     "starting_block": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 80, "right_shoulder": 80, "left_hip": 45, "right_hip": 45, "left_knee": 90, "right_knee": 90, "left_ankle": 90, "right_ankle": 90 },
     "sprint_form": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 120, "right_shoulder": 60, "left_hip": 120, "right_hip": 170, "left_knee": 60, "right_knee": 180, "left_ankle": 110, "right_ankle": 90 },
     "heel_strike": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 180, "right_hip": 160, "left_knee": 180, "right_knee": 150, "left_ankle": 90, "right_ankle": 120 },
@@ -48,9 +159,30 @@
     "posture_check": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 }
   },
   "boxing": {
-    "guard_stance": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
-    "lead_jab": { "left_elbow": 175, "right_elbow": 60, "left_shoulder": 90, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
-    "right_cross": { "left_elbow": 60, "right_elbow": 175, "left_shoulder": 60, "right_shoulder": 95, "left_hip": 170, "right_hip": 150, "left_knee": 160, "right_knee": 140, "left_ankle": 90, "right_ankle": 110 },
+    "guard_stance": { 
+      "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_elbow_low": "Keep your elbows tucked in to protect your ribs.",
+        "left_shoulder_high": "Keep your lead shoulder slightly raised to protect your chin.",
+        "left_knee_straight": "Maintain a slight bend in your knees for better mobility."
+      }
+    },
+    "lead_jab": { 
+      "left_elbow": 175, "right_elbow": 60, "left_shoulder": 90, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_elbow_bent": "Fully extend your lead arm for maximum reach.",
+        "left_shoulder_low": "Keep your lead hand high during the extension.",
+        "right_shoulder_low": "Keep your rear hand up to guard your face."
+      }
+    },
+    "right_cross": { 
+      "left_elbow": 60, "right_elbow": 175, "left_shoulder": 60, "right_shoulder": 95, "left_hip": 170, "right_hip": 150, "left_knee": 160, "right_knee": 140, "left_ankle": 90, "right_ankle": 110,
+      "cues": {
+        "right_elbow_bent": "Snap your rear arm out straight for power.",
+        "right_hip_high": "Pivot your rear foot and rotate your hip into the punch.",
+        "left_shoulder_low": "Keep your lead hand tight to your face while crossing."
+      }
+    },
     "lead_hook": { "left_elbow": 90, "right_elbow": 60, "left_shoulder": 90, "right_shoulder": 60, "left_hip": 150, "right_hip": 170, "left_knee": 140, "right_knee": 160, "left_ankle": 110, "right_ankle": 90 },
     "lead_uppercut": { "left_elbow": 45, "right_elbow": 60, "left_shoulder": 45, "right_shoulder": 60, "left_hip": 160, "right_hip": 170, "left_knee": 140, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
     "rear_uppercut": { "left_elbow": 60, "right_elbow": 45, "left_shoulder": 60, "right_shoulder": 45, "left_hip": 170, "right_hip": 160, "left_knee": 160, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 },
@@ -60,9 +192,27 @@
     "pivot_check": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 150, "right_hip": 150, "left_knee": 160, "right_knee": 160, "left_ankle": 120, "right_ankle": 90 }
   },
   "football": {
-    "kick_prepare": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 140, "right_hip": 110, "left_knee": 170, "right_knee": 90, "left_ankle": 90, "right_ankle": 110 },
-    "header_jump": { "left_elbow": 110, "right_elbow": 110, "left_shoulder": 140, "right_shoulder": 140, "left_hip": 180, "right_hip": 180, "left_knee": 150, "right_knee": 150, "left_ankle": 90, "right_ankle": 90 },
-    "ready_stance": { "left_elbow": 140, "right_elbow": 140, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 },
+    "kick_prepare": { 
+      "left_elbow": 120, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 140, "right_hip": 110, "left_knee": 170, "right_knee": 90, "left_ankle": 90, "right_ankle": 110,
+      "cues": {
+        "right_knee_straight": "Bend your kicking leg at the knee to generate more power in your swing.",
+        "left_hip_low": "Maintain a stable plant leg and lean slightly into the strike."
+      }
+    },
+    "header_jump": { 
+      "left_elbow": 110, "right_elbow": 110, "left_shoulder": 140, "right_shoulder": 140, "left_hip": 180, "right_hip": 180, "left_knee": 150, "right_knee": 150, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_shoulder_low": "Use your arms for balance and momentum as you jump for the header.",
+        "left_hip_bent": "Ensure your body is extended and aligned at the peak of your jump."
+      }
+    },
+    "ready_stance": { 
+      "left_elbow": 140, "right_elbow": 140, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_knee_straight": "Keep your knees bent and stay low to react quickly in defense.",
+        "left_hip_high": "Lower your center of gravity for better stability and balance."
+      }
+    },
     "throw_in": { "left_elbow": 160, "right_elbow": 160, "left_shoulder": 170, "right_shoulder": 170, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
     "goalkeeper_dive": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 160, "right_hip": 160, "left_knee": 140, "right_knee": 140, "left_ankle": 110, "right_ankle": 110 },
     "chest_trap": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 40, "right_shoulder": 40, "left_hip": 160, "right_hip": 160, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },

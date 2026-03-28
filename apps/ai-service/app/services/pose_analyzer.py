@@ -88,73 +88,41 @@ def analyze_hands(hands: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
 def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = None, hands: List[Dict[str, Any]] = []) -> Dict[str, Any]:
     """
-    Compare current pose to reference and generate real-time feedback.
+    Dispatcher: Routes current frame to the specialized analyzer in the registry.
     """
+    from .analyzers.registry import AnalyzerRegistry
+    
     actual_angles = compute_joint_angles(keypoints)
-    hand_feedback = analyze_hands(hands)
     
-    # Selection logic: use provided pose_name or fall back to first one
-    if sport not in REFERENCE_POSES:
-        sport = "cricket" # default fallback
-        
-    sport_poses = REFERENCE_POSES[sport]
-    if pose_name and pose_name in sport_poses:
-        ref_angles = sport_poses[pose_name]
-    else:
-        # Fallback to the first available pose for this sport
-        pose_name = list(sport_poses.keys())[0]
-        ref_angles = sport_poses[pose_name]
+    # Selection logic: prioritize incoming pose_name or default to first for the sport
+    if not pose_name or pose_name == "undefined":
+         from .analyzers.base import REFERENCE_POSES
+         pose_name = list(REFERENCE_POSES.get(sport, {"unknown":{}}).keys())[0]
 
-    feedback = []
-    total_error = 0
-    joints_checked = 0
-
-    for joint, actual_angle in actual_angles.items():
-        if joint not in ref_angles:
-            continue
-            
-        ref_angle = ref_angles[joint]
-        error = abs(actual_angle - ref_angle)
-        total_error += error
-        joints_checked += 1
-
-        if error <= 15:
-            severity = "good"
-            msg = "Perfect"
-        elif error <= 30:
-            severity = "warning"
-            msg = f"Adjust your {joint.replace('_', ' ')}. Needs to be {'straighter' if ref_angle > actual_angle else 'more bent'}."
-        else:
-            severity = "error"
-            msg = f"Fix your {joint.replace('_', ' ')}. Target is {ref_angle}°, you are at {int(actual_angle)}°."
-
-        feedback.append({
-            "joint": joint,
-            "severity": severity,
-            "message": msg,
-            "angle_actual": round(actual_angle, 1),
-            "angle_reference": ref_angle,
-            "error_degrees": round(error, 1)
-        })
-
-    # Calculate 0-100 score
-    avg_error = total_error / joints_checked if joints_checked > 0 else 100
-    # 0 error = 100 score. 90 degree error = 0 score
-    frame_score = max(0, min(100, 100 - (avg_error * (100 / 90))))
+    # Perform modular analysis with temporal smoothing (5-frame window)
+    analysis_result = AnalyzerRegistry.analyze_with_smoothing(
+        sport=sport,
+        pose_id=pose_name,
+        keypoints=keypoints,
+        actual_angles=actual_angles
+    )
     
-    # Boost score slightly if hand feedback is good
-    if any(h['severity'] == 'good' for h in hand_feedback):
-        frame_score = min(100, frame_score + 5)
-
-    overall_severity = "good"
-    if frame_score < 50:
-        overall_severity = "error"
-    elif frame_score < 80:
-        overall_severity = "warning"
+    # Optional: Combine with hand feedback if available
+    # Hand feedback is now optional and can be appended to the issues list
+    if hands:
+        hand_feedback = analyze_hands(hands)
+        for hf in hand_feedback:
+            analysis_result['issues'].append({
+                "joint": hf['joint'],
+                "problem": hf['message'],
+                "correction": "Ensure your grip is firm.",
+                "severity": hf['severity']
+            })
 
     return {
-        "frame_score": round(frame_score, 1),
-        "overall_severity": overall_severity,
-        "joint_angles": actual_angles,
-        "feedback": feedback + hand_feedback
+        "score": analysis_result['score'],
+        "overall_severity": analysis_result['overall_severity'],
+        "issues": analysis_result['issues'],
+        "pose_name": pose_name,
+        "joint_angles": actual_angles
     }

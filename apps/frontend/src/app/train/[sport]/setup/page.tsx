@@ -65,6 +65,7 @@ const SPORT_CONFIG: Record<string, {
     thematicColor: "#FF00E5",
     poses: [
       { id: "warrior_2", name: "Warrior II", description: "Focus on arm level and knee alignment.", difficulty: "Beginner" },
+      { id: "squats", name: "Yoga Squats", description: "Improve lower body strength and mobility.", difficulty: "Beginner" },
       { id: "tree_pose", name: "Tree Pose", description: "Master vertical balance and core.", difficulty: "Intermediate" },
       { id: "downward_dog", name: "Downward Dog", description: "Spine inversion and hip elevation.", difficulty: "Intermediate" },
       { id: "triangle_pose", name: "Triangle Pose", description: "Lateral stretch and hand placement.", difficulty: "Intermediate" },
@@ -228,29 +229,56 @@ export default function SetupPage() {
                 }} 
               />
               
-              <div className="relative z-10 flex flex-col items-center gap-6 p-12 text-center">
-                 <div className="w-20 h-20 rounded-full border-2 border-primary/20 flex items-center justify-center relative">
-                    <Trophy className="w-10 h-10 text-primary drop-shadow-glow" />
-                    <div className="absolute inset-0 border border-primary animate-ping rounded-full opacity-20" />
-                 </div>
-                 
-                 <div>
-                   <h4 className="text-xl font-bold uppercase tracking-widest">{config.poses.find(p => p.id === selectedPose)?.name}</h4>
-                   <p className="text-xs text-secondary mt-2 font-bold tracking-widest uppercase">{config.poses.find(p => p.id === selectedPose)?.difficulty} DRILL</p>
-                 </div>
-                 
-                 <p className="text-xs text-white/40 leading-relaxed italic">"AI Tracking optimized for this specific movement. Ensure full body visibility for millisecond precision."</p>
-              </div>
-              
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/5">
-                 <motion.div 
-                   initial={{ width: 0 }}
-                   animate={{ width: '100%' }}
-                   transition={{ duration: 2, repeat: Infinity }}
-                   className="h-full bg-primary"
-                 />
-              </div>
-           </div>
+               <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-8 text-center">
+                  <div className="relative w-full flex-1 flex items-center justify-center mb-6 overflow-hidden">
+                     <AnimatePresence mode="wait">
+                        <motion.img
+                          key={selectedPose}
+                          initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
+                          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                          exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+                          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                          src={`/postures/${sport}_${selectedPose}.png`}
+                          alt={selectedPose}
+                          className="max-w-full max-h-full object-contain drop-shadow-2xl"
+                          onError={(e) => {
+                             // Fallback to trophy if image is missing
+                             (e.target as any).style.display = 'none';
+                             (e.target as any).nextSibling.style.display = 'flex';
+                          }}
+                        />
+                        <div className="hidden absolute inset-0 items-center justify-center">
+                           <div className="w-20 h-20 rounded-full border-2 border-primary/20 flex items-center justify-center relative">
+                              <Trophy className="w-10 h-10 text-primary drop-shadow-glow" />
+                              <div className="absolute inset-0 border border-primary animate-ping rounded-full opacity-20" />
+                           </div>
+                        </div>
+                     </AnimatePresence>
+                  </div>
+                  
+                  <div className="mt-auto">
+                    <h4 className="text-2xl font-black uppercase tracking-tighter italic text-white drop-shadow-md">
+                       {config.poses.find(p => p.id === selectedPose)?.name}
+                    </h4>
+                    <p className="text-[10px] text-primary mt-1 font-black tracking-[0.3em] uppercase">
+                       {config.poses.find(p => p.id === selectedPose)?.difficulty} Standard
+                    </p>
+                  </div>
+                  
+                  <p className="mt-4 text-[9px] text-white/30 leading-relaxed uppercase tracking-widest font-bold max-w-xs">
+                     "AI Tracking calibrated for this technical blueprint. Ensure full frame visibility for precision."
+                  </p>
+               </div>
+               
+               <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/5">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: '100%' }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="h-full bg-primary shadow-glow shadow-primary/50"
+                  />
+               </div>
+            </div>
 
            <button 
              onClick={handleStart}

@@ -46,29 +46,24 @@ export default function TrainingPage() {
     setFrameCount(prev => {
       const nextCount = prev + 1;
       setAverageScore(currentAvg => {
-        const newScore = (currentAvg * prev + analysis.frame_score) / nextCount;
-        return Number.isNaN(newScore) ? analysis.frame_score : newScore;
+        const newScore = (currentAvg * prev + analysis.score) / nextCount;
+        return Number.isNaN(newScore) ? analysis.score : newScore;
       });
       return nextCount;
     });
-    setBestScore(prev => Math.max(prev, analysis.frame_score));
+    setBestScore(prev => Math.max(prev, analysis.score));
 
     // VOICE-GUIDED SEQUENTIAL DELIVERY + FREQUENCY THROTTLE (Max 6/min)
-    // 1. New correction available?
-    // 2. Currently speaking? (Must finish previous first)
-    // 3. Has 10 seconds passed? (User Request: 5-6 per minute)
-    const hasNewCorrection = analysis.feedback.some(f => f.severity !== 'good');
+    const activeIssues = analysis.issues?.filter(i => i.severity === 'high');
     const now = Date.now();
     
-    if (hasNewCorrection && !isAiSpeaking && (now - lastFeedbackUpdateRef.current > 10000)) {
-      // Find the most severe correction to announce
-      const primaryCorrection = [...analysis.feedback]
-        .filter(f => f.severity !== 'good')
-        .sort((a, b) => (a.severity === 'error' ? -1 : 1))[0];
+    if (activeIssues?.length > 0 && !isAiSpeaking && (now - lastFeedbackUpdateRef.current > 10000)) {
+      // Find the most severe issue to announce
+      const primaryIssue = activeIssues[0];
 
-      if (primaryCorrection) {
+      if (primaryIssue) {
         setThrottledAnalysis(analysis);
-        announce(primaryCorrection.message);
+        announce(primaryIssue.correction); // Use the professional 'correction' cue
         lastFeedbackUpdateRef.current = now;
       }
     }
@@ -333,7 +328,7 @@ export default function TrainingPage() {
               {/* Stats Overlay */}
               <div className="absolute bottom-6 left-6 z-30">
                 <TrainingStats 
-                  score={currentAnalysis?.frame_score || 0}
+                  score={Math.round(currentAnalysis?.score || 0)}
                   duration={sessionDuration}
                   frameCount={frameCount}
                   isConnected={isConnected}
@@ -397,7 +392,8 @@ export default function TrainingPage() {
             <div className="h-px w-10 bg-primary/40" />
           </div>
           
-          <ActionableFeedback feedbacks={throttledAnalysis?.feedback || []} />
+          {/* AI Recommendations */}
+          <ActionableFeedback issues={throttledAnalysis?.issues || []} />
           
           {/* Posture Reference (User Request: Show target posture) */}
           <PostureReference sport={sport} poseName={poseName} />

@@ -46,7 +46,7 @@ export interface JointAngles {
 export type FeedbackSeverity = 'good' | 'warning' | 'error';
 
 export interface JointFeedback {
-  joint: keyof JointAngles;
+  joint: string;
   severity: FeedbackSeverity;
   message: string;
   angle_actual: number;
@@ -54,10 +54,18 @@ export interface JointFeedback {
   error_degrees: number;
 }
 
+export interface CoachIssue {
+  joint: string;
+  problem: string;
+  correction: string;
+  severity: 'low' | 'medium' | 'high' | 'none';
+}
+
 export interface FrameAnalysis {
-  frame_score: number;           // 0-100
+  score: number;           // 0-100 (Renamed from frame_score for consistency)
   joint_angles: JointAngles;
-  feedback: JointFeedback[];
+  issues: CoachIssue[];    // New structured feedback
+  feedback?: JointFeedback[]; // Legacy support
   overall_severity: FeedbackSeverity;
 }
 
