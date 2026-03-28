@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { Camera, CameraOff, X, Play, RotateCcw, ChevronLeft } from 'lucide-react';
 import { useHolisticDetection } from '@/hooks/useHolisticDetection';
 import { useWebSocket } from '@/hooks/useWebSocket';
+import { useVoiceCoaching } from '@/hooks/useVoiceCoaching';
 import { PoseSkeleton } from '@/components/PoseSkeleton';
 import { TrainingStats } from '@/components/TrainingStats';
 import { ActionableFeedback } from '@/components/ActionableFeedback';
@@ -35,7 +36,8 @@ export default function TrainingPage() {
   const [dimensions, setDimensions] = useState({ width: 1280, height: 720 });
   const lastFeedbackUpdateRef = useRef<number>(0);
   const [isAiPulsing, setIsAiPulsing] = useState(false);
-
+  
+  const { announce, isSpeaking: isAiSpeaking, stop: stopAiVoice } = useVoiceCoaching();
   const { detectHolistic, hardResetHolistic, isLoading: isAiLoading, error: aiError } = useHolisticDetection();
   
   const onFeedback = useCallback((analysis: FrameAnalysis) => {
@@ -50,13 +52,26 @@ export default function TrainingPage() {
     });
     setBestScore(prev => Math.max(prev, analysis.frame_score));
 
-    // VISUAL THROTTLE: Only update UI feedback 5-6 times per MINUTE (every 10s) to avoid any sense of spam
+    // VOICE-GUIDED SEQUENTIAL DELIVERY + FREQUENCY THROTTLE (Max 6/min)
+    // 1. New correction available?
+    // 2. Currently speaking? (Must finish previous first)
+    // 3. Has 10 seconds passed? (User Request: 5-6 per minute)
+    const hasNewCorrection = analysis.feedback.some(f => f.severity !== 'good');
     const now = Date.now();
-    if (now - lastFeedbackUpdateRef.current > 10000) { // 10 seconds between updates
-      setThrottledAnalysis(analysis);
-      lastFeedbackUpdateRef.current = now;
+    
+    if (hasNewCorrection && !isAiSpeaking && (now - lastFeedbackUpdateRef.current > 10000)) {
+      // Find the most severe correction to announce
+      const primaryCorrection = [...analysis.feedback]
+        .filter(f => f.severity !== 'good')
+        .sort((a, b) => (a.severity === 'error' ? -1 : 1))[0];
+
+      if (primaryCorrection) {
+        setThrottledAnalysis(analysis);
+        announce(primaryCorrection.message);
+        lastFeedbackUpdateRef.current = now;
+      }
     }
-  }, []);
+  }, [isAiSpeaking, announce]);
 
   const { isConnected, connectionError, startSession, submitFrame, stopSession } = useWebSocket(onFeedback);
 
@@ -192,6 +207,7 @@ export default function TrainingPage() {
             frame_count: frameCount
           });
           stopSession();
+          stopAiVoice();
           router.push(`/results/${sessionId}`);
         } catch (err) {
           console.error('Failed to stop session:', err);
