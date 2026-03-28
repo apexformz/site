@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { AuthTokens, ApiResponse } from '@smartcoach/types';
+import axios, { InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import { refreshAuthTokens, getAccessToken } from './auth';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
@@ -11,8 +11,8 @@ export const api = axios.create({
 });
 
 // Request interceptor to attach JWT
-api.interceptors.request.use((config) => {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
+api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  const token = getAccessToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -21,30 +21,19 @@ api.interceptors.request.use((config) => {
 
 // Response interceptor for auto-refresh
 api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
+  (response: AxiosResponse) => response,
+  async (error: AxiosError) => {
+    const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      const refreshToken = localStorage.getItem('refresh_token');
+      const tokens = await refreshAuthTokens();
       
-      if (refreshToken) {
-        try {
-          const { data } = await axios.post<ApiResponse<AuthTokens>>(`${API_URL}/auth/refresh`, {
-            refresh_token: refreshToken,
-          });
-          
-          if (data.success && data.data) {
-            localStorage.setItem('access_token', data.data.access_token);
-            localStorage.setItem('refresh_token', data.data.refresh_token);
-            api.defaults.headers.common['Authorization'] = `Bearer ${data.data.access_token}`;
-            return api(originalRequest);
-          }
-        } catch (refreshError) {
-          localStorage.removeItem('access_token');
-          localStorage.removeItem('refresh_token');
-          window.location.href = '/login';
-        }
+      if (tokens) {
+        api.defaults.headers.common['Authorization'] = `Bearer ${tokens.access_token}`;
+        originalRequest.headers.Authorization = `Bearer ${tokens.access_token}`;
+        return api(originalRequest);
+      } else {
+        window.location.href = '/login';
       }
     }
     return Promise.reject(error);

@@ -7,6 +7,13 @@ import { PoseKeypoints, Hand, HandKeypoint } from '@smartcoach/types';
 let globalHolistic: any = null;
 let globalHolisticPromise: Promise<any> | null = null;
 let resultResolver: ((value: any) => void) | null = null;
+let isProcessing = false;
+
+// EMA Smoothing state
+let smoothedPose: any = null;
+let smoothedHands: any = null;
+let smoothedFace: any = null;
+const SMOOTHING_FACTOR = 0.55; // 0.1 (very smooth/laggy) to 1.0 (raw/jittery)
 
 async function getHolisticInstance() {
   if (typeof window === 'undefined') return null;
@@ -113,30 +120,45 @@ export function useHolisticDetection() {
 
   const detectHolistic = useCallback(
     async (video: HTMLVideoElement): Promise<{ pose: PoseKeypoints | null, hands: Hand[] | null, face: any[] | null } | null> => {
+      // FRAME SKIPPING: If still processing previous frame, skip this one immediately
+      if (isProcessing) return null;
+      
       if (!globalHolistic || !video || video.readyState < 2) {
-        if (globalHolistic && video && video.readyState < 2) {
-           console.warn('⏳ Video not ready yet (readyState < 2)');
-        }
         return null;
       }
       
+      isProcessing = true;
       try {
         const resultPromise = new Promise((resolve) => {
           resultResolver = resolve;
         });
 
-        // 1.5s timeout for inference to prevent UI hang
+        // 1s timeout for inference
         const timeoutPromise = new Promise((resolve) => {
-          setTimeout(() => resolve(null), 1500);
+          setTimeout(() => resolve(null), 1000);
         });
 
         await globalHolistic.send({ image: video });
         const results = await Promise.race([resultPromise, timeoutPromise]) as any;
         
         if (!results) {
-          console.warn('⚠️ Holistic: Inference Timeout');
+          isProcessing = false;
           return null;
         }
+
+        // EMA Smoothing Helper
+        const smoothPoints = (prev: any, current: any) => {
+          if (!prev) return current;
+          return current.map((p: any, i: number) => {
+            const pr = prev[i];
+            if (!pr) return p;
+            return {
+              ...p,
+              x: pr.x * (1 - SMOOTHING_FACTOR) + p.x * SMOOTHING_FACTOR,
+              y: pr.y * (1 - SMOOTHING_FACTOR) + p.y * SMOOTHING_FACTOR
+            };
+          });
+        };
 
         // 1. Pose
         let pose: PoseKeypoints | null = null;
@@ -149,22 +171,27 @@ export function useHolisticDetection() {
              'left_heel', 'right_heel', 'left_foot_index', 'right_foot_index'
           ];
 
+          const rawPoseKps = results.poseLandmarks.map((kp: any, i: number) => ({
+            x: kp.x * video.videoWidth,
+            y: kp.y * video.videoHeight,
+            score: kp.visibility || 1.0,
+            name: BLAZEPOSE_KEYPOINT_NAMES[i] || `point_${i}`
+          }));
+
+          smoothedPose = smoothPoints(smoothedPose, rawPoseKps);
+
           pose = {
-            keypoints: results.poseLandmarks.map((kp: any, i: number) => ({
-              x: kp.x * video.videoWidth,
-              y: kp.y * video.videoHeight,
-              score: kp.visibility || 1.0,
-              name: BLAZEPOSE_KEYPOINT_NAMES[i] || `point_${i}`
-            })),
+            keypoints: smoothedPose,
             score: 0.8,
             timestamp_ms: Date.now()
           };
         }
 
-        // 2. Hands (with Anchor Snapping)
+        // 2. Hands (with Anchor Snapping and EMA)
         const hands: Hand[] = [];
         const processHand = (landmarks: any[], handedness: 'Left' | 'Right') => {
           if (!landmarks || landmarks.length === 0) return null;
+          
           const bodyWrist = results.poseLandmarks?.[handedness === 'Left' ? 15 : 16];
           let offsetX = 0;
           let offsetY = 0;
@@ -173,15 +200,23 @@ export function useHolisticDetection() {
             offsetX = (bodyWrist.x - handWrist.x) * video.videoWidth;
             offsetY = (bodyWrist.y - handWrist.y) * video.videoHeight;
           }
+
+          const rawHandKps = landmarks.map((kp: any, i: number) => ({
+            x: (kp.x * video.videoWidth) + offsetX,
+            y: (kp.y * video.videoHeight) + offsetY,
+            score: 1.0,
+            name: `${handedness.toLowerCase()}_hand_${i}`
+          }));
+
+          // Simple hand-specific EMA key
+          const emaKey = handedness === 'Left' ? 'L' : 'R';
+          if (!smoothedHands) smoothedHands = {};
+          smoothedHands[emaKey] = smoothPoints(smoothedHands[emaKey], rawHandKps);
+
           return {
             handedness,
             score: 0.9,
-            keypoints: landmarks.map((kp: any, i: number) => ({
-              x: (kp.x * video.videoWidth) + offsetX,
-              y: (kp.y * video.videoHeight) + offsetY,
-              score: 1.0,
-              name: `${handedness.toLowerCase()}_hand_${i}`
-            })) as HandKeypoint[]
+            keypoints: smoothedHands[emaKey] as HandKeypoint[]
           };
         };
 
@@ -194,23 +229,22 @@ export function useHolisticDetection() {
           if (hand) hands.push(hand);
         }
 
-        // 3. Face Mesh (Detailed 468 Points)
+        // 3. Face Mesh
         let face: any[] | null = null;
         if (results.faceLandmarks) {
-          face = results.faceLandmarks.map((kp: any) => ({
+          const rawFace = results.faceLandmarks.map((kp: any) => ({
             x: kp.x * video.videoWidth,
             y: kp.y * video.videoHeight,
-            z: kp.z // Keep depth for potentially cooler mesh effects later
+            z: kp.z
           }));
+          smoothedFace = smoothPoints(smoothedFace, rawFace);
+          face = smoothedFace;
         }
 
-        // Diagnostic periodic log
-        if (!pose && hands.length === 0 && !face && Math.random() > 0.98) {
-          console.log('ℹ️ Holistic Frame processed: No entities detected.');
-        }
-
+        isProcessing = false;
         return { pose, hands: hands.length > 0 ? hands : null, face };
       } catch (err: any) {
+        isProcessing = false;
         console.error('❌ Holistic send error:', err);
         setError(`Runtime Error: ${err.message}`);
       }

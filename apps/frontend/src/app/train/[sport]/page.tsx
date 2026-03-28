@@ -100,64 +100,53 @@ export default function TrainingPage() {
     return () => observer.disconnect();
   }, []);
 
-  // Main Detection Loop with 30 FPS throttle
+  const [aiFps, setAiFps] = useState(0);
+
+  // Main Detection Loop (Optimized for Serial Processing)
   useEffect(() => {
     let animationId: number;
-    let lastTime = 0;
-    const throttleMs = 1000 / 30;
-    
-    async function loop(timestamp: number) {
-      if (timestamp - lastTime >= throttleMs) {
-        if (videoRef.current && isCameraActive) {
-          try {
-            // Unified Holistic Detection (Body + Hands + Face)
-            const result = await detectHolistic(videoRef.current);
+    let lastTime = performance.now();
+    let frameTimes: number[] = [];
 
-            if (result?.pose) {
-              setCurrentPose(result.pose);
-              setCurrentHands(result.hands);
-              setCurrentFace(result.face);
-              
-              setIsAiPulsing(true);
-              setTimeout(() => setIsAiPulsing(false), 150);
+    const loop = async () => {
+      const now = performance.now();
+      
+      if (videoRef.current && isCameraActive && videoRef.current.readyState >= 2) {
+        try {
+          // detectHolistic now handles its own internal isProcessing flag
+          const result = await detectHolistic(videoRef.current);
 
-              if (isRecording && isConnected) {
-                submitFrame(result.pose, result.hands, sport, poseName);
-              }
+          if (result) {
+            setCurrentPose(result.pose);
+            setCurrentHands(result.hands);
+            setCurrentFace(result.face);
+            
+            setIsAiPulsing(true);
+            setTimeout(() => setIsAiPulsing(false), 100);
+
+            // Calculate actual AI FPS
+            frameTimes.push(now);
+            if (frameTimes.length > 30) frameTimes.shift();
+            if (frameTimes.length > 1) {
+              const fps = Math.round(1000 / ((now - frameTimes[0]) / (frameTimes.length - 1)));
+              setAiFps(fps);
             }
-          } catch (err) {
-            console.error('Holistic detection error:', err);
+
+            if (isRecording && isConnected && result.pose) {
+              submitFrame(result.pose, result.hands, sport, poseName);
+            }
           }
+        } catch (err) {
+          console.error('Holistic detection error:', err);
         }
-        lastTime = timestamp;
       }
+      
       animationId = requestAnimationFrame(loop);
-    }
-    /*
-     ### 1. Edge AI & Computer Vision (Holistic 2.0)
-    - **Engine**: Unified **MediaPipe Holistic** API for synchronized body, hand, and face tracking.
-    - **Fidelity**: 33-point body skeleton, 21-point dual-hand landmarks, and 468-point high-density face mesh.
-    - **Rendering**: Aspect-ratio aware coordinate remapping for pixel-perfect alignment on `object-cover` video streams.
-    - **Technical Map**: Pure data-driven tessellation stripped of artificial outlines, featuring an engineered synthetic neck structure.
-    ```mermaid
-    graph TD
-        Client["Next.js 14 Frontend (Browser)"]
-        Backend["Express API Gateway"]
-        AIService["Python FastAPI AI Service"]
-        Db[("PostgreSQL")]
-        Holistic["MediaPipe Holistic (Unified Engine)"]
-        
-        Client -- "1. Video Frame" --> Holistic
-        Holistic -- "2. Pose (33) / Hands (42) / Face (468)" --> Client
-        Client -- "3. Stream Keypoints (WS)" --> Backend
-        Backend -- "4. Analyze Pose (HTTP)" --> AIService
-        AIService -- "5. Joint Angles / Feedback" --> Backend
-        Backend -- "6. Real-time Feedback (WS)" --> Client
-        Backend -- "7. Persist Session" --> Db
-    ```
-    */
+    };
+
     animationId = requestAnimationFrame(loop);
-  }, [detectHolistic, hardResetHolistic, isCameraActive, isRecording, isConnected, sport, submitFrame, poseName]);
+    return () => cancelAnimationFrame(animationId);
+  }, [detectHolistic, isCameraActive, isRecording, isConnected, sport, submitFrame, poseName]);
 
   // Session timer
   useEffect(() => {
@@ -265,6 +254,7 @@ export default function TrainingPage() {
                     <div className={`w-2 h-2 rounded-full ${isAiLoading ? 'bg-yellow-500 animate-pulse' : (aiError ? 'bg-red-500' : 'bg-green-500')}`}></div>
                     <span className="font-bold uppercase tracking-tighter">
                       HOLISTIC AI: {isAiLoading ? 'LOADING' : (aiError ? 'ERROR' : 'READY')}
+                      {!isAiLoading && !aiError && ` (${aiFps} FPS)`}
                     </span>
                     {/* Heartbeat Pulse */}
                     <div className="w-1 h-3 bg-white/10 rounded-full overflow-hidden">
