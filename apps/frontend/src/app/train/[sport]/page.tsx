@@ -50,9 +50,9 @@ export default function TrainingPage() {
     });
     setBestScore(prev => Math.max(prev, analysis.frame_score));
 
-    // VISUAL THROTTLE: Only update UI feedback 5-6 times per second to avoid 'spam'
+    // VISUAL THROTTLE: Only update UI feedback 5-6 times per MINUTE (every 10s) to avoid any sense of spam
     const now = Date.now();
-    if (now - lastFeedbackUpdateRef.current > 180) { // ~5.5 updates per second
+    if (now - lastFeedbackUpdateRef.current > 10000) { // 10 seconds between updates
       setThrottledAnalysis(analysis);
       lastFeedbackUpdateRef.current = now;
     }
