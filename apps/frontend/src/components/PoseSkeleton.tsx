@@ -160,7 +160,7 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
         }
       });
 
-      // 1.5. VOLUMETRIC 'MICRO-TRACK' ARM MESH (User Request: Diamond Structure)
+      // 1.5. VOLUMETRIC 'MICRO-TRACK' ARM MESH
       const drawArmMesh = (p1Name: string, p2Name: string, isForearm = false) => {
         const kp1 = kpMap.get(p1Name);
         const kp2 = kpMap.get(p2Name);
@@ -179,43 +179,35 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
         const nx = -dy / len; 
         const ny = dx / len;  
 
-        // Anatomical Tapering: Wider at start, Narrower at end
         const startOffset = width * (isForearm ? 0.025 : 0.035);
         const endOffset = width * (isForearm ? 0.015 : 0.025);
         const midOffset = (startOffset + endOffset) / 1.5;
 
-        // Intermediate Muscle Node Points (at 50% of the bone)
         const mx = (x1 + x2) / 2;
         const my = (y1 + y2) / 2;
 
         const pts = [
-          { x: x1 + nx * startOffset, y: y1 + ny * startOffset }, // P1_L
-          { x: x1 - nx * startOffset, y: y1 - ny * startOffset }, // P1_R
-          { x: mx + nx * midOffset,   y: my + ny * midOffset },   // MID_L
-          { x: mx - nx * midOffset,   y: my - ny * midOffset },   // MID_R
-          { x: x2 + nx * endOffset,   y: y2 + ny * endOffset },   // P2_L
-          { x: x2 - nx * endOffset,   y: y2 - ny * endOffset }    // P2_R
+          { x: x1 + nx * startOffset, y: y1 + ny * startOffset }, 
+          { x: x1 - nx * startOffset, y: y1 - ny * startOffset }, 
+          { x: mx + nx * midOffset,   y: my + ny * midOffset },   
+          { x: mx - nx * midOffset,   y: my - ny * midOffset },   
+          { x: x2 + nx * endOffset,   y: y2 + ny * endOffset },   
+          { x: x2 - nx * endOffset,   y: y2 - ny * endOffset }    
         ];
 
-        // Draw Diamond Triangulation
         ctx.beginPath();
-        ctx.strokeStyle = '#00d4ff'; // Bright Main Blue (Solid)
+        ctx.strokeStyle = '#00d4ff'; 
         ctx.lineWidth = 0.6;
         ctx.globalAlpha = 1.0; 
         
-        // Perimeter
         ctx.moveTo(pts[0].x, pts[0].y); ctx.lineTo(pts[2].x, pts[2].y); ctx.lineTo(pts[4].x, pts[4].y);
         ctx.moveTo(pts[1].x, pts[1].y); ctx.lineTo(pts[3].x, pts[3].y); ctx.lineTo(pts[5].x, pts[5].y);
-        
-        // Zig-Zag Internal Structure (Embedding the bone)
         ctx.moveTo(pts[0].x, pts[0].y); ctx.lineTo(mx, my);     ctx.lineTo(pts[1].x, pts[1].y);
         ctx.moveTo(pts[2].x, pts[2].y); ctx.lineTo(x1, y1);     ctx.lineTo(pts[3].x, pts[3].y);
         ctx.moveTo(pts[2].x, pts[2].y); ctx.lineTo(x2, y2);     ctx.lineTo(pts[3].x, pts[3].y);
         ctx.moveTo(pts[4].x, pts[4].y); ctx.lineTo(mx, my);     ctx.lineTo(pts[5].x, pts[5].y);
-        
         ctx.stroke();
 
-        // Draw Micro-Tracking Junction Dots (Exclusive Golden Yellow)
         ctx.fillStyle = '#FFD700'; 
         pts.forEach(p => {
           ctx.beginPath();
@@ -224,11 +216,102 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
         });
       };
 
-      // Apply to Arms (Tapered Architecture)
+      // 1.6. ORGANIC ANATOMICAL TORSO MESH (User Request: Image 3 Blueprint Replica)
+      const drawTorsoMesh = () => {
+        const ls = kpMap.get('left_shoulder');
+        const rs = kpMap.get('right_shoulder');
+        const lh = kpMap.get('left_hip');
+        const rh = kpMap.get('right_hip');
+
+        if (!ls || !rs || !lh || !rh || ls.score < 0.2 || rs.score < 0.2) return;
+
+        const lerpRaw = (p1: any, p2: any, t: number) => ({
+          x: p1.x * (1 - t) + p2.x * t,
+          y: p1.y * (1 - t) + p2.y * t
+        });
+
+        // 1. Morphological Node Synthesis (Image 3 Characteristics)
+        const sn = lerpRaw(ls, rs, 0.5); // Sternal Notch (Top Center)
+        const pb = lerpRaw(lh, rh, 0.5); // Pubis (Bottom Center)
+        
+        const sternum = lerpRaw(sn, pb, 0.22);
+        const solarPlexus = lerpRaw(sn, pb, 0.45);
+        const navel = lerpRaw(sn, pb, 0.72);
+
+        // Lateral Segmentation (Anatomical Rib/Waist Curve)
+        const ribL = lerpRaw(ls, lh, 0.38); 
+        const ribR = lerpRaw(rs, rh, 0.38);
+        const waistL = lerpRaw(ls, lh, 0.68);
+        const waistR = lerpRaw(rs, rh, 0.68);
+
+        // Intermediate Horizontal Nodes
+        const cml = lerpRaw(sternum, ls, 0.45);
+        const cmr = lerpRaw(sternum, rs, 0.45);
+
+        // Coordinate Mapping
+        const nodesMap = new Map();
+        const addNode = (id: string, p: any) => nodesMap.set(id, { x: getX(p.x/videoWidth), y: getY(p.y/videoHeight) });
+
+        addNode('ls', ls);   addNode('rs', rs);
+        addNode('lh', lh);   addNode('rh', rh);
+        addNode('sn', sn);   addNode('sp', solarPlexus);
+        addNode('nv', navel); addNode('pb', pb);
+        addNode('rl', ribL); addNode('rr', ribR);
+        addNode('wl', waistL); addNode('wr', waistR);
+        addNode('st', sternum);
+        addNode('cml', cml); addNode('cmr', cmr);
+
+        const connections = [
+          // Vertical Spine (Centerline)
+          ['sn', 'st'], ['st', 'sp'], ['sp', 'nv'], ['nv', 'pb'],
+          // Top Yoke / Collarbone (Image 3)
+          ['ls', 'sn'], ['rs', 'sn'],
+          ['ls', 'st'], ['rs', 'st'],
+          // Chest Area (Triangular Plates)
+          ['ls', 'cml'], ['cml', 'st'], ['st', 'cmr'], ['cmr', 'rs'],
+          ['cml', 'sp'], ['cmr', 'sp'],
+          // Lateral Borders (Organic Alignment)
+          ['ls', 'rl'], ['rs', 'rr'],
+          ['rl', 'wl'], ['rr', 'wr'],
+          ['wl', 'lh'], ['wr', 'rh'],
+          // Medial Ribs/Abdomen (Diamond Pattern)
+          ['rl', 'sp'], ['rr', 'sp'],
+          ['wl', 'sp'], ['wr', 'sp'],
+          ['wl', 'nv'], ['wr', 'nv'],
+          ['lh', 'nv'], ['rh', 'nv'],
+          ['lh', 'pb'], ['rh', 'pb']
+        ];
+
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(0, 212, 255, 0.9)';
+        ctx.lineWidth = 1.0;
+        ctx.globalAlpha = 1.0;
+
+        connections.forEach(([id1, id2]) => {
+          const n1 = nodesMap.get(id1);
+          const n2 = nodesMap.get(id2);
+          if (n1 && n2) {
+            ctx.moveTo(n1.x, n1.y);
+            ctx.lineTo(n2.x, n2.y);
+          }
+        });
+        ctx.stroke();
+
+        // TECHNICAL DOTS (Pure White)
+        ctx.fillStyle = '#ffffff';
+        nodesMap.forEach(n => {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, 1.6, 0, 2 * Math.PI);
+          ctx.fill();
+        });
+      };
+
+      // Apply Technical Meshes
       drawArmMesh('left_shoulder', 'left_elbow', false);
       drawArmMesh('left_elbow', 'left_wrist', true);
       drawArmMesh('right_shoulder', 'right_elbow', false);
       drawArmMesh('right_elbow', 'right_wrist', true);
+      drawTorsoMesh();
 
       // Draw Body Junctions
       pose.keypoints.forEach(kp => {
