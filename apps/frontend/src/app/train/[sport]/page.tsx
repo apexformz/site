@@ -400,7 +400,7 @@ export default function TrainingPage() {
           <ActionableFeedback feedbacks={throttledAnalysis?.feedback || []} />
           
           {/* Posture Reference (User Request: Show target posture) */}
-          <PostureReference sport={sport} />
+          <PostureReference sport={sport} poseName={poseName} />
 
           {isRecording && (
             <div className="mt-auto pt-6 border-t border-white/5">

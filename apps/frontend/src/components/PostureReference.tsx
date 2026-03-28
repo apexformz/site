@@ -6,10 +6,12 @@ import { motion } from 'framer-motion';
 
 interface PostureReferenceProps {
   sport: Sport;
+  poseName?: string;
 }
 
-export const PostureReference: React.FC<PostureReferenceProps> = ({ sport }) => {
-  const imageUrl = `/postures/${sport}.png`;
+export const PostureReference: React.FC<PostureReferenceProps> = ({ sport, poseName }) => {
+  // Try specific pose first, fall back to generic sport
+  const imageUrl = poseName ? `/postures/${sport}_${poseName}.png` : `/postures/${sport}.png`;
 
   return (
     <div className="flex flex-col gap-3 mt-4">
