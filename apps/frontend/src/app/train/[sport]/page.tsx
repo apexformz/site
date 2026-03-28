@@ -9,6 +9,7 @@ import { useVoiceCoaching } from '@/hooks/useVoiceCoaching';
 import { PoseSkeleton } from '@/components/PoseSkeleton';
 import { TrainingStats } from '@/components/TrainingStats';
 import { ActionableFeedback } from '@/components/ActionableFeedback';
+import { PostureReference } from '@/components/PostureReference';
 import { FrameAnalysis, PoseKeypoints, Sport, Hand } from '@smartcoach/types';
 import { api } from '@/lib/api';
 
@@ -397,6 +398,9 @@ export default function TrainingPage() {
           </div>
           
           <ActionableFeedback feedbacks={throttledAnalysis?.feedback || []} />
+          
+          {/* Posture Reference (User Request: Show target posture) */}
+          <PostureReference sport={sport} />
 
           {isRecording && (
             <div className="mt-auto pt-6 border-t border-white/5">
