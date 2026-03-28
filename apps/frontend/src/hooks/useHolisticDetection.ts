@@ -8,12 +8,13 @@ let globalHolistic: any = null;
 let globalHolisticPromise: Promise<any> | null = null;
 let resultResolver: ((value: any) => void) | null = null;
 let isProcessing = false;
+let downscaleCanvas: HTMLCanvasElement | null = null;
 
 // EMA Smoothing state
 let smoothedPose: any = null;
 let smoothedHands: any = null;
 let smoothedFace: any = null;
-const SMOOTHING_FACTOR = 0.55; // 0.1 (very smooth/laggy) to 1.0 (raw/jittery)
+const SMOOTHING_FACTOR = 0.82; // Increased from 0.55 for near-instant movement response
 
 async function getHolisticInstance() {
   if (typeof window === 'undefined') return null;
@@ -41,6 +42,13 @@ async function getHolisticInstance() {
           return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.5.1675471629/${file}`;
         }
       });
+
+      // Initialize global downscale canvas if possible
+      if (typeof document !== 'undefined' && !downscaleCanvas) {
+        downscaleCanvas = document.createElement('canvas');
+        downscaleCanvas.width = 640; 
+        downscaleCanvas.height = 360;
+      }
 
       instance.setOptions({
         modelComplexity: 0, // 0=Lite (Fastest), 1=Full, 2=Heavy. 0 is better for low-spec or floor poses.
@@ -138,7 +146,25 @@ export function useHolisticDetection() {
           setTimeout(() => resolve(null), 1000);
         });
 
-        await globalHolistic.send({ image: video });
+        // OPTIMIZATION: Pass downscaled frame to AI to eliminate 1-2s lag
+        // We reuse a single hidden canvas to resize the 720p/1080p stream to 480p-wide.
+        // MediaPipe doesn't need high res to find joints, but high res kills the GPU/Main thread.
+        if (!downscaleCanvas && typeof document !== 'undefined') {
+          downscaleCanvas = document.createElement('canvas');
+          downscaleCanvas.width = 640;
+          downscaleCanvas.height = 360;
+        }
+
+        if (downscaleCanvas) {
+          const ictx = downscaleCanvas.getContext('2d');
+          if (ictx) {
+            ictx.drawImage(video, 0, 0, 640, 360);
+          }
+          await globalHolistic.send({ image: downscaleCanvas });
+        } else {
+          await globalHolistic.send({ image: video });
+        }
+        
         const results = await Promise.race([resultPromise, timeoutPromise]) as any;
         
         if (!results) {

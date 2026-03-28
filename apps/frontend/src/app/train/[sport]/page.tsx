@@ -102,20 +102,18 @@ export default function TrainingPage() {
 
   const [aiFps, setAiFps] = useState(0);
 
-  // Main Detection Loop (Optimized for Serial Processing)
+  // Main Detection Loop (Optimized for Async/Non-Blocking Performance)
   useEffect(() => {
     let animationId: number;
-    let lastTime = performance.now();
     let frameTimes: number[] = [];
 
-    const loop = async () => {
+    const loop = () => {
       const now = performance.now();
       
       if (videoRef.current && isCameraActive && videoRef.current.readyState >= 2) {
-        try {
-          // detectHolistic now handles its own internal isProcessing flag
-          const result = await detectHolistic(videoRef.current);
-
+        // NON-BLOCKING TRIGGER: Kick off AI processing without 'awaiting' it.
+        // This ensures the main UI thread never pauses for inference.
+        detectHolistic(videoRef.current).then(result => {
           if (result) {
             setCurrentPose(result.pose);
             setCurrentHands(result.hands);
@@ -125,10 +123,10 @@ export default function TrainingPage() {
             setTimeout(() => setIsAiPulsing(false), 100);
 
             // Calculate actual AI FPS
-            frameTimes.push(now);
+            frameTimes.push(performance.now());
             if (frameTimes.length > 30) frameTimes.shift();
             if (frameTimes.length > 1) {
-              const fps = Math.round(1000 / ((now - frameTimes[0]) / (frameTimes.length - 1)));
+              const fps = Math.round(1000 / ((performance.now() - frameTimes[0]) / (frameTimes.length - 1)));
               setAiFps(fps);
             }
 
@@ -136,9 +134,9 @@ export default function TrainingPage() {
               submitFrame(result.pose, result.hands, sport, poseName);
             }
           }
-        } catch (err) {
-          console.error('Holistic detection error:', err);
-        }
+        }).catch(err => {
+          console.error('Holistic detection background error:', err);
+        });
       }
       
       animationId = requestAnimationFrame(loop);

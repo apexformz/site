@@ -14,6 +14,11 @@ interface PoseSkeletonProps {
   videoHeight?: number;
 }
 
+// SHARED CACHE FOR HIGH-PERFORMANCE FACE MESH (O(N^2) -> O(N))
+// This stores the 'Perfect' 6-nearest neighbor connections once per session
+// to prevent the 1-2s main-thread lag while keeping all dots.
+let faceConnectionMap: Map<number, number[]> | null = null;
+
 /**
  * Hand Skeleton Connections (21-point MediaPipe/HandPose standard)
  */
@@ -846,24 +851,34 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
         const x1 = getX(kp1.x / videoWidth);
         const y1 = getY(kp1.y / videoHeight);
 
-        // ULTRA-DENSE Connectivity (Captures all extremities like forehead and hairline)
-        const neighbors: { x: number, y: number, d: number }[] = [];
-        for (let j = 0; j < face.length; j++) {
-          if (i === j) continue;
-          const kp2 = face[j];
-          if (!kp2) continue;
-          neighbors.push({
-            x: getX(kp2.x / videoWidth),
-            y: getY(kp2.y / videoHeight),
-            d: Math.hypot(x1 - getX(kp2.x / videoWidth), y1 - getY(kp2.y / videoHeight))
-          });
+        // OPTIMIZATION: Use pre-calculated neighbors to eliminate 1-2s lag
+        if (!faceConnectionMap) {
+          // Initialize map once with O(N^2) search, then never again
+          console.log("🧬 Generating High-Fidelity Face Connection Map (O(N^2) One-Time Cost)...");
+          faceConnectionMap = new Map();
+          for (let i = 0; i < face.length; i++) {
+            const p1 = face[i];
+            const neighbors: { idx: number, d: number }[] = [];
+            for (let j = 0; j < face.length; j++) {
+              if (i === j) continue;
+              const p2 = face[j];
+              neighbors.push({
+                idx: j,
+                d: Math.hypot(p1.x - p2.x, p1.y - p2.y)
+              });
+            }
+            neighbors.sort((a, b) => a.d - b.d);
+            faceConnectionMap.set(i, neighbors.slice(0, 6).map(n => n.idx));
+          }
         }
 
-        // Bridge to the 6 nearest points regardless of distance for a guaranteed solid head-mass
-        neighbors.sort((a, b) => a.d - b.d);
-        neighbors.slice(0, 6).forEach(n => {
-          ctx.moveTo(x1, y1);
-          ctx.lineTo(n.x, n.y);
+        const neighborIndices = faceConnectionMap.get(i) || [];
+        neighborIndices.forEach(idx => {
+          const nKp = face[idx];
+          if (nKp) {
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(getX(nKp.x / videoWidth), getY(nKp.y / videoHeight));
+          }
         });
       }
       
