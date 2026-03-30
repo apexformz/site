@@ -16,7 +16,7 @@ import {
   Target
 } from 'lucide-react';
 import { api } from '@/lib/api';
-import { User, UserStats, TrainingSession, Sport, getXpForNextLevel } from '@smartcoach/types';
+import { User, UserStats, TrainingSession, Sport, getBaseXpForLevel, getXpForNextLevel } from '@smartcoach/types';
 import { SportCard } from '@/components/SportCard';
 
 export default function DashboardPage() {
@@ -66,8 +66,16 @@ export default function DashboardPage() {
     </div>
   );
 
-  const xpProgress = stats ? (stats.xp % 200) / 200 * 100 : 0; // Simplified for demo
-  const xpNeeded = stats ? 200 - (stats.xp % 200) : 0;
+  const currentXp = stats?.xp || 0;
+  const currentLevel = stats?.level || 1;
+  const currentLevelBase = getBaseXpForLevel(currentLevel);
+  const nextLevelThreshold = getXpForNextLevel(currentLevel);
+  
+  const xpProgress = nextLevelThreshold > currentLevelBase 
+    ? Math.min(100, Math.max(0, ((currentXp - currentLevelBase) / (nextLevelThreshold - currentLevelBase)) * 100))
+    : 100;
+    
+  const xpNeeded = Math.max(0, nextLevelThreshold - currentXp);
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20">

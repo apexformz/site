@@ -172,6 +172,10 @@ export function getLevel(xp: number): number {
   return level;
 }
 
+export function getBaseXpForLevel(level: number): number {
+  return XP_THRESHOLDS[level - 1] ?? 0;
+}
+
 export function getXpForNextLevel(level: number): number {
   return XP_THRESHOLDS[level] ?? XP_THRESHOLDS[XP_THRESHOLDS.length - 1];
 }

@@ -31,13 +31,15 @@ def get_keypoint(keypoints: List[Dict[str, Any]], name: str) -> Dict[str, float]
             return kp
     return {"x": 0, "y": 0, "score": 0, "name": name}
 
-def compute_joint_angles(keypoints: List[Dict[str, Any]]) -> Dict[str, float]:
+def compute_all_joint_angles(keypoints: List[Dict[str, Any]]) -> Dict[str, float]:
     """
-    Computes 10 major joint angles based on standard 17-keypoint model.
+    Computes all 8 major joint angles. Returns ALL angles including -1.0 
+    for joints where keypoints are not visible. This allows analyzers to
+    detect which joints are missing and penalize accordingly.
     """
     kp_map = {kp['name']: kp for kp in keypoints}
 
-    angles = {
+    return {
         "left_elbow": calculate_angle(kp_map.get('left_shoulder', {}), kp_map.get('left_elbow', {}), kp_map.get('left_wrist', {})),
         "right_elbow": calculate_angle(kp_map.get('right_shoulder', {}), kp_map.get('right_elbow', {}), kp_map.get('right_wrist', {})),
         "left_shoulder": calculate_angle(kp_map.get('left_hip', {}), kp_map.get('left_shoulder', {}), kp_map.get('left_elbow', {})),
@@ -47,9 +49,14 @@ def compute_joint_angles(keypoints: List[Dict[str, Any]]) -> Dict[str, float]:
         "left_knee": calculate_angle(kp_map.get('left_hip', {}), kp_map.get('left_knee', {}), kp_map.get('left_ankle', {})),
         "right_knee": calculate_angle(kp_map.get('right_hip', {}), kp_map.get('right_knee', {}), kp_map.get('right_ankle', {})),
     }
-    
-    # Filter out unseen joints
-    return {k: v for k, v in angles.items() if v >= 0}
+
+def compute_joint_angles(keypoints: List[Dict[str, Any]]) -> Dict[str, float]:
+    """
+    Returns only visible joint angles (filters out -1 values).
+    Used for API response payloads.
+    """
+    all_angles = compute_all_joint_angles(keypoints)
+    return {k: v for k, v in all_angles.items() if v >= 0}
 
 def analyze_hands(hands: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
@@ -89,10 +96,16 @@ def analyze_hands(hands: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = None, hands: List[Dict[str, Any]] = []) -> Dict[str, Any]:
     """
     Dispatcher: Routes current frame to the specialized analyzer in the registry.
+    Now passes ALL joint angles (including -1 for invisible) so analyzers can
+    detect missing joints and penalize the score accordingly.
     """
     from .analyzers.registry import AnalyzerRegistry
     
-    actual_angles = compute_joint_angles(keypoints)
+    # Compute ALL angles including -1 for invisible joints
+    # This is critical: analyzers use -1 values to detect missing body parts
+    all_angles = compute_all_joint_angles(keypoints)
+    # Visible-only angles for the API response payload
+    visible_angles = {k: v for k, v in all_angles.items() if v >= 0}
     
     # Selection logic: prioritize incoming pose_name or default to first for the sport
     if not pose_name or pose_name == "undefined":
@@ -100,11 +113,12 @@ def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = N
          pose_name = list(REFERENCE_POSES.get(sport, {"unknown":{}}).keys())[0]
 
     # Perform modular analysis with temporal smoothing (5-frame window)
+    # Pass ALL angles (including -1 for missing) so analyzers can detect invisible joints
     analysis_result = AnalyzerRegistry.analyze_with_smoothing(
         sport=sport,
         pose_id=pose_name,
         keypoints=keypoints,
-        actual_angles=actual_angles
+        actual_angles=all_angles
     )
     
     # Optional: Combine with hand feedback if available
@@ -124,5 +138,5 @@ def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = N
         "overall_severity": analysis_result['overall_severity'],
         "issues": analysis_result['issues'],
         "pose_name": pose_name,
-        "joint_angles": actual_angles
+        "joint_angles": visible_angles
     }

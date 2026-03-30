@@ -57,15 +57,21 @@ export default function TrainingPage() {
     const activeIssues = analysis.issues?.filter(i => i.severity === 'high');
     const now = Date.now();
     
-    if (activeIssues?.length > 0 && !isAiSpeaking && (now - lastFeedbackUpdateRef.current > 10000)) {
-      // Find the most severe issue to announce
-      const primaryIssue = activeIssues[0];
+    // Always update the sidebar recommendations when there are issues
+    if (activeIssues?.length > 0) {
+      setThrottledAnalysis(analysis);
 
-      if (primaryIssue) {
-        setThrottledAnalysis(analysis);
-        announce(primaryIssue.correction); // Use the professional 'correction' cue
-        lastFeedbackUpdateRef.current = now;
+      // Voice announcements are still throttled to avoid overwhelming the user
+      if (!isAiSpeaking && (now - lastFeedbackUpdateRef.current > 10000)) {
+        const primaryIssue = activeIssues[0];
+        if (primaryIssue) {
+          announce(primaryIssue.correction);
+          lastFeedbackUpdateRef.current = now;
+        }
       }
+    } else if (analysis.score >= 80) {
+      // Clear issues when form is actually good
+      setThrottledAnalysis(analysis);
     }
   }, [isAiSpeaking, announce]);
 
