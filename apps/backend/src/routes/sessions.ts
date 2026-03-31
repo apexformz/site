@@ -94,7 +94,13 @@ router.patch(
       });
 
       // Update global gamification stats securely via transaction
-      const gamificationResult = await GamificationEngine.processSessionResult(req.userId!, xpEarned, score);
+      const gamificationResult = await GamificationEngine.processSessionResult(
+        req.userId!, 
+        xpEarned, 
+        score,
+        duration_s,
+        session.sport
+      );
 
       return res.json({
         success: true,

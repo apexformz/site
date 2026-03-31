@@ -1,6 +1,7 @@
 import { getLevel, getXpForNextLevel, AchievementType } from '@smartcoach/types';
 import { prisma } from './prisma';
 import logger from './logger';
+import { StreakService } from '../services/streak.service';
 
 export class GamificationEngine {
   /**
@@ -22,7 +23,7 @@ export class GamificationEngine {
   /**
    * Award XP to user, update stats, handle level-ups and streaks
    */
-  static async processSessionResult(userId: string, xpEarned: number, score: number) {
+  static async processSessionResult(userId: string, xpEarned: number, score: number, durationSeconds: number, sport: string) {
     return await prisma.$transaction(async (tx) => {
       const stats = await tx.userStats.findUnique({ where: { user_id: userId } });
       if (!stats) throw new Error('User stats not found');
@@ -54,6 +55,9 @@ export class GamificationEngine {
       const newXp = stats.xp + xpEarned;
       const newLevel = getLevel(newXp);
       const leveledUp = newLevel > stats.level;
+
+      // Update enhanced streak system
+      const enhancedStreakProfile = await StreakService.updateEnhancedStreak(tx, userId, score, durationSeconds, sport);
 
       // Update basic stats
       const newBestScore = Math.max(stats.best_score, score);

@@ -12,6 +12,7 @@ import userRoutes from './routes/users';
 import sessionRoutes from './routes/sessions';
 import gamificationRoutes from './routes/gamification';
 import leaderboardRoutes from './routes/leaderboard';
+import circleRoutes from './routes/circles';
 
 const app: Express = express();
 const httpServer = createServer(app);
@@ -35,6 +36,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/gamification', gamificationRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
+app.use('/api/circles', circleRoutes);
 
 // Error Handler
 app.use((err: Error, req: Request, res: Response, next: express.NextFunction) => {

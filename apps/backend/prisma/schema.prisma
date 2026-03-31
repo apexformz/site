@@ -25,6 +25,10 @@ model User {
   achievements    Achievement[]
   leaderboard     LeaderboardEntry[]
   refresh_tokens  RefreshToken[]
+  
+  enhanced_streak EnhancedStreak?
+  circle_members  CircleMember[]
+  circle_activities CircleActivity[]
 }
 
 model RefreshToken {
@@ -102,4 +106,60 @@ model LeaderboardEntry {
   user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([user_id, sport])
+}
+
+// ----------------------------------------------------
+// NEW STREAK ENGINE MODELS
+// ----------------------------------------------------
+
+model EnhancedStreak {
+  id                  String   @id @default(uuid())
+  user_id             String   @unique
+  current_streak      Int      @default(0)   // The validated streak
+  longest_streak      Int      @default(0)
+  risk_score          Float    @default(0)   // 0-100, measures drop-off probability
+  save_tokens         Int      @default(0)   // Earned streak insurance
+  identity_tier       String   @default("Novice") // Beginner, Consistent, Athlete, Elite
+  last_valid_session  DateTime?
+  updated_at          DateTime @updatedAt
+
+  user                User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Circle {
+  id                  String   @id @default(uuid())
+  name                String
+  shared_streak       Int      @default(0)
+  circle_health       Float    @default(100) // 0-100, drops if a member misses
+  created_at          DateTime @default(now())
+  
+  members             CircleMember[]
+  activities          CircleActivity[]
+}
+
+model CircleMember {
+  id                  String   @id @default(uuid())
+  circle_id           String
+  user_id             String
+  role                String   @default("member") // anchor_user, at_risk_user, member
+  joined_at           DateTime @default(now())
+
+  circle              Circle   @relation(fields: [circle_id], references: [id], onDelete: Cascade)
+  user                User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  
+  @@unique([circle_id, user_id])
+}
+
+model CircleActivity {
+  id                  String   @id @default(uuid())
+  circle_id           String
+  user_id             String
+  session_id          String
+  posture_score       Float
+  improvement_delta   Float    @default(0)
+  duration_s          Int
+  created_at          DateTime @default(now())
+
+  circle              Circle   @relation(fields: [circle_id], references: [id], onDelete: Cascade)
+  user                User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }

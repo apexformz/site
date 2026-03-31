@@ -161,6 +161,48 @@ export interface RegisterRequest {
   preferred_sport: Sport;
 }
 
+export interface EnhancedStreak {
+  id: string;
+  user_id: string;
+  current_streak: number;
+  longest_streak: number;
+  risk_score: number;
+  save_tokens: number;
+  identity_tier: string;
+  last_valid_session: string | null;
+  updated_at: string;
+}
+
+export interface Circle {
+  id: string;
+  name: string;
+  shared_streak: number;
+  circle_health: number;
+  created_at: string;
+  members?: CircleMember[];
+  activities?: CircleActivity[];
+}
+
+export interface CircleMember {
+  id: string;
+  circle_id: string;
+  user_id: string;
+  role: string;
+  joined_at: string;
+  user?: User;
+}
+
+export interface CircleActivity {
+  id: string;
+  circle_id: string;
+  user_id: string;
+  session_id: string;
+  posture_score: number;
+  improvement_delta: number;
+  duration_s: number;
+  created_at: string;
+}
+
 export const XP_THRESHOLDS = [0, 100, 250, 500, 900, 1500, 2300, 3300, 4600, 6200, 8200];
 
 export function getLevel(xp: number): number {

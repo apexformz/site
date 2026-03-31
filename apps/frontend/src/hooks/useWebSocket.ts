@@ -11,17 +11,25 @@ const getSocketUrl = () => {
   return 'http://localhost:4000';
 };
 
-export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
+export function useWebSocket(
+  onFeedback: (analysis: FrameAnalysis) => void,
+  onCoWorkoutSync?: (data: { userId: string, score: number, session_id: string }) => void
+) {
   const socketRef = useRef<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const onFeedbackRef = useRef(onFeedback);
+  const onCoWorkoutSyncRef = useRef(onCoWorkoutSync);
   
-  const sessionStateRef = useRef<{ sessionId: string, sport: string, poseName?: string } | null>(null);
+  const sessionStateRef = useRef<{ sessionId: string, sport: string, poseName?: string, circleId?: string } | null>(null);
   
   useEffect(() => {
     onFeedbackRef.current = onFeedback;
   }, [onFeedback]);
+
+  useEffect(() => {
+    onCoWorkoutSyncRef.current = onCoWorkoutSync;
+  }, [onCoWorkoutSync]);
 
   const connect = useCallback(async () => {
     const token = getAccessToken();
@@ -76,6 +84,10 @@ export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
       onFeedbackRef.current(analysis);
     });
 
+    socket.on('circle:coworkout_sync', (data: { userId: string, score: number, session_id: string }) => {
+      onCoWorkoutSyncRef.current?.(data);
+    });
+
     socket.on('disconnect', (reason) => {
       console.warn('⚠️ Disconnected:', reason);
       setIsConnected(false);
@@ -91,10 +103,10 @@ export function useWebSocket(onFeedback: (analysis: FrameAnalysis) => void) {
     };
   }, [connect]);
 
-  const startSession = useCallback((sessionId: string, sport: string, poseName?: string) => {
-    sessionStateRef.current = { sessionId, sport, poseName };
+  const startSession = useCallback((sessionId: string, sport: string, poseName?: string, circleId?: string) => {
+    sessionStateRef.current = { sessionId, sport, poseName, circleId };
     if (socketRef.current?.connected) {
-      socketRef.current.emit('session:start', { sessionId, sport, poseName });
+      socketRef.current.emit('session:start', { sessionId, sport, poseName, circleId });
     }
   }, []);
 

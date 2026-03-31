@@ -15,7 +15,12 @@ router.get('/me', async (req: AuthRequest, res: Response) => {
   try {
     const user = await prisma.user.findUnique({
       where: { id: req.userId },
-      include: { stats: true, achievements: true },
+      include: { 
+        stats: true, 
+        achievements: true,
+        enhanced_streak: true,
+        circle_members: { include: { circle: true } }
+      },
     });
 
     if (!user) return res.status(404).json({ success: false, error: 'User not found' });

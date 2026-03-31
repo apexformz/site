@@ -47,14 +47,32 @@ export function initializeWebSocket(server: HttpServer) {
     let activeSessionId: string | null = null;
     let activeSport: string | null = null;
     let activePoseName: string | null = null;
+    let activeCircleId: string | null = null;
     let lastLogTime = 0;
 
-    socket.on('session:start', async ({ sessionId, sport, poseName }) => {
+    socket.on('session:start', async ({ sessionId, sport, poseName, circleId }) => {
       activeSessionId = sessionId;
       activeSport = sport;
       activePoseName = poseName;
       socket.join(`session:${sessionId}`);
-      logger.info(`🚀 Starting AI session: ${sessionId} | Sport: ${sport} | Pose: ${poseName || 'default'}`);
+      
+      if (circleId) {
+        activeCircleId = circleId;
+        socket.join(`circle:${circleId}`);
+        // Notify others someone started
+        socket.to(`circle:${circleId}`).emit('circle:member_active', { userId, sport });
+      }
+
+      logger.info(`🚀 Starting AI session: ${sessionId} | Sport: ${sport} | Circle: ${circleId || 'None'}`);
+    });
+
+    socket.on('circle:nudge', ({ targetUserId, circleId }) => {
+      // Broadcast a nudge notification to that specific user
+      logger.info(`👉 User ${userId} nudged ${targetUserId} in circle ${circleId}`);
+      io.to(`circle:${circleId}`).emit('circle:nudge_received', {
+        fromUserId: userId,
+        targetUserId
+      });
     });
 
     socket.on('frame:submit', async (data: { keypoints: PoseKeypoints; hands: Hand[] | null; sport: string; poseName?: string }) => {
@@ -79,7 +97,7 @@ export function initializeWebSocket(server: HttpServer) {
         const analysis = response.data;
 
         if (now - lastLogTime > 950) {
-          logger.info(`📊 AI Feedback Code: ${analysis.overall_severity.toUpperCase()} | Score: ${analysis.frame_score}`);
+          logger.info(`📊 AI Feedback Code: ${analysis.overall_severity.toUpperCase()} | Score: ${analysis.score}`);
         }
 
         // Save to Database Fire-and-Forget
@@ -90,9 +108,18 @@ export function initializeWebSocket(server: HttpServer) {
             keypoints: { ...data.keypoints, hands: data.hands } as any,
             angles: analysis.joint_angles as any,
             feedback: analysis.feedback as any,
-            frame_score: analysis.frame_score,
+            frame_score: analysis.score,
           },
         }).catch((e) => logger.error('Failed to save frame async:', e));
+
+        // Broadast to Circle for Co-Workout Sync
+        if (activeCircleId) {
+          io.to(`circle:${activeCircleId}`).emit('circle:coworkout_sync', {
+            userId,
+            score: analysis.score,
+            session_id: activeSessionId
+          });
+        }
 
         // Send feedback back to client
         socket.emit('feedback:result', analysis);

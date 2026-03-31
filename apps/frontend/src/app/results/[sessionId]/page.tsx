@@ -13,7 +13,8 @@ import {
   RotateCcw,
   LayoutDashboard,
   Zap,
-  Star
+  Star,
+  Check
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import { TrainingSession, PoseFrame } from '@smartcoach/types';
@@ -24,6 +25,7 @@ export default function ResultsPage() {
   const [session, setSession] = useState<TrainingSession | null>(null);
   const [frames, setFrames] = useState<PoseFrame[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     async function loadSession() {
@@ -39,6 +41,32 @@ export default function ResultsPage() {
     }
     loadSession();
   }, [sessionId]);
+
+  const handleShare = async () => {
+    if (!session) return;
+    
+    const shareText = `🧠 SmartCoach AI Analysis\n\nSport: ${session.sport}\nProficiency Score: ${Math.round(session.score)}/100\nXP Earned: +${session.xp_earned}\nDuration: ${Math.floor(session.duration_s / 60)}:${(session.duration_s % 60).toString().padStart(2, '0')}\n\nCan you beat my score? 🚀`;
+    const shareUrl = window.location.href;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: 'My SmartCoach Training Session',
+          text: shareText,
+          url: shareUrl,
+        });
+      } else {
+        await navigator.clipboard.writeText(`${shareText}\n\n${shareUrl}`);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 3000);
+      }
+    } catch (err) {
+      // AbortError is expected if user cancels the native share sheet
+      if ((err as Error).name !== 'AbortError') {
+        console.error('Error sharing:', err);
+      }
+    }
+  };
 
   if (isLoading || !session) return (
     <div className="h-screen flex items-center justify-center bg-background">
@@ -56,8 +84,16 @@ export default function ResultsPage() {
           </div>
           
           <div className="flex gap-4">
-            <button className="p-4 glass-card hover:bg-white/10 transition-colors">
-              <Share2 className="w-5 h-5 text-white/50" />
+            <button 
+              onClick={handleShare}
+              className="p-4 glass-card hover:bg-white/10 transition-colors flex items-center justify-center"
+              title="Share Session"
+            >
+              {isCopied ? (
+                <Check className="w-5 h-5 text-secondary" />
+              ) : (
+                <Share2 className="w-5 h-5 text-white/50 hover:text-white" />
+              )}
             </button>
             <button onClick={() => router.push('/dashboard')} className="p-4 glass-card hover:bg-white/10 transition-colors">
               <LayoutDashboard className="w-5 h-5 text-primary" />

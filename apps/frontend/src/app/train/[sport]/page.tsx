@@ -37,6 +37,9 @@ export default function TrainingPage() {
   const [dimensions, setDimensions] = useState({ width: 1280, height: 720 });
   const lastFeedbackUpdateRef = useRef<number>(0);
   const [isAiPulsing, setIsAiPulsing] = useState(false);
+  const [coWorkoutMates, setCoWorkoutMates] = useState<Record<string, number>>({});
+  
+  const circleId = searchParams?.get('circle') || undefined;
   
   const { announce, isSpeaking: isAiSpeaking, stop: stopAiVoice } = useVoiceCoaching();
   const { detectHolistic, hardResetHolistic, isLoading: isAiLoading, error: aiError } = useHolisticDetection();
@@ -75,7 +78,11 @@ export default function TrainingPage() {
     }
   }, [isAiSpeaking, announce]);
 
-  const { isConnected, connectionError, startSession, submitFrame, stopSession } = useWebSocket(onFeedback);
+  const onCoWorkoutSync = useCallback((data: { userId: string, score: number }) => {
+    setCoWorkoutMates(prev => ({ ...prev, [data.userId]: data.score }));
+  }, []);
+
+  const { isConnected, connectionError, startSession, submitFrame, stopSession } = useWebSocket(onFeedback, onCoWorkoutSync);
 
   // Toggle Camera
   useEffect(() => {
@@ -393,6 +400,31 @@ export default function TrainingPage() {
 
         {/* Right Sidebar: AI Recommendations (User Request: Move off camera screen) */}
         <div className="w-80 bg-background/30 border-l border-white/10 p-6 flex flex-col gap-6 overflow-y-auto z-40">
+          
+          {/* Active Circle Co-Workout View */}
+          {circleId && Object.keys(coWorkoutMates).length > 0 && (
+            <div className="bg-primary/10 rounded-xl border border-primary/30 p-4 shrink-0 shadow-lg shadow-primary/5 relative overflow-hidden">
+               <div className="absolute top-0 right-0 w-16 h-16 bg-primary/20 rounded-full blur-xl -mr-8 -mt-8" />
+               <div className="flex items-center gap-2 mb-4 relative z-10">
+                 <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
+                 <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Live Co-Workout</h3>
+               </div>
+               <div className="flex flex-col gap-3 relative z-10">
+                 {Object.entries(coWorkoutMates).map(([mateId, score]) => (
+                   <div key={mateId} className="flex items-center justify-between bg-black/40 p-2 rounded-lg border border-white/5">
+                      <span className="text-xs font-bold text-white/70 uppercase tracking-widest truncate max-w-[100px]">User {mateId.substring(0, 4)}</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
+                           <div className="h-full bg-primary transition-all duration-300" style={{ width: `${score}%` }} />
+                        </div>
+                        <span className="text-sm font-black italic text-glow text-primary w-8 text-right">{Math.round(score)}</span>
+                      </div>
+                   </div>
+                 ))}
+               </div>
+            </div>
+          )}
+
           <div className="flex flex-col gap-1">
             <h3 className="text-xs font-black uppercase tracking-[0.2em] text-white/40 mb-2">Real-Time Recommendations</h3>
             <div className="h-px w-10 bg-primary/40" />

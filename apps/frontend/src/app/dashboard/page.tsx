@@ -13,11 +13,26 @@ import {
   Star,
   Zap,
   LayoutGrid,
-  Target
+  Target,
+  Award,
+  Crown,
+  ShieldHalf,
+  Users
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import { User, UserStats, TrainingSession, Sport, getBaseXpForLevel, getXpForNextLevel } from '@smartcoach/types';
 import { SportCard } from '@/components/SportCard';
+import { BadgesModal } from '@/components/BadgesModal';
+import { CircleModal } from '@/components/CircleModal';
+
+const LIFETIME_ACHIEVEMENTS = [
+  { id: 'first_session', title: 'First Drop of Sweat', description: 'Complete your first training session.', icon: Flame, unlocked: true, color: 'bg-primary/20 border border-primary/40 text-primary', date: 'Just now' },
+  { id: 'perfect_score', title: 'Flawless', description: 'Achieve a 100 proficiency score.', icon: Target, unlocked: true, color: 'bg-secondary/20 border border-secondary/40 text-secondary', date: 'Just now' },
+  { id: 'streak_3', title: 'Momentum', description: 'Train 3 days in a row.', icon: Zap, unlocked: false, color: 'bg-orange-500/20 border border-orange-500/40 text-orange-500' },
+  { id: 'master', title: 'Grandmaster', description: 'Reach Level 10.', icon: Crown, unlocked: false, color: 'bg-yellow-500/20 border border-yellow-500/40 text-yellow-500' },
+  { id: 'champion', title: 'Champion', description: 'Complete 50 sessions.', icon: Award, unlocked: false, color: 'bg-purple-500/20 border border-purple-500/40 text-purple-500' },
+  { id: 'unbreakable', title: 'Unbreakable', description: 'Maintain 90+ average consistency over 10 sessions.', icon: ShieldHalf, unlocked: false, color: 'bg-blue-500/20 border border-blue-500/40 text-blue-500' },
+];
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -25,6 +40,9 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<UserStats | null>(null);
   const [recentSessions, setRecentSessions] = useState<TrainingSession[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showAll, setShowAll] = useState(false);
+  const [isBadgesModalOpen, setIsBadgesModalOpen] = useState(false);
+  const [isCircleModalOpen, setIsCircleModalOpen] = useState(false);
 
   useEffect(() => {
     async function loadData() {
@@ -47,8 +65,8 @@ export default function DashboardPage() {
     loadData();
   }, [router]);
 
-  const [showAll, setShowAll] = useState(false);
   
+
   const ALL_SPORTS: any[] = [
     { id: 'cricket', title: 'Cricket', icon: Activity, color: 'from-blue-500 to-cyan-400', difficulty: 'Intermediate', description: 'Master your batting stance and bowling action.' },
     { id: 'tennis', title: 'Tennis', icon: Star, color: 'from-yellow-400 to-orange-500', difficulty: 'Advanced', description: 'Perfect your serve and backhand technique.' },
@@ -91,7 +109,11 @@ export default function DashboardPage() {
             <Flame className="w-4 h-4 text-accent-warning fill-accent-warning" />
             <span className="text-sm font-bold tracking-tighter">{stats?.streak || 0} DAY STREAK</span>
           </div>
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary p-0.5">
+          <div 
+            onClick={() => router.push('/profile')}
+            className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary p-0.5 cursor-pointer hover:scale-105 transition-transform"
+            title="View Profile"
+          >
             <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
               <span className="font-bold text-xs">{user?.name?.charAt(0)}</span>
             </div>
@@ -132,18 +154,115 @@ export default function DashboardPage() {
              </div>
           </section>
 
+          {/* New Social Circle Widget */}
+          <section className="glass-card p-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-2xl" />
+            <h3 className="flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-white/40 mb-6 border-b border-white/10 pb-4 relative z-10">
+              <Users className="w-4 h-4 text-secondary" /> Streak Circle
+            </h3>
+
+            {(user as any)?.circle_members?.length > 0 ? (
+              <div className="flex flex-col gap-6 relative z-10 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                {(user as any).circle_members.map((member: any) => (
+                  <div 
+                    key={member.circle.id} 
+                    onClick={() => router.push(`/circle/${member.circle.id}`)}
+                    className="flex flex-col gap-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5 cursor-pointer group"
+                  >
+                    <div className="flex justify-between items-start gap-2">
+                      <span className="text-lg font-black uppercase tracking-widest leading-none mt-1 group-hover:text-primary transition-colors">{member.circle.name}</span>
+                      <div className="bg-secondary/20 text-secondary border border-secondary/40 px-3 py-1 rounded-full text-[10px] font-bold shadow-glow text-glow shrink-0 whitespace-nowrap">
+                        {member.circle.shared_streak} Day Shared
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-col gap-1">
+                      <div className="flex justify-between items-center text-[10px] font-bold text-white/50 mb-1 uppercase tracking-widest">
+                        <span>Circle Health</span>
+                        <span>{Math.round(member.circle.circle_health)}%</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div 
+                          className={`h-full transition-all rounded-full ${member.circle.circle_health > 50 ? 'bg-secondary shadow-glow shadow-secondary/50' : 'bg-red-500 shadow-glow shadow-red-500/50'}`} 
+                          style={{ width: `${member.circle.circle_health}%` }} 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mt-1 flex justify-between items-center">
+                      <span className="text-[10px] uppercase font-black tracking-[0.2em] text-white/30 truncate max-w-[120px]">
+                        Role: {member.role.replace('_', ' ')}
+                      </span>
+                      <button className="text-[10px] font-black tracking-widest text-white hover:text-secondary uppercase transition-colors">
+                        PING MEMBERS
+                      </button>
+                    </div>
+                  </div>
+                ))}
+
+                <button 
+                  onClick={() => setIsCircleModalOpen(true)}
+                  className="w-full mt-2 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-secondary hover:bg-secondary/10 transition-colors rounded-xl border border-dashed border-secondary/30 flex items-center justify-center gap-2 group"
+                >
+                  <span className="text-lg leading-none group-hover:scale-125 transition-transform">+</span> 
+                  Add Another Circle
+                </button>
+              </div>
+            ) : (
+              <div 
+                className="flex flex-col items-center justify-center text-center gap-3 relative z-10 py-4 opacity-50 hover:opacity-100 transition-all cursor-pointer group hover:scale-[1.02]"
+                onClick={() => setIsCircleModalOpen(true)}
+              >
+                <div className="w-12 h-12 rounded-full border border-dashed border-white/20 group-hover:border-secondary/50 group-hover:bg-secondary/10 transition-colors flex items-center justify-center mb-2">
+                  <span className="text-2xl font-light text-white/20 group-hover:text-secondary">+</span>
+                </div>
+                <p className="text-xs font-bold uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">No Circle Yet</p>
+                <p className="text-[10px] text-white/30 max-w-[200px]">Join or create a Circle to multiply your motivation</p>
+                <button 
+                  className="mt-2 text-[10px] font-black uppercase text-secondary tracking-widest hover:underline pointer-events-none"
+                >
+                  Find a Circle
+                </button>
+              </div>
+            )}
+          </section>
+
           <section className="glass-card p-8">
             <h3 className="text-sm font-bold tracking-widest uppercase text-white/40 mb-6 border-b border-white/10 pb-4 flex items-center gap-2">
               <Trophy className="w-4 h-4" /> Lifetime Achievements
             </h3>
             <div className="grid grid-cols-4 gap-4">
-              {[1,2,3,4].map(i => (
-                <div key={i} className={`aspect-square rounded-xl flex items-center justify-center transition-all ${i === 1 ? 'bg-primary/20 border border-primary/40 text-primary shadow-glow' : 'bg-white/5 border border-white/10 text-white/10'}`}>
-                  <Star className={`w-6 h-6 ${i === 1 ? 'fill-primary' : ''}`} />
-                </div>
-              ))}
+              {LIFETIME_ACHIEVEMENTS.slice(0, 4).map((badge) => {
+                const Icon = badge.icon;
+                return (
+                  <div 
+                    key={badge.id} 
+                    className={`relative group aspect-square rounded-xl flex items-center justify-center transition-all duration-300 cursor-help ${
+                      badge.unlocked 
+                        ? `${badge.color} shadow-glow hover:scale-105` 
+                        : 'bg-white/5 border border-white/10 text-white/10 grayscale hover:grayscale-0'
+                    }`}
+                  >
+                    <Icon className={`w-6 h-6 transition-transform group-hover:scale-110 ${
+                      badge.unlocked && badge.color === 'bg-primary/20 border border-primary/40 text-primary' 
+                        ? 'fill-primary' 
+                        : ''
+                    }`} />
+                    
+                    {/* Tooltip */}
+                    <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none -top-16 left-1/2 -translate-x-1/2 bg-black border border-white/10 rounded-lg p-3 w-48 shadow-xl z-20">
+                      <div className="text-[10px] uppercase font-black tracking-widest text-primary mb-1 truncate">{badge.title}</div>
+                      <div className="text-[11px] text-white/60 leading-tight font-medium line-clamp-2">{badge.description}</div>
+                      {!badge.unlocked && <div className="text-[9px] uppercase font-bold text-white/30 mt-2">Locked</div>}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            <button className="w-full mt-6 py-3 text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-primary transition-colors">
+            <button 
+              onClick={() => setIsBadgesModalOpen(true)}
+              className="w-full mt-6 py-3 text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-primary transition-colors hover:bg-white/5 rounded-lg"
+            >
               VIEW ALL BADGES →
             </button>
           </section>
@@ -182,7 +301,11 @@ export default function DashboardPage() {
              </h3>
              <div className="flex flex-col gap-4">
                {recentSessions.length > 0 ? recentSessions.slice(0, 3).map(session => (
-                 <div key={session.id} className="glass-card p-5 flex items-center justify-between hover:bg-white/10 transition-colors">
+                 <div 
+                   key={session.id} 
+                   onClick={() => router.push(`/results/${session.id}`)}
+                   className="glass-card p-5 flex items-center justify-between hover:bg-white/10 transition-colors cursor-pointer"
+                 >
                    <div className="flex items-center gap-5">
                      <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center border border-white/10">
                         <Dumbbell className="w-5 h-5 text-secondary" />
@@ -215,6 +338,18 @@ export default function DashboardPage() {
           </section>
         </div>
       </main>
+
+      {/* Global Modals (Placed at root to avoid CSS stack trapping) */}
+      <BadgesModal 
+        isOpen={isBadgesModalOpen} 
+        onClose={() => setIsBadgesModalOpen(false)} 
+        badges={LIFETIME_ACHIEVEMENTS} 
+      />
+      <CircleModal
+        isOpen={isCircleModalOpen}
+        onClose={() => setIsCircleModalOpen(false)}
+        onSuccess={() => window.location.reload()}
+      />
     </div>
   );
 }
