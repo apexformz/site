@@ -234,3 +234,32 @@ export const ACHIEVEMENT_META: Record<AchievementType, { title: string; descript
   level_10: { title: 'Pro Player', description: 'Reach Level 10', icon: '🌟' },
   level_25: { title: 'Legend', description: 'Reach Level 25', icon: '🦁' },
 };
+
+// ============================================================
+// DYNAMIC MOVEMENT TYPES
+// ============================================================
+
+export interface DynamicPhase {
+  name: string;
+  duration_range_ms?: [number, number];
+  weight?: number;
+}
+
+export interface KineticChainResult {
+  score: number;
+  order_expected: string[];
+  order_actual: string[];
+}
+
+export interface DynamicFrameAnalysis extends FrameAnalysis {
+  dynamic: true;
+  current_phase: string;
+  phase_index: number;
+  phase_changed: boolean;
+  phase_scores: Record<string, number>;
+  rep_count: number;
+  fluidity_score: number;
+  kinetic_chain: KineticChainResult;
+  total_phases: number;
+  is_cyclical: boolean;
+}

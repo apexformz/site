@@ -1,0 +1,457 @@
+{
+  "cricket": {
+    "cover_drive": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "stance",
+          "angles": { "left_elbow": 160, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [300, 1500],
+          "trigger": "initial",
+          "weight": 0.15
+        },
+        {
+          "name": "backswing",
+          "angles": { "left_elbow": 150, "right_elbow": 60, "left_shoulder": 70, "right_shoulder": 120, "left_hip": 160, "right_hip": 150, "left_knee": 155, "right_knee": 155 },
+          "duration_range_ms": [100, 600],
+          "trigger": { "joint": "right_shoulder", "metric": "angular_velocity", "direction": "positive", "threshold": 1.5 },
+          "weight": 0.20
+        },
+        {
+          "name": "stride_and_impact",
+          "angles": { "left_elbow": 140, "right_elbow": 90, "left_shoulder": 60, "right_shoulder": 40, "left_hip": 130, "right_hip": 170, "left_knee": 90, "right_knee": 160 },
+          "duration_range_ms": [50, 400],
+          "trigger": { "joint": "left_knee", "metric": "angle_below", "threshold": 120 },
+          "weight": 0.40
+        },
+        {
+          "name": "follow_through",
+          "angles": { "left_elbow": 170, "right_elbow": 170, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 140, "right_knee": 170 },
+          "duration_range_ms": [100, 800],
+          "trigger": { "joint": "left_elbow", "metric": "angle_above", "threshold": 155 },
+          "weight": 0.25
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "cues": {
+        "stance_left_knee_straight": "Keep your knees slightly flexed and ready to move.",
+        "stride_and_impact_left_knee_high": "Step out with your front foot and get your head over the ball.",
+        "follow_through_left_elbow_bent": "Extend your arms fully through the shot for maximum power."
+      }
+    },
+    "bowling_action": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "run_up",
+          "angles": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 135, "left_hip": 145, "right_hip": 180, "left_knee": 90, "right_knee": 160 },
+          "duration_range_ms": [500, 3000],
+          "trigger": "initial",
+          "weight": 0.10
+        },
+        {
+          "name": "gather",
+          "angles": { "left_elbow": 150, "right_elbow": 45, "left_shoulder": 90, "right_shoulder": 160, "left_hip": 160, "right_hip": 160, "left_knee": 140, "right_knee": 140 },
+          "duration_range_ms": [100, 500],
+          "trigger": { "joint": "right_shoulder", "metric": "angular_velocity", "direction": "positive", "threshold": 2.0 },
+          "weight": 0.15
+        },
+        {
+          "name": "front_foot_plant",
+          "angles": { "left_elbow": 170, "right_elbow": 30, "left_shoulder": 120, "right_shoulder": 170, "left_hip": 180, "right_hip": 170, "left_knee": 170, "right_knee": 120 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "left_knee", "metric": "angle_above", "threshold": 160 },
+          "weight": 0.25
+        },
+        {
+          "name": "release",
+          "angles": { "left_elbow": 180, "right_elbow": 175, "left_shoulder": 150, "right_shoulder": 170, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170 },
+          "duration_range_ms": [30, 200],
+          "trigger": { "joint": "right_elbow", "metric": "angle_above", "threshold": 160 },
+          "weight": 0.35
+        },
+        {
+          "name": "follow_through",
+          "angles": { "left_elbow": 160, "right_elbow": 110, "left_shoulder": 110, "right_shoulder": 90, "left_hip": 170, "right_hip": 150, "left_knee": 160, "right_knee": 140 },
+          "duration_range_ms": [100, 800],
+          "trigger": { "joint": "right_shoulder", "metric": "angular_velocity", "direction": "negative", "threshold": -1.5 },
+          "weight": 0.15
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "cues": {
+        "front_foot_plant_left_knee_bent": "Brace your front leg straight to transfer maximum energy.",
+        "release_right_elbow_bent": "Keep your bowling arm straight at release — elbow bending is illegal.",
+        "follow_through_right_shoulder_high": "Follow through across your body for better accuracy."
+      }
+    },
+    "pull_shot": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "stance",
+          "angles": { "left_elbow": 160, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [300, 1500],
+          "trigger": "initial",
+          "weight": 0.15
+        },
+        {
+          "name": "weight_transfer",
+          "angles": { "left_elbow": 170, "right_elbow": 80, "left_shoulder": 90, "right_shoulder": 60, "left_hip": 170, "right_hip": 160, "left_knee": 160, "right_knee": 130 },
+          "duration_range_ms": [100, 400],
+          "trigger": { "joint": "right_knee", "metric": "angle_below", "threshold": 145 },
+          "weight": 0.20
+        },
+        {
+          "name": "bat_swing",
+          "angles": { "left_elbow": 170, "right_elbow": 160, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "left_shoulder", "metric": "angular_velocity", "direction": "positive", "threshold": 2.5 },
+          "weight": 0.40
+        },
+        {
+          "name": "follow_through",
+          "angles": { "left_elbow": 160, "right_elbow": 170, "left_shoulder": 120, "right_shoulder": 120, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [100, 600],
+          "trigger": { "joint": "right_elbow", "metric": "angle_above", "threshold": 155 },
+          "weight": 0.25
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "cues": {
+        "weight_transfer_right_knee_straight": "Transfer weight onto your back foot to get under the ball.",
+        "bat_swing_left_shoulder_low": "Roll your wrists over the ball and keep it down."
+      }
+    }
+  },
+  "running": {
+    "stride_cycle": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "initial_contact",
+          "angles": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 135, "left_hip": 160, "right_hip": 145, "left_knee": 170, "right_knee": 90 },
+          "duration_range_ms": [50, 200],
+          "trigger": "initial",
+          "weight": 0.25
+        },
+        {
+          "name": "mid_stance",
+          "angles": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 60, "right_shoulder": 120, "left_hip": 180, "right_hip": 160, "left_knee": 160, "right_knee": 110 },
+          "duration_range_ms": [50, 200],
+          "trigger": { "joint": "left_knee", "metric": "angle_above", "threshold": 155 },
+          "weight": 0.25
+        },
+        {
+          "name": "toe_off",
+          "angles": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 130, "right_shoulder": 60, "left_hip": 170, "right_hip": 130, "left_knee": 160, "right_knee": 60 },
+          "duration_range_ms": [50, 200],
+          "trigger": { "joint": "left_hip", "metric": "angular_velocity", "direction": "positive", "threshold": 1.5 },
+          "weight": 0.30
+        },
+        {
+          "name": "swing_phase",
+          "angles": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 135, "right_shoulder": 45, "left_hip": 145, "right_hip": 180, "left_knee": 90, "right_knee": 170 },
+          "duration_range_ms": [100, 400],
+          "trigger": { "joint": "right_knee", "metric": "angle_above", "threshold": 155 },
+          "weight": 0.20
+        }
+      ],
+      "kinetic_chain_order": ["hips", "arms"],
+      "is_cyclical": true,
+      "cues": {
+        "initial_contact_left_knee_straight": "Land with a slight knee bend to absorb impact.",
+        "mid_stance_left_hip_bent": "Keep your hips level and avoid excessive drop.",
+        "toe_off_right_knee_straight": "Drive your knee forward for a powerful push-off.",
+        "swing_phase_left_elbow_straight": "Keep your elbows bent at 90° for efficient arm swing."
+      }
+    },
+    "sprint_burst": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "drive",
+          "angles": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 120, "right_shoulder": 60, "left_hip": 120, "right_hip": 170, "left_knee": 60, "right_knee": 180 },
+          "duration_range_ms": [50, 200],
+          "trigger": "initial",
+          "weight": 0.35
+        },
+        {
+          "name": "flight",
+          "angles": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 80, "right_shoulder": 100, "left_hip": 150, "right_hip": 150, "left_knee": 130, "right_knee": 130 },
+          "duration_range_ms": [30, 150],
+          "trigger": { "joint": "left_hip", "metric": "angle_above", "threshold": 140 },
+          "weight": 0.30
+        },
+        {
+          "name": "recovery",
+          "angles": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 60, "right_shoulder": 120, "left_hip": 170, "right_hip": 120, "left_knee": 180, "right_knee": 60 },
+          "duration_range_ms": [50, 200],
+          "trigger": { "joint": "right_knee", "metric": "angle_below", "threshold": 90 },
+          "weight": 0.35
+        }
+      ],
+      "kinetic_chain_order": ["hips", "arms"],
+      "is_cyclical": true,
+      "cues": {
+        "drive_left_knee_straight": "Drive your knee high towards your chest for maximum stride length.",
+        "recovery_right_knee_straight": "Pull your heel up towards your glutes during recovery."
+      }
+    }
+  },
+  "boxing": {
+    "jab_cross_combo": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "guard",
+          "angles": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [200, 1000],
+          "trigger": "initial",
+          "weight": 0.15
+        },
+        {
+          "name": "jab_extension",
+          "angles": { "left_elbow": 175, "right_elbow": 60, "left_shoulder": 90, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "left_elbow", "metric": "angular_velocity", "direction": "positive", "threshold": 3.0 },
+          "weight": 0.25
+        },
+        {
+          "name": "jab_retract",
+          "angles": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [50, 200],
+          "trigger": { "joint": "left_elbow", "metric": "angular_velocity", "direction": "negative", "threshold": -2.0 },
+          "weight": 0.10
+        },
+        {
+          "name": "cross_extension",
+          "angles": { "left_elbow": 60, "right_elbow": 175, "left_shoulder": 60, "right_shoulder": 95, "left_hip": 170, "right_hip": 150, "left_knee": 160, "right_knee": 140 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "right_elbow", "metric": "angular_velocity", "direction": "positive", "threshold": 3.0 },
+          "weight": 0.30
+        },
+        {
+          "name": "return_to_guard",
+          "angles": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "right_elbow", "metric": "angular_velocity", "direction": "negative", "threshold": -2.0 },
+          "weight": 0.20
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "is_cyclical": true,
+      "cues": {
+        "jab_extension_left_elbow_bent": "Fully extend your jab for maximum reach.",
+        "cross_extension_right_hip_high": "Rotate your rear hip and pivot your back foot into the cross.",
+        "return_to_guard_left_elbow_straight": "Snap your hands back to guard immediately after punching."
+      }
+    },
+    "hook_combo": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "guard",
+          "angles": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [200, 1000],
+          "trigger": "initial",
+          "weight": 0.15
+        },
+        {
+          "name": "lead_hook",
+          "angles": { "left_elbow": 90, "right_elbow": 60, "left_shoulder": 90, "right_shoulder": 60, "left_hip": 150, "right_hip": 170, "left_knee": 140, "right_knee": 160 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "left_hip", "metric": "angular_velocity", "direction": "positive", "threshold": 2.0 },
+          "weight": 0.40
+        },
+        {
+          "name": "return_to_guard",
+          "angles": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "left_hip", "metric": "angular_velocity", "direction": "negative", "threshold": -1.5 },
+          "weight": 0.45
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "is_cyclical": true,
+      "cues": {
+        "lead_hook_left_elbow_straight": "Keep a 90° bend in your elbow during the hook.",
+        "lead_hook_left_hip_high": "Drive the hook with your hip rotation, not just your arm."
+      }
+    }
+  },
+  "tennis": {
+    "serve_motion": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "preparation",
+          "angles": { "left_elbow": 170, "right_elbow": 90, "left_shoulder": 135, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 150, "right_knee": 140 },
+          "duration_range_ms": [500, 2000],
+          "trigger": "initial",
+          "weight": 0.15
+        },
+        {
+          "name": "trophy_position",
+          "angles": { "left_elbow": 170, "right_elbow": 90, "left_shoulder": 160, "right_shoulder": 170, "left_hip": 170, "right_hip": 170, "left_knee": 140, "right_knee": 130 },
+          "duration_range_ms": [100, 500],
+          "trigger": { "joint": "right_shoulder", "metric": "angle_above", "threshold": 150 },
+          "weight": 0.25
+        },
+        {
+          "name": "racket_drop",
+          "angles": { "left_elbow": 150, "right_elbow": 45, "left_shoulder": 140, "right_shoulder": 160, "left_hip": 160, "right_hip": 160, "left_knee": 120, "right_knee": 120 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "right_elbow", "metric": "angle_below", "threshold": 60 },
+          "weight": 0.20
+        },
+        {
+          "name": "contact_point",
+          "angles": { "left_elbow": 130, "right_elbow": 170, "left_shoulder": 110, "right_shoulder": 170, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170 },
+          "duration_range_ms": [30, 150],
+          "trigger": { "joint": "right_elbow", "metric": "angular_velocity", "direction": "positive", "threshold": 4.0 },
+          "weight": 0.30
+        },
+        {
+          "name": "follow_through",
+          "angles": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [100, 600],
+          "trigger": { "joint": "right_shoulder", "metric": "angular_velocity", "direction": "negative", "threshold": -2.0 },
+          "weight": 0.10
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "cues": {
+        "trophy_position_right_elbow_straight": "Keep your hitting elbow high in the trophy position.",
+        "trophy_position_left_knee_straight": "Load your legs with a deep knee bend to explode upward.",
+        "contact_point_right_elbow_bent": "Reach full extension at contact for maximum power.",
+        "follow_through_right_shoulder_high": "Follow through across your body to protect your shoulder."
+      }
+    },
+    "forehand_stroke": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "ready_position",
+          "angles": { "left_elbow": 130, "right_elbow": 130, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140 },
+          "duration_range_ms": [200, 1000],
+          "trigger": "initial",
+          "weight": 0.10
+        },
+        {
+          "name": "unit_turn",
+          "angles": { "left_elbow": 140, "right_elbow": 110, "left_shoulder": 45, "right_shoulder": 110, "left_hip": 150, "right_hip": 130, "left_knee": 140, "right_knee": 140 },
+          "duration_range_ms": [100, 500],
+          "trigger": { "joint": "right_shoulder", "metric": "angular_velocity", "direction": "positive", "threshold": 1.5 },
+          "weight": 0.20
+        },
+        {
+          "name": "forward_swing",
+          "angles": { "left_elbow": 160, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 155, "right_knee": 155 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "right_hip", "metric": "angular_velocity", "direction": "positive", "threshold": 2.0 },
+          "weight": 0.35
+        },
+        {
+          "name": "contact_and_follow_through",
+          "angles": { "left_elbow": 160, "right_elbow": 160, "left_shoulder": 70, "right_shoulder": 120, "left_hip": 180, "right_hip": 180, "left_knee": 165, "right_knee": 165 },
+          "duration_range_ms": [100, 600],
+          "trigger": { "joint": "right_elbow", "metric": "angle_above", "threshold": 145 },
+          "weight": 0.35
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "cues": {
+        "unit_turn_right_shoulder_low": "Turn your shoulders early and load your back hip.",
+        "forward_swing_right_hip_high": "Uncoil your hips first to generate racket speed."
+      }
+    }
+  },
+  "football": {
+    "kick_motion": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "approach",
+          "angles": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 160, "right_hip": 160, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [300, 1500],
+          "trigger": "initial",
+          "weight": 0.10
+        },
+        {
+          "name": "plant_foot",
+          "angles": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 130, "left_knee": 170, "right_knee": 110 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "left_knee", "metric": "angle_above", "threshold": 165 },
+          "weight": 0.20
+        },
+        {
+          "name": "backswing",
+          "angles": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 170, "right_hip": 110, "left_knee": 170, "right_knee": 60 },
+          "duration_range_ms": [50, 400],
+          "trigger": { "joint": "right_knee", "metric": "angle_below", "threshold": 90 },
+          "weight": 0.20
+        },
+        {
+          "name": "strike",
+          "angles": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 90, "left_hip": 170, "right_hip": 140, "left_knee": 170, "right_knee": 170 },
+          "duration_range_ms": [30, 200],
+          "trigger": { "joint": "right_knee", "metric": "angular_velocity", "direction": "positive", "threshold": 4.0 },
+          "weight": 0.35
+        },
+        {
+          "name": "follow_through",
+          "angles": { "left_elbow": 110, "right_elbow": 110, "left_shoulder": 60, "right_shoulder": 120, "left_hip": 160, "right_hip": 160, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [100, 600],
+          "trigger": { "joint": "right_hip", "metric": "angle_above", "threshold": 150 },
+          "weight": 0.15
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "cues": {
+        "plant_foot_left_knee_bent": "Plant your support foot firmly next to the ball.",
+        "backswing_right_knee_straight": "Bend your kicking leg at the knee to load power.",
+        "strike_right_knee_bent": "Snap your leg through with a locked ankle for clean contact.",
+        "follow_through_right_hip_low": "Follow through high for distance, low for power."
+      }
+    },
+    "throw_in_motion": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "preparation",
+          "angles": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 170, "right_shoulder": 170, "left_hip": 160, "right_hip": 160, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [300, 1500],
+          "trigger": "initial",
+          "weight": 0.20
+        },
+        {
+          "name": "arch_back",
+          "angles": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 170, "right_shoulder": 170, "left_hip": 170, "right_hip": 170, "left_knee": 140, "right_knee": 140 },
+          "duration_range_ms": [100, 500],
+          "trigger": { "joint": "left_shoulder", "metric": "angle_above", "threshold": 160 },
+          "weight": 0.25
+        },
+        {
+          "name": "release",
+          "angles": { "left_elbow": 160, "right_elbow": 160, "left_shoulder": 120, "right_shoulder": 120, "left_hip": 150, "right_hip": 150, "left_knee": 150, "right_knee": 150 },
+          "duration_range_ms": [50, 300],
+          "trigger": { "joint": "left_shoulder", "metric": "angular_velocity", "direction": "negative", "threshold": -2.0 },
+          "weight": 0.35
+        },
+        {
+          "name": "follow_through",
+          "angles": { "left_elbow": 170, "right_elbow": 170, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 160, "right_hip": 160, "left_knee": 160, "right_knee": 160 },
+          "duration_range_ms": [100, 500],
+          "trigger": { "joint": "left_shoulder", "metric": "angle_below", "threshold": 90 },
+          "weight": 0.20
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "cues": {
+        "arch_back_left_knee_straight": "Bend your knees to generate more power.",
+        "release_left_shoulder_high": "Release the ball from behind your head with both hands."
+      }
+    }
+  }
+}

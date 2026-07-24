@@ -16,6 +16,34 @@ const aiHttpClient = axios.create({
   timeout: 1000,
 });
 
+// ============================================================
+// DYNAMIC MOVEMENT ROUTING
+// Maps which sport/pose combinations should use the dynamic
+// analysis pipeline (multi-phase temporal analysis) vs the
+// existing static pipeline (single-frame comparison).
+// ============================================================
+const DYNAMIC_MOVEMENTS: Record<string, Set<string>> = {
+  cricket: new Set(['cover_drive', 'bowling_action', 'pull_shot']),
+  running: new Set(['stride_cycle', 'sprint_burst']),
+  boxing: new Set(['jab_cross_combo', 'hook_combo']),
+  tennis: new Set(['serve_motion', 'forehand_stroke']),
+  football: new Set(['kick_motion', 'throw_in_motion']),
+};
+
+// Sports that are ALWAYS static (all poses are held positions)
+const ALWAYS_STATIC_SPORTS = new Set(['yoga']);
+
+function isDynamicMovement(sport: string, poseName?: string | null): boolean {
+  if (ALWAYS_STATIC_SPORTS.has(sport)) return false;
+  if (!DYNAMIC_MOVEMENTS[sport]) return false;
+  // If a specific pose is given, check if it's in the dynamic set
+  if (poseName && poseName !== 'undefined') {
+    return DYNAMIC_MOVEMENTS[sport].has(poseName);
+  }
+  // If no specific pose, treat the sport as dynamic if it has any dynamic movements
+  return DYNAMIC_MOVEMENTS[sport].size > 0;
+}
+
 export function initializeWebSocket(server: HttpServer) {
   const io = new Server(server, {
     cors: {
@@ -48,12 +76,14 @@ export function initializeWebSocket(server: HttpServer) {
     let activeSport: string | null = null;
     let activePoseName: string | null = null;
     let activeCircleId: string | null = null;
+    let isDynamic = false;
     let lastLogTime = 0;
 
     socket.on('session:start', async ({ sessionId, sport, poseName, circleId }) => {
       activeSessionId = sessionId;
       activeSport = sport;
       activePoseName = poseName;
+      isDynamic = isDynamicMovement(sport, poseName);
       socket.join(`session:${sessionId}`);
       
       if (circleId) {
@@ -63,7 +93,7 @@ export function initializeWebSocket(server: HttpServer) {
         socket.to(`circle:${circleId}`).emit('circle:member_active', { userId, sport });
       }
 
-      logger.info(`🚀 Starting AI session: ${sessionId} | Sport: ${sport} | Circle: ${circleId || 'None'}`);
+      logger.info(`🚀 Starting AI session: ${sessionId} | Sport: ${sport} | Mode: ${isDynamic ? 'DYNAMIC' : 'STATIC'} | Circle: ${circleId || 'None'}`);
     });
 
     socket.on('circle:nudge', ({ targetUserId, circleId }) => {
@@ -87,12 +117,24 @@ export function initializeWebSocket(server: HttpServer) {
 
       try {
         const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://localhost:8000';
-        const response = await aiHttpClient.post<FrameAnalysis>(`${aiServiceUrl}/analyze`, {
+        
+        // SMART ROUTING: Dynamic movements go to /analyze/dynamic, static go to /analyze
+        const useDynamic = isDynamic || isDynamicMovement(data.sport, data.poseName || activePoseName);
+        const endpoint = useDynamic ? '/analyze/dynamic' : '/analyze';
+        
+        const payload: Record<string, any> = {
           keypoints: data.keypoints.keypoints,
           hands: data.hands,
           sport: data.sport,
           pose_name: data.poseName || activePoseName,
-        });
+        };
+        
+        // Dynamic endpoint needs session_key for temporal state management
+        if (useDynamic && activeSessionId) {
+          payload.session_key = activeSessionId;
+        }
+        
+        const response = await aiHttpClient.post<FrameAnalysis>(`${aiServiceUrl}${endpoint}`, payload);
 
         const analysis = response.data;
 
@@ -131,11 +173,21 @@ export function initializeWebSocket(server: HttpServer) {
       }
     });
 
-    socket.on('session:stop', () => {
+    socket.on('session:stop', async () => {
       if (activeSessionId) {
         logger.info(`🏁 Session stopped: ${activeSessionId}`);
+        
+        // Clean up dynamic analyzer session if it was a dynamic movement
+        if (isDynamic) {
+          const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://localhost:8000';
+          aiHttpClient.post(`${aiServiceUrl}/analyze/dynamic/cleanup`, {
+            session_key: activeSessionId
+          }).catch((e) => logger.warn('Dynamic session cleanup failed:', e.message));
+        }
+        
         socket.leave(`session:${activeSessionId}`);
         activeSessionId = null;
+        isDynamic = false;
       }
     });
 
