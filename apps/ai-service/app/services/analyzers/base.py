@@ -109,73 +109,37 @@ class BaseAnalyzer:
             "missing_regions": missing_regions,
         }
 
-    def analyze(self, keypoints: List[Dict[str, Any]], actual_angles: Dict[str, float]) -> Dict[str, Any]:
-        """
-        Generic Blueprint Matcher: Returns structured issues based on joint deviations.
-        Now includes mandatory visibility validation to prevent false positives.
-        """
-        # Step 0: Check joint visibility
-        vis_info = self.check_required_joints_visible(keypoints, actual_angles)
-        visibility_ratio = vis_info["visibility_ratio"]
-        missing_joints = vis_info["missing_joints"]
-        missing_regions = vis_info["missing_regions"]
+    def get_mirrored_blueprint(self, blueprint: Dict[str, float]) -> Dict[str, float]:
+        mirrored = {}
+        for joint, angle in blueprint.items():
+            if joint.startswith("left_"):
+                mirrored["right_" + joint[5:]] = angle
+            elif joint.startswith("right_"):
+                mirrored["left_" + joint[6:]] = angle
+            else:
+                mirrored[joint] = angle
+        return mirrored
 
+    def _score_blueprint(self, ref_angles: Dict[str, float], actual_angles: Dict[str, float], visibility_ratio: float, missing_regions: Set[str]) -> Dict[str, Any]:
         issues = []
-
-        # If most joints are missing, immediately return a low score with visibility issues
-        if visibility_ratio < MIN_VISIBILITY_RATIO:
-            missing_str = ", ".join(sorted(missing_regions)) if missing_regions else "key body parts"
-            issues.append({
-                "joint": "body_visibility",
-                "problem": f"Cannot detect your {missing_str}",
-                "correction": f"Please ensure your full body is visible in the camera frame for '{self.pose_id.replace('_', ' ')}'. Step back or adjust camera angle.",
-                "severity": "high"
-            })
-
-            # Add specific missing region guidance
-            if "hips" in missing_regions or "knees" in missing_regions or "ankles/feet" in missing_regions:
-                issues.append({
-                    "joint": "camera_position",
-                    "problem": "Lower body not detected",
-                    "correction": "Position your camera further back or tilt it down to include your legs and feet in the frame.",
-                    "severity": "high"
-                })
-
-            # Score penalty: scale by visibility ratio, minimum 0
-            penalty_score = max(0, visibility_ratio * 40)  # Even 50% visible = max 20 score
-            return {
-                "score": round(penalty_score, 1),
-                "issues": issues,
-                "overall_severity": "error"
-            }
-
-        # Step 1: Add warnings for any missing joints (even if above threshold)
-        if missing_joints:
-            missing_str = ", ".join(sorted(missing_regions)) if missing_regions else "some joints"
-            issues.append({
-                "joint": "partial_visibility",
-                "problem": f"Partially hidden: {missing_str}",
-                "correction": f"Some joints are obscured. Try to keep your full body visible for the best analysis.",
-                "severity": "medium"
-            })
-
-        # Step 2: Score visible joints against the blueprint with 5% leniency
         total_error = 0
         joints_checked = 0
-        LENIENCY_PERCENT = 0.05 # 5% leniency allowance (nobody is perfect)
+        
+        # INCREASED LENIENCY: Webcams cause 2D projection artifacts.
+        # We allow 10% leniency, or a flat 15 degree buffer for every joint.
+        LENIENCY_PERCENT = 0.10
+        MIN_LENIENCY_DEG = 15.0
 
         for joint, actual_angle in actual_angles.items():
-            if joint not in self.ref_angles:
+            if joint not in ref_angles:
                 continue
-            # Skip joints that returned -1 (invisible) — already counted as missing above
             if actual_angle < 0:
                 continue
 
-            ref_angle = self.ref_angles[joint]
+            ref_angle = ref_angles[joint]
             raw_error = abs(actual_angle - ref_angle)
             
-            # Apply 5% leniency margin (5% of ref_angle, or at least 5.0 degrees)
-            angle_leniency = max(ref_angle * LENIENCY_PERCENT, 5.0)
+            angle_leniency = max(ref_angle * LENIENCY_PERCENT, MIN_LENIENCY_DEG)
             effective_error = max(0.0, raw_error - angle_leniency)
             
             total_error += effective_error
@@ -188,7 +152,6 @@ class BaseAnalyzer:
                 severity = "medium"
 
             if severity != "none":
-                # Find specific cue or generate generic one
                 error_dir = "high" if actual_angle > ref_angle else "low"
                 specific_key = f"{joint}_{error_dir}"
 
@@ -205,35 +168,77 @@ class BaseAnalyzer:
                     "severity": severity
                 })
 
-        # Step 3: Score calculation with 5% leniency boost and visibility penalty
-        # Base score from angle accuracy
         avg_error = total_error / joints_checked if joints_checked > 0 else 90
         accuracy_score = max(0, min(100, 100 - (avg_error * (100 / 90))))
-
-        # Apply 5% score leniency boost
         leniency_score = min(100.0, accuracy_score * 1.05)
-
-        # Apply visibility penalty: if 70% visible, max score is 70
-        # This prevents "perfect 100" when joints are missing
         visibility_cap = visibility_ratio * 100
         final_score = min(leniency_score, visibility_cap)
 
-        # If NO joints were checked at all (nothing matched the blueprint), force low score
         if joints_checked == 0:
             final_score = 0
-            if not any(i["joint"] == "body_visibility" for i in issues):
-                issues.append({
-                    "joint": "body_visibility",
-                    "problem": "No matching joints detected",
-                    "correction": f"Make sure you are performing '{self.pose_id.replace('_', ' ')}' and your full body is visible.",
-                    "severity": "high"
-                })
+            issues.append({
+                "joint": "body_visibility",
+                "problem": "No matching joints detected",
+                "correction": f"Make sure your full body is visible.",
+                "severity": "high"
+            })
 
         return {
             "score": round(final_score, 1),
             "issues": issues,
             "overall_severity": "good" if final_score >= 76 else ("warning" if final_score >= 45 else "error")
         }
+
+    def analyze(self, keypoints: List[Dict[str, Any]], actual_angles: Dict[str, float]) -> Dict[str, Any]:
+        vis_info = self.check_required_joints_visible(keypoints, actual_angles)
+        visibility_ratio = vis_info["visibility_ratio"]
+        missing_joints = vis_info["missing_joints"]
+        missing_regions = vis_info["missing_regions"]
+
+        # If completely missing, return early
+        if visibility_ratio < MIN_VISIBILITY_RATIO:
+            missing_str = ", ".join(sorted(missing_regions)) if missing_regions else "key body parts"
+            issues = [{
+                "joint": "body_visibility",
+                "problem": f"Cannot detect your {missing_str}",
+                "correction": f"Please ensure your full body is visible in the camera frame for '{self.pose_id.replace('_', ' ')}'. Step back or adjust camera angle.",
+                "severity": "high"
+            }]
+            if "hips" in missing_regions or "knees" in missing_regions or "ankles/feet" in missing_regions:
+                issues.append({
+                    "joint": "camera_position",
+                    "problem": "Lower body not detected",
+                    "correction": "Position your camera further back or tilt it down to include your legs and feet in the frame.",
+                    "severity": "high"
+                })
+            penalty_score = max(0, visibility_ratio * 40)
+            return {
+                "score": round(penalty_score, 1),
+                "issues": issues,
+                "overall_severity": "error"
+            }
+
+        # Calculate standard score
+        std_result = self._score_blueprint(self.ref_angles, actual_angles, visibility_ratio, missing_regions)
+        
+        # Calculate mirrored score (solves asymmetry false positives for all poses)
+        mirrored_angles = self.get_mirrored_blueprint(self.ref_angles)
+        mirrored_result = self._score_blueprint(mirrored_angles, actual_angles, visibility_ratio, missing_regions)
+
+        # Pick whichever orientation matches the user's pose better!
+        best_result = std_result if std_result['score'] >= mirrored_result['score'] else mirrored_result
+
+        # Add partial visibility warnings if necessary
+        if missing_joints:
+            missing_str = ", ".join(sorted(missing_regions)) if missing_regions else "some joints"
+            best_result['issues'].insert(0, {
+                "joint": "partial_visibility",
+                "problem": f"Partially hidden: {missing_str}",
+                "correction": f"Some joints are obscured. Try to keep your full body visible for the best analysis.",
+                "severity": "medium"
+            })
+
+        return best_result
 
     @staticmethod
     def calculate_angle(p1, p2, p3):

@@ -67,7 +67,7 @@
       }
     },
     "squats": {
-      "left_elbow": 160, "right_elbow": 160, "left_shoulder": 140, "right_shoulder": 140, "left_hip": 60, "right_hip": 60, "left_knee": 70, "right_knee": 70, "left_ankle": 90, "right_ankle": 90,
+      "left_elbow": 60, "right_elbow": 60, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 60, "right_hip": 60, "left_knee": 70, "right_knee": 70, "left_ankle": 90, "right_ankle": 90,
       "cues": {
         "left_knee_in": "Ensure your knees stay tracked over your toes.",
         "left_hip_high": "Lower your hips further for maximum engagement.",
@@ -75,11 +75,11 @@
       }
     },
     "tree_pose": { 
-      "left_elbow": 170, "right_elbow": 170, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 90, "right_hip": 180, "left_knee": 30, "right_knee": 180, "left_ankle": 120, "right_ankle": 90,
+      "left_elbow": 45, "right_elbow": 45, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 90, "right_hip": 180, "left_knee": 30, "right_knee": 180, "left_ankle": 120, "right_ankle": 90,
       "cues": {
         "left_knee_high": "Open your hip further, bringing your knee out to the side.",
         "left_ankle_low": "Ensure your foot is pressed firmly against your inner thigh, not the knee joint.",
-        "left_shoulder_low": "Reach your arms higher to lengthen your entire body."
+        "left_shoulder_low": "Press your palms together firmly at the center of your chest."
       }
     },
     "downward_dog": { 

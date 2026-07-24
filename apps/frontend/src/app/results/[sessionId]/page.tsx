@@ -153,7 +153,9 @@ export default function ResultsPage() {
                 <div className="flex items-center justify-between">
                    <div className="flex flex-col">
                      <span className="text-xs font-bold text-white/20 uppercase tracking-widest mb-1">Consistency</span>
-                     <span className="text-2xl font-black">94%</span>
+                     <span className="text-2xl font-black">
+                       {frames.length > 0 ? Math.round((frames.filter(f => f.frame_score >= 70).length / frames.length) * 100) : 0}%
+                     </span>
                    </div>
                    <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center border border-secondary/20 shadow-glow shadow-secondary/10">
                      <Star className="w-6 h-6 text-secondary fill-secondary" />
@@ -163,7 +165,9 @@ export default function ResultsPage() {
                 <div className="flex items-center justify-between">
                    <div className="flex flex-col">
                      <span className="text-xs font-bold text-white/20 uppercase tracking-widest mb-1">Power Output</span>
-                     <span className="text-2xl font-black">High</span>
+                     <span className="text-2xl font-black">
+                       {session.score >= 85 ? 'Elite' : session.score >= 70 ? 'High' : session.score >= 50 ? 'Medium' : 'Low'}
+                     </span>
                    </div>
                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center border border-primary/20 shadow-glow shadow-primary/10">
                      <Zap className="w-6 h-6 text-primary fill-primary" />

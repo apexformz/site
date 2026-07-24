@@ -56,15 +56,23 @@ export default function TrainingPage() {
     });
     setBestScore(prev => Math.max(prev, analysis.score));
 
-    // VOICE-GUIDED SEQUENTIAL DELIVERY + FREQUENCY THROTTLE (Max 6/min)
+    // VOICE-GUIDED SEQUENTIAL DELIVERY + FREQUENCY THROTTLE
     const activeIssues = analysis.issues?.filter(i => i.severity === 'high');
     const now = Date.now();
     
-    // Always update the sidebar recommendations when there are issues
-    if (activeIssues?.length > 0) {
+    if (analysis.score >= 80) {
+      // Clear issues when form is actually good
+      setThrottledAnalysis({ ...analysis, issues: [] });
+      
+      // Announce perfect posture if we haven't spoken recently
+      if (!isAiSpeaking && (now - lastFeedbackUpdateRef.current > 12000)) {
+        announce("Perfect posture. Keep it up!");
+        lastFeedbackUpdateRef.current = now;
+      }
+    } else if (activeIssues?.length > 0) {
       setThrottledAnalysis(analysis);
 
-      // Voice announcements are still throttled to avoid overwhelming the user
+      // Voice announcements are throttled to avoid overwhelming the user
       if (!isAiSpeaking && (now - lastFeedbackUpdateRef.current > 10000)) {
         const primaryIssue = activeIssues[0];
         if (primaryIssue) {
@@ -72,9 +80,6 @@ export default function TrainingPage() {
           lastFeedbackUpdateRef.current = now;
         }
       }
-    } else if (analysis.score >= 80) {
-      // Clear issues when form is actually good
-      setThrottledAnalysis(analysis);
     }
   }, [isAiSpeaking, announce]);
 

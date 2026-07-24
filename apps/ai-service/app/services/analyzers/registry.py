@@ -55,6 +55,10 @@ class AnalyzerRegistry:
         elif avg_score < 76:
             overall_severity = "warning"
 
+        # Filter out high severity issues if the smoothed score is actually good
+        if avg_score >= 80:
+            latest_issues = [i for i in latest_issues if i['severity'] != 'high']
+
         return {
             "score": round(avg_score, 1),
             "overall_severity": overall_severity,
