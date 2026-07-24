@@ -54,7 +54,7 @@ export default function RegisterPage() {
       {/* Sidebar Info */}
       <div className="hidden lg:flex flex-col justify-center px-24 w-1/2 border-r border-white/5 relative">
         <div className="relative z-10">
-          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center font-black italic shadow-glow mb-8 text-2xl">S</div>
+          <img src="/logo.png" alt="Apexformz Logo" className="w-16 h-16 object-contain mb-8" />
           <h1 className="text-6xl font-black uppercase italic tracking-tighter leading-none mb-6">
             Join the <span className="text-secondary italic">Elite</span><br />
             Level Up <span className="text-primary italic">Fast</span>
@@ -86,7 +86,7 @@ export default function RegisterPage() {
         >
           <div className="mb-10">
             <h2 className="text-3xl font-bold tracking-tight mb-2">Create Account</h2>
-            <p className="text-white/40 text-sm font-medium">Start your journey with SmartCoach AI</p>
+            <p className="text-white/40 text-sm font-medium">Start your journey with Apexformz AI</p>
           </div>
 
           <form onSubmit={handleRegister} className="flex flex-col gap-6">

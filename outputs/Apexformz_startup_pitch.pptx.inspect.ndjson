@@ -1,200 +1,200 @@
-{"kind":"deck","id":"pr/r3kfgr","name":"Deck"}
-{"kind":"layout","layoutId":"82d38623-c8f2-4281-92ff-e8e7936f623d","name":"Master","type":"master"}
-{"kind":"layout","layoutId":"eb241640-7f40-4074-9871-21643c758e6d","name":"Title Slide","type":"title"}
-{"kind":"slide","id":"sl/gq7mym","slide":1,"title":"APEXFORMZ","textShapes":4}
-{"kind":"textbox","id":"sh/cfyh87u5","slide":1,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,40,360,52]}
-{"kind":"textbox","id":"sh/repgf2t0","slide":1,"text":"AI form coaching that works wherever an athlete trains","textPreview":"AI form coaching that works wherever an athlete trains","textChars":54,"textLines":1,"bbox":[41,178,615,250]}
-{"kind":"textbox","id":"sh/qtgf6xcf","slide":1,"text":"A startup pitch for browser-based technique intelligence, real-time feedback, and habit-forming practice.","textPreview":"A startup pitch for browser-based technique intelligence, real-time feedback, and habit-forming practice.","textChars":105,"textLines":1,"bbox":[44,506,570,90]}
-{"kind":"shape","id":"sh/1krylwb2","slide":1,"bbox":[44,622,310,4]}
-{"kind":"textbox","id":"sh/0jihcrah","slide":1,"text":"Pitch deck | July 2026","textPreview":"Pitch deck | July 2026","textChars":22,"textLines":1,"bbox":[44,642,280,28]}
-{"kind":"shape","id":"sh/zipgjmtw","slide":1,"bbox":[700,42,538,588]}
-{"kind":"image","id":"im/vqt03ils","slide":1,"name":"","geometry":"roundRect","alt":"Apexformz cricket technique blueprint","bbox":[700,42,538,588]}
-{"kind":"notes","id":"nt/gq7mym","slide":1,"text":"[Sources]\nProject README describes SmartCoach as an AI-powered sports training platform with real-time pose estimation.\nVisual asset: apps/frontend/public/postures/cricket_cover_drive.png."}
-{"kind":"slide","id":"sl/k7vc69","slide":2,"title":"Technique coaching still happens too late for most athletes","textShapes":13}
-{"kind":"textbox","id":"sh/ipkbe9sz","slide":2,"text":"Technique coaching still happens too late for most athletes","textPreview":"Technique coaching still happens too late for most athletes","textChars":59,"textLines":1,"bbox":[41,35,1198,88]}
-{"kind":"textbox","id":"sh/5sbup4bq","slide":2,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
-{"kind":"textbox","id":"sh/4r2tgza5","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
-{"kind":"textbox","id":"sh/rudcretw","slide":2,"text":"Athletes practice far more often than they are observed by a trained coach. The result is delayed correction, uneven quality, and weak follow-through between formal sessions.","textPreview":"Athletes practice far more often than they are observed by a trained coach. The result is delayed correction, uneven quality, and weak fo...","textChars":174,"textLines":1,"bbox":[41,150,740,120]}
-{"kind":"shape","id":"sh/6tkbi9sb","slide":2,"bbox":[41,330,355,210]}
-{"kind":"textbox","id":"sh/twvutobm","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[61,350,55,36]}
-{"kind":"textbox","id":"sh/svmtkjah","slide":2,"text":"Access gap","textPreview":"Access gap","textChars":10,"textLines":1,"bbox":[121,352,255,34]}
-{"kind":"textbox","id":"sh/7y9sfutc","slide":2,"text":"Quality coaching is scarce, scheduled, and expensive for everyday athletes.","textPreview":"Quality coaching is scarce, scheduled, and expensive for everyday athletes.","textChars":75,"textLines":1,"bbox":[61,405,315,115]}
-{"kind":"shape","id":"sh/mx0b6ps7","slide":2,"bbox":[462,330,355,210]}
-{"kind":"textbox","id":"sh/87u54zu9","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[482,350,55,36]}
-{"kind":"textbox","id":"sh/t836x4bu","slide":2,"text":"Feedback gap","textPreview":"Feedback gap","textChars":12,"textLines":1,"bbox":[542,352,255,34]}
-{"kind":"textbox","id":"sh/65sn2pc3","slide":2,"text":"Most form errors are noticed after the rep, not at the moment they happen.","textPreview":"Most form errors are noticed after the rep, not at the moment they happen.","textChars":74,"textLines":1,"bbox":[482,405,315,115]}
-{"kind":"shape","id":"sh/761obuto","slide":2,"bbox":[883,330,355,210]}
-{"kind":"textbox","id":"sh/gbu58zu5","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[903,350,55,36]}
-{"kind":"textbox","id":"sh/hc3614bq","slide":2,"text":"Adherence gap","textPreview":"Adherence gap","textChars":13,"textLines":1,"bbox":[963,352,255,34]}
-{"kind":"textbox","id":"sh/u9cn69cz","slide":2,"text":"Progress is hard to sustain when practice does not feel measurable.","textPreview":"Progress is hard to sustain when practice does not feel measurable.","textChars":67,"textLines":1,"bbox":[903,405,315,115]}
-{"kind":"notes","id":"nt/k7vc69","slide":2,"text":"[Sources]\nProblem framing inferred from implemented product capabilities: real-time analysis, feedback, saved sessions, XP, streaks, and social circles.\nPrimary repo references: README.md; apps/frontend/src/app/page.tsx; apps/backend/prisma/schema.prisma."}
-{"kind":"slide","id":"sl/akpolt","slide":3,"title":"Apexformz turns a phone camera into a live form coach","textShapes":16}
-{"kind":"textbox","id":"sh/5kne5oze","slide":3,"text":"Apexformz turns a phone camera into a live form coach","textPreview":"Apexformz turns a phone camera into a live form coach","textChars":53,"textLines":1,"bbox":[41,35,1198,88]}
-{"kind":"textbox","id":"sh/ixwvatgn","slide":3,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
-{"kind":"textbox","id":"sh/ji5w3eh8","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
-{"kind":"textbox","id":"sh/snydg3y5","slide":3,"text":"The product converts ordinary video into coachable posture data, then returns concise corrections while the athlete is still moving.","textPreview":"The product converts ordinary video into coachable posture data, then returns concise corrections while the athlete is still moving.","textChars":132,"textLines":1,"bbox":[41,142,760,82]}
-{"kind":"shape","id":"sh/to7e98za","slide":3,"bbox":[41,300,260,210]}
-{"kind":"textbox","id":"sh/6lwvetgz","slide":3,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[61,320,55,36]}
-{"kind":"textbox","id":"sh/rmpw7yhk","slide":3,"text":"Capture","textPreview":"Capture","textChars":7,"textLines":1,"bbox":[121,322,160,34]}
-{"kind":"textbox","id":"sh/gryxk3y1","slide":3,"text":"Browser AI reads pose, hand, and face landmarks on the athlete device.","textPreview":"Browser AI reads pose, hand, and face landmarks on the athlete device.","textChars":70,"textLines":1,"bbox":[61,375,220,115]}
-{"kind":"shape","id":"sh/1s7ed8zm","slide":3,"bbox":[339,300,260,210]}
-{"kind":"textbox","id":"sh/x4rm9k7y","slide":3,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[359,320,55,36]}
-{"kind":"textbox","id":"sh/c3il0fqd","slide":3,"text":"Analyze","textPreview":"Analyze","textChars":7,"textLines":1,"bbox":[419,322,160,34]}
-{"kind":"textbox","id":"sh/b2947aps","slide":3,"text":"A rules engine compares joint angles, phase timing, and kinetic sequence.","textPreview":"A rules engine compares joint angles, phase timing, and kinetic sequence.","textChars":73,"textLines":1,"bbox":[359,375,220,115]}
-{"kind":"shape","id":"sh/a103yp87","slide":3,"bbox":[637,300,260,210]}
-{"kind":"textbox","id":"sh/l8bmd47u","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[657,320,55,36]}
-{"kind":"textbox","id":"sh/k7il4z6p","slide":3,"text":"Coach","textPreview":"Coach","textChars":5,"textLines":1,"bbox":[717,322,160,34]}
-{"kind":"textbox","id":"sh/z694bup4","slide":3,"text":"The app shows score, priority issues, and voice guidance without waiting for a trainer.","textPreview":"The app shows score, priority issues, and voice guidance without waiting for a trainer.","textChars":87,"textLines":1,"bbox":[657,375,220,115]}
-{"kind":"shape","id":"sh/y5032poj","slide":3,"bbox":[935,300,260,210]}
-{"kind":"textbox","id":"sh/1c72107q","slide":3,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[955,320,55,36]}
-{"kind":"textbox","id":"sh/0bylsvq5","slide":3,"text":"Retain","textPreview":"Retain","textChars":6,"textLines":1,"bbox":[1015,322,160,34]}
-{"kind":"textbox","id":"sh/sf2lofy1","slide":3,"text":"Sessions become progress, XP, streaks, achievements, and circle motivation.","textPreview":"Sessions become progress, XP, streaks, achievements, and circle motivation.","textChars":75,"textLines":1,"bbox":[955,375,220,115]}
-{"kind":"notes","id":"nt/akpolt","slide":3,"text":"[Sources]\nFrontend training loop: apps/frontend/src/app/train/[sport]/page.tsx.\nPose capture: apps/frontend/src/hooks/useHolisticDetection.ts.\nVoice coaching: apps/frontend/src/hooks/useVoiceCoaching.ts.\nBackend session persistence: apps/backend/src/routes/sessions.ts."}
-{"kind":"slide","id":"sl/q1nawg","slide":4,"title":"The MVP already covers a multi-sport coaching surface","textShapes":10}
-{"kind":"textbox","id":"sh/1k3u1k7a","slide":4,"text":"The MVP already covers a multi-sport coaching surface","textPreview":"The MVP already covers a multi-sport coaching surface","textChars":53,"textLines":1,"bbox":[41,35,1198,88]}
-{"kind":"textbox","id":"sh/ehsvqp8j","slide":4,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
-{"kind":"textbox","id":"sh/filczap4","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
-{"kind":"textbox","id":"sh/svadofqt","slide":4,"text":"Apexformz is not a single-pose demo. The repository contains a multi-service product, sport-specific posture libraries, and dynamic movement definitions.","textPreview":"Apexformz is not a single-pose demo. The repository contains a multi-service product, sport-specific posture libraries, and dynamic movem...","textChars":153,"textLines":1,"bbox":[41,127,840,90]}
-{"kind":"shape","id":"sh/dwjuxk7y","slide":4,"bbox":[41,300,360,245]}
-{"kind":"textbox","id":"sh/qtsvm58n","slide":4,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[69,340,304,78]}
-{"kind":"textbox","id":"sh/ru1cvap8","slide":4,"text":"sports supported: cricket, tennis, yoga, running, boxing, and football","textPreview":"sports supported: cricket, tennis, yoga, running, boxing, and football","textChars":70,"textLines":1,"bbox":[69,430,304,68]}
-{"kind":"shape","id":"sh/cred0zqx","slide":4,"bbox":[460,300,360,245]}
-{"kind":"textbox","id":"sh/xsne947i","slide":4,"text":"60","textPreview":"60","textChars":2,"textLines":1,"bbox":[488,340,304,78]}
-{"kind":"textbox","id":"sh/5kjuhora","slide":4,"text":"static pose blueprints for frame-by-frame form comparison","textPreview":"static pose blueprints for frame-by-frame form comparison","textChars":57,"textLines":1,"bbox":[488,430,304,68]}
-{"kind":"shape","id":"sh/4jat8jap","slide":4,"bbox":[879,300,360,245]}
-{"kind":"textbox","id":"sh/3i1cfe94","slide":4,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[907,340,304,78]}
-{"kind":"textbox","id":"sh/ih8b69sj","slide":4,"text":"dynamic movement blueprints for multi-phase skill analysis","textPreview":"dynamic movement blueprints for multi-phase skill analysis","textChars":58,"textLines":1,"bbox":[907,430,304,68]}
-{"kind":"notes","id":"nt/q1nawg","slide":4,"text":"[Sources]\nCounts computed from apps/ai-service/app/data/reference_poses.json and apps/ai-service/app/data/reference_movements.json.\nSport selection UI: apps/frontend/src/app/dashboard/page.tsx and apps/frontend/src/app/train/[sport]/setup/page.tsx."}
-{"kind":"slide","id":"sl/6cv9dv","slide":5,"title":"The athlete sees scored correction during the rep","textShapes":10}
-{"kind":"textbox","id":"sh/epk7mt4z","slide":5,"text":"The athlete sees scored correction during the rep","textPreview":"The athlete sees scored correction during the rep","textChars":49,"textLines":1,"bbox":[41,35,1198,88]}
-{"kind":"textbox","id":"sh/1sbqh8nq","slide":5,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
-{"kind":"textbox","id":"sh/0r29o3m5","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
-{"kind":"textbox","id":"sh/r298by5o","slide":5,"text":"The live training page combines camera view, skeleton overlay, score ring, high-priority corrections, target posture, and voice prompts into one coaching loop.","textPreview":"The live training page combines camera view, skeleton overlay, score ring, high-priority corrections, target posture, and voice prompts i...","textChars":159,"textLines":1,"bbox":[41,150,560,150]}
-{"kind":"shape","id":"sh/d4rqd8nu","slide":5,"bbox":[41,350,260,155]}
-{"kind":"textbox","id":"sh/s3ipk3m9","slide":5,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[61,370,55,36]}
-{"kind":"textbox","id":"sh/3y987e5c","slide":5,"text":"Prioritized issues","textPreview":"Prioritized issues","textChars":18,"textLines":1,"bbox":[121,372,160,34]}
-{"kind":"textbox","id":"sh/ix07e947","slide":5,"text":"Only medium and high severity corrections are surfaced to avoid overwhelming the athlete.","textPreview":"Only medium and high severity corrections are surfaced to avoid overwhelming the athlete.","textChars":89,"textLines":1,"bbox":[61,425,220,60]}
-{"kind":"shape","id":"sh/8z69cnup","slide":5,"bbox":[332,350,260,155]}
-{"kind":"textbox","id":"sh/t0fql8ba","slide":5,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[352,370,55,36]}
-{"kind":"textbox","id":"sh/6x4radcz","slide":5,"text":"Voice cueing","textPreview":"Voice cueing","textChars":12,"textLines":1,"bbox":[412,372,160,34]}
-{"kind":"textbox","id":"sh/7yd8jitk","slide":5,"text":"Speech guidance is throttled and sequential so the user hears one actionable fix at a time.","textPreview":"Speech guidance is throttled and sequential so the user hears one actionable fix at a time.","textChars":91,"textLines":1,"bbox":[352,425,220,60]}
-{"kind":"image","id":"im/fe5gvy18","slide":5,"name":"","geometry":"roundRect","alt":"Apexformz tennis serve technical blueprint","bbox":[690,42,548,588]}
-{"kind":"notes","id":"nt/6cv9dv","slide":5,"text":"[Sources]\nLive session UI: apps/frontend/src/app/train/[sport]/page.tsx.\nFeedback UI: apps/frontend/src/components/ActionableFeedback.tsx.\nVoice logic: apps/frontend/src/hooks/useVoiceCoaching.ts.\nVisual asset: apps/frontend/public/postures/tennis_serve_trophy.png."}
-{"kind":"slide","id":"sl/z6vb90","slide":6,"title":"The architecture separates fast perception from coaching logic","textShapes":15}
-{"kind":"textbox","id":"sh/5ojyl8z6","slide":6,"text":"The architecture separates fast perception from coaching logic","textPreview":"The architecture separates fast perception from coaching logic","textChars":62,"textLines":1,"bbox":[41,35,1198,88]}
-{"kind":"textbox","id":"sh/ilszadgv","slide":6,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
-{"kind":"textbox","id":"sh/3m1gjihg","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
-{"kind":"textbox","id":"sh/gjah83yp","slide":6,"text":"Video frames stay local. The system streams abstract keypoints through a WebSocket relay to a dedicated AI service, then persists sessions and frame evidence for progress tracking.","textPreview":"Video frames stay local. The system streams abstract keypoints through a WebSocket relay to a dedicated AI service, then persists session...","textChars":180,"textLines":1,"bbox":[41,132,790,96]}
-{"kind":"shape","id":"sh/hkjyh8za","slide":6,"bbox":[41,305,250,205]}
-{"kind":"textbox","id":"sh/uh8f6tgj","slide":6,"text":"Browser","textPreview":"Browser","textChars":7,"textLines":1,"bbox":[61,329,210,36]}
-{"kind":"textbox","id":"sh/vi1gfyh4","slide":6,"text":"MediaPipe Holistic detects pose, hands, and face; frames are downscaled for speed.","textPreview":"MediaPipe Holistic detects pose, hands, and face; frames are downscaled for speed.","textChars":82,"textLines":1,"bbox":[61,381,210,100]}
-{"kind":"shape","id":"sh/8fqx4jyd","slide":6,"bbox":[299,406,34,3]}
-{"kind":"textbox","id":"sh/tgzydozy","slide":6,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[323,395,20,30]}
-{"kind":"shape","id":"sh/94zihw3q","slide":6,"bbox":[341,305,250,205]}
-{"kind":"textbox","id":"sh/o3qh8r25","slide":6,"text":"Relay","textPreview":"Relay","textChars":5,"textLines":1,"bbox":[361,329,210,36]}
-{"kind":"textbox","id":"sh/n2h0fmlk","slide":6,"text":"Socket.IO authenticates sessions and forwards keypoints to the AI service.","textPreview":"Socket.IO authenticates sessions and forwards keypoints to the AI service.","textChars":74,"textLines":1,"bbox":[361,381,210,100]}
-{"kind":"shape","id":"sh/21oz6hkf","slide":6,"bbox":[599,406,34,3]}
-{"kind":"textbox","id":"sh/10fidw3u","slide":6,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[623,395,20,30]}
-{"kind":"shape","id":"sh/0f6h4r29","slide":6,"bbox":[641,305,250,205]}
-{"kind":"textbox","id":"sh/fex0bmlo","slide":6,"text":"AI service","textPreview":"AI service","textChars":10,"textLines":1,"bbox":[661,329,210,36]}
-{"kind":"textbox","id":"sh/edoz2hk3","slide":6,"text":"FastAPI analyzers return score, severity, joint angles, and coaching issues.","textPreview":"FastAPI analyzers return score, severity, joint angles, and coaching issues.","textChars":76,"textLines":1,"bbox":[661,381,210,100]}
-{"kind":"shape","id":"sh/dcfi9c3i","slide":6,"bbox":[899,406,34,3]}
-{"kind":"textbox","id":"sh/sb6h072x","slide":6,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[923,395,20,30]}
-{"kind":"shape","id":"sh/4vqhw7at","slide":6,"bbox":[941,305,250,205]}
-{"kind":"textbox","id":"sh/5gjipcbe","slide":6,"text":"Database","textPreview":"Database","textChars":8,"textLines":1,"bbox":[961,329,210,36]}
-{"kind":"textbox","id":"sh/it8zuhs3","slide":6,"text":"PostgreSQL stores sessions, frames, XP, streaks, circles, and leaderboards.","textPreview":"PostgreSQL stores sessions, frames, XP, streaks, circles, and leaderboards.","textChars":75,"textLines":1,"bbox":[961,381,210,100]}
-{"kind":"notes","id":"nt/z6vb90","slide":6,"text":"[Sources]\nArchitecture summary: README.md and docker-compose.yml.\nBrowser perception: apps/frontend/src/hooks/useHolisticDetection.ts.\nWebSocket relay: apps/backend/src/websocket/sessionRelay.ts.\nAI service: apps/ai-service/main.py and apps/ai-service/app/routes/analysis.py.\nPersistence model: apps/backend/prisma/schema.prisma."}
-{"kind":"slide","id":"sl/66p0ud","slide":7,"title":"Dynamic analysis is the start of the moat","textShapes":14}
-{"kind":"textbox","id":"sh/1gzutgzi","slide":7,"text":"Dynamic analysis is the start of the moat","textPreview":"Dynamic analysis is the start of the moat","textChars":41,"textLines":1,"bbox":[41,35,1198,88]}
-{"kind":"textbox","id":"sh/ed8vi107","slide":7,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
-{"kind":"textbox","id":"sh/fehcr6hs","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
-{"kind":"textbox","id":"sh/ojadobi9","slide":7,"text":"Static angle checks tell athletes what a position looks like. Dynamic analysis evaluates whether the movement sequence is actually being performed well.","textPreview":"Static angle checks tell athletes what a position looks like. Dynamic analysis evaluates whether the movement sequence is actually being ...","textChars":152,"textLines":1,"bbox":[41,130,640,92]}
-{"kind":"shape","id":"sh/2h8vm103","slide":7,"bbox":[41,290,205,180]}
-{"kind":"textbox","id":"sh/3ihwv6ho","slide":7,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[61,310,55,36]}
-{"kind":"textbox","id":"sh/4n6dcri5","slide":7,"text":"Phase detection","textPreview":"Phase detection","textChars":15,"textLines":1,"bbox":[121,312,105,34]}
-{"kind":"textbox","id":"sh/5ofulwza","slide":7,"text":"A finite-state machine tracks stance, load, impact, follow-through, or cycle stages.","textPreview":"A finite-state machine tracks stance, load, impact, follow-through, or cycle stages.","textChars":84,"textLines":1,"bbox":[61,365,165,85]}
-{"kind":"shape","id":"sh/xgbelgre","slide":7,"bbox":[268,290,205,180]}
-{"kind":"textbox","id":"sh/cf2dsbqt","slide":7,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[288,310,55,36]}
-{"kind":"textbox","id":"sh/betcj69o","slide":7,"text":"Kinetic chain","textPreview":"Kinetic chain","textChars":13,"textLines":1,"bbox":[348,312,105,34]}
-{"kind":"textbox","id":"sh/adkvq183","slide":7,"text":"The engine checks whether hips, shoulders, and arms fire in the expected order.","textPreview":"The engine checks whether hips, shoulders, and arms fire in the expected order.","textChars":79,"textLines":1,"bbox":[288,365,165,85]}
-{"kind":"shape","id":"sh/lkvep0rq","slide":7,"bbox":[495,290,205,180]}
-{"kind":"textbox","id":"sh/kj2dwvq5","slide":7,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[515,310,55,36]}
-{"kind":"textbox","id":"sh/zitwnq9k","slide":7,"text":"Fluidity score","textPreview":"Fluidity score","textChars":14,"textLines":1,"bbox":[575,312,105,34]}
-{"kind":"textbox","id":"sh/yhkvul8z","slide":7,"text":"Motion smoothness is estimated from changing angular velocities over time.","textPreview":"Motion smoothness is estimated from changing angular velocities over time.","textChars":74,"textLines":1,"bbox":[515,365,165,85]}
-{"kind":"textbox","id":"sh/9ovet0rm","slide":7,"text":"This shifts Apexformz from pose matching toward sport-specific movement intelligence.","textPreview":"This shifts Apexformz from pose matching toward sport-specific movement intelligence.","textChars":85,"textLines":1,"bbox":[44,552,645,58]}
-{"kind":"image","id":"im/0jylgjah","slide":7,"name":"","geometry":"roundRect","alt":"Apexformz yoga squat dynamic movement blueprint","bbox":[742,98,496,430]}
-{"kind":"notes","id":"nt/66p0ud","slide":7,"text":"[Sources]\nDynamic analyzer: apps/ai-service/app/services/dynamic/dynamic_analyzer.py.\nPhase detector: apps/ai-service/app/services/dynamic/phase_detector.py.\nKinetic chain validator: apps/ai-service/app/services/dynamic/kinetic_chain.py.\nVisual asset: apps/frontend/public/postures/yoga_squats.png."}
-{"kind":"slide","id":"sl/nfma1u","slide":8,"title":"Apexformz turns practice into retained behavior","textShapes":12}
-{"kind":"textbox","id":"sh/ihsrm90f","slide":8,"text":"Apexformz turns practice into retained behavior","textPreview":"Apexformz turns practice into retained behavior","textChars":47,"textLines":1,"bbox":[41,35,1198,88]}
-{"kind":"textbox","id":"sh/5kjahoz6","slide":8,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
-{"kind":"textbox","id":"sh/kja9ojil","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
-{"kind":"textbox","id":"sh/7m1sjehw","slide":8,"text":"The product does not stop at correction. It uses progress mechanics and small-group accountability to make training measurable, repeatable, and social.","textPreview":"The product does not stop at correction. It uses progress mechanics and small-group accountability to make training measurable, repeatabl...","textChars":151,"textLines":1,"bbox":[41,132,840,90]}
-{"kind":"shape","id":"sh/6lsrq90b","slide":8,"bbox":[41,280,581,132]}
-{"kind":"textbox","id":"sh/t8jaloz2","slide":8,"text":"XP and levels","textPreview":"XP and levels","textChars":13,"textLines":1,"bbox":[65,304,250,30]}
-{"kind":"textbox","id":"sh/sna9sjih","slide":8,"text":"Session duration and score convert into XP, levels, and visible progression.","textPreview":"Session duration and score convert into XP, levels, and visible progression.","textChars":76,"textLines":1,"bbox":[65,344,520,48]}
-{"kind":"shape","id":"sh/falsnyh8","slide":8,"bbox":[657,280,581,132]}
-{"kind":"textbox","id":"sh/u9crut0n","slide":8,"text":"Achievements","textPreview":"Achievements","textChars":12,"textLines":1,"bbox":[681,304,250,30]}
-{"kind":"textbox","id":"sh/c7mhkvep","slide":8,"text":"Milestones reward first sessions, streaks, perfect scores, and volume.","textPreview":"Milestones reward first sessions, streaks, perfect scores, and volume.","textChars":70,"textLines":1,"bbox":[681,344,520,48]}
-{"kind":"shape","id":"sh/d8vid0va","slide":8,"bbox":[41,468,581,132]}
-{"kind":"textbox","id":"sh/q54zi5wz","slide":8,"text":"Validated streaks","textPreview":"Validated streaks","textChars":17,"textLines":1,"bbox":[65,492,250,30]}
-{"kind":"textbox","id":"sh/r6d0bqdk","slide":8,"text":"Streaks count only when duration and sport-specific quality thresholds are met.","textPreview":"Streaks count only when duration and sport-specific quality thresholds are met.","textChars":79,"textLines":1,"bbox":[65,532,520,48]}
-{"kind":"shape","id":"sh/0b6hofu1","slide":8,"bbox":[657,468,581,132]}
-{"kind":"textbox","id":"sh/lcfihkvm","slide":8,"text":"Training circles","textPreview":"Training circles","textChars":16,"textLines":1,"bbox":[681,492,250,30]}
-{"kind":"textbox","id":"sh/y94zm5cv","slide":8,"text":"Shared streaks, health scores, roles, and nudges create peer accountability.","textPreview":"Shared streaks, health scores, roles, and nudges create peer accountability.","textChars":76,"textLines":1,"bbox":[681,532,520,48]}
-{"kind":"notes","id":"nt/nfma1u","slide":8,"text":"[Sources]\nGamification engine: apps/backend/src/utils/gamification.ts.\nEnhanced streak logic: apps/backend/src/services/streak.service.ts.\nCircle logic: apps/backend/src/services/circle.service.ts; apps/backend/src/routes/circles.ts.\nDashboard UI: apps/frontend/src/app/dashboard/page.tsx."}
-{"kind":"slide","id":"sl/qiljje","slide":9,"title":"The wedge is coaching between formal sessions","textShapes":10}
-{"kind":"textbox","id":"sh/psnupkf2","slide":9,"text":"The wedge is coaching between formal sessions","textPreview":"The wedge is coaching between formal sessions","textChars":45,"textLines":1,"bbox":[41,35,1198,88]}
-{"kind":"textbox","id":"sh/2pwvu5gr","slide":9,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
-{"kind":"textbox","id":"sh/3q5cnaxc","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
-{"kind":"textbox","id":"sh/cvyd0zet","slide":9,"text":"Apexformz can enter where athletes already practice alone, then expand into coach-led programs once the data trail proves improvement.","textPreview":"Apexformz can enter where athletes already practice alone, then expand into coach-led programs once the data trail proves improvement.","textChars":134,"textLines":1,"bbox":[41,132,840,92]}
-{"kind":"shape","id":"sh/dg7utkfe","slide":9,"bbox":[41,300,375,285]}
-{"kind":"textbox","id":"sh/qtgvypwn","slide":9,"text":"Individual athletes","textPreview":"Individual athletes","textChars":19,"textLines":1,"bbox":[67,332,320,42]}
-{"kind":"textbox","id":"sh/rupcrux8","slide":9,"text":"Home practice for cricket, tennis, yoga, running, boxing, and football learners who need immediate form feedback.","textPreview":"Home practice for cricket, tennis, yoga, running, boxing, and football learners who need immediate form feedback.","textChars":113,"textLines":1,"bbox":[67,398,315,126]}
-{"kind":"shape","id":"sh/szutovyp","slide":9,"bbox":[67,548,130,4]}
-{"kind":"shape","id":"sh/tk3uh0fu","slide":9,"bbox":[452,300,375,285]}
-{"kind":"textbox","id":"sh/lcnylkve","slide":9,"text":"Academies and clubs","textPreview":"Academies and clubs","textChars":19,"textLines":1,"bbox":[478,332,320,42]}
-{"kind":"textbox","id":"sh/kbehsfut","slide":9,"text":"Coach dashboards can convert session histories into between-practice assignments and measurable development plans.","textPreview":"Coach dashboards can convert session histories into between-practice assignments and measurable development plans.","textChars":114,"textLines":1,"bbox":[478,398,315,126]}
-{"kind":"shape","id":"sh/ja5gjad8","slide":9,"bbox":[478,548,130,4]}
-{"kind":"shape","id":"sh/y9wzq5cn","slide":9,"bbox":[863,300,375,285]}
-{"kind":"textbox","id":"sh/t07ypkva","slide":9,"text":"Wellness and fitness","textPreview":"Wellness and fitness","textChars":20,"textLines":1,"bbox":[889,332,320,42]}
-{"kind":"textbox","id":"sh/8zyhwzup","slide":9,"text":"Static poses, squats, planks, gait, and posture routines create an entry point outside competitive sport.","textPreview":"Static poses, squats, planks, gait, and posture routines create an entry point outside competitive sport.","textChars":105,"textLines":1,"bbox":[889,398,315,126]}
-{"kind":"shape","id":"sh/7y5gnud4","slide":9,"bbox":[889,548,130,4]}
-{"kind":"notes","id":"nt/qiljje","slide":9,"text":"[Sources]\nCustomer wedge inferred from repository-supported sport coverage, posture library, saved sessions, and circle/social mechanics.\nRepo references: apps/frontend/src/app/train/[sport]/setup/page.tsx; apps/backend/prisma/schema.prisma."}
-{"kind":"slide","id":"sl/nto8g7","slide":10,"title":"Revenue can scale from users to teams to infrastructure","textShapes":13}
-{"kind":"textbox","id":"sh/nmxkjudc","slide":10,"text":"Revenue can scale from users to teams to infrastructure","textPreview":"Revenue can scale from users to teams to infrastructure","textChars":55,"textLines":1,"bbox":[41,35,1198,88]}
-{"kind":"textbox","id":"sh/on61szex","slide":10,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
-{"kind":"textbox","id":"sh/poz2l4vi","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
-{"kind":"textbox","id":"sh/ehojmpwv","slide":10,"text":"The same coaching engine can support direct subscriptions, coach-managed deployments, and eventually biomechanics APIs or white-label integrations.","textPreview":"The same coaching engine can support direct subscriptions, coach-managed deployments, and eventually biomechanics APIs or white-label int...","textChars":147,"textLines":1,"bbox":[41,130,870,82]}
-{"kind":"shape","id":"sh/fix0fudg","slide":10,"bbox":[41,260,375,300]}
-{"kind":"textbox","id":"sh/0j61ozel","slide":10,"text":"Athlete app","textPreview":"Athlete app","textChars":11,"textLines":1,"bbox":[67,298,320,42]}
-{"kind":"textbox","id":"sh/1kf2h4v6","slide":10,"text":"Freemium onboarding, paid unlimited analysis, sport packs, and advanced training history.","textPreview":"Freemium onboarding, paid unlimited analysis, sport packs, and advanced training history.","textChars":89,"textLines":1,"bbox":[67,370,315,118]}
-{"kind":"textbox","id":"sh/yd8jy9cz","slide":10,"text":"B2C","textPreview":"B2C","textChars":3,"textLines":1,"bbox":[67,505,160,34]}
-{"kind":"shape","id":"sh/zehkredk","slide":10,"bbox":[452,260,375,300]}
-{"kind":"textbox","id":"sh/vqloraxk","slide":10,"text":"Academy toolkit","textPreview":"Academy toolkit","textChars":15,"textLines":1,"bbox":[478,298,320,42]}
-{"kind":"textbox","id":"sh/upcny5wz","slide":10,"text":"Coach seats, team rosters, assigned drills, progress review, and circle-based accountability.","textPreview":"Coach seats, team rosters, assigned drills, progress review, and circle-based accountability.","textChars":93,"textLines":1,"bbox":[478,370,315,118]}
-{"kind":"textbox","id":"sh/hsn6tkfq","slide":10,"text":"B2B","textPreview":"B2B","textChars":3,"textLines":1,"bbox":[478,505,160,34]}
-{"kind":"shape","id":"sh/wrep0fe5","slide":10,"bbox":[863,260,375,300]}
-{"kind":"textbox","id":"sh/ju5ovuxw","slide":10,"text":"Motion intelligence API","textPreview":"Motion intelligence API","textChars":23,"textLines":1,"bbox":[889,298,320,42]}
-{"kind":"textbox","id":"sh/itw72pwb","slide":10,"text":"Scoring, pose blueprint, dynamic phase, and kinetic-chain services for partners.","textPreview":"Scoring, pose blueprint, dynamic phase, and kinetic-chain services for partners.","textChars":80,"textLines":1,"bbox":[889,370,315,118]}
-{"kind":"textbox","id":"sh/5gn6xkfm","slide":10,"text":"Platform","textPreview":"Platform","textChars":8,"textLines":1,"bbox":[889,505,160,34]}
-{"kind":"notes","id":"nt/nto8g7","slide":10,"text":"[Sources]\nBusiness model is a recommended pitch framing inferred from the implemented user app, session data model, circle model, and AI service architecture.\nNo external pricing or revenue claims are used."}
-{"kind":"slide","id":"sl/rnrlyi","slide":11,"title":"APEXFORMZ","textShapes":13}
-{"kind":"textbox","id":"sh/65472hcn","slide":11,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,40,260,50]}
-{"kind":"textbox","id":"sh/t8v6dwbe","slide":11,"text":"Funding now turns the MVP into a defensible coaching platform","textPreview":"Funding now turns the MVP into a defensible coaching platform","textChars":61,"textLines":1,"bbox":[41,172,760,155]}
-{"kind":"textbox","id":"sh/s7mp4rut","slide":11,"text":"Near-term capital should harden reliability, validate paid demand with pilots, and expand the movement intelligence library.","textPreview":"Near-term capital should harden reliability, validate paid demand with pilots, and expand the movement intelligence library.","textChars":124,"textLines":1,"bbox":[44,370,665,72]}
-{"kind":"shape","id":"sh/j2do7mtc","slide":11,"bbox":[820,118,418,82]}
-{"kind":"textbox","id":"sh/yhknyhcr","slide":11,"text":"Product validation","textPreview":"Product validation","textChars":18,"textLines":1,"bbox":[844,134,210,28]}
-{"kind":"textbox","id":"sh/54v69wbi","slide":11,"text":"Run structured pilots with academies and committed individual athletes.","textPreview":"Run structured pilots with academies and committed individual athletes.","textChars":71,"textLines":1,"bbox":[844,165,350,24]}
-{"kind":"shape","id":"sh/k3m50rux","slide":11,"bbox":[820,234,418,82]}
-{"kind":"textbox","id":"sh/beto32t0","slide":11,"text":"Technical depth","textPreview":"Technical depth","textChars":15,"textLines":1,"bbox":[844,250,210,28]}
-{"kind":"textbox","id":"sh/adknuxcv","slide":11,"text":"Hire computer-vision, biomechanics, and product engineering capacity.","textPreview":"Hire computer-vision, biomechanics, and product engineering capacity.","textChars":69,"textLines":1,"bbox":[844,281,350,24]}
-{"kind":"shape","id":"sh/8nu147ed","slide":11,"bbox":[820,350,418,82]}
-{"kind":"textbox","id":"sh/9o3idcvy","slide":11,"text":"Data advantage","textPreview":"Data advantage","textChars":14,"textLines":1,"bbox":[844,366,210,28]}
-{"kind":"textbox","id":"sh/mlsj2xw7","slide":11,"text":"Build consented movement datasets and coach-reviewed scoring standards.","textPreview":"Build consented movement datasets and coach-reviewed scoring standards.","textChars":71,"textLines":1,"bbox":[844,397,350,24]}
-{"kind":"shape","id":"sh/7m10b2ds","slide":11,"bbox":[820,466,418,82]}
-{"kind":"textbox","id":"sh/kja10ne1","slide":11,"text":"Commercial launch","textPreview":"Commercial launch","textChars":17,"textLines":1,"bbox":[844,482,210,28]}
-{"kind":"textbox","id":"sh/lkji9svm","slide":11,"text":"Package athlete, academy, and partner offerings with clear retention metrics.","textPreview":"Package athlete, academy, and partner offerings with clear retention metrics.","textChars":77,"textLines":1,"bbox":[844,513,350,24]}
-{"kind":"shape","id":"sh/yhsjyxwv","slide":11,"bbox":[44,504,330,4]}
-{"kind":"textbox","id":"sh/zi1072dg","slide":11,"text":"Seeking seed capital and pilot partners","textPreview":"Seeking seed capital and pilot partners","textChars":39,"textLines":1,"bbox":[44,532,470,40]}
-{"kind":"textbox","id":"sh/4fe1crul","slide":11,"text":"Apexformz | AI technique coaching","textPreview":"Apexformz | AI technique coaching","textChars":33,"textLines":1,"bbox":[44,640,400,28]}
-{"kind":"notes","id":"nt/rnrlyi","slide":11,"text":"[Sources]\nRoadmap and ask are pitch recommendations based on current MVP capabilities observed in the repository.\nNo funding amount, revenue, or user traction is asserted because the repository does not contain those metrics."}
+{"kind":"deck","id":"pr/76xe1l","name":"Deck"}
+{"kind":"layout","layoutId":"87e1094e-f898-4026-b8c9-096855a439d1","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"ea6910c1-956b-468e-8bc1-888a153af0a1","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/61xtsa","slide":1,"title":"APEXFORMZ","textShapes":4}
+{"kind":"textbox","id":"sh/xkfmh4ne","slide":1,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,40,360,52]}
+{"kind":"textbox","id":"sh/ax43694n","slide":1,"text":"AI form coaching that works wherever an athlete trains","textPreview":"AI form coaching that works wherever an athlete trains","textChars":54,"textLines":1,"bbox":[41,178,615,250]}
+{"kind":"textbox","id":"sh/bid4fe58","slide":1,"text":"A startup pitch for browser-based technique intelligence, real-time feedback, and habit-forming practice.","textPreview":"A startup pitch for browser-based technique intelligence, real-time feedback, and habit-forming practice.","textChars":105,"textLines":1,"bbox":[44,506,570,90]}
+{"kind":"shape","id":"sh/ovml4zmh","slide":1,"bbox":[44,622,310,4]}
+{"kind":"textbox","id":"sh/9wvmd4n2","slide":1,"text":"Pitch deck | July 2026","textPreview":"Pitch deck | July 2026","textChars":22,"textLines":1,"bbox":[44,642,280,28]}
+{"kind":"shape","id":"sh/mt432p4b","slide":1,"bbox":[700,42,538,588]}
+{"kind":"image","id":"im/udkvyxsb","slide":1,"name":"","geometry":"roundRect","alt":"Apexformz cricket technique blueprint","bbox":[700,42,538,588]}
+{"kind":"notes","id":"nt/61xtsa","slide":1,"text":"[Sources]\nProject README describes SmartCoach as an AI-powered sports training platform with real-time pose estimation.\nVisual asset: apps/frontend/public/postures/cricket_cover_drive.png."}
+{"kind":"slide","id":"sl/bbjdvs","slide":2,"title":"Technique coaching still happens too late for most athletes","textShapes":13}
+{"kind":"textbox","id":"sh/x4jetcz2","slide":2,"text":"Technique coaching still happens too late for most athletes","textPreview":"Technique coaching still happens too late for most athletes","textChars":59,"textLines":1,"bbox":[41,35,1198,88]}
+{"kind":"textbox","id":"sh/a18vyhgb","slide":2,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
+{"kind":"textbox","id":"sh/b21wrmhw","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
+{"kind":"textbox","id":"sh/k7ax4ryd","slide":2,"text":"Athletes practice far more often than they are observed by a trained coach. The result is delayed correction, uneven quality, and weak follow-through between formal sessions.","textPreview":"Athletes practice far more often than they are observed by a trained coach. The result is delayed correction, uneven quality, and weak fo...","textChars":174,"textLines":1,"bbox":[41,150,740,120]}
+{"kind":"shape","id":"sh/l8jexwzy","slide":2,"bbox":[41,330,355,210]}
+{"kind":"textbox","id":"sh/y5sf2hgn","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[61,350,55,36]}
+{"kind":"textbox","id":"sh/j61wvmh8","slide":2,"text":"Access gap","textPreview":"Access gap","textChars":10,"textLines":1,"bbox":[121,352,255,34]}
+{"kind":"textbox","id":"sh/0bqdsny9","slide":2,"text":"Quality coaching is scarce, scheduled, and expensive for everyday athletes.","textPreview":"Quality coaching is scarce, scheduled, and expensive for everyday athletes.","textChars":75,"textLines":1,"bbox":[61,405,315,115]}
+{"kind":"shape","id":"sh/1czelszu","slide":2,"bbox":[462,330,355,210]}
+{"kind":"textbox","id":"sh/lc7yxwj2","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[482,350,55,36]}
+{"kind":"textbox","id":"sh/0byxob2h","slide":2,"text":"Feedback gap","textPreview":"Feedback gap","textChars":12,"textLines":1,"bbox":[542,352,255,34]}
+{"kind":"textbox","id":"sh/zapgv61w","slide":2,"text":"Most form errors are noticed after the rep, not at the moment they happen.","textPreview":"Most form errors are noticed after the rep, not at the moment they happen.","textChars":74,"textLines":1,"bbox":[482,405,315,115]}
+{"kind":"shape","id":"sh/y9gfm1kb","slide":2,"bbox":[883,330,355,210]}
+{"kind":"textbox","id":"sh/9gry1gjy","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[903,350,55,36]}
+{"kind":"textbox","id":"sh/8fyxsb2d","slide":2,"text":"Adherence gap","textPreview":"Adherence gap","textChars":13,"textLines":1,"bbox":[963,352,255,34]}
+{"kind":"textbox","id":"sh/nepgz61s","slide":2,"text":"Progress is hard to sustain when practice does not feel measurable.","textPreview":"Progress is hard to sustain when practice does not feel measurable.","textChars":67,"textLines":1,"bbox":[903,405,315,115]}
+{"kind":"notes","id":"nt/bbjdvs","slide":2,"text":"[Sources]\nProblem framing inferred from implemented product capabilities: real-time analysis, feedback, saved sessions, XP, streaks, and social circles.\nPrimary repo references: README.md; apps/frontend/src/app/page.tsx; apps/backend/prisma/schema.prisma."}
+{"kind":"slide","id":"sl/30m1c4","slide":3,"title":"Apexformz turns a phone camera into a live form coach","textShapes":16}
+{"kind":"textbox","id":"sh/sjq9obit","slide":3,"text":"Apexformz turns a phone camera into a live form coach","textPreview":"Apexformz turns a phone camera into a live form coach","textChars":53,"textLines":1,"bbox":[41,35,1198,88]}
+{"kind":"textbox","id":"sh/7ix8f618","slide":3,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
+{"kind":"textbox","id":"sh/6horm103","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
+{"kind":"textbox","id":"sh/hozqlgzq","slide":3,"text":"The product converts ordinary video into coachable posture data, then returns concise corrections while the athlete is still moving.","textPreview":"The product converts ordinary video into coachable posture data, then returns concise corrections while the athlete is still moving.","textChars":132,"textLines":1,"bbox":[41,142,760,82]}
+{"kind":"shape","id":"sh/gnq9sbi5","slide":3,"bbox":[41,300,260,210]}
+{"kind":"textbox","id":"sh/fmh8j6hk","slide":3,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[61,320,55,36]}
+{"kind":"textbox","id":"sh/ul8rq10z","slide":3,"text":"Capture","textPreview":"Capture","textChars":7,"textLines":1,"bbox":[121,322,160,34]}
+{"kind":"textbox","id":"sh/psjap0zm","slide":3,"text":"Browser AI reads pose, hand, and face landmarks on the athlete device.","textPreview":"Browser AI reads pose, hand, and face landmarks on the athlete device.","textChars":70,"textLines":1,"bbox":[61,375,220,115]}
+{"kind":"shape","id":"sh/4ra9wvi1","slide":3,"bbox":[339,300,260,210]}
+{"kind":"textbox","id":"sh/mtgfidsn","slide":3,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[359,320,55,36]}
+{"kind":"textbox","id":"sh/nupgri98","slide":3,"text":"Analyze","textPreview":"Analyze","textChars":7,"textLines":1,"bbox":[419,322,160,34]}
+{"kind":"textbox","id":"sh/8vyxknat","slide":3,"text":"A rules engine compares joint angles, phase timing, and kinetic sequence.","textPreview":"A rules engine compares joint angles, phase timing, and kinetic sequence.","textChars":73,"textLines":1,"bbox":[359,375,220,115]}
+{"kind":"shape","id":"sh/9w7ytsre","slide":3,"bbox":[637,300,260,210]}
+{"kind":"textbox","id":"sh/axgfmd8z","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[657,320,55,36]}
+{"kind":"textbox","id":"sh/vypgvi9k","slide":3,"text":"Coach","textPreview":"Coach","textChars":5,"textLines":1,"bbox":[717,322,160,34]}
+{"kind":"textbox","id":"sh/wzyxonqp","slide":3,"text":"The app shows score, priority issues, and voice guidance without waiting for a trainer.","textPreview":"The app shows score, priority issues, and voice guidance without waiting for a trainer.","textChars":87,"textLines":1,"bbox":[657,375,220,115]}
+{"kind":"shape","id":"sh/x07yxsra","slide":3,"bbox":[935,300,260,210]}
+{"kind":"textbox","id":"sh/q1cfatsf","slide":3,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[955,320,55,36]}
+{"kind":"textbox","id":"sh/b25wjy90","slide":3,"text":"Retain","textPreview":"Retain","textChars":6,"textLines":1,"bbox":[1015,322,160,34]}
+{"kind":"textbox","id":"sh/fuh4vqlg","slide":3,"text":"Sessions become progress, XP, streaks, achievements, and circle motivation.","textPreview":"Sessions become progress, XP, streaks, achievements, and circle motivation.","textChars":75,"textLines":1,"bbox":[955,375,220,115]}
+{"kind":"notes","id":"nt/30m1c4","slide":3,"text":"[Sources]\nFrontend training loop: apps/frontend/src/app/train/[sport]/page.tsx.\nPose capture: apps/frontend/src/hooks/useHolisticDetection.ts.\nVoice coaching: apps/frontend/src/hooks/useVoiceCoaching.ts.\nBackend session persistence: apps/backend/src/routes/sessions.ts."}
+{"kind":"slide","id":"sl/24dcu2","slide":4,"title":"The MVP already covers a multi-sport coaching surface","textShapes":10}
+{"kind":"textbox","id":"sh/6pkn2tcv","slide":4,"text":"The MVP already covers a multi-sport coaching surface","textPreview":"The MVP already covers a multi-sport coaching surface","textChars":53,"textLines":1,"bbox":[41,35,1198,88]}
+{"kind":"textbox","id":"sh/tcb6x8bm","slide":4,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
+{"kind":"textbox","id":"sh/sb2543u1","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
+{"kind":"textbox","id":"sh/jm9oretk","slide":4,"text":"Apexformz is not a single-pose demo. The repository contains a multi-service product, sport-specific posture libraries, and dynamic movement definitions.","textPreview":"Apexformz is not a single-pose demo. The repository contains a multi-service product, sport-specific posture libraries, and dynamic movem...","textChars":153,"textLines":1,"bbox":[41,127,840,90]}
+{"kind":"shape","id":"sh/il0nytcz","slide":4,"bbox":[41,300,360,245]}
+{"kind":"textbox","id":"sh/5ob6tobq","slide":4,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[69,340,304,78]}
+{"kind":"textbox","id":"sh/4n250ju5","slide":4,"text":"sports supported: cricket, tennis, yoga, running, boxing, and football","textPreview":"sports supported: cricket, tennis, yoga, running, boxing, and football","textChars":70,"textLines":1,"bbox":[69,430,304,68]}
+{"kind":"shape","id":"sh/vi94net8","slide":4,"bbox":[460,300,360,245]}
+{"kind":"textbox","id":"sh/ah0nu9cn","slide":4,"text":"60","textPreview":"60","textChars":2,"textLines":1,"bbox":[488,340,304,78]}
+{"kind":"textbox","id":"sh/w325k7y5","slide":4,"text":"static pose blueprints for frame-by-frame form comparison","textPreview":"static pose blueprints for frame-by-frame form comparison","textChars":57,"textLines":1,"bbox":[488,430,304,68]}
+{"kind":"shape","id":"sh/h4bmtczq","slide":4,"bbox":[879,300,360,245]}
+{"kind":"textbox","id":"sh/u10nixgf","slide":4,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[907,340,304,78]}
+{"kind":"textbox","id":"sh/v294r2hk","slide":4,"text":"dynamic movement blueprints for multi-phase skill analysis","textPreview":"dynamic movement blueprints for multi-phase skill analysis","textChars":58,"textLines":1,"bbox":[907,430,304,68]}
+{"kind":"notes","id":"nt/24dcu2","slide":4,"text":"[Sources]\nCounts computed from apps/ai-service/app/data/reference_poses.json and apps/ai-service/app/data/reference_movements.json.\nSport selection UI: apps/frontend/src/app/dashboard/page.tsx and apps/frontend/src/app/train/[sport]/setup/page.tsx."}
+{"kind":"slide","id":"sl/ilqup2","slide":5,"title":"The athlete sees scored correction during the rep","textShapes":10}
+{"kind":"textbox","id":"sh/p87y5w3y","slide":5,"text":"The athlete sees scored correction during the rep","textPreview":"The athlete sees scored correction during the rep","textChars":49,"textLines":1,"bbox":[41,35,1198,88]}
+{"kind":"textbox","id":"sh/25gzuhkn","slide":5,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
+{"kind":"textbox","id":"sh/n6pg3ml8","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
+{"kind":"textbox","id":"sh/0jehs7mh","slide":5,"text":"The live training page combines camera view, skeleton overlay, score ring, high-priority corrections, target posture, and voice prompts into one coaching loop.","textPreview":"The live training page combines camera view, skeleton overlay, score ring, high-priority corrections, target posture, and voice prompts i...","textChars":159,"textLines":1,"bbox":[41,150,560,150]}
+{"kind":"shape","id":"sh/ehwzqh4b","slide":5,"bbox":[41,350,260,155]}
+{"kind":"textbox","id":"sh/fi5gz2lw","slide":5,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[61,370,55,36]}
+{"kind":"textbox","id":"sh/sfexo7ml","slide":5,"text":"Prioritized issues","textPreview":"Prioritized issues","textChars":18,"textLines":1,"bbox":[121,372,160,34]}
+{"kind":"textbox","id":"sh/dgnyxc36","slide":5,"text":"Only medium and high severity corrections are surfaced to avoid overwhelming the athlete.","textPreview":"Only medium and high severity corrections are surfaced to avoid overwhelming the athlete.","textChars":89,"textLines":1,"bbox":[61,425,220,60]}
+{"kind":"shape","id":"sh/l47itc7e","slide":5,"bbox":[332,350,260,155]}
+{"kind":"textbox","id":"sh/k3y1k7qt","slide":5,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[352,370,55,36]}
+{"kind":"textbox","id":"sh/j250r2p8","slide":5,"text":"Voice cueing","textPreview":"Voice cueing","textChars":12,"textLines":1,"bbox":[412,372,160,34]}
+{"kind":"textbox","id":"sh/y1wjix8n","slide":5,"text":"Speech guidance is throttled and sequential so the user hears one actionable fix at a time.","textPreview":"Speech guidance is throttled and sequential so the user hears one actionable fix at a time.","textChars":91,"textLines":1,"bbox":[352,425,220,60]}
+{"kind":"image","id":"im/0badgfip","slide":5,"name":"","geometry":"roundRect","alt":"Apexformz tennis serve technical blueprint","bbox":[740,132,498,498]}
+{"kind":"notes","id":"nt/ilqup2","slide":5,"text":"[Sources]\nLive session UI: apps/frontend/src/app/train/[sport]/page.tsx.\nFeedback UI: apps/frontend/src/components/ActionableFeedback.tsx.\nVoice logic: apps/frontend/src/hooks/useVoiceCoaching.ts.\nVisual asset: apps/frontend/public/postures/tennis_serve_trophy.png."}
+{"kind":"slide","id":"sl/lwn0pr","slide":6,"title":"The architecture separates fast perception from coaching logic","textShapes":15}
+{"kind":"textbox","id":"sh/l0ned4vq","slide":6,"text":"The architecture separates fast perception from coaching logic","textPreview":"The architecture separates fast perception from coaching logic","textChars":62,"textLines":1,"bbox":[41,35,1198,88]}
+{"kind":"textbox","id":"sh/ydcfipcz","slide":6,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
+{"kind":"textbox","id":"sh/zelwbudk","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
+{"kind":"textbox","id":"sh/83exozu1","slide":6,"text":"Video frames stay local. The system streams abstract keypoints through a WebSocket relay to a dedicated AI service, then persists sessions and frame evidence for progress tracking.","textPreview":"Video frames stay local. The system streams abstract keypoints through a WebSocket relay to a dedicated AI service, then persists session...","textChars":180,"textLines":1,"bbox":[41,132,790,96]}
+{"kind":"shape","id":"sh/94nyh4vm","slide":6,"bbox":[41,305,250,205]}
+{"kind":"textbox","id":"sh/m1wfm9cb","slide":6,"text":"Browser","textPreview":"Browser","textChars":7,"textLines":1,"bbox":[61,329,210,36]}
+{"kind":"textbox","id":"sh/n25gfedg","slide":6,"text":"MediaPipe Holistic detects pose, hands, and face; frames are downscaled for speed.","textPreview":"MediaPipe Holistic detects pose, hands, and face; frames are downscaled for speed.","textChars":82,"textLines":1,"bbox":[61,381,210,100]}
+{"kind":"shape","id":"sh/w7yxsjud","slide":6,"bbox":[299,406,34,3]}
+{"kind":"textbox","id":"sh/x87ylovy","slide":6,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[323,395,20,30]}
+{"kind":"shape","id":"sh/p4fitwra","slide":6,"bbox":[341,305,250,205]}
+{"kind":"textbox","id":"sh/o36h0rap","slide":6,"text":"Relay","textPreview":"Relay","textChars":5,"textLines":1,"bbox":[361,329,210,36]}
+{"kind":"textbox","id":"sh/32x0r694","slide":6,"text":"Socket.IO authenticates sessions and forwards keypoints to the AI service.","textPreview":"Socket.IO authenticates sessions and forwards keypoints to the AI service.","textChars":74,"textLines":1,"bbox":[361,381,210,100]}
+{"kind":"shape","id":"sh/214zy1sj","slide":6,"bbox":[599,406,34,3]}
+{"kind":"textbox","id":"sh/dsfixgr6","slide":6,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[623,395,20,30]}
+{"kind":"shape","id":"sh/cr6hobal","slide":6,"bbox":[641,305,250,205]}
+{"kind":"textbox","id":"sh/b6x0v690","slide":6,"text":"AI service","textPreview":"AI service","textChars":10,"textLines":1,"bbox":[661,329,210,36]}
+{"kind":"textbox","id":"sh/q5ozm1sv","slide":6,"text":"FastAPI analyzers return score, severity, joint angles, and coaching issues.","textPreview":"FastAPI analyzers return score, severity, joint angles, and coaching issues.","textChars":76,"textLines":1,"bbox":[661,381,210,100]}
+{"kind":"shape","id":"sh/twvilcr2","slide":6,"bbox":[899,406,34,3]}
+{"kind":"textbox","id":"sh/svmhs7ah","slide":6,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[923,395,20,30]}
+{"kind":"shape","id":"sh/kf6h8rid","slide":6,"bbox":[941,305,250,205]}
+{"kind":"textbox","id":"sh/5gzi1wzy","slide":6,"text":"Database","textPreview":"Database","textChars":8,"textLines":1,"bbox":[961,329,210,36]}
+{"kind":"textbox","id":"sh/idoz6h07","slide":6,"text":"PostgreSQL stores sessions, frames, XP, streaks, circles, and leaderboards.","textPreview":"PostgreSQL stores sessions, frames, XP, streaks, circles, and leaderboards.","textChars":75,"textLines":1,"bbox":[961,381,210,100]}
+{"kind":"notes","id":"nt/lwn0pr","slide":6,"text":"[Sources]\nArchitecture summary: README.md and docker-compose.yml.\nBrowser perception: apps/frontend/src/hooks/useHolisticDetection.ts.\nWebSocket relay: apps/backend/src/websocket/sessionRelay.ts.\nAI service: apps/ai-service/main.py and apps/ai-service/app/routes/analysis.py.\nPersistence model: apps/backend/prisma/schema.prisma."}
+{"kind":"slide","id":"sl/pdn3yx","slide":7,"title":"Dynamic analysis is the start of the moat","textShapes":14}
+{"kind":"textbox","id":"sh/k3ilwfu5","slide":7,"text":"Dynamic analysis is the start of the moat","textPreview":"Dynamic analysis is the start of the moat","textChars":41,"textLines":1,"bbox":[41,35,1198,88]}
+{"kind":"textbox","id":"sh/z294nudk","slide":7,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
+{"kind":"textbox","id":"sh/y103upcz","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
+{"kind":"textbox","id":"sh/9sbmt4bm","slide":7,"text":"Static angle checks tell athletes what a position looks like. Dynamic analysis evaluates whether the movement sequence is actually being performed well.","textPreview":"Static angle checks tell athletes what a position looks like. Dynamic analysis evaluates whether the movement sequence is actually being ...","textChars":152,"textLines":1,"bbox":[41,130,640,92]}
+{"kind":"shape","id":"sh/76t4rutw","slide":7,"bbox":[41,290,205,180]}
+{"kind":"textbox","id":"sh/m5k3ypcb","slide":7,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[61,310,55,36]}
+{"kind":"textbox","id":"sh/hwvmx4by","slide":7,"text":"Phase detection","textPreview":"Phase detection","textChars":15,"textLines":1,"bbox":[121,312,105,34]}
+{"kind":"textbox","id":"sh/wv2l4zud","slide":7,"text":"A finite-state machine tracks stance, load, impact, follow-through, or cycle stages.","textPreview":"A finite-state machine tracks stance, load, impact, follow-through, or cycle stages.","textChars":84,"textLines":1,"bbox":[61,365,165,85]}
+{"kind":"shape","id":"sh/2hszm9sn","slide":7,"bbox":[268,290,205,180]}
+{"kind":"textbox","id":"sh/3i10vu98","slide":7,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[288,310,55,36]}
+{"kind":"textbox","id":"sh/4juhozat","slide":7,"text":"Kinetic chain","textPreview":"Kinetic chain","textChars":13,"textLines":1,"bbox":[348,312,105,34]}
+{"kind":"textbox","id":"sh/pk3ix4re","slide":7,"text":"The engine checks whether hips, shoulders, and arms fire in the expected order.","textPreview":"The engine checks whether hips, shoulders, and arms fire in the expected order.","textChars":79,"textLines":1,"bbox":[288,365,165,85]}
+{"kind":"shape","id":"sh/qlczq9sz","slide":7,"bbox":[495,290,205,180]}
+{"kind":"textbox","id":"sh/rml0ze9k","slide":7,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[515,310,55,36]}
+{"kind":"textbox","id":"sh/cnuhsja5","slide":7,"text":"Fluidity score","textPreview":"Fluidity score","textChars":14,"textLines":1,"bbox":[575,312,105,34]}
+{"kind":"textbox","id":"sh/do3i1ora","slide":7,"text":"Motion smoothness is estimated from changing angular velocities over time.","textPreview":"Motion smoothness is estimated from changing angular velocities over time.","textChars":74,"textLines":1,"bbox":[515,365,165,85]}
+{"kind":"textbox","id":"sh/6p8zupsv","slide":7,"text":"This shifts Apexformz from pose matching toward sport-specific movement intelligence.","textPreview":"This shifts Apexformz from pose matching toward sport-specific movement intelligence.","textChars":85,"textLines":1,"bbox":[44,552,645,58]}
+{"kind":"image","id":"im/x07y5k3y","slide":7,"name":"","geometry":"roundRect","alt":"Apexformz yoga squat dynamic movement blueprint","bbox":[742,98,496,430]}
+{"kind":"notes","id":"nt/pdn3yx","slide":7,"text":"[Sources]\nDynamic analyzer: apps/ai-service/app/services/dynamic/dynamic_analyzer.py.\nPhase detector: apps/ai-service/app/services/dynamic/phase_detector.py.\nKinetic chain validator: apps/ai-service/app/services/dynamic/kinetic_chain.py.\nVisual asset: apps/frontend/public/postures/yoga_squats.png."}
+{"kind":"slide","id":"sl/msi3lz","slide":8,"title":"Apexformz turns practice into retained behavior","textShapes":12}
+{"kind":"textbox","id":"sh/8japcbe5","slide":8,"text":"Apexformz turns practice into retained behavior","textPreview":"Apexformz turns practice into retained behavior","textChars":47,"textLines":1,"bbox":[41,35,1198,88]}
+{"kind":"textbox","id":"sh/ni1oj6dk","slide":8,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
+{"kind":"textbox","id":"sh/mhs7a1wz","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
+{"kind":"textbox","id":"sh/x836pgvm","slide":8,"text":"The product does not stop at correction. It uses progress mechanics and small-group accountability to make training measurable, repeatable, and social.","textPreview":"The product does not stop at correction. It uses progress mechanics and small-group accountability to make training measurable, repeatabl...","textChars":151,"textLines":1,"bbox":[41,132,840,90]}
+{"kind":"shape","id":"sh/w7upgve1","slide":8,"bbox":[41,280,581,132]}
+{"kind":"textbox","id":"sh/v6lonqdg","slide":8,"text":"XP and levels","textPreview":"XP and levels","textChars":13,"textLines":1,"bbox":[65,304,250,30]}
+{"kind":"textbox","id":"sh/a5s7elwv","slide":8,"text":"Session duration and score convert into XP, levels, and visible progression.","textPreview":"Session duration and score convert into XP, levels, and visible progression.","textChars":76,"textLines":1,"bbox":[65,344,520,48]}
+{"kind":"shape","id":"sh/dcz6dwvi","slide":8,"bbox":[657,280,581,132]}
+{"kind":"textbox","id":"sh/cbq5krex","slide":8,"text":"Achievements","textPreview":"Achievements","textChars":12,"textLines":1,"bbox":[681,304,250,30]}
+{"kind":"textbox","id":"sh/qpgfe5sv","slide":8,"text":"Milestones reward first sessions, streaks, perfect scores, and volume.","textPreview":"Milestones reward first sessions, streaks, perfect scores, and volume.","textChars":70,"textLines":1,"bbox":[681,344,520,48]}
+{"kind":"shape","id":"sh/rqpgna9g","slide":8,"bbox":[41,468,581,132]}
+{"kind":"textbox","id":"sh/cbyxgfa1","slide":8,"text":"Validated streaks","textPreview":"Validated streaks","textChars":17,"textLines":1,"bbox":[65,492,250,30]}
+{"kind":"textbox","id":"sh/dcryp0r6","slide":8,"text":"Streaks count only when duration and sport-specific quality thresholds are met.","textPreview":"Streaks count only when duration and sport-specific quality thresholds are met.","textChars":79,"textLines":1,"bbox":[65,532,520,48]}
+{"kind":"shape","id":"sh/ed0fi5sr","slide":8,"bbox":[657,468,581,132]}
+{"kind":"textbox","id":"sh/ze9gra9c","slide":8,"text":"Training circles","textPreview":"Training circles","textChars":16,"textLines":1,"bbox":[681,492,250,30]}
+{"kind":"textbox","id":"sh/0fixkfax","slide":8,"text":"Shared streaks, health scores, roles, and nudges create peer accountability.","textPreview":"Shared streaks, health scores, roles, and nudges create peer accountability.","textChars":76,"textLines":1,"bbox":[681,532,520,48]}
+{"kind":"notes","id":"nt/msi3lz","slide":8,"text":"[Sources]\nGamification engine: apps/backend/src/utils/gamification.ts.\nEnhanced streak logic: apps/backend/src/services/streak.service.ts.\nCircle logic: apps/backend/src/services/circle.service.ts; apps/backend/src/routes/circles.ts.\nDashboard UI: apps/frontend/src/app/dashboard/page.tsx."}
+{"kind":"slide","id":"sl/1x1vk1","slide":9,"title":"The wedge is coaching between formal sessions","textShapes":10}
+{"kind":"textbox","id":"sh/cryhk7yp","slide":9,"text":"The wedge is coaching between formal sessions","textPreview":"The wedge is coaching between formal sessions","textChars":45,"textLines":1,"bbox":[41,35,1198,88]}
+{"kind":"textbox","id":"sh/rqpgr2x4","slide":9,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
+{"kind":"textbox","id":"sh/qpgzixgj","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
+{"kind":"textbox","id":"sh/1grixcf6","slide":9,"text":"Apexformz can enter where athletes already practice alone, then expand into coach-led programs once the data trail proves improvement.","textPreview":"Apexformz can enter where athletes already practice alone, then expand into coach-led programs once the data trail proves improvement.","textChars":134,"textLines":1,"bbox":[41,132,840,92]}
+{"kind":"shape","id":"sh/0fiho7el","slide":9,"bbox":[41,300,375,285]}
+{"kind":"textbox","id":"sh/ze90v2x0","slide":9,"text":"Individual athletes","textPreview":"Individual athletes","textChars":19,"textLines":1,"bbox":[67,332,320,42]}
+{"kind":"textbox","id":"sh/edgzmhgv","slide":9,"text":"Home practice for cricket, tennis, yoga, running, boxing, and football learners who need immediate form feedback.","textPreview":"Home practice for cricket, tennis, yoga, running, boxing, and football learners who need immediate form feedback.","textChars":113,"textLines":1,"bbox":[67,398,315,126]}
+{"kind":"shape","id":"sh/hknylsf2","slide":9,"bbox":[67,548,130,4]}
+{"kind":"shape","id":"sh/gjehcnyh","slide":9,"bbox":[452,300,375,285]}
+{"kind":"textbox","id":"sh/adgjqdk7","slide":9,"text":"Academies and clubs","textPreview":"Academies and clubs","textChars":19,"textLines":1,"bbox":[478,332,320,42]}
+{"kind":"textbox","id":"sh/ve9kzyls","slide":9,"text":"Coach dashboards can convert session histories into between-practice assignments and measurable development plans.","textPreview":"Coach dashboards can convert session histories into between-practice assignments and measurable development plans.","textChars":114,"textLines":1,"bbox":[478,398,315,126]}
+{"kind":"shape","id":"sh/wzi1s32x","slide":9,"bbox":[478,548,130,4]}
+{"kind":"shape","id":"sh/x0r2183i","slide":9,"bbox":[863,300,375,285]}
+{"kind":"textbox","id":"sh/i10judk3","slide":9,"text":"Wellness and fitness","textPreview":"Wellness and fitness","textChars":20,"textLines":1,"bbox":[889,332,320,42]}
+{"kind":"textbox","id":"sh/j29k3ilo","slide":9,"text":"Static poses, squats, planks, gait, and posture routines create an entry point outside competitive sport.","textPreview":"Static poses, squats, planks, gait, and posture routines create an entry point outside competitive sport.","textChars":105,"textLines":1,"bbox":[889,398,315,126]}
+{"kind":"shape","id":"sh/k3i1wn29","slide":9,"bbox":[889,548,130,4]}
+{"kind":"notes","id":"nt/1x1vk1","slide":9,"text":"[Sources]\nCustomer wedge inferred from repository-supported sport coverage, posture library, saved sessions, and circle/social mechanics.\nRepo references: apps/frontend/src/app/train/[sport]/setup/page.tsx; apps/backend/prisma/schema.prisma."}
+{"kind":"slide","id":"sl/yf8qzg","slide":10,"title":"Revenue can scale from users to teams to infrastructure","textShapes":13}
+{"kind":"textbox","id":"sh/radkvqd4","slide":10,"text":"Revenue can scale from users to teams to infrastructure","textPreview":"Revenue can scale from users to teams to infrastructure","textChars":55,"textLines":1,"bbox":[41,35,1198,88]}
+{"kind":"textbox","id":"sh/cvmlovep","slide":10,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,662,180,22]}
+{"kind":"textbox","id":"sh/dwv2x0va","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1178,662,60,22]}
+{"kind":"textbox","id":"sh/ex43q5wv","slide":10,"text":"The same coaching engine can support direct subscriptions, coach-managed deployments, and eventually biomechanics APIs or white-label integrations.","textPreview":"The same coaching engine can support direct subscriptions, coach-managed deployments, and eventually biomechanics APIs or white-label int...","textChars":147,"textLines":1,"bbox":[41,130,870,82]}
+{"kind":"shape","id":"sh/zyxkzadg","slide":10,"bbox":[41,260,375,300]}
+{"kind":"textbox","id":"sh/0z6lsve1","slide":10,"text":"Athlete app","textPreview":"Athlete app","textChars":11,"textLines":1,"bbox":[67,298,320,42]}
+{"kind":"textbox","id":"sh/10f210v6","slide":10,"text":"Freemium onboarding, paid unlimited analysis, sport packs, and advanced training history.","textPreview":"Freemium onboarding, paid unlimited analysis, sport packs, and advanced training history.","textChars":89,"textLines":1,"bbox":[67,370,315,118]}
+{"kind":"textbox","id":"sh/u1kje1wr","slide":10,"text":"B2C","textPreview":"B2C","textChars":3,"textLines":1,"bbox":[67,505,160,34]}
+{"kind":"shape","id":"sh/f2tkn6xw","slide":10,"bbox":[452,260,375,300]}
+{"kind":"textbox","id":"sh/ve18r61k","slide":10,"text":"Academy toolkit","textPreview":"Academy toolkit","textChars":15,"textLines":1,"bbox":[478,298,320,42]}
+{"kind":"textbox","id":"sh/udsryl0z","slide":10,"text":"Coach seats, team rosters, assigned drills, progress review, and circle-based accountability.","textPreview":"Coach seats, team rosters, assigned drills, progress review, and circle-based accountability.","textChars":93,"textLines":1,"bbox":[478,370,315,118]}
+{"kind":"textbox","id":"sh/hg3qtgjq","slide":10,"text":"B2B","textPreview":"B2B","textChars":3,"textLines":1,"bbox":[478,505,160,34]}
+{"kind":"shape","id":"sh/wfu90bi5","slide":10,"bbox":[863,260,375,300]}
+{"kind":"textbox","id":"sh/7a18n618","slide":10,"text":"Motion intelligence API","textPreview":"Motion intelligence API","textChars":23,"textLines":1,"bbox":[889,298,320,42]}
+{"kind":"textbox","id":"sh/mpsru1kn","slide":10,"text":"Scoring, pose blueprint, dynamic phase, and kinetic-chain services for partners.","textPreview":"Scoring, pose blueprint, dynamic phase, and kinetic-chain services for partners.","textChars":80,"textLines":1,"bbox":[889,370,315,118]}
+{"kind":"textbox","id":"sh/9cjqpgje","slide":10,"text":"Platform","textPreview":"Platform","textChars":8,"textLines":1,"bbox":[889,505,160,34]}
+{"kind":"notes","id":"nt/yf8qzg","slide":10,"text":"[Sources]\nBusiness model is a recommended pitch framing inferred from the implemented user app, session data model, circle model, and AI service architecture.\nNo external pricing or revenue claims are used."}
+{"kind":"slide","id":"sl/cugcap","slide":11,"title":"APEXFORMZ","textShapes":13}
+{"kind":"textbox","id":"sh/judo3yts","slide":11,"text":"APEXFORMZ","textPreview":"APEXFORMZ","textChars":9,"textLines":1,"bbox":[41,40,260,50]}
+{"kind":"textbox","id":"sh/kvmpw3ud","slide":11,"text":"Funding now turns the MVP into a defensible coaching platform","textPreview":"Funding now turns the MVP into a defensible coaching platform","textChars":61,"textLines":1,"bbox":[41,172,760,155]}
+{"kind":"textbox","id":"sh/lgv658by","slide":11,"text":"Near-term capital should harden reliability, validate paid demand with pilots, and expand the movement intelligence library.","textPreview":"Near-term capital should harden reliability, validate paid demand with pilots, and expand the movement intelligence library.","textChars":124,"textLines":1,"bbox":[44,370,665,72]}
+{"kind":"shape","id":"sh/6h47ydcj","slide":11,"bbox":[820,118,418,82]}
+{"kind":"textbox","id":"sh/7ido7it4","slide":11,"text":"Product validation","textPreview":"Product validation","textChars":18,"textLines":1,"bbox":[844,134,210,28]}
+{"kind":"textbox","id":"sh/8j6p0nu9","slide":11,"text":"Run structured pilots with academies and committed individual athletes.","textPreview":"Run structured pilots with academies and committed individual athletes.","textChars":71,"textLines":1,"bbox":[844,165,350,24]}
+{"kind":"shape","id":"sh/tkfq9sbu","slide":11,"bbox":[820,234,418,82]}
+{"kind":"textbox","id":"sh/2lk7m9cz","slide":11,"text":"Technical depth","textPreview":"Technical depth","textChars":15,"textLines":1,"bbox":[844,250,210,28]}
+{"kind":"textbox","id":"sh/nmtovetk","slide":11,"text":"Hire computer-vision, biomechanics, and product engineering capacity.","textPreview":"Hire computer-vision, biomechanics, and product engineering capacity.","textChars":69,"textLines":1,"bbox":[844,281,350,24]}
+{"kind":"shape","id":"sh/zu5gzylo","slide":11,"bbox":[820,350,418,82]}
+{"kind":"textbox","id":"sh/ytczqdk3","slide":11,"text":"Data advantage","textPreview":"Data advantage","textChars":14,"textLines":1,"bbox":[844,366,210,28]}
+{"kind":"textbox","id":"sh/lwny183u","slide":11,"text":"Build consented movement datasets and coach-reviewed scoring standards.","textPreview":"Build consented movement datasets and coach-reviewed scoring standards.","textChars":71,"textLines":1,"bbox":[844,397,350,24]}
+{"kind":"shape","id":"sh/kvehs329","slide":11,"bbox":[820,466,418,82]}
+{"kind":"textbox","id":"sh/bqlgvyls","slide":11,"text":"Commercial launch","textPreview":"Commercial launch","textChars":17,"textLines":1,"bbox":[844,482,210,28]}
+{"kind":"textbox","id":"sh/apczmt47","slide":11,"text":"Package athlete, academy, and partner offerings with clear retention metrics.","textPreview":"Package athlete, academy, and partner offerings with clear retention metrics.","textChars":77,"textLines":1,"bbox":[844,513,350,24]}
+{"kind":"shape","id":"sh/xs3yx83i","slide":11,"bbox":[44,504,330,4]}
+{"kind":"textbox","id":"sh/cruho32d","slide":11,"text":"Seeking seed capital and pilot partners","textPreview":"Seeking seed capital and pilot partners","textChars":39,"textLines":1,"bbox":[44,532,470,40]}
+{"kind":"textbox","id":"sh/n21grelg","slide":11,"text":"Apexformz | AI technique coaching","textPreview":"Apexformz | AI technique coaching","textChars":33,"textLines":1,"bbox":[44,640,400,28]}
+{"kind":"notes","id":"nt/cugcap","slide":11,"text":"[Sources]\nRoadmap and ask are pitch recommendations based on current MVP capabilities observed in the repository.\nNo funding amount, revenue, or user traction is asserted because the repository does not contain those metrics."}

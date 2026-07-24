@@ -6,7 +6,7 @@ import "../styles/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SmartCoach | AI Sports Trainer",
+  title: "Apexformz | AI Sports Trainer",
   description: "Democratizing elite coaching with real-time AI pose estimation.",
 };
 

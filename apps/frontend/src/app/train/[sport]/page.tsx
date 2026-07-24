@@ -336,7 +336,10 @@ export default function TrainingPage() {
               {/* Corner Info */}
               <div className="absolute top-6 left-6 z-20">
                 <div className="flex flex-col">
-                  <span className="text-2xl font-black uppercase italic text-primary leading-none tracking-tighter">SmartCoach AI</span>
+                  <div className="flex items-center gap-2">
+                    <img src="/logo.png" alt="Apexformz Logo" className="w-8 h-8 object-contain" />
+                    <span className="text-2xl font-black uppercase italic text-primary leading-none tracking-tighter">Apexformz AI</span>
+                  </div>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-xs text-secondary/60 font-medium tracking-widest uppercase">{sport} {poseName ? `/ ${poseName.replace('_', ' ')}` : '/ LIVE INFERENCE'}</span>
                     <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${isAiPulsing ? 'bg-primary shadow-glow shadow-primary' : 'bg-white/10'}`} />

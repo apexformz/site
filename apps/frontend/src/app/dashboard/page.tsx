@@ -100,8 +100,8 @@ export default function DashboardPage() {
       {/* Top Navigation */}
       <nav className="border-b border-white/10 px-8 py-4 flex items-center justify-between sticky top-0 bg-background/80 backdrop-blur-xl z-50">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center font-black italic shadow-glow">S</div>
-          <span className="font-bold tracking-tighter text-xl uppercase italic">SmartCoach <span className="text-primary">AI</span></span>
+          <img src="/logo.png" alt="Apexformz Logo" className="w-10 h-10 object-contain" />
+          <span className="font-bold tracking-tighter text-xl uppercase italic">Apexformz <span className="text-primary">AI</span></span>
         </div>
         
         <div className="flex items-center gap-6">

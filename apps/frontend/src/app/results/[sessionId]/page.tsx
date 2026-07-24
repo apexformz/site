@@ -45,13 +45,13 @@ export default function ResultsPage() {
   const handleShare = async () => {
     if (!session) return;
     
-    const shareText = `🧠 SmartCoach AI Analysis\n\nSport: ${session.sport}\nProficiency Score: ${Math.round(session.score)}/100\nXP Earned: +${session.xp_earned}\nDuration: ${Math.floor(session.duration_s / 60)}:${(session.duration_s % 60).toString().padStart(2, '0')}\n\nCan you beat my score? 🚀`;
+    const shareText = `🧠 Apexformz AI Analysis\n\nSport: ${session.sport}\nProficiency Score: ${Math.round(session.score)}/100\nXP Earned: +${session.xp_earned}\nDuration: ${Math.floor(session.duration_s / 60)}:${(session.duration_s % 60).toString().padStart(2, '0')}\n\nCan you beat my score? 🚀`;
     const shareUrl = window.location.href;
 
     try {
       if (navigator.share) {
         await navigator.share({
-          title: 'My SmartCoach Training Session',
+          title: 'My Apexformz Training Session',
           text: shareText,
           url: shareUrl,
         });

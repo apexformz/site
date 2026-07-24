@@ -42,7 +42,7 @@ export default function LoginPage() {
       {/* Left Decoration (Desktop) */}
       <div className="hidden lg:flex flex-col justify-center px-24 w-1/2 border-r border-white/5 relative">
         <div className="relative z-10">
-          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center font-black italic shadow-glow mb-8 text-2xl">S</div>
+          <img src="/logo.png" alt="Apexformz Logo" className="w-16 h-16 object-contain mb-8" />
           <h1 className="text-6xl font-black uppercase italic tracking-tighter leading-none mb-6">
             Train <span className="text-primary italic">Better</span><br />
             With <span className="text-secondary italic">AI</span>
@@ -62,7 +62,7 @@ export default function LoginPage() {
         >
           <div className="mb-10">
             <h2 className="text-3xl font-bold tracking-tight mb-2">Welcome Back</h2>
-            <p className="text-white/40 text-sm font-medium">Log in to your SmartCoach account</p>
+            <p className="text-white/40 text-sm font-medium">Log in to your Apexformz account</p>
           </div>
 
           <form onSubmit={handleLogin} className="flex flex-col gap-6">
@@ -118,7 +118,7 @@ export default function LoginPage() {
           </form>
 
           <p className="mt-8 text-center text-sm text-white/40 font-medium">
-            New to SmartCoach? <Link href="/register" className="text-primary font-bold hover:underline">Create an account</Link>
+            New to Apexformz? <Link href="/register" className="text-primary font-bold hover:underline">Create an account</Link>
           </p>
         </motion.div>
       </div>

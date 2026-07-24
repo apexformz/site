@@ -195,7 +195,7 @@ async function slide5(presentation) {
   slide.background.fill = C.bg;
   addTitle(slide, "The athlete sees scored correction during the rep", 5);
   addText(slide, "The live training page combines camera view, skeleton overlay, score ring, high-priority corrections, target posture, and voice prompts into one coaching loop.", 41, 150, 560, 150, { size: 24, color: C.deep });
-  await addImage(slide, assets.tennis, 690, 42, 548, 588, "Apexformz tennis serve technical blueprint", "cover");
+  await addImage(slide, assets.tennis, 740, 132, 498, 498, "Apexformz tennis serve technical blueprint", "cover");
   addStage(slide, 1, "Prioritized issues", "Only medium and high severity corrections are surfaced to avoid overwhelming the athlete.", 41, 350, 260, 155, C.red);
   addStage(slide, 2, "Voice cueing", "Speech guidance is throttled and sequential so the user hears one actionable fix at a time.", 332, 350, 260, 155, C.cyan);
   addSourceNotes(slide, [

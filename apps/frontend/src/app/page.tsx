@@ -22,7 +22,7 @@ export default function LandingPage() {
         className="text-center z-10 max-w-4xl"
       >
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <img src="/logo.png" alt="Apexformz Logo" className="w-5 h-5 object-contain" />
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-white/60">Next-Gen AI Coaching</span>
         </div>
         
@@ -83,7 +83,7 @@ export default function LandingPage() {
 
       {/* Footer Decoration */}
       <div className="mt-40 text-[10px] font-bold text-white/10 uppercase tracking-[0.5em]">
-        Powered by TensorFlow.js & SmartCoach AI Engine
+        Powered by TensorFlow.js & Apexformz AI Engine
       </div>
     </div>
   );
