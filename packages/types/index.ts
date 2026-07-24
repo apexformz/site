@@ -124,6 +124,8 @@ export interface PoseFrame {
   keypoints: PoseKeypoints;
   angles: JointAngles;
   feedback: JointFeedback[];
+  frame_score: number;
+  created_at?: string;
 }
 
 export interface LeaderboardEntry {
