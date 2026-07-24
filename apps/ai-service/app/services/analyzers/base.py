@@ -159,9 +159,10 @@ class BaseAnalyzer:
                 "severity": "medium"
             })
 
-        # Step 2: Score visible joints against the blueprint
+        # Step 2: Score visible joints against the blueprint with 5% leniency
         total_error = 0
         joints_checked = 0
+        LENIENCY_PERCENT = 0.05 # 5% leniency allowance (nobody is perfect)
 
         for joint, actual_angle in actual_angles.items():
             if joint not in self.ref_angles:
@@ -171,14 +172,19 @@ class BaseAnalyzer:
                 continue
 
             ref_angle = self.ref_angles[joint]
-            error = abs(actual_angle - ref_angle)
-            total_error += error
+            raw_error = abs(actual_angle - ref_angle)
+            
+            # Apply 5% leniency margin (5% of ref_angle, or at least 5.0 degrees)
+            angle_leniency = max(ref_angle * LENIENCY_PERCENT, 5.0)
+            effective_error = max(0.0, raw_error - angle_leniency)
+            
+            total_error += effective_error
             joints_checked += 1
 
             severity = "none"
-            if error > 30:
+            if effective_error > 30:
                 severity = "high"
-            elif error > 15:
+            elif effective_error > 15:
                 severity = "medium"
 
             if severity != "none":
@@ -199,15 +205,18 @@ class BaseAnalyzer:
                     "severity": severity
                 })
 
-        # Step 3: Score calculation with visibility penalty
+        # Step 3: Score calculation with 5% leniency boost and visibility penalty
         # Base score from angle accuracy
         avg_error = total_error / joints_checked if joints_checked > 0 else 90
         accuracy_score = max(0, min(100, 100 - (avg_error * (100 / 90))))
 
+        # Apply 5% score leniency boost
+        leniency_score = min(100.0, accuracy_score * 1.05)
+
         # Apply visibility penalty: if 70% visible, max score is 70
         # This prevents "perfect 100" when joints are missing
         visibility_cap = visibility_ratio * 100
-        final_score = min(accuracy_score, visibility_cap)
+        final_score = min(leniency_score, visibility_cap)
 
         # If NO joints were checked at all (nothing matched the blueprint), force low score
         if joints_checked == 0:
@@ -223,7 +232,7 @@ class BaseAnalyzer:
         return {
             "score": round(final_score, 1),
             "issues": issues,
-            "overall_severity": "good" if final_score >= 80 else ("warning" if final_score >= 50 else "error")
+            "overall_severity": "good" if final_score >= 76 else ("warning" if final_score >= 45 else "error")
         }
 
     @staticmethod

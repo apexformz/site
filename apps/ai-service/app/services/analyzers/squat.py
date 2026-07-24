@@ -61,7 +61,7 @@ class SquatAnalyzer(BaseAnalyzer):
         l_knee = self.get_kp(keypoints, 'left_knee')
         if l_hip['score'] > 0.5 and l_knee['score'] > 0.5:
             depth_error = l_knee['y'] - l_hip['y']
-            if depth_error > 0.1:
+            if depth_error > 0.105: # 5% leniency allowance (0.10 -> 0.105)
                 issues.append({
                     "joint": "hip",
                     "problem": "Hip depth insufficient",
@@ -85,7 +85,7 @@ class SquatAnalyzer(BaseAnalyzer):
         r_knee = self.get_kp(keypoints, 'right_knee')
 
         if l_knee['score'] > 0.5 and r_knee['score'] > 0.5 and l_ankle['score'] > 0.5:
-            if abs(l_knee['x'] - r_knee['x']) < 0.1:
+            if abs(l_knee['x'] - r_knee['x']) < 0.095: # 5% leniency allowance (0.10 -> 0.095)
                 issues.append({
                     "joint": "knee",
                     "problem": "Knees collapsing inward",
@@ -98,7 +98,7 @@ class SquatAnalyzer(BaseAnalyzer):
         l_shoulder = self.get_kp(keypoints, 'left_shoulder')
         if l_shoulder['score'] > 0.5 and l_hip['score'] > 0.5:
             vert_deviation = abs(l_shoulder['x'] - l_hip['x'])
-            if vert_deviation > 0.15:
+            if vert_deviation > 0.1575: # 5% leniency allowance (0.15 -> 0.1575)
                 issues.append({
                     "joint": "back",
                     "problem": "Leaning too far forward",
@@ -107,24 +107,26 @@ class SquatAnalyzer(BaseAnalyzer):
                 })
                 score_deductions += 15
 
-        # 4. Also run the base angle comparison for any reference angles
+        # 4. Also run the base angle comparison with 5% leniency
         for joint, actual_angle in actual_angles.items():
             if joint not in self.ref_angles:
                 continue
             if actual_angle < 0:
                 continue
             ref_angle = self.ref_angles[joint]
-            error = abs(actual_angle - ref_angle)
-            if error > 30:
+            raw_error = abs(actual_angle - ref_angle)
+            effective_error = max(0.0, raw_error - (ref_angle * 0.05))
+            if effective_error > 30:
                 score_deductions += 5  # Small additional penalty from blueprint mismatch
 
-        # Apply visibility cap
+        # Apply visibility cap with 5% score leniency boost
         raw_score = max(0, 100 - score_deductions)
+        leniency_score = min(100.0, raw_score * 1.05)
         visibility_cap = visibility_ratio * 100
-        final_score = min(raw_score, visibility_cap)
+        final_score = min(leniency_score, visibility_cap)
 
         return {
             "score": round(final_score, 1),
             "issues": issues,
-            "overall_severity": "good" if final_score >= 80 else ("warning" if final_score >= 50 else "error")
+            "overall_severity": "good" if final_score >= 76 else ("warning" if final_score >= 45 else "error")
         }

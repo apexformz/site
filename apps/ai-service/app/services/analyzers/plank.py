@@ -57,8 +57,10 @@ class PlankAnalyzer(BaseAnalyzer):
         alignment_angle = self.calculate_angle(l_shoulder, l_hip, l_ankle)
 
         if alignment_angle > 0:
-            deviation = abs(180 - alignment_angle)
-            if deviation > 20:
+            raw_deviation = abs(180 - alignment_angle)
+            # 5% leniency margin on 180° alignment (9° tolerance)
+            effective_deviation = max(0.0, raw_deviation - 9.0)
+            if effective_deviation > 20:
                 mid_y = (l_shoulder['y'] + l_ankle['y']) / 2
                 if l_hip['y'] < mid_y - 0.05:
                     issues.append({
@@ -74,7 +76,7 @@ class PlankAnalyzer(BaseAnalyzer):
                         "correction": "Engage your core and lift your hips slightly to prevent lower back strain.",
                         "severity": "high"
                     })
-                score_deductions += deviation
+                score_deductions += effective_deviation
         else:
             # Can't compute alignment = can't assess plank
             issues.append({
@@ -89,7 +91,7 @@ class PlankAnalyzer(BaseAnalyzer):
         l_elbow = self.get_kp(keypoints, 'left_elbow')
         if l_shoulder['score'] > 0.5 and l_elbow['score'] > 0.5:
             horiz_dist = abs(l_shoulder['x'] - l_elbow['x'])
-            if horiz_dist > 0.1:
+            if horiz_dist > 0.105: # 5% leniency allowance
                 issues.append({
                     "joint": "shoulder",
                     "problem": "Shoulders not stacked",
@@ -102,7 +104,7 @@ class PlankAnalyzer(BaseAnalyzer):
         l_ear = self.get_kp(keypoints, 'left_ear')
         if l_ear['score'] > 0.5 and l_shoulder['score'] > 0.5 and l_hip['score'] > 0.5:
             neck_angle = self.calculate_angle(l_ear, l_shoulder, l_hip)
-            if neck_angle > 0 and neck_angle < 150:
+            if neck_angle > 0 and neck_angle < 142.5: # 5% leniency allowance (150 - 7.5)
                 issues.append({
                     "joint": "neck",
                     "problem": "Neck not neutral",
@@ -111,13 +113,14 @@ class PlankAnalyzer(BaseAnalyzer):
                 })
                 score_deductions += 10
 
-        # Apply visibility cap
+        # Apply visibility cap with 5% score leniency boost
         raw_score = max(0, 100 - score_deductions)
+        leniency_score = min(100.0, raw_score * 1.05)
         visibility_cap = visibility_ratio * 100
-        final_score = min(raw_score, visibility_cap)
+        final_score = min(leniency_score, visibility_cap)
 
         return {
             "score": round(final_score, 1),
             "issues": issues,
-            "overall_severity": "good" if final_score >= 80 else ("warning" if final_score >= 50 else "error")
+            "overall_severity": "good" if final_score >= 76 else ("warning" if final_score >= 45 else "error")
         }

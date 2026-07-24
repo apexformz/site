@@ -48,11 +48,11 @@ class AnalyzerRegistry:
         # but only if those issues have appeared in the recent history to avoid flickering.
         latest_issues = raw_result['issues']
         
-        # Determine overall severity based on smoothed score
+        # Determine overall severity based on smoothed score with 5% leniency
         overall_severity = "good"
-        if avg_score < 50:
+        if avg_score < 45:
             overall_severity = "error"
-        elif avg_score < 80:
+        elif avg_score < 76:
             overall_severity = "warning"
 
         return {
