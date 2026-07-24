@@ -453,5 +453,48 @@
         "release_left_shoulder_high": "Release the ball from behind your head with both hands."
       }
     }
+  },
+  "yoga": {
+    "squats": {
+      "type": "dynamic",
+      "phases": [
+        {
+          "name": "standing",
+          "angles": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180 },
+          "duration_range_ms": [200, 2000],
+          "trigger": "initial",
+          "weight": 0.20
+        },
+        {
+          "name": "descending",
+          "angles": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140 },
+          "duration_range_ms": [200, 1500],
+          "trigger": { "joint": "left_knee", "metric": "angle_below", "threshold": 160 },
+          "weight": 0.30
+        },
+        {
+          "name": "squat_hold",
+          "angles": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 90, "right_hip": 90, "left_knee": 90, "right_knee": 90 },
+          "duration_range_ms": [100, 1000],
+          "trigger": { "joint": "left_knee", "metric": "angle_below", "threshold": 110 },
+          "weight": 0.30
+        },
+        {
+          "name": "ascending",
+          "angles": { "left_elbow": 60, "right_elbow": 60, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140 },
+          "duration_range_ms": [200, 1500],
+          "trigger": { "joint": "left_knee", "metric": "angular_velocity", "direction": "positive", "threshold": 1.0 },
+          "weight": 0.20
+        }
+      ],
+      "kinetic_chain_order": ["hips", "shoulders", "arms"],
+      "is_cyclical": true,
+      "cues": {
+        "descending_left_knee_in": "Ensure your knees stay tracked over your toes.",
+        "squat_hold_left_hip_high": "Lower your hips further until your thighs are parallel to the floor.",
+        "squat_hold_left_shoulder_forward": "Keep your chest lifted and spine neutral.",
+        "ascending_left_knee_bent": "Push powerfully through your heels to return to standing."
+      }
+    }
   }
 }

@@ -57,7 +57,7 @@ export default function TrainingPage() {
     setBestScore(prev => Math.max(prev, analysis.score));
 
     // VOICE-GUIDED SEQUENTIAL DELIVERY + FREQUENCY THROTTLE
-    const activeIssues = analysis.issues?.filter(i => i.severity === 'high');
+    const activeIssues = analysis.issues?.filter(i => i.severity === 'high' || i.severity === 'medium');
     const now = Date.now();
     
     if (analysis.score >= 80) {
@@ -69,12 +69,13 @@ export default function TrainingPage() {
         announce("Perfect posture. Keep it up!");
         lastFeedbackUpdateRef.current = now;
       }
-    } else if (activeIssues?.length > 0) {
+    } else if (activeIssues && activeIssues.length > 0) {
       setThrottledAnalysis(analysis);
 
       // Voice announcements are throttled to avoid overwhelming the user
       if (!isAiSpeaking && (now - lastFeedbackUpdateRef.current > 10000)) {
-        const primaryIssue = activeIssues[0];
+        // Prefer high severity for voice, fallback to medium
+        const primaryIssue = activeIssues.find(i => i.severity === 'high') || activeIssues[0];
         if (primaryIssue) {
           announce(primaryIssue.correction);
           lastFeedbackUpdateRef.current = now;

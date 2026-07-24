@@ -28,20 +28,27 @@ const DYNAMIC_MOVEMENTS: Record<string, Set<string>> = {
   boxing: new Set(['jab_cross_combo', 'hook_combo']),
   tennis: new Set(['serve_motion', 'forehand_stroke']),
   football: new Set(['kick_motion', 'throw_in_motion']),
+  yoga: new Set(['squats']),
 };
 
-// Sports that are ALWAYS static (all poses are held positions)
+// Sports that are ALWAYS static (all poses are held positions), except for explicitly dynamic movements
 const ALWAYS_STATIC_SPORTS = new Set(['yoga']);
 
 function isDynamicMovement(sport: string, poseName?: string | null): boolean {
-  if (ALWAYS_STATIC_SPORTS.has(sport)) return false;
-  if (!DYNAMIC_MOVEMENTS[sport]) return false;
-  // If a specific pose is given, check if it's in the dynamic set
-  if (poseName && poseName !== 'undefined') {
-    return DYNAMIC_MOVEMENTS[sport].has(poseName);
+  // Check if it's explicitly defined in DYNAMIC_MOVEMENTS first
+  if (DYNAMIC_MOVEMENTS[sport]) {
+    if (poseName && poseName !== 'undefined') {
+      if (DYNAMIC_MOVEMENTS[sport].has(poseName)) {
+        return true;
+      }
+    } else if (DYNAMIC_MOVEMENTS[sport].size > 0 && !ALWAYS_STATIC_SPORTS.has(sport)) {
+        // If no poseName, and it's not a predominantly static sport, assume dynamic
+        return true;
+    }
   }
-  // If no specific pose, treat the sport as dynamic if it has any dynamic movements
-  return DYNAMIC_MOVEMENTS[sport].size > 0;
+  
+  if (ALWAYS_STATIC_SPORTS.has(sport)) return false;
+  return false;
 }
 
 export function initializeWebSocket(server: HttpServer) {

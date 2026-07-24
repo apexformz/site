@@ -199,10 +199,8 @@ class DynamicAnalyzer:
             score_result = self._score_phase_keyframe(current_phase, phase_result["angles"])
             current_frame_score = score_result["score"]
             
-            # Only propagate high-severity issues to avoid noise
-            for issue in score_result["issues"]:
-                if issue["severity"] == "high":
-                    issues.append(issue)
+            # Propagate issues to UI for red lines and feedback
+            issues.extend(score_result["issues"])
 
         # 4. Compute fluidity
         fluidity = self._compute_fluidity(phase_result["angular_velocities"])

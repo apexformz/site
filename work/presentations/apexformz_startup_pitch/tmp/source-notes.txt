@@ -1,0 +1,38 @@
+Apexformz startup pitch deck source notes
+
+This deck uses only repository-derived claims and internal project visual assets.
+No external market-size, revenue, user traction, or clinical performance claims are included.
+
+Core sources:
+- README.md
+- package.json
+- docker-compose.yml
+- apps/frontend/src/app/page.tsx
+- apps/frontend/src/app/dashboard/page.tsx
+- apps/frontend/src/app/train/[sport]/page.tsx
+- apps/frontend/src/app/train/[sport]/setup/page.tsx
+- apps/frontend/src/hooks/useHolisticDetection.ts
+- apps/frontend/src/hooks/useWebSocket.ts
+- apps/frontend/src/hooks/useVoiceCoaching.ts
+- apps/frontend/src/components/ActionableFeedback.tsx
+- apps/frontend/src/components/PoseSkeleton.tsx
+- apps/backend/src/index.ts
+- apps/backend/src/websocket/sessionRelay.ts
+- apps/backend/src/routes/sessions.ts
+- apps/backend/src/utils/gamification.ts
+- apps/backend/src/services/streak.service.ts
+- apps/backend/src/services/circle.service.ts
+- apps/backend/prisma/schema.prisma
+- apps/ai-service/main.py
+- apps/ai-service/app/routes/analysis.py
+- apps/ai-service/app/services/pose_analyzer.py
+- apps/ai-service/app/services/analyzers/base.py
+- apps/ai-service/app/services/analyzers/registry.py
+- apps/ai-service/app/services/analyzers/squat.py
+- apps/ai-service/app/services/analyzers/plank.py
+- apps/ai-service/app/services/dynamic/dynamic_analyzer.py
+- apps/ai-service/app/services/dynamic/phase_detector.py
+- apps/ai-service/app/services/dynamic/kinetic_chain.py
+- apps/ai-service/app/data/reference_poses.json
+- apps/ai-service/app/data/reference_movements.json
+- apps/frontend/public/postures/*.png
