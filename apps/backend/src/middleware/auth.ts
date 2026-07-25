@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { ApiResponse } from '@smartcoach/types';
+import { ApiResponse } from '../types';
 import { verifyToken } from '../utils/auth.utils';
 
 export interface AuthRequest extends Request {

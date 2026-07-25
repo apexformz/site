@@ -1,4 +1,4 @@
-import { getLevel, getXpForNextLevel, AchievementType } from '@smartcoach/types';
+import { getLevel, getXpForNextLevel, AchievementType } from '../types';
 import { prisma } from './prisma';
 import logger from './logger';
 import { StreakService } from '../services/streak.service';

@@ -7,7 +7,7 @@ import axios from 'axios';
 import http from 'http';
 import https from 'https';
 import { verifyToken } from '../utils/auth.utils';
-import { PoseKeypoints, FrameAnalysis, Hand } from '@smartcoach/types';
+import { PoseKeypoints, FrameAnalysis, Hand } from '../types';
 
 // Optimize for high-frequency frame analysis with persistent connections
 const aiHttpClient = axios.create({

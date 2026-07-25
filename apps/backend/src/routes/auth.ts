@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { body, validationResult } from 'express-validator';
 import { prisma } from '../utils/prisma';
 import { authenticateToken, AuthRequest } from '../middleware/auth';
-import { ApiResponse, AuthTokens, RegisterRequest, LoginRequest } from '@smartcoach/types';
+import { ApiResponse, AuthTokens, RegisterRequest, LoginRequest } from '../types';
 import logger from '../utils/logger';
 import crypto from 'crypto';
 

@@ -2,7 +2,7 @@ import { Router, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import { prisma } from '../utils/prisma';
 import { authenticateToken, AuthRequest } from '../middleware/auth';
-import { ApiResponse, User, UserStats } from '@smartcoach/types';
+import { ApiResponse, User, UserStats } from '../types';
 import logger from '../utils/logger';
 
 const router = Router();
