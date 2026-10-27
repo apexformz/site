@@ -1,4 +1,5 @@
 import jwt, { Secret, SignOptions } from 'jsonwebtoken';
+import { randomUUID } from 'node:crypto';
 import logger from './logger';
 
 /**
@@ -26,7 +27,11 @@ export function generateAuthTokens(userId: string, email: string) {
   const refresh_token = signToken(
     { userId, email },
     process.env.JWT_REFRESH_SECRET as string,
-    { expiresIn: (process.env.JWT_REFRESH_EXPIRES_IN || '7d') as SignOptions['expiresIn'] }
+    {
+      expiresIn: (process.env.JWT_REFRESH_EXPIRES_IN || '7d') as SignOptions['expiresIn'],
+      // Two sign-ins within the same JWT timestamp must create distinct stored tokens.
+      jwtid: randomUUID(),
+    }
   );
   
   return { access_token, refresh_token };

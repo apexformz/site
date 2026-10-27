@@ -16,23 +16,31 @@ ApexFormz contains the web interface, account and session services, the ApexForm
 
 Installed browser model files are under `Apexformz_brain/apps/frontend/public/models`. Original athlete recordings, private pose data, training runs, local database, credentials, and generated browser runtime files are excluded from Git. The installed dynamic reference bank is included with the squash sport pack.
 
+Training runs contain the experiments and checkpoints used to produce the installed model files; they are needed for further training and investigation, rather than normal inference. The database stores accounts, sessions, and progress. A new installation creates its own database tables from the included schema and starts with no existing accounts or session history.
+
 ## Local setup
 
 Requires Node.js 22.12 or newer, npm, and PostgreSQL. From the repository root:
 
 ```powershell
+# If using the included local PostgreSQL container:
+docker compose up -d postgres
+Copy-Item apps/backend/.env.example apps/backend/.env
+# Adjust the database address and JWT secrets in apps/backend/.env.
 npm ci --ignore-scripts
 npm ci --prefix Apexformz_brain --ignore-scripts
 npm run db:generate
-# Configure apps/backend/.env from apps/backend/.env.example
 npm run db:plan
 npm run db:prepare
+npm --prefix Apexformz_brain run models:verify
 npm run dev
 ```
 
 The web interface opens at `http://localhost:3000`. PostgreSQL must be available at `DATABASE_URL` in `apps/backend/.env`. The additive Brain database setup refuses changes to existing tables. For a local development build, set both `NEXT_PUBLIC_PACK_TRUST_MODE` and `APEXFORMZ_PACK_TRUST_MODE` to `development` before building. Production pack signing and deployment requirements are documented in `Apexformz_brain/docs`.
 
 The root `prepare:brain` command stages the maintained Brain browser adapter and model assets into the web app. The staged copies and browser runtimes are generated during development and builds. Edit the source under `Apexformz_brain`, then run `npm run prepare:brain`.
+
+`npm --prefix Apexformz_brain run test:models` executes the installed static, dynamic, and athlete-tracking models against known reference outputs without private training data. This confirms that inference runs; it does not establish coaching accuracy for every athlete or movement. Git attributes preserve the exact signed pack and model bytes during checkout, including on Windows.
 
 The optional `docker-compose.brain.yml` is a local recipe that reuses an existing PostgreSQL service. `npm run demo` is a Windows convenience command for an existing `smartcoach-db` container.
 

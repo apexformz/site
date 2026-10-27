@@ -6,9 +6,14 @@ the squash capture preprocessing pipeline and the browser. It is loaded by the B
 the browser; frames never leave the device. The older `pose_landmarker.task` from the original repository
 is the heavy variant and is not used for squash recognition.
 
-The root `.gitignore` excludes `*.task` binaries, so this file is distributed separately (copy it from
-the capture pipeline's cached full model or download the official MediaPipe Pose Landmarker full model) before running the
-frontend. Without it the Brain training page reports the detector as unavailable.
+The combined `apexformz/site` repository includes this installed model, both squash ONNX models,
+their deployment metadata, and the re-ID weights. Running the models does not require the original
+training runs, checkpoints, or athlete recordings. `npm run models:verify` checks the exact installed
+files against `tests/models/installed-models.lock.json`.
+
+Git attributes preserve the exact bytes of these assets and the signed sport packs across operating
+systems. Do not reformat or convert their line endings without updating their digests and signatures.
+The ignore rules still exclude arbitrary new model binaries; the installed files are explicitly tracked.
 
 Runtime JS/WASM files come from the exact installed npm versions via `npm run prepare:runtime`, which
 copies them to `public/runtime/` without downloading anything. Ship that folder with the frontend.

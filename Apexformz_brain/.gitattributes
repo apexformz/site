@@ -1,0 +1,4 @@
+# Sport-pack signatures and model artifact locks verify the exact file bytes.
+# Preserve those bytes across Windows, macOS, and Linux checkouts.
+sport-packs/** -text
+apps/frontend/public/models/** -text
