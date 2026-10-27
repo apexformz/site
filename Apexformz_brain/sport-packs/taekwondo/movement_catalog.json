@@ -1,0 +1,522 @@
+{
+ "schema_version": "1.0.0",
+ "sport_id": "taekwondo",
+ "movements": [
+  {
+   "uuid": "d495007c-f732-5668-b151-36789f19cf5e",
+   "id": "taekwondo.ap_chagi_front_kick",
+   "canonical_name": "Ap chagi (front kick)",
+   "aliases": [
+    {
+     "name": "ap chagi",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "front kick",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.ap_chagi_front_kick",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.ap_chagi_front_kick.stance_match",
+    "taekwondo.ap_chagi_front_kick.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'ap_chagi_front_kick'.",
+   "family_id": "taekwondo.family.forward_kicks",
+   "group_id": "taekwondo.group.front_kick_variants"
+  },
+  {
+   "uuid": "7b97b652-399b-5a8f-8274-443e77ac406a",
+   "id": "taekwondo.dollyo_chagi_roundhouse_kick",
+   "canonical_name": "Dollyo chagi (roundhouse kick)",
+   "aliases": [
+    {
+     "name": "dollyo chagi",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "roundhouse kick",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.dollyo_chagi_roundhouse_kick",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.dollyo_chagi_roundhouse_kick.stance_match",
+    "taekwondo.dollyo_chagi_roundhouse_kick.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'dollyo_chagi_roundhouse_kick'.",
+   "family_id": "taekwondo.family.roundhouse_turning_kicks",
+   "group_id": "taekwondo.group.roundhouse_variants"
+  },
+  {
+   "uuid": "fad83bf9-fdcb-5db0-a55e-59d2c1b880f5",
+   "id": "taekwondo.yeop_chagi_side_kick",
+   "canonical_name": "Yeop chagi (side kick)",
+   "aliases": [
+    {
+     "name": "yeop chagi",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "side kick",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.yeop_chagi_side_kick",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.yeop_chagi_side_kick.stance_match",
+    "taekwondo.yeop_chagi_side_kick.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'yeop_chagi_side_kick'.",
+   "family_id": "taekwondo.family.side_backward_kicks",
+   "group_id": "taekwondo.group.side_kicks"
+  },
+  {
+   "uuid": "5f2567fa-826a-5383-9c94-13eba8b801c3",
+   "id": "taekwondo.dwi_chagi_back_kick",
+   "canonical_name": "Dwi chagi (back kick)",
+   "aliases": [
+    {
+     "name": "dwi chagi",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "back kick",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.dwi_chagi_back_kick",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.dwi_chagi_back_kick.stance_match",
+    "taekwondo.dwi_chagi_back_kick.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'dwi_chagi_back_kick'.",
+   "family_id": "taekwondo.family.side_backward_kicks",
+   "group_id": "taekwondo.group.back_kicks"
+  },
+  {
+   "uuid": "c695790a-926c-57d8-98c9-43c9ea41bb93",
+   "id": "taekwondo.miro_chagi_push_kick",
+   "canonical_name": "Miro chagi (push kick)",
+   "aliases": [
+    {
+     "name": "miro chagi",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "push kick",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.miro_chagi_push_kick",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.miro_chagi_push_kick.stance_match",
+    "taekwondo.miro_chagi_push_kick.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'miro_chagi_push_kick'.",
+   "family_id": "taekwondo.family.forward_kicks",
+   "group_id": "taekwondo.group.pushing_kicks"
+  },
+  {
+   "uuid": "f8ef75f9-9081-59ec-a28d-2c63a0c46e9b",
+   "id": "taekwondo.bandae_dollyo_chagi_reverse_roundhouse",
+   "canonical_name": "Bandae dollyo chagi (reverse roundhouse)",
+   "aliases": [
+    {
+     "name": "bandae dollyo chagi",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "reverse roundhouse",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.bandae_dollyo_chagi_reverse_roundhouse",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.bandae_dollyo_chagi_reverse_roundhouse.stance_match",
+    "taekwondo.bandae_dollyo_chagi_reverse_roundhouse.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'bandae_dollyo_chagi_reverse_roundhouse'.",
+   "family_id": "taekwondo.family.roundhouse_turning_kicks",
+   "group_id": "taekwondo.group.reverse_turning_kicks"
+  },
+  {
+   "uuid": "2baff297-16b3-5c22-a848-183b9c35b6cb",
+   "id": "taekwondo.twio_ap_chagi_jumping_front_kick",
+   "canonical_name": "Twio ap chagi (jumping front kick)",
+   "aliases": [
+    {
+     "name": "twio ap chagi",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "jumping front kick",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.twio_ap_chagi_jumping_front_kick",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.twio_ap_chagi_jumping_front_kick.stance_match",
+    "taekwondo.twio_ap_chagi_jumping_front_kick.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'twio_ap_chagi_jumping_front_kick'.",
+   "family_id": "taekwondo.family.forward_kicks",
+   "group_id": "taekwondo.group.front_kick_variants"
+  },
+  {
+   "uuid": "5c34c1de-b8c3-51f4-baa7-d943bef383c2",
+   "id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse",
+   "canonical_name": "Twio dollyo chagi (jumping roundhouse)",
+   "aliases": [
+    {
+     "name": "twio dollyo chagi",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "jumping roundhouse",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.twio_dollyo_chagi_jumping_roundhouse",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.twio_dollyo_chagi_jumping_roundhouse.stance_match",
+    "taekwondo.twio_dollyo_chagi_jumping_roundhouse.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'twio_dollyo_chagi_jumping_roundhouse'.",
+   "family_id": "taekwondo.family.roundhouse_turning_kicks",
+   "group_id": "taekwondo.group.roundhouse_variants"
+  },
+  {
+   "uuid": "072d1b1b-01a7-5d5b-b354-39b437398242",
+   "id": "taekwondo.baka_chagi_side_slide_roundhouse",
+   "canonical_name": "Baka chagi (side slide roundhouse)",
+   "aliases": [
+    {
+     "name": "baka chagi",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.baka_chagi_side_slide_roundhouse",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.baka_chagi_side_slide_roundhouse.stance_match",
+    "taekwondo.baka_chagi_side_slide_roundhouse.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'baka_chagi_side_slide_roundhouse'.",
+   "family_id": "taekwondo.family.roundhouse_turning_kicks",
+   "group_id": "taekwondo.group.roundhouse_variants"
+  },
+  {
+   "uuid": "66ab30eb-576c-53f1-a4f5-a1274a2e539d",
+   "id": "taekwondo.preamble_dollyo_chagi_front_leg_slide",
+   "canonical_name": "Front-leg slide dollyo chagi",
+   "aliases": [
+    {
+     "name": "preamble dollyo chagi",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.taekwondo.preamble_dollyo_chagi_front_leg_slide",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "taekwondo.preamble_dollyo_chagi_front_leg_slide.stance_match",
+    "taekwondo.preamble_dollyo_chagi_front_leg_slide.form_match"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "description": "Migrated from legacy ApexFormz taekwondo blueprint 'preamble_dollyo_chagi_front_leg_slide'.",
+   "family_id": "taekwondo.family.roundhouse_turning_kicks",
+   "group_id": "taekwondo.group.roundhouse_variants"
+  }
+ ],
+ "taxonomy": {
+  "version": "1.1.0",
+  "levels": [
+   "family",
+   "group",
+   "movement"
+  ],
+  "validation_status": "provisional",
+  "method": {
+   "kind": "source_grounded_semantic_hierarchy",
+   "source_ids": [
+    "kukkiwon_terms",
+    "kukkiwon_motion"
+   ],
+   "research_file": "ml/sports/recognition_taxonomy_sources.json",
+   "preserves_catalogue_ids": true,
+   "accuracy_validated": false
+  },
+  "recognition": {
+   "group_threshold": 0.6,
+   "family_threshold": 0.6,
+   "margin": 0.1,
+   "validation_status": "provisional"
+  },
+  "families": [
+   {
+    "id": "taekwondo.family.forward_kicks",
+    "name": "Forward kicks",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "taekwondo.group.front_kick_variants",
+      "name": "Front-kick variants",
+      "members": [
+       "taekwondo.ap_chagi_front_kick",
+       "taekwondo.twio_ap_chagi_jumping_front_kick"
+      ],
+      "evidence": {
+       "source_ids": [
+        "kukkiwon_terms"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Jumping is an approach/execution modifier."
+      }
+     },
+     {
+      "id": "taekwondo.group.pushing_kicks",
+      "name": "Pushing kicks",
+      "members": [
+       "taekwondo.miro_chagi_push_kick"
+      ],
+      "evidence": {
+       "source_ids": [
+        "kukkiwon_terms"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Retains the catalogue spelling and id."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "kukkiwon_terms"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   },
+   {
+    "id": "taekwondo.family.roundhouse_turning_kicks",
+    "name": "Roundhouse and turning kicks",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "taekwondo.group.roundhouse_variants",
+      "name": "Roundhouse variants",
+      "members": [
+       "taekwondo.dollyo_chagi_roundhouse_kick",
+       "taekwondo.twio_dollyo_chagi_jumping_roundhouse",
+       "taekwondo.baka_chagi_side_slide_roundhouse",
+       "taekwondo.preamble_dollyo_chagi_front_leg_slide"
+      ],
+      "evidence": {
+       "source_ids": [
+        "kukkiwon_terms",
+        "kukkiwon_motion"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Existing local names/ids are retained; jumping and sliding modify the shared kick pattern."
+      }
+     },
+     {
+      "id": "taekwondo.group.reverse_turning_kicks",
+      "name": "Reverse turning kicks",
+      "members": [
+       "taekwondo.bandae_dollyo_chagi_reverse_roundhouse"
+      ],
+      "evidence": {
+       "source_ids": [
+        "kukkiwon_terms"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Keep the reverse turning pattern distinct from ordinary roundhouse."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "kukkiwon_terms",
+      "kukkiwon_motion"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   },
+   {
+    "id": "taekwondo.family.side_backward_kicks",
+    "name": "Side and backward kicks",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "taekwondo.group.side_kicks",
+      "name": "Side kicks",
+      "members": [
+       "taekwondo.yeop_chagi_side_kick"
+      ],
+      "evidence": {
+       "source_ids": [
+        "kukkiwon_terms"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Sideward extension category."
+      }
+     },
+     {
+      "id": "taekwondo.group.back_kicks",
+      "name": "Back kicks",
+      "members": [
+       "taekwondo.dwi_chagi_back_kick"
+      ],
+      "evidence": {
+       "source_ids": [
+        "kukkiwon_terms"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Backward thrust category."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "kukkiwon_terms"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,482 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/sport_pack_assets.schema.json",
+  "title": "Sport pack declarative assets",
+  "description": "Schemas for the eight required sport pack files (TRD 05-09). Numeric domain values may be null with TODO_REQUIRES_VALIDATION notes; nothing here is authoritative until validation_status is approved.",
+  "$defs": {
+    "todo_note": { "type": "string", "pattern": "^TODO_REQUIRES_VALIDATION" },
+    "source_ref": {
+      "type": "object",
+      "required": ["source", "status"],
+      "properties": {
+        "source": { "type": "string" },
+        "ref": { "type": "string" },
+        "edition": { "type": "string" },
+        "effective_date": { "type": "string" },
+        "url": { "type": "string" },
+        "status": { "$ref": "common.schema.json#/$defs/validation_status" }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "required": ["feature", "op", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "feature": { "type": "string" },
+        "op": { "type": "string", "enum": ["lt", "gt", "lte", "gte", "between", "abs_gt", "abs_lt"] },
+        "value": {
+          "oneOf": [
+            { "type": "number" },
+            { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 }
+          ]
+        },
+        "hold_ms": { "type": "number", "minimum": 0 },
+        "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" }
+      }
+    },
+    "court_geometry": {
+      "type": "object",
+      "required": ["schema_version", "sport_id", "coordinate_frame", "named_landmarks", "validation_status", "provenance"],
+      "properties": {
+        "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+        "sport_id": { "type": "string" },
+        "coordinate_frame": {
+          "type": "object",
+          "required": ["id", "origin", "axes", "units"],
+          "properties": {
+            "id": { "type": "string" },
+            "origin": { "type": "string" },
+            "axes": { "type": "string" },
+            "units": { "const": "m" }
+          }
+        },
+        "formats": { "type": "array", "items": { "type": "string" } },
+        "named_landmarks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "description", "value_m", "validation_status"],
+            "properties": {
+              "id": { "type": "string" },
+              "description": { "type": "string" },
+              "value_m": { "type": ["number", "null"] },
+              "applies_to": { "type": "array", "items": { "type": "string" } },
+              "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "polygons": { "type": "array", "items": { "type": "object" } },
+        "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+        "provenance": { "$ref": "#/$defs/source_ref" },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "competition_rules": {
+      "type": "object",
+      "required": ["schema_version", "sport_id", "rule_sets"],
+      "properties": {
+        "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+        "sport_id": { "type": "string" },
+        "rule_sets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "authority", "discipline", "format", "validation_status", "rules"],
+            "properties": {
+              "id": { "type": "string" },
+              "authority": { "type": "string" },
+              "source": { "$ref": "#/$defs/source_ref" },
+              "edition": { "type": ["string", "null"] },
+              "effective_date": { "type": ["string", "null"] },
+              "discipline": { "type": "string" },
+              "format": { "type": "string" },
+              "locale": { "type": "string" },
+              "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+              "rules": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "kind", "text", "validation_status"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "kind": { "type": "string", "enum": ["official", "coaching_heuristic", "training_modified", "safety"] },
+                    "text": { "type": "string" },
+                    "value": {},
+                    "adjudicable_from_pose": { "type": "boolean", "description": "Always false for faults, line calls and scoring: body pose alone cannot adjudicate them" },
+                    "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+                    "note": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "equipment_catalog": {
+      "type": "object",
+      "required": ["schema_version", "sport_id", "items"],
+      "properties": {
+        "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+        "sport_id": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "object_class", "description", "tracking", "validation_status"],
+            "properties": {
+              "id": { "type": "string" },
+              "object_class": { "type": "string" },
+              "description": { "type": "string" },
+              "tracking": { "type": "string", "enum": ["none", "optional_adapter", "offline_only"] },
+              "adapter_capability": { "oneOf": [{ "$ref": "common.schema.json#/$defs/capability" }, { "type": "null" }] },
+              "dimensions": { "type": "object" },
+              "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "movement_catalog": {
+      "type": "object",
+      "required": ["schema_version", "sport_id", "movements"],
+      "properties": {
+        "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+        "sport_id": { "type": "string" },
+        "movements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["uuid", "id", "canonical_name", "aliases", "type", "permitted_views", "phase_graph_id", "required_capabilities", "criteria", "similar", "review_status"],
+            "properties": {
+              "uuid": { "type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" },
+              "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_.-]*$" },
+              "canonical_name": { "type": "string" },
+              "aliases": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["name", "locale", "status"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "locale": { "type": "string" },
+                    "status": { "type": "string", "enum": ["approved", "proposed"] }
+                  }
+                }
+              },
+              "type": { "type": "string", "enum": ["static", "dynamic"] },
+              "permitted_views": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/view_label" }, "minItems": 1 },
+              "phase_graph_id": { "type": "string" },
+              "required_capabilities": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/capability" } },
+              "criteria": { "type": "array", "items": { "type": "string" } },
+              "similar": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["movement_id", "relation", "hard_negative"],
+                  "properties": {
+                    "movement_id": { "type": "string" },
+                    "relation": { "type": "string" },
+                    "hard_negative": { "type": "boolean" }
+                  }
+                }
+              },
+              "review_status": { "type": "string", "enum": ["approved", "coach_review_required", "proposed"] },
+              "description": { "type": "string" },
+              "difficulty": { "type": "string", "enum": ["beginner", "intermediate", "advanced"] },
+              "family_id": { "type": "string", "description": "Broad family in the pack taxonomy (level 1)." },
+              "group_id": { "type": "string", "description": "Branch of near-identical movements inside the family (level 2)." },
+              "data_status": { "type": "string", "enum": ["captured", "no_training_data", "no_capture_data"], "description": "Whether labeled recordings back this movement." },
+              "source": {
+                "type": "object",
+                "description": "Origin of the movement in a labeled capture catalog.",
+                "properties": {
+                  "catalog_id": { "type": "string" },
+                  "catalog_version": { "type": "string" },
+                  "category": { "type": "string" },
+                  "instruction": { "type": "string" },
+                  "captures": { "type": "integer", "minimum": 0 },
+                  "views": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/view_label" } }
+                }
+              }
+            }
+          }
+        },
+        "taxonomy": {
+          "type": "object",
+          "description": "Hierarchical movement taxonomy: family -> group -> movement. Recognition may report the most specific level it can support.",
+          "required": ["version", "levels", "families", "validation_status"],
+          "properties": {
+            "version": { "$ref": "common.schema.json#/$defs/semver" },
+            "levels": { "type": "array", "items": { "type": "string", "enum": ["family", "group", "movement"] }, "minItems": 3, "maxItems": 3 },
+            "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+            "method": { "type": "object" },
+            "recognition": {
+              "type": "object",
+              "description": "Gates for reporting a group or family when the fine movement is not accepted.",
+              "properties": {
+                "group_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+                "family_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+                "margin": { "type": "number", "minimum": 0, "maximum": 1 },
+                "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" }
+              }
+            },
+            "families": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["id", "name", "type", "groups"],
+                "properties": {
+                  "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_.-]*$" },
+                  "name": { "type": "string", "minLength": 1 },
+                  "type": { "type": "string", "enum": ["static", "dynamic"] },
+                  "description": { "type": ["string", "null"] },
+                  "evidence": { "type": "object" },
+                  "groups": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "object",
+                      "required": ["id", "name", "members"],
+                      "properties": {
+                        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_.-]*$" },
+                        "name": { "type": "string", "minLength": 1 },
+                        "members": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+                        "evidence": { "type": "object" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "phase_graphs": {
+      "type": "object",
+      "required": ["schema_version", "sport_id", "graphs"],
+      "properties": {
+        "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+        "sport_id": { "type": "string" },
+        "graphs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "movement_id", "kind", "phases", "edges", "initial", "terminal", "validation_status"],
+            "properties": {
+              "id": { "type": "string" },
+              "movement_id": { "type": "string" },
+              "kind": { "type": "string", "enum": ["static_hold", "dynamic_sequence"] },
+              "window_ms": { "type": "number", "minimum": 100 },
+              "abort_timeout_ms": { "type": "number", "minimum": 0 },
+              "confirm_hold_ms": { "type": "number", "minimum": 0 },
+              "phases": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["id", "name", "kind", "contact_evidence", "min_duration_ms", "enter"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "kind": { "type": "string", "enum": ["rest", "preparation", "loading", "action", "contact", "follow_through", "recovery", "hold"] },
+                    "contact_evidence": { "type": "string", "enum": ["none", "unobserved", "estimated_contact", "sensed_contact"] },
+                    "min_duration_ms": { "type": "number", "minimum": 0 },
+                    "max_duration_ms": { "type": ["number", "null"] },
+                    "enter": { "type": "array", "items": { "$ref": "#/$defs/condition" } },
+                    "hold_ms": { "type": "number", "minimum": 0 },
+                    "cue_allowed": { "type": "boolean", "description": "Whether verbal cues may be issued while this phase is active" }
+                  }
+                }
+              },
+              "edges": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["from", "to"],
+                  "properties": { "from": { "type": "string" }, "to": { "type": "string" } }
+                }
+              },
+              "initial": { "type": "string" },
+              "terminal": { "type": "array", "items": { "type": "string" } },
+              "allow_skip": { "type": "boolean" },
+              "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "technique_criteria": {
+      "type": "object",
+      "required": ["schema_version", "sport_id", "rubric_version", "features", "criteria", "aggregation"],
+      "properties": {
+        "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+        "sport_id": { "type": "string" },
+        "rubric_version": { "$ref": "common.schema.json#/$defs/semver" },
+        "features": { "type": "array", "items": { "$ref": "feature.schema.json#/$defs/feature_spec" } },
+        "aggregation": {
+          "type": "object",
+          "required": ["method", "minimum_coverage"],
+          "properties": {
+            "method": { "type": "string" },
+            "minimum_coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+            "human_variance": {
+              "type": "object",
+              "description": "Sport-specific human variance profile (TRD 11): tolerance for natural trial-to-trial and inter-individual variability plus the measurement floor. Overrides the core defaults; per-criterion evaluator.human_variance_relative overrides this.",
+              "properties": {
+                "relative": { "type": "number", "minimum": 0, "maximum": 0.5, "description": "Fraction of the reference magnitude treated as normal variability (0.05 = 5%)." },
+                "measurement_floor": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0 }, "description": "Minimal detectable change per unit (deg, ms, normalized, ...)." },
+                "context_scale": { "type": "object", "additionalProperties": { "type": "number", "exclusiveMinimum": 0 }, "description": "Band multiplier per athlete context (novice, intermediate, advanced, unknown)." },
+                "consistency": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": { "type": "boolean" },
+                    "window": { "type": "integer", "minimum": 2 },
+                    "min_reps": { "type": "integer", "minimum": 2 },
+                    "k_sd": { "type": "number", "minimum": 0 },
+                    "fail_fraction": { "type": "number", "minimum": 0, "maximum": 1 }
+                  }
+                },
+                "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+                "note": { "type": "string" }
+              }
+            }
+          }
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["criterion_id", "movement_id", "phase_ids", "required_features", "evaluator", "view_constraints", "missing_data_policy", "severity", "weight", "expert_citation", "athlete_context", "requires_capabilities", "validation_status", "validation_version", "error_id"],
+            "properties": {
+              "criterion_id": { "type": "string" },
+              "movement_id": { "type": "string" },
+              "phase_ids": { "oneOf": [{ "type": "null" }, { "type": "array", "items": { "type": "string" } }] },
+              "required_features": { "type": "array", "items": { "type": "string" } },
+              "feature_selector": {
+                "type": "object",
+                "required": ["mode", "candidates"],
+                "properties": {
+                  "mode": { "type": "string", "enum": ["min", "max", "first_valid", "key_min", "key_max"] },
+                  "candidates": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+                  "keys": { "type": "array", "items": { "type": "string" }, "description": "Parallel to candidates; used by key_min/key_max to pick the candidate whose key feature is smallest/largest" }
+                }
+              },
+              "evaluator": {
+                "type": "object",
+                "required": ["kind"],
+                "properties": {
+                  "kind": { "type": "string", "enum": ["range", "max_abs", "min_value", "max_value", "phase_duration", "ordering", "reference_nearest", "dynamic_reference", "stability", "equipment_dependent"] },
+                  "aggregate": { "type": "string", "enum": ["latest", "window_mean", "window_min", "window_max", "phase_mean", "phase_min", "phase_max", "phase_end"] },
+                  "range": { "type": ["array", "null"], "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+                  "limit": { "type": ["number", "null"] },
+                  "tolerance": { "type": "number", "minimum": 0 },
+                  "expected_order": { "type": "array", "items": { "type": "string" } },
+                  "model_reference": { "type": ["string", "null"] },
+                  "min_confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "human_variance_relative": { "type": "number", "minimum": 0, "maximum": 0.5, "description": "Per-criterion relative variance allowance; overrides the rubric profile." },
+                  "params": { "type": "object" }
+                }
+              },
+              "technique_variant": { "type": ["string", "null"] },
+              "view_constraints": { "$ref": "common.schema.json#/$defs/view_applicability" },
+              "missing_data_policy": { "type": "string", "enum": ["not_assessable", "uncertain"] },
+              "severity": { "$ref": "common.schema.json#/$defs/severity" },
+              "weight": { "type": "number", "minimum": 0 },
+              "expert_citation": { "$ref": "#/$defs/source_ref" },
+              "athlete_context": { "oneOf": [{ "const": "any" }, { "type": "array", "items": { "type": "string" } }] },
+              "requires_capabilities": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/capability" } },
+              "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+              "validation_version": { "type": "string" },
+              "error_id": { "type": "string" },
+              "description": { "type": "string" },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "feedback_templates": {
+      "type": "object",
+      "required": ["schema_version", "sport_id", "catalog_version", "default_locale", "entries", "generic"],
+      "properties": {
+        "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+        "sport_id": { "type": "string" },
+        "catalog_version": { "$ref": "common.schema.json#/$defs/semver" },
+        "default_locale": { "type": "string" },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["error_id", "cue", "rationale", "review_status", "cooldown_ms", "persistence_count", "severity"],
+            "properties": {
+              "error_id": { "type": "string" },
+              "cue": { "type": "object", "additionalProperties": { "type": "string" }, "required": ["en"] },
+              "rationale": { "type": "object", "additionalProperties": { "type": "string" } },
+              "demonstration_ref": { "type": ["string", "null"] },
+              "review_status": { "type": "string", "enum": ["approved", "draft"] },
+              "cooldown_ms": { "type": "number", "minimum": 0 },
+              "persistence_count": { "type": "integer", "minimum": 1 },
+              "severity": { "$ref": "common.schema.json#/$defs/severity" },
+              "positive_cue": { "type": "object", "additionalProperties": { "type": "string" } }
+            }
+          }
+        },
+        "generic": {
+          "type": "object",
+          "description": "Quality / setup instructions keyed by missing_reason or quality condition",
+          "additionalProperties": { "type": "object", "additionalProperties": { "type": "string" } }
+        },
+        "policy": {
+          "type": "object",
+          "properties": {
+            "global_min_interval_ms": { "type": "number", "minimum": 0 },
+            "positive_reinforcement_interval_ms": { "type": "number", "minimum": 0 },
+            "max_secondary_queue": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["schema_version", "pack_id", "version", "created_at", "authors", "sources", "validation_summary", "open_items"],
+      "properties": {
+        "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+        "pack_id": { "type": "string" },
+        "version": { "type": "string" },
+        "created_at": { "type": "string" },
+        "authors": { "type": "array", "items": { "type": "string" } },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "citation", "status"],
+            "properties": {
+              "id": { "type": "string" },
+              "type": { "type": "string", "enum": ["official_rules", "coach_review", "dataset", "literature", "legacy_data", "internal"] },
+              "citation": { "type": "string" },
+              "url": { "type": "string" },
+              "accessed": { "type": "string" },
+              "status": { "$ref": "common.schema.json#/$defs/validation_status" }
+            }
+          }
+        },
+        "validation_summary": {
+          "type": "object",
+          "required": ["approved", "provisional", "disabled"],
+          "properties": {
+            "approved": { "type": "integer", "minimum": 0 },
+            "provisional": { "type": "integer", "minimum": 0 },
+            "disabled": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "open_items": { "type": "array", "items": { "$ref": "#/$defs/todo_note" } }
+      }
+    }
+  }
+}

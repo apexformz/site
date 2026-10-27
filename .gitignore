@@ -43,3 +43,33 @@ __pycache__/
 # AI models
 apps/ai-service/models/*.h5
 apps/ai-service/models/*.tflite
+
+# Generated from the sibling Apexformz Brain by prepare:brain
+.brain-integration-backups/
+apps/frontend/src/components/brain/
+apps/frontend/src/lib/brain/
+apps/frontend/src/workers/
+apps/frontend/src/app/api/brain/
+apps/frontend/public/runtime/
+apps/frontend/public/models/squash/
+apps/frontend/public/models/reid/
+apps/frontend/public/models/pose_landmarker_full.task
+apps/frontend/public/brain-integration.json
+apps/frontend/public/pack-trust.json
+apps/frontend/scripts/prepare-brain-runtime-assets.mjs
+apps/frontend/scripts/prepare-pack-trust.mjs
+
+# Local development data and generated build artifacts
+.env.*
+!.env.example
+outputs/
+scratch/
+Real_system_working/
+taekwando_training_videos/
+apps/frontend/.next-before-*/
+apps/frontend/next.config.mjs.before-*/
+Apexformz_brain/apps/frontend/public/runtime/
+Apexformz_brain/apps/frontend/src/lib/brain/*.generated.json
+Apexformz_brain/ml/runs/
+Apexformz_brain/ml/third_party_models/
+**/*.private.pem

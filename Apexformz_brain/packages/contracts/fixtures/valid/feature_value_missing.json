@@ -1,0 +1,15 @@
+{
+  "spec_id": "left_knee_angle",
+  "name": "left_knee_angle",
+  "value": null,
+  "unit": "deg",
+  "valid": false,
+  "reason": "MISSING_JOINT",
+  "evidence_frame_ids": [
+    42
+  ],
+  "confidence": null,
+  "view_applicability": "any",
+  "coordinate_system": "body_relative",
+  "timestamp_ms": 1400.5
+}

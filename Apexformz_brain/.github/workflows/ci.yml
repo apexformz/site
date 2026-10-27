@@ -1,0 +1,112 @@
+name: ci
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  typescript:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run db:generate --workspace=apps/backend
+      - run: npm run typecheck
+      - name: Self-contained real ONNX fixture, contract, unit and golden tests
+        run: npm test
+      - run: npm run validate:packs
+      - run: npm run build:backend
+      - name: Offline frontend production build using explicit development pack trust
+        env:
+          NEXT_PUBLIC_PACK_TRUST_MODE: development
+        run: npm run build:frontend
+      - name: Enforce high and critical dependency audit
+        run: npm audit --audit-level=high
+
+  python:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Install CPU test dependencies
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --require-hashes -r apps/ai-service/requirements.lock
+          python -m pip install --no-deps -e packages/contracts/python
+          python -m pip install --no-deps -e packages/perception-py
+          python -m pip install pillow onnx onnxruntime pip-audit==2.10.1
+      - name: Contracts, perception, ML, ingestion and real AI service tests
+        run: python -m pytest packages/contracts/python/tests packages/perception-py/tests ml/tests ml/ingestion apps/ai-service/tests -q -rs
+      - name: Enforce Python service dependency audit
+        run: python -m pip_audit --no-deps --disable-pip -r apps/ai-service/requirements.lock
+
+  postgres:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: integration_ci
+          POSTGRES_PASSWORD: isolated_ci_password
+          POSTGRES_DB: integration_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U integration_ci -d integration_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    env:
+      APEXFORMZ_TEST_DATABASE_URL: postgresql://integration_ci:isolated_ci_password@127.0.0.1:5432/integration_ci?schema=public
+      APEXFORMZ_POSTGRES_BIN: /usr/lib/postgresql/16/bin
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - name: Install AI integration and matching PostgreSQL backup tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes postgresql-client-16
+          python -m pip install --require-hashes -r apps/ai-service/requirements.lock
+          python -m pip install --no-deps -e packages/contracts/python
+      - name: Real migrations, ingestion, transactions, AI job restart and backup/restore
+        run: |
+          npm run db:generate --workspace=apps/backend
+          npm run build:backend
+          node tools/test_backend_postgres.mjs
+
+  performance:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Sustained synthetic regression (not physical-device validation)
+        run: npm run bench -- 20 30

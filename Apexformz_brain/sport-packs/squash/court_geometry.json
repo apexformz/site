@@ -1,0 +1,509 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "squash",
+  "coordinate_frame": {
+    "id": "squash_court_frame",
+    "origin": "centre of the front wall at finished floor level",
+    "axes": "+x toward the right side wall when facing the front wall, +y toward the back wall, +z up. Wall heights are measured from finished floor to the underside of the marking (WSF 5.01.04).",
+    "units": "m"
+  },
+  "formats": [
+    "singles",
+    "doubles_international",
+    "doubles_competition_width",
+    "doubles_hardball"
+  ],
+  "named_landmarks": [
+    {
+      "id": "court_length",
+      "description": "Front wall to back wall, internal finished playing surfaces (tolerance +/- 10 mm)",
+      "value_m": 9.75,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "court_width_singles",
+      "description": "Side wall to side wall, singles (tolerance +/- 10 mm); diagonals 11.665 m +/- 20 mm",
+      "value_m": 6.4,
+      "applies_to": [
+        "singles"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "court_diagonal_singles",
+      "description": "Floor diagonal, singles (tolerance +/- 20 mm)",
+      "value_m": 11.665,
+      "applies_to": [
+        "singles"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "court_width_doubles_international",
+      "description": "International doubles width (diagonals 12.375 m)",
+      "value_m": 7.62,
+      "applies_to": [
+        "doubles_international"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "court_width_doubles_competition",
+      "description": "International competition-width doubles court (diagonals 12.883 m); tin 0.33 m",
+      "value_m": 8.42,
+      "applies_to": [
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "court_width_doubles_hardball",
+      "description": "Hardball doubles width between playing surfaces, 25 ft (WSF Appendix 4)",
+      "value_m": 7.62,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "court_length_doubles_hardball",
+      "description": "Hardball doubles length between playing surfaces, 45 ft (WSF Appendix 4); width 7.62 m, diagonal 15.691 m, measured 1.0 m above the floor",
+      "value_m": 13.716,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "court_diagonal_doubles_hardball",
+      "description": "Hardball doubles floor diagonal (WSF Appendix 4)",
+      "value_m": 15.691,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "front_wall_line_height_hardball",
+      "description": "Hardball doubles front wall outline, lower edge, 20 ft; side wall play area steps down to 4.572 m at 4.267 m from the back wall (WSF Appendix 4 note 1)",
+      "value_m": 6.096,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "service_line_height_hardball",
+      "description": "Hardball doubles service line, upper edge (WSF Appendix 4)",
+      "value_m": 2.464,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "tin_height_hardball",
+      "description": "Hardball doubles tin, upper edge 17 in; bevelled top 50 mm sloping to the vertical at 0.381 m (WSF Appendix 4)",
+      "value_m": 0.432,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "back_wall_height_hardball",
+      "description": "Hardball doubles back wall height, 7 ft (WSF Appendix 4)",
+      "value_m": 2.134,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "short_line_from_back_wall_hardball",
+      "description": "Hardball doubles short line, nearest edge from the back wall, 15 ft (WSF Appendix 4)",
+      "value_m": 4.572,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "service_box_radius_hardball",
+      "description": "Hardball doubles service boxes are quadrants of internal radius 4 ft 6 in (WSF Appendix 4 note 2)",
+      "value_m": 1.372,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "outline_width_hardball",
+      "description": "Hardball doubles outlines 38 mm, other lines 25 mm (WSF Appendix 4)",
+      "value_m": 0.038,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "clear_height_hardball",
+      "description": "Hardball doubles minimum clear height, 24 ft (WSF Appendix 4)",
+      "value_m": 7.315,
+      "applies_to": [
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "front_wall_line_height",
+      "description": "Front wall (out) line, height to underside; marks the top of the play area (WSF 5.02.01)",
+      "value_m": 4.57,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "service_line_height",
+      "description": "Service line on the front wall, lowest height of a good serve (WSF 5.02.02)",
+      "value_m": 1.78,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "tin_height_standard",
+      "description": "Top of the tin (board), standard courts (WSF 5.02.03 note 1)",
+      "value_m": 0.48,
+      "applies_to": [
+        "singles",
+        "doubles_international"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "tin_height_psa",
+      "description": "Lowered tin preferred for PSA sanctioned tournaments",
+      "value_m": 0.43,
+      "applies_to": [
+        "singles"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "tin_height_competition_doubles",
+      "description": "Tin height on the 8.42 m competition-width doubles court",
+      "value_m": 0.33,
+      "applies_to": [
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "back_wall_line_height",
+      "description": "Back wall (out) line to underside; omitted on 2.13 m transparent walls (WSF 5.03)",
+      "value_m": 2.13,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "side_wall_line",
+      "description": "Diagonal out line joining the ends of the front wall line (4.57 m) and the back wall line (2.13 m) (WSF 5.04.01)",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved",
+      "note": "Defined by its two endpoints; not a single scalar."
+    },
+    {
+      "id": "short_line_from_back_wall",
+      "description": "Nearest edge of the short line to the back wall (WSF 5.05.01); equals 5.49 m from the front wall",
+      "value_m": 4.26,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "short_line_from_front_wall",
+      "description": "Derived: 9.75 - 4.26",
+      "value_m": 5.49,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "half_court_line",
+      "description": "Parallel to and equidistant from the side walls, from the back wall to the short line (WSF 5.05.02); x = 0 in this frame",
+      "value_m": 0.0,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "service_box_side",
+      "description": "Service boxes: squares with 1.6 m internal sides, one each side behind the short line, bounded by the short line, side wall and two lines (WSF 5.05.03)",
+      "value_m": 1.6,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "t_position",
+      "description": "The T: intersection of the short line and the half-court line; the reference recovery position for footwork criteria",
+      "value_m": 5.49,
+      "applies_to": [
+        "singles"
+      ],
+      "validation_status": "approved",
+      "note": "y coordinate from the front wall; x = 0."
+    },
+    {
+      "id": "line_width",
+      "description": "All court markings are 50 mm wide, contrasting colour (WSF 5.01.01); straight to +/- 2 mm in 3 m",
+      "value_m": 0.05,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width",
+        "doubles_hardball"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "clear_height",
+      "description": "Minimum clear height above the court to the underside of the ceiling (WSF 9.01.02)",
+      "value_m": 5.64,
+      "applies_to": [
+        "singles",
+        "doubles_international",
+        "doubles_competition_width"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "door_width_min",
+      "description": "Door in the back wall, 0.75 to 0.90 m wide by 2.13 m high (WSF 7)",
+      "value_m": 0.75,
+      "applies_to": [
+        "singles"
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "lighting_min_lux",
+      "description": "Minimum 300 lux, recommended 500 lux (600 lux LED), TV 1200 lux (WSF 11.01); value stored in lux not metres",
+      "value_m": null,
+      "applies_to": [
+        "singles"
+      ],
+      "validation_status": "approved",
+      "note": "Non-metric landmark: see provenance notes; relevant to camera exposure planning."
+    }
+  ],
+  "polygons": [
+    {
+      "id": "floor_singles",
+      "description": "Floor playing surface, corners in court frame [x, y]",
+      "vertices_m": [
+        [
+          -3.2,
+          0.0
+        ],
+        [
+          3.2,
+          0.0
+        ],
+        [
+          3.2,
+          9.75
+        ],
+        [
+          -3.2,
+          9.75
+        ]
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "service_box_left",
+      "description": "Left service box (facing the front wall), internal square behind the short line",
+      "vertices_m": [
+        [
+          -3.2,
+          5.49
+        ],
+        [
+          -1.6,
+          5.49
+        ],
+        [
+          -1.6,
+          7.09
+        ],
+        [
+          -3.2,
+          7.09
+        ]
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "service_box_right",
+      "description": "Right service box",
+      "vertices_m": [
+        [
+          1.6,
+          5.49
+        ],
+        [
+          3.2,
+          5.49
+        ],
+        [
+          3.2,
+          7.09
+        ],
+        [
+          1.6,
+          7.09
+        ]
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "back_quarter_left",
+      "description": "Left back quarter-court (serve must first bounce in the quarter opposite the server's box)",
+      "vertices_m": [
+        [
+          -3.2,
+          5.49
+        ],
+        [
+          0.0,
+          5.49
+        ],
+        [
+          0.0,
+          9.75
+        ],
+        [
+          -3.2,
+          9.75
+        ]
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "back_quarter_right",
+      "description": "Right back quarter-court",
+      "vertices_m": [
+        [
+          0.0,
+          5.49
+        ],
+        [
+          3.2,
+          5.49
+        ],
+        [
+          3.2,
+          9.75
+        ],
+        [
+          0.0,
+          9.75
+        ]
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "front_wall_play_area",
+      "description": "Front wall legal strike zone: above the tin, below the front wall line [x, z]",
+      "vertices_m": [
+        [
+          -3.2,
+          0.48
+        ],
+        [
+          3.2,
+          0.48
+        ],
+        [
+          3.2,
+          4.57
+        ],
+        [
+          -3.2,
+          4.57
+        ]
+      ],
+      "validation_status": "approved"
+    },
+    {
+      "id": "front_wall_serve_zone",
+      "description": "Serve must strike the front wall between the service line and the front wall line [x, z]",
+      "vertices_m": [
+        [
+          -3.2,
+          1.78
+        ],
+        [
+          3.2,
+          1.78
+        ],
+        [
+          3.2,
+          4.57
+        ],
+        [
+          -3.2,
+          4.57
+        ]
+      ],
+      "validation_status": "approved"
+    }
+  ],
+  "validation_status": "approved",
+  "provenance": {
+    "source": "World Squash Federation, Specifications for Squash Courts (document 171128_Court-Specifications, edition dated January 2017, published on worldsquash.sport)",
+    "ref": "Appendices 1 to 4 critical dimensions; clauses 4.0x (dimensions), 5.01 to 5.05 (markings), 7 (door), 9.01.02 (clear height), 11.01 (lighting); Appendix 4 (hardball doubles court)",
+    "edition": "January 2017 (file 171128, hosted 2021-08)",
+    "url": "https://www.worldsquash.sport/wp-content/uploads/2021/08/171128_Court-Specifications.pdf",
+    "status": "approved"
+  },
+  "notes": [
+    "Values were read directly from the WSF specification PDF on 2026-10-25; secondary websites disagree on the service line (1.78 vs 1.83 m) and short line (5.44 vs 5.49 m) and were not used.",
+    "Camera planning: WSF 3.03 forbids distracting cameras behind the front or side walls during play; the back wall and ceiling are the practical camera positions.",
+    "Court lines (short line, half-court line, service boxes) are the natural calibration targets for mapping image coordinates into this frame."
+  ]
+}

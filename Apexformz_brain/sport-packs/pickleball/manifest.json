@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "id": "pickleball",
+  "version": "1.0.0",
+  "minimum_core_version": "1.0.0",
+  "supported_platforms": [
+    "web",
+    "android",
+    "ios"
+  ],
+  "capabilities": [
+    "body_pose",
+    "optional_implement",
+    "optional_projectile"
+  ],
+  "dependencies": [
+    {
+      "id": "common_features",
+      "version": "^1.0"
+    }
+  ],
+  "game_rules": "competition_rules.json",
+  "court_geometry": "court_geometry.json",
+  "equipment_catalog": "equipment_catalog.json",
+  "movements": "movement_catalog.json",
+  "phase_graphs": "phase_graphs.json",
+  "technique_rubrics": "technique_criteria.json",
+  "feedback_templates": "feedback_templates.json",
+  "provenance": "provenance.json",
+  "models": [],
+  "asset_hashes": {
+    "competition_rules.json": "dcb3bdb72eee1afc346f1c877ad9e8faa11d9d60155955aa9c0245af7633722a",
+    "court_geometry.json": "09977e6e45990e33372929bd0fc10c9e5548678bcaac0044bc6c89284ae5f16c",
+    "equipment_catalog.json": "1dc59c15fe371f8c837c7bc26a481779c6b2554551267a15ed5543238fd61dba",
+    "movement_catalog.json": "6b2c804856fd5226a87f6e8af74198a967178244e3ad43778f32c072d8ab9be5",
+    "phase_graphs.json": "ab5c5fbdccb16259f8776670bbe87ed2063e97872ab081cc0b8c1b4a2b39d7b6",
+    "technique_criteria.json": "7a8c0f96d90a66166f81d5ebb3950bcb2c3ef3e993ef49a9af8acf534c745e57",
+    "feedback_templates.json": "fefe1107f10963b6f110d288f24041fab3ca5e23acb51c171bb1978fa93d0e4e",
+    "provenance.json": "74a4580c375c3bf3f664c5a4dcd6fec351485c249a6f03a73f5350a80a438b8c"
+  },
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "dev-local-2026",
+    "value": "b6fd406c1519fab6c2f9aa2231b6f74ca98a26cd9895e2964c7a04171245f68f"
+  },
+  "display": {
+    "name": "Pickleball",
+    "description": "Pickleball seed pack: ontology, generic phase graphs and ready-position criteria pending coach review.",
+    "color": "#00ff88",
+    "status": "seed"
+  }
+}

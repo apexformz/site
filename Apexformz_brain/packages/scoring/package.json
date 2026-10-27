@@ -1,0 +1,17 @@
+{
+  "name": "@apexformz/scoring",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Criterion evaluation, evidence fusion and coverage-gated scoring (TRD 11)",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@apexformz/contracts": "1.0.0",
+    "@apexformz/features": "1.0.0",
+    "@apexformz/sport-runtime": "1.0.0"
+  }
+}

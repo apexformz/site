@@ -1,0 +1,122 @@
+{
+ "schema_version": "1.0.0",
+ "pack_id": "squash",
+ "version": "1.0.0",
+ "created_at": "2026-10-25",
+ "authors": [
+  "ApexFormz Brain engineering (squash engine)"
+ ],
+ "sources": [
+  {
+   "id": "wsf_court_spec_2017",
+   "type": "official_rules",
+   "citation": "WSF Specifications for Squash Courts, January 2017 edition (171128_Court-Specifications.pdf)",
+   "url": "https://www.worldsquash.sport/wp-content/uploads/2021/08/171128_Court-Specifications.pdf",
+   "accessed": "2026-10-25",
+   "status": "approved"
+  },
+  {
+   "id": "wsf_singles_rules_2025",
+   "type": "official_rules",
+   "citation": "World Squash Singles Rules 2025 V1.2, effective 1 September 2025",
+   "url": "https://www.worldsquash.sport/wp-content/uploads/2025/07/250901_World-Squash-Rules-of-Singles-Squash-2025-V1.2.2.pdf",
+   "accessed": "2026-10-25",
+   "status": "approved"
+  },
+  {
+   "id": "wsf_eyewear",
+   "type": "official_rules",
+   "citation": "WSF protective eyewear guidance and Rules Appendix 4",
+   "url": "https://www.worldsquash.sport/eyewear/",
+   "accessed": "2026-10-25",
+   "status": "approved"
+  },
+  {
+   "id": "data_capture_catalog",
+   "type": "dataset",
+   "citation": "ApexFormz Data Capture movement catalog 1.0.0 (squash subset: 182 labeled movements), s3://apexformz-datacapture-prod-350445709199-ap-southeast-2-labels/catalog/1.0.0.json sha256 231f7c9a203221d5...",
+   "accessed": "2026-10-25",
+   "status": "provisional"
+  },
+  {
+   "id": "data_capture_recordings",
+   "type": "dataset",
+   "citation": "ApexFormz corrected Data Capture squash recordings: 622 usable pose descriptors from one athlete; research-constrained action families with measured same-view close groups. Expert-reference vectors are a separate export.",
+   "accessed": "2026-10-26",
+   "status": "provisional"
+  },
+  {
+   "id": "kinematics_drive_volley_drop",
+   "type": "literature",
+   "citation": "The kinematic differences between skill levels in the squash forehand drive, volley and drop strokes (ResearchGate publication 340657676)",
+   "url": "https://www.researchgate.net/publication/340657676",
+   "accessed": "2026-10-25",
+   "status": "provisional"
+  },
+  {
+   "id": "brumann_2021",
+   "type": "literature",
+   "citation": "Brumann, Kukuk, Reinsberger. Evaluation of open-source and pre-trained deep CNNs for player detection and motion analysis in squash. Sensors 2021, 21(13):4550",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8271826",
+   "accessed": "2026-10-25",
+   "status": "provisional"
+  },
+  {
+   "id": "coaching_lunge",
+   "type": "coach_review",
+   "citation": "Squash Magazine, Strength Training for Squash Part V: Lunging (2010); Onyx Squash Academy, Mastering the Squash Lunge",
+   "url": "https://squashmagazine.com/2010/01/strength-training-for-squash-part-v-lunging/",
+   "accessed": "2026-10-25",
+   "status": "provisional"
+  },
+  {
+   "id": "coaching_shots",
+   "type": "coach_review",
+   "citation": "Squash Empire and Winning Squash shot guides; SquashSkills fundamentals (shot descriptions, T recovery, split step)",
+   "url": "https://www.squashempire.com/complete-guide-squash-shots/",
+   "accessed": "2026-10-25",
+   "status": "provisional"
+  },
+  {
+   "id": "variability_literature",
+   "type": "literature",
+   "citation": "Bartlett, Wheat & Robins 2007, Sports Biomechanics 6(2); Bankosz & Winiarski 2020, J Sports Sci Med 19; between-day running kinematics reliability (SEM 0.6-2.6 deg, MDC 1.5-7.2 deg)",
+   "url": "https://doi.org/10.1080/14763140701322994",
+   "accessed": "2026-10-25",
+   "status": "provisional"
+  },
+  {
+   "id": "coach_panel",
+   "type": "coach_review",
+   "citation": "Squash coach panel for taxonomy, ontology and rubric approval (to be convened)",
+   "status": "provisional"
+  },
+  {
+   "id": "athlete_attestations",
+   "type": "internal",
+   "citation": "Project-owner attestation for athlete ATH_0005 (coach): right-handed; consent from coach and club granted for training and evaluation (signed, stamped documents held offline); ml/sports/squash/athlete_attestations.json",
+   "accessed": "2026-10-25",
+   "status": "approved"
+  }
+ ],
+ "validation_summary": {
+  "approved": 0,
+  "provisional": 3449,
+  "disabled": 0
+ },
+ "open_items": [
+  "TODO_REQUIRES_VALIDATION: the family -> group taxonomy is measured on one expert athlete; re-run ml/sports/squash/build_taxonomy.py when more athletes are captured and confirm with the coach panel",
+  "TODO_REQUIRES_VALIDATION: family names are engineering proposals (ml/sports/squash/taxonomy_names.json) pending coach review",
+  "TODO_REQUIRES_VALIDATION: expert-labeled reference postures come from one right-handed athlete (handedness attested by the project owner, ml/sports/squash/athlete_attestations.json); add athletes before trusting reference comparisons for other body types and for left-handed players",
+  "TODO_REQUIRES_VALIDATION: consent for the coach and club is attested by the project owner (signed, stamped documents held offline); the Data Capture records themselves still show the consent status as unknown and should be updated at source",
+  "TODO_REQUIRES_VALIDATION: phase-graph thresholds for strokes, lunges and court travel were calibrated on the expert recordings without phase labels (ml/sports/squash/phase_calibration.json); key phases are reached on only 38-60 percent of the expert's own clips and on 25-36 percent of other movements' clips, so phase detection is not reliable. Coaches should correct ml/sports/squash/phase_prelabels.jsonl to train a learned segmenter",
+  "TODO_REQUIRES_VALIDATION: criterion ranges and limits are seeds; the recordings carry no technique-correctness labels",
+  "TODO_REQUIRES_VALIDATION: group/family recognition gates (0.6 probability, 0.1 margin) are not calibrated: on unseen camera views accuracy on accepted answers stays near 33-42 percent at any gate (ml/runs/squash/cross_view/cross_view_report.json), so no gate yields reliable recognition with one athlete",
+  "TODO_REQUIRES_VALIDATION: serve and return of serve are pack-defined and not yet in the capture catalog",
+  "TODO_REQUIRES_VALIDATION: racket tracking (optional_implement) and court-line calibration (calibrated_scale) adapters must be wired before contact-height and foot-in-box criteria can leave NOT_ASSESSABLE",
+  "TODO_REQUIRES_VALIDATION: feedback cues are drafts pending coach review; strict mode never speaks them",
+  "TODO_REQUIRES_VALIDATION: human variance profile to be fitted per criterion from repeated executions",
+  "TODO_REQUIRES_VALIDATION: racket and ball specification figures to be confirmed on the WSF specification pages",
+  "TODO_REQUIRES_VALIDATION: Dynamic reference comparison uses same-view, same-handedness recorded trajectories. Boundaries and tolerance envelopes are automatic and provisional; reference matches are not independently validated technique judgements."
+ ]
+}

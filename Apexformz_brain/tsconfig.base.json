@@ -1,0 +1,69 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable",
+      "WebWorker"
+    ],
+    "strict": true,
+    "noUncheckedIndexedAccess": false,
+    "noImplicitOverride": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "sourceMap": true,
+    "types": [
+      "node"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@apexformz/contracts": [
+        "packages/contracts/src/index.ts"
+      ],
+      "@apexformz/signal": [
+        "packages/signal/src/index.ts"
+      ],
+      "@apexformz/features": [
+        "packages/features/src/index.ts"
+      ],
+      "@apexformz/perception": [
+        "packages/perception/src/index.ts"
+      ],
+      "@apexformz/sport-runtime": [
+        "packages/sport-runtime/src/index.ts"
+      ],
+      "@apexformz/analysis": [
+        "packages/analysis/src/index.ts"
+      ],
+      "@apexformz/scoring": [
+        "packages/scoring/src/index.ts"
+      ],
+      "@apexformz/coaching": [
+        "packages/coaching/src/index.ts"
+      ],
+      "@apexformz/runtime": [
+        "packages/runtime/src/index.ts"
+      ],
+      "@apexformz/brain-client": [
+        "packages/brain-client/src/index.ts"
+      ],
+      "@apexformz/sport-runtime/node": [
+        "packages/sport-runtime/src/node.ts"
+      ],
+      "@apexformz/brain-client/worker": [
+        "packages/brain-client/src/worker.ts"
+      ],
+      "@apexformz/brain-client/react": [
+        "packages/brain-client/src/react/useApexBrain.ts"
+      ]
+    },
+    "jsx": "react-jsx"
+  }
+}

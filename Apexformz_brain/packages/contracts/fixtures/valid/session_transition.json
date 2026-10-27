@@ -1,0 +1,7 @@
+{
+  "from": "ACTIVE",
+  "to": "DEGRADED",
+  "monotonic_ms": 5000,
+  "reason": "insufficient_visibility",
+  "error_code": "DEGRADED_INPUT"
+}

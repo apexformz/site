@@ -1,0 +1,384 @@
+{
+ "schema_version": "1.0.0",
+ "sport_id": "table_tennis",
+ "movements": [
+  {
+   "uuid": "4b761788-24d9-5054-a91b-7767cbcdf96e",
+   "id": "table_tennis.ready_stance",
+   "canonical_name": "Ready stance",
+   "aliases": [
+    {
+     "name": "ready stance",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "static",
+   "permitted_views": [
+    "front",
+    "back",
+    "front_left",
+    "front_right"
+   ],
+   "phase_graph_id": "pg.table_tennis.ready_stance",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "table_tennis.ready_stance.stance_width",
+    "table_tennis.ready_stance.knee_flexion"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "beginner",
+   "description": "Balanced base position between shots.",
+   "family_id": "table_tennis.family.ready_positions",
+   "group_id": "table_tennis.group.ready_stance"
+  },
+  {
+   "uuid": "1ef79190-af24-503e-9ce8-593e9761e995",
+   "id": "table_tennis.forehand_drive",
+   "canonical_name": "Forehand drive",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.table_tennis.forehand_drive",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "table_tennis.backhand_drive",
+     "relation": "mirror_side",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "table_tennis.family.racket_strokes",
+   "group_id": "table_tennis.group.forehand_swings"
+  },
+  {
+   "uuid": "da9bf73c-4e57-580e-a72f-9b9ef6153553",
+   "id": "table_tennis.backhand_drive",
+   "canonical_name": "Backhand drive",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.table_tennis.backhand_drive",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "table_tennis.forehand_drive",
+     "relation": "mirror_side",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "table_tennis.family.racket_strokes",
+   "group_id": "table_tennis.group.backhand_swings"
+  },
+  {
+   "uuid": "9292e45e-e7b1-52e9-be41-41e51daf9aee",
+   "id": "table_tennis.forehand_topspin",
+   "canonical_name": "Forehand topspin",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.table_tennis.forehand_topspin",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "table_tennis.family.racket_strokes",
+   "group_id": "table_tennis.group.forehand_swings"
+  },
+  {
+   "uuid": "21dfb1de-2ad8-521e-9e3e-647e99682dbc",
+   "id": "table_tennis.backhand_topspin",
+   "canonical_name": "Backhand topspin",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.table_tennis.backhand_topspin",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "table_tennis.family.racket_strokes",
+   "group_id": "table_tennis.group.backhand_swings"
+  },
+  {
+   "uuid": "83cd08bd-3c35-5dec-b182-81aaa18a1604",
+   "id": "table_tennis.push",
+   "canonical_name": "Push",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.table_tennis.push",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "table_tennis.family.racket_strokes",
+   "group_id": "table_tennis.group.compact_strokes"
+  },
+  {
+   "uuid": "e19992d2-b808-5c23-874c-3c975f8225c7",
+   "id": "table_tennis.block",
+   "canonical_name": "Block",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.table_tennis.block",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "table_tennis.family.racket_strokes",
+   "group_id": "table_tennis.group.compact_strokes"
+  },
+  {
+   "uuid": "c967d267-fc01-5f41-a422-8f19f188df02",
+   "id": "table_tennis.serve",
+   "canonical_name": "Serve",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.table_tennis.serve",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "table_tennis.family.racket_strokes",
+   "group_id": "table_tennis.group.service_actions"
+  },
+  {
+   "uuid": "1e81ac31-7eeb-5288-bfd5-eabe73798c19",
+   "id": "table_tennis.footwork_recovery",
+   "canonical_name": "Footwork recovery",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "back",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.table_tennis.footwork_recovery",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "table_tennis.family.court_footwork",
+   "group_id": "table_tennis.group.recovery_steps"
+  }
+ ],
+ "taxonomy": {
+  "version": "1.1.0",
+  "levels": [
+   "family",
+   "group",
+   "movement"
+  ],
+  "validation_status": "provisional",
+  "method": {
+   "kind": "source_grounded_semantic_hierarchy",
+   "source_ids": [
+    "tte_forehand",
+    "ittf_basic_strokes"
+   ],
+   "research_file": "ml/sports/recognition_taxonomy_sources.json",
+   "preserves_catalogue_ids": true,
+   "accuracy_validated": false
+  },
+  "recognition": {
+   "group_threshold": 0.6,
+   "family_threshold": 0.6,
+   "margin": 0.1,
+   "validation_status": "provisional"
+  },
+  "families": [
+   {
+    "id": "table_tennis.family.ready_positions",
+    "name": "Ready positions",
+    "type": "static",
+    "groups": [
+     {
+      "id": "table_tennis.group.ready_stance",
+      "name": "Ready stance",
+      "members": [
+       "table_tennis.ready_stance"
+      ],
+      "evidence": {
+       "source_ids": [
+        "tte_forehand"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Static athletic preparation."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "tte_forehand"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   },
+   {
+    "id": "table_tennis.family.racket_strokes",
+    "name": "Racket strokes",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "table_tennis.group.forehand_swings",
+      "name": "Forehand swings",
+      "members": [
+       "table_tennis.forehand_drive",
+       "table_tennis.forehand_topspin"
+      ],
+      "evidence": {
+       "source_ids": [
+        "tte_forehand",
+        "ittf_basic_strokes"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Drive and topspin are related swings; exact spin requires evidence beyond gross pose."
+      }
+     },
+     {
+      "id": "table_tennis.group.backhand_swings",
+      "name": "Backhand swings",
+      "members": [
+       "table_tennis.backhand_drive",
+       "table_tennis.backhand_topspin"
+      ],
+      "evidence": {
+       "source_ids": [
+        "ittf_basic_strokes"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Preserve side while allowing fine stroke uncertainty."
+      }
+     },
+     {
+      "id": "table_tennis.group.compact_strokes",
+      "name": "Compact push and block strokes",
+      "members": [
+       "table_tennis.push",
+       "table_tennis.block"
+      ],
+      "evidence": {
+       "source_ids": [
+        "tte_forehand",
+        "ittf_basic_strokes"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Proposed compact-stroke group; ball spin and contact distinguish push from block."
+      }
+     },
+     {
+      "id": "table_tennis.group.service_actions",
+      "name": "Service actions",
+      "members": [
+       "table_tennis.serve"
+      ],
+      "evidence": {
+       "source_ids": [
+        "ittf_basic_strokes"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "A serve label needs shot-sequence/context evidence."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "tte_forehand",
+      "ittf_basic_strokes"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   },
+   {
+    "id": "table_tennis.family.court_footwork",
+    "name": "Court footwork",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "table_tennis.group.recovery_steps",
+      "name": "Recovery steps",
+      "members": [
+       "table_tennis.footwork_recovery"
+      ],
+      "evidence": {
+       "source_ids": [
+        "tte_forehand"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Repositioning after the stroke."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "tte_forehand"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   }
+  ]
+ }
+}

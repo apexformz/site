@@ -1,0 +1,1494 @@
+{
+  "schema_version": "1.0.0",
+  "id": "squash",
+  "version": "1.0.0",
+  "minimum_core_version": "1.0.0",
+  "supported_platforms": [
+    "web",
+    "android",
+    "ios"
+  ],
+  "capabilities": [
+    "body_pose",
+    "optional_implement",
+    "optional_projectile",
+    "calibrated_scale"
+  ],
+  "dependencies": [
+    {
+      "id": "common_features",
+      "version": "^1.0"
+    }
+  ],
+  "game_rules": "competition_rules.json",
+  "court_geometry": "court_geometry.json",
+  "equipment_catalog": "equipment_catalog.json",
+  "movements": "movement_catalog.json",
+  "phase_graphs": "phase_graphs.json",
+  "technique_rubrics": "technique_criteria.json",
+  "feedback_templates": "feedback_templates.json",
+  "provenance": "provenance.json",
+  "models": [
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0051.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0029.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0011.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0039.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0056.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0055.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0065.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0035.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0034.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0068.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0040.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0037.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0066.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0001.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0041.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0026.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0004.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0010.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0054.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0012.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0060.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0053.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0048.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0047.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0067.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0059.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0069.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0018.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0021.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0043.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0058.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0052.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0017.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0002.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0042.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0008.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0027.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0006.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0032.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0014.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0046.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0036.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0044.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0070.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0020.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0031.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0007.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0015.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0050.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0063.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0005.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0016.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0019.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0009.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0013.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0061.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0049.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0030.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0022.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0038.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0033.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0028.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0062.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0064.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0045.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/reference/squash.static.0024.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0001.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0002.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0003.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0004.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0005.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0006.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0007.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0008.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0009.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0010.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0011.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0012.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0013.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0014.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0015.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0016.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0017.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0018.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0019.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0020.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0021.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0022.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0023.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0024.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0025.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0026.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0027.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0028.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0029.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0030.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0031.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0032.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0033.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0034.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0035.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0036.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0037.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0038.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0039.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0040.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0041.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0042.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0043.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0044.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0045.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0046.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0047.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0048.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0049.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0050.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0051.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0052.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0053.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0054.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0055.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0056.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0057.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0058.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0059.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0060.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0061.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0062.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0063.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0064.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0065.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0066.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0067.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0068.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0069.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0070.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0071.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0072.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0073.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0074.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0075.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0076.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0077.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0078.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0079.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0080.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0081.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0082.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0083.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0084.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0085.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0086.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0087.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0088.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0089.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0090.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0091.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0092.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0093.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0094.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0095.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0096.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0097.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0098.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0099.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0100.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0101.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0102.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0103.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0104.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0105.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0106.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0107.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0108.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0109.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0110.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0111.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.dynamic.0112.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.return_of_serve.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "criterion_model",
+      "path": "models/dynamic-reference/squash.serve.json",
+      "version": "1.0.0",
+      "format": "json",
+      "required": false
+    }
+  ],
+  "asset_hashes": {
+    "competition_rules.json": "0803f4c9b8f145bcbfdbfa65138ccc175725fb975dc50e91d00e20fd51e2d092",
+    "court_geometry.json": "0e00396b84c2c0bfafa6d22c0bd742f0499ef0afdb87221c7ffa5fc93d6378b0",
+    "equipment_catalog.json": "0c54a33fc8daf46d796f30da73326086c5a7737942f492495b44de93c23265a7",
+    "movement_catalog.json": "6135ba54038e7c774d7dbd4a2ce283172f1d1c8cf1f89323306d754004fde414",
+    "phase_graphs.json": "d064836726c65ed4b9c7027d59267cbcdca25f5e99c033db143d346798956537",
+    "technique_criteria.json": "0fd309275ae00be9b51dc7111090c5eff0f02c4526ba8ad5c8034d2d3ff00636",
+    "feedback_templates.json": "61134212bfc25f9ad820b4470e555d6bfdf2637fcf585cb85679370890d033da",
+    "provenance.json": "db6f606ead8a0788c0cf288f141968b1fc3f4bc1ead567702d469f50d4dc7cc4",
+    "models/reference/squash.static.0051.json": "872a3cfed5a7434007e75131cb23eee640ac567d148c56483adc9809e84f21ae",
+    "models/reference/squash.static.0029.json": "cf30b0c7c01976d0161b8d356dd0deb9f991f6364afcc2435b1a8a8fffe3527b",
+    "models/reference/squash.static.0011.json": "0e79279a31b40a6a2090eefec1d5895d819b98edb2fb432424f43b6adba606d4",
+    "models/reference/squash.static.0039.json": "71fa454467ff41fb200a700661576494e8fad533e52d96b3721ead0382377843",
+    "models/reference/squash.static.0056.json": "f739327742d0987cb902aa3ca613d8f59b274bb31beb54f81cab1b51364d7c5c",
+    "models/reference/squash.static.0055.json": "f29b3a57162b5ec6e822cc5c8f85ae7fd8f1dc1e65cad38aed8d3a1eda049993",
+    "models/reference/squash.static.0065.json": "dc8a76750d71d2eda29d14ef858cd1b93df2b868ebf70328eb0d4ff0adb8306e",
+    "models/reference/squash.static.0035.json": "7e5e923938fc7521488361aec77b4a52dcde40cec04d95cd18b85384262f4d30",
+    "models/reference/squash.static.0034.json": "e80f828d3668228e82ef4fef46fec072191adba72717042801fb01c0715f44d5",
+    "models/reference/squash.static.0068.json": "6b4e30410a9b406f524c740fce52977ad374fe3c9218dbc77e5b79e812e51607",
+    "models/reference/squash.static.0040.json": "acf7894e804e58110d4e4caa5fd70a08bece0c1c0f4044afd2e8b924133671bc",
+    "models/reference/squash.static.0037.json": "20ac952de708da5df011aaa27e3d6949fe35f2942b750132233d6aba12dc5f29",
+    "models/reference/squash.static.0066.json": "12fd68f6e748437f8269111b3aaf3cd5e8808f6d9f117fc41d0cf49dc4a27eea",
+    "models/reference/squash.static.0001.json": "521a0147b68aaa756dd0a17e6c05328bd90f7bf614af8b8994e6e2c8e1216ec5",
+    "models/reference/squash.static.0041.json": "dea1faff36e1b88880671c5c675589602ea0f1118fc988709060323b07d19286",
+    "models/reference/squash.static.0026.json": "6adb905e1276365fc73103275726d8adb68633041e1e72382dbbbe2edb1d1db7",
+    "models/reference/squash.static.0004.json": "02e5d4e697f3f0eecaf3a9869debf8bc695d11d0bbb7acb5fe82702d5ab52799",
+    "models/reference/squash.static.0010.json": "9fc6d66a7bebbe211e43761eda5c77b8fbc9b4b1d50d348954932c43c81da715",
+    "models/reference/squash.static.0054.json": "5178edb6063b234d66ee8e015917a55dc5fb6d17493e38774627ec46279dee5f",
+    "models/reference/squash.static.0012.json": "a25130c074e32d9fb3c022af988af2a420d18faf00520698ad20109774d10f95",
+    "models/reference/squash.static.0060.json": "ebd5eb3b914c6280ad47aadb7062e61324c3a44e3b0a6bbadd3ed8c83cd93be3",
+    "models/reference/squash.static.0053.json": "ad1c3cd8614e64b92839c0a40ae7bee0d30601fb15f3f125c1dcac401caaba63",
+    "models/reference/squash.static.0048.json": "dcf48aec21490f5e5cd5485cfed0853922ed236ce6f89e9d7b821f964f1f4bd1",
+    "models/reference/squash.static.0047.json": "fd51c8caff56c5dec1c82ab13ae40ff50b21912bd7542262626ff0923ed94313",
+    "models/reference/squash.static.0067.json": "c46607b4a57ae6d6ed1ead2dfec80320332f58014a88c653283a187c582dad9c",
+    "models/reference/squash.static.0059.json": "c5f142b5c8466c2aab24fdf028be7cc58182a0478b03b941d079fe38ea7633ec",
+    "models/reference/squash.static.0069.json": "df22c1dbcd6918d9d4334b10cb8a7117b6b0844db0b33242f6e36da407016a2d",
+    "models/reference/squash.static.0018.json": "aba7d3bd68facedd9d1667e4e01abd141eabdf719935dc3070eb1fe5e41aab7d",
+    "models/reference/squash.static.0021.json": "d0cb7f719d5c14636773c63e92b84f84998a98e29ed9b5b1404c274fc16fff9b",
+    "models/reference/squash.static.0043.json": "246c5e2093f44324ff9ed5c4f33a7475232df483235407f024766afd89b1ecf1",
+    "models/reference/squash.static.0058.json": "4a58f3bc97cb6442d148ab5b226864889b3cf1620c46efb9492671115a2d84ac",
+    "models/reference/squash.static.0052.json": "30d69e180d550ad4b82f594c928f7aa738de5211abb73819db7c35abc3d01223",
+    "models/reference/squash.static.0017.json": "7cfd8feb69374502e4ab2e75e8078b4ece47dde8a6c1542bee9758996aac5b5f",
+    "models/reference/squash.static.0002.json": "94833f7c1febabe6ec91936e38aedf2920cb6bd41b96ce708e641b7e9ef24299",
+    "models/reference/squash.static.0042.json": "8d15d38a61086d3cb5adcf10e6564b15283c9feb17ffab64bd1d7f7276f5e3aa",
+    "models/reference/squash.static.0008.json": "7188eda4fe1c1e4dd30f6b14c17383e18aeb278dbb63341997aeabd5ec45a591",
+    "models/reference/squash.static.0027.json": "95086c6f35362d93ec395c622c1eaa1df764cdb6f46fe866530a9c691dee7d24",
+    "models/reference/squash.static.0006.json": "55f89592e73ac8f119de1b1ed2426715b1ab1fb45137fffb2b61cdb65ee5d98b",
+    "models/reference/squash.static.0032.json": "e414ab6535a93fd4da2ac558d5959a0f900965a0e1e7823989245d9e299d6a81",
+    "models/reference/squash.static.0014.json": "71780a730b7534fa1649cdb225f72785267e81bbfdf1a085736a6c8beba09b8f",
+    "models/reference/squash.static.0046.json": "1868ec09433ed3a0baf7e5baa39a5093b143ca25ec6147afdc6cc87096708771",
+    "models/reference/squash.static.0036.json": "36374a77134881b0dd95570891f407b336c2dbadf71a03a380d5d8dceab171ba",
+    "models/reference/squash.static.0044.json": "31b034e365ea966280d6d563f6868366d6c0145e0cc835ceaa49727fe290493e",
+    "models/reference/squash.static.0070.json": "34dadab03373e0ad531cb4d3bb7a2ff4ee146293154a38b802e3d512753450da",
+    "models/reference/squash.static.0020.json": "94ab19324855a5b9c42a00cbfc76287ccd1c80727c29e0b808f98227a0a7fb0b",
+    "models/reference/squash.static.0031.json": "8c504aa5a6ceed08d105130280af79f540e18ad0faf700cd8496f42733a6ec2b",
+    "models/reference/squash.static.0007.json": "72004c4bfbbb9d61861b5a77030829dabfdec72c57d7d408bd6c37ee51f9f93f",
+    "models/reference/squash.static.0015.json": "15c7f97984a37d9b9d3ec4b8c0bf9a215b45213987c2f0725f1d967c31f71c72",
+    "models/reference/squash.static.0050.json": "23d5ddc84f3c55f597d66428923c543bfbc9ea92c5921fea2dd2098cf71eb90b",
+    "models/reference/squash.static.0063.json": "ce225fd1df7793b9ad17a6e9abdbd1f24eac5a660252932e52f8b1e485cabdba",
+    "models/reference/squash.static.0005.json": "39d153d34ef0a2e4fcaacdfa81babbbd7f0510587297b92f4e0eaab094cdc14a",
+    "models/reference/squash.static.0016.json": "f66d36b0f5e8ca1e3997f0d15e45cdd380fe314104c69862b1e4244cd1901d47",
+    "models/reference/squash.static.0019.json": "3dc3e683f9f5110881c48cd6b44a7d8047ba6224d3773f89e448fbce37c98727",
+    "models/reference/squash.static.0009.json": "92c5150316ffc7149f13e08c874e97784c13711fb6be6d1e482bc2f76c9fc204",
+    "models/reference/squash.static.0013.json": "24422a0d292c0f3f551096a177c7d81f2108ae12cc97697a83b420652957de36",
+    "models/reference/squash.static.0061.json": "8b3cfabc830b03a21c4c227df43216107bd434793f2b48a0610b2d6ef66c0604",
+    "models/reference/squash.static.0049.json": "19fadddf29d09ba64dcf16b5593d4e0963f5c2ea2e56fedf43d876110c049f89",
+    "models/reference/squash.static.0030.json": "8ed14836bc904a3c06cdfd5abdfee3f33f7201de0d175735b228577fdf80c740",
+    "models/reference/squash.static.0022.json": "93a8511ee9cfe7ea9ca7a9ad3e5c19ee365cbc22edc89d63763f8eab9274285c",
+    "models/reference/squash.static.0038.json": "b22ee29e38c98f5de347ffe4526a73042103a0897f1f13690b6360df5048f850",
+    "models/reference/squash.static.0033.json": "6956100b003aecafa2b3d5a69b6aa1504e9460f8f487446b9f542ed66ad39019",
+    "models/reference/squash.static.0028.json": "464b8180ae09c6ab0be1a352a44fbcea1984499728dd4766192eed2e4f4275b0",
+    "models/reference/squash.static.0062.json": "447bc97f2250901076f25a4cccc16deea8f4690a1b4606b6b82c4da21c498213",
+    "models/reference/squash.static.0064.json": "96ad6ed505428abb33d5a850e8d4e07c81fd4ebe5678b00dcb609cb031147eee",
+    "models/reference/squash.static.0045.json": "e24636bcae60b7be4fc66121733006aca2bc557eb12accd2b608ab4b038a5c70",
+    "models/reference/squash.static.0024.json": "ec16e2d01c4f96b5e6f527293e273a8f20bbb5a33aa43a8c507992ac54f95284",
+    "models/dynamic-reference/squash.dynamic.0001.json": "5d7c8fbfb1849f51564b861b444f6d1c221e3488c87ea8942bd0af3f499e2a6f",
+    "models/dynamic-reference/squash.dynamic.0002.json": "2c2937c8bb8aa0aa083308df78b6c4634e945b67cf9f1eb08242925e7c5740e1",
+    "models/dynamic-reference/squash.dynamic.0003.json": "4d3d8227e03ae612eb19e5374e4bcb0817a8c8b884969e7497c34aee7839b25d",
+    "models/dynamic-reference/squash.dynamic.0004.json": "72d4af4e5ab709f5e42eac7593292dcaccedfaa49dae161944ee878f87b622f5",
+    "models/dynamic-reference/squash.dynamic.0005.json": "455a03866f63b6a7883a7140fb3fb979b0d15e082966ad22db1e9ad1bfb0789c",
+    "models/dynamic-reference/squash.dynamic.0006.json": "b6077f25aa5635363cfeaa809b84882e97b0d2be329b78a5589e4d8f6dfc4fd4",
+    "models/dynamic-reference/squash.dynamic.0007.json": "0e483305704d5007bc06df1f3207a6439551e6c61c04fce9c601cf44530731a5",
+    "models/dynamic-reference/squash.dynamic.0008.json": "21a154bda83b50c517186572efd79937c245b0d47d383c03d4dbd9ea786c68df",
+    "models/dynamic-reference/squash.dynamic.0009.json": "5914ae859513f76a0fbd2293b641174385bc91c8e2870f8ba3d4ae5074839ef6",
+    "models/dynamic-reference/squash.dynamic.0010.json": "16cb172d6def5cb566a8aed5d39b9a8152aa1a70cc64ac471f93357b22bfc047",
+    "models/dynamic-reference/squash.dynamic.0011.json": "5847558749d0e1166b921237823a8204e3b752dbc26228d58f74e7b48841b3f9",
+    "models/dynamic-reference/squash.dynamic.0012.json": "228a605631a2696bfd0eb32329cf4cc4cd9d0c2bae54fb0f090d0101e4dcec78",
+    "models/dynamic-reference/squash.dynamic.0013.json": "8695cc6e28ed0cff1c6776b6f051b9a69c080feb9f50ceb64a1553c54c7e421b",
+    "models/dynamic-reference/squash.dynamic.0014.json": "0bd4c14a3bb0ee0c36b9f49b49561b70e8053940e57a77e697d786d1fdc80818",
+    "models/dynamic-reference/squash.dynamic.0015.json": "8439758f0f84f899a4f0959441de25c575301e065e45adc0b3743eb07d8b0ae1",
+    "models/dynamic-reference/squash.dynamic.0016.json": "14578f803e466ef57b56210d31ca0f22d73019f8b1c2871ad0cb17e6c30a52ee",
+    "models/dynamic-reference/squash.dynamic.0017.json": "bdb77fdd23f3384e19f915029a2cad8c8c0584c34afbb01ff8c25b126c66d3b3",
+    "models/dynamic-reference/squash.dynamic.0018.json": "0d3b0184369df06d3652a3b9ddda50be778190903a6c345a53e3b603a7e8e58d",
+    "models/dynamic-reference/squash.dynamic.0019.json": "fb9e501e5902eecb8859196fb3978699a68381cd6f070682d76e0855a16b4944",
+    "models/dynamic-reference/squash.dynamic.0020.json": "6ed5733a18e8e22cf015b37beabfa42f104fd5a98c16ed523569c7d4d5754a02",
+    "models/dynamic-reference/squash.dynamic.0021.json": "998a1e08bb33810832e790f831d66d39451bb1edcfce5a6a605896a6dcba2c6a",
+    "models/dynamic-reference/squash.dynamic.0022.json": "40fd225abbba2f7f1ad55bcd5839fee998dbcda4bb0af821438501c83428b71e",
+    "models/dynamic-reference/squash.dynamic.0023.json": "2d1438adccb28cf64b48129a6380510d23f420cb28ea44cfd26188a2af0cbeb0",
+    "models/dynamic-reference/squash.dynamic.0024.json": "748dba7fbf98a395d93ccc9aeee8b27a8b6a01d48af24d3aa39b911692a75b8b",
+    "models/dynamic-reference/squash.dynamic.0025.json": "b2965ce90522b6d5721225ff435f0d6ed0a1c8eed9e789da3391c64eeef0dd5a",
+    "models/dynamic-reference/squash.dynamic.0026.json": "d321403058c490d1ce851ee01c793a9e7a30b27a63bb42cf89822e7d8ff25eb5",
+    "models/dynamic-reference/squash.dynamic.0027.json": "0ea38da784475685347dcd445df1b778e7aae73bb24473c87a7cef0dc955d295",
+    "models/dynamic-reference/squash.dynamic.0028.json": "da62325c4df70b46058920f64fe589b4eeb5bb0aee4591ef1cec2cacbc03541a",
+    "models/dynamic-reference/squash.dynamic.0029.json": "377897c3497cfa20cb83927fa9eb5bf14768b3d542bcc7fdba32988236403071",
+    "models/dynamic-reference/squash.dynamic.0030.json": "43fc863086b41999a4d90e0f5668ed4dd92f5fe3e8b75cabb4d17b4757da3aa8",
+    "models/dynamic-reference/squash.dynamic.0031.json": "21cd565349f3f014abd4ce0e41f2dc3af1176a047aeec59ec3ac150c3067a5cf",
+    "models/dynamic-reference/squash.dynamic.0032.json": "f102a9e708d4d93863cc206d69077850091968286b4353726d7e518481f0895d",
+    "models/dynamic-reference/squash.dynamic.0033.json": "5ad5cac071e36fb1d8835d0fd2f5bc9afd2e80ee4c6c99bc4389533d20747d79",
+    "models/dynamic-reference/squash.dynamic.0034.json": "608ab23814cd655f95ea694ca0124431b7b7a6ddf00133231f55989652bbdfac",
+    "models/dynamic-reference/squash.dynamic.0035.json": "73ac3e1ef9b06479dea2bb809288d14a3dfd4f0f09e553d51c8e88dbd31e5362",
+    "models/dynamic-reference/squash.dynamic.0036.json": "633a31ffa081ceb131f7f692c5c590ff42eacd579f2e371767141326103b0b50",
+    "models/dynamic-reference/squash.dynamic.0037.json": "5c20c8d1d7309380b80c94e243d1a69ff2ddd43332dfa289daeed4c29bc44898",
+    "models/dynamic-reference/squash.dynamic.0038.json": "9626af53c6f186d4f40dbbef6a672291107a5f79407994c7c5fa75f0cbc599ae",
+    "models/dynamic-reference/squash.dynamic.0039.json": "724966506b19a967d346ee7592fc20d7ed19e5d0f4ec46f8e65d04005bed5121",
+    "models/dynamic-reference/squash.dynamic.0040.json": "0f284ea4593ac7842d290941b2d32ef6f9efa22638577aceebff3c4f0c29e024",
+    "models/dynamic-reference/squash.dynamic.0041.json": "b5cf662d2f94d86e8a43616f34a50eab346b20130ea3b2ced4fda6213a933795",
+    "models/dynamic-reference/squash.dynamic.0042.json": "2ea6dc1efabb92f00770b33b4aed0d4d17b8ec13ac498206da3fa06f688dc25f",
+    "models/dynamic-reference/squash.dynamic.0043.json": "dced94d6a304411f63acb5c2ee6e5e1d441e5249b185e46d5a4f9fc0a2c73909",
+    "models/dynamic-reference/squash.dynamic.0044.json": "7c439c8aa3977877807bc63db7b3526cd10a80de7842b1e2ec50630a5167ae6d",
+    "models/dynamic-reference/squash.dynamic.0045.json": "402584af9cfc12ea8f4199d08dbed2be8438e156cfc470d2591ed8af73367915",
+    "models/dynamic-reference/squash.dynamic.0046.json": "8ab6e696d6421035c40ab6fd0ee8b87d78ed260423c4c8adc599f3ceaeca6034",
+    "models/dynamic-reference/squash.dynamic.0047.json": "8281d384e684370d89a8b95b7e3ad773553d3b06fed387e36d7d06fb74d28ea2",
+    "models/dynamic-reference/squash.dynamic.0048.json": "3500ea5c851da92ea3efe54709decb7643a156eb1df9863a555e7dd7d62f3416",
+    "models/dynamic-reference/squash.dynamic.0049.json": "d2f4b218ef20ce72e09aae8b5cc9f5b5324b6be07e313251fbc698ef689e7a3b",
+    "models/dynamic-reference/squash.dynamic.0050.json": "1dc5017faf1800003bb2cb90c1b410d6af3f5d3af38cd71e22c8f72324447dc5",
+    "models/dynamic-reference/squash.dynamic.0051.json": "2ea3fe78e941eeaa493ee4fe40bb27571f38f5eba223ef1fe44de6f0afeeaf26",
+    "models/dynamic-reference/squash.dynamic.0052.json": "48d53c3d03113acb646a2a8368cf757a017cb79ddb75d1ccd1d9b3bdaa658050",
+    "models/dynamic-reference/squash.dynamic.0053.json": "17f242d3674b3a9343580ddadec67e0cd668afa0cad98c738e791246f8c87904",
+    "models/dynamic-reference/squash.dynamic.0054.json": "2de2bea63308bbe85c4f73ac16ebdb841e2dd6fe4c73b0f065d821a1c0a42221",
+    "models/dynamic-reference/squash.dynamic.0055.json": "4d5eaa18cbe868db4b943c2fb247da98736ed3019f819c59cf4eb09c7e606ed1",
+    "models/dynamic-reference/squash.dynamic.0056.json": "7a07fa08f923cbe35cc866dce3733aed0cf8fbddd973373976210ff1e12828fd",
+    "models/dynamic-reference/squash.dynamic.0057.json": "cb579dd48f29feeeaca85681855fdae73a39b73f5960a76cba865e63a34c6379",
+    "models/dynamic-reference/squash.dynamic.0058.json": "d77628760e153c64c5178a9a68301e3058f35d40800ff91026a6b14ecd87da12",
+    "models/dynamic-reference/squash.dynamic.0059.json": "5ddb492b5574867470bf2a9b9e173f261bfe9ba397e95155afeb4cba682b0330",
+    "models/dynamic-reference/squash.dynamic.0060.json": "289df2894956a6bf857c5922872d0d1eb0e4445b8dea3eebe285808785915f39",
+    "models/dynamic-reference/squash.dynamic.0061.json": "96b1a088593d087340141da25a7afc2ffef60c859d6b1a310bc4d28b044f9a58",
+    "models/dynamic-reference/squash.dynamic.0062.json": "e76216723d3a66c343c057e0fb3786fc0559a310d69af43b78775d989388ffe2",
+    "models/dynamic-reference/squash.dynamic.0063.json": "0993af41af6c3977e94377518c768797ae99b19b0e6338742be9c469c9812785",
+    "models/dynamic-reference/squash.dynamic.0064.json": "567415ff8bb650efafa8aefeddcd07d2859602b9acd80232e8642221c25b7825",
+    "models/dynamic-reference/squash.dynamic.0065.json": "bd352c279ec586bf7b0f075da2518a048d85013f61199faafad419761c694ca4",
+    "models/dynamic-reference/squash.dynamic.0066.json": "e6753a86a80fd264d36b525605cea6efaca3f43ab99428a5cd13dce1d40ebd1e",
+    "models/dynamic-reference/squash.dynamic.0067.json": "db5192bd3dc6ea6f35d6b0dcdb7bf6c92d619d5227c3633d4b04c3acd6254182",
+    "models/dynamic-reference/squash.dynamic.0068.json": "d5f1ee64f7f7754a5333c2fd479e5692c169a40ebc875bb67cb68e9c8fb2e068",
+    "models/dynamic-reference/squash.dynamic.0069.json": "1dafc5723056c7b4bc2dadf6df05861de4aca63c81c2408035ebb91144d1cca9",
+    "models/dynamic-reference/squash.dynamic.0070.json": "77f6075e19bb323a4e7842cdc95f9d5793acbf1737256e151541b6f5c0e47f72",
+    "models/dynamic-reference/squash.dynamic.0071.json": "eb0c8f55d9c7e01b39fd4f8e4a288a4027655f096d558ce932652867bc300081",
+    "models/dynamic-reference/squash.dynamic.0072.json": "b10384fbaa64c44416ccd582a22e8e09a5b76dc129d8b8b01c76885612245d6c",
+    "models/dynamic-reference/squash.dynamic.0073.json": "91fcf9f6c9e95085359ffb33e40e4f722edf2b72e4e179b793303aa031d62ae4",
+    "models/dynamic-reference/squash.dynamic.0074.json": "725a4b6214c07fe0ea06ca1d3ad8a4cd226864d10ed7266cc1d8ad84ed43b8be",
+    "models/dynamic-reference/squash.dynamic.0075.json": "6f2dfbef931a69080692ef8e4c6d352dd0cc377de0597c85e98c4e04d57c5766",
+    "models/dynamic-reference/squash.dynamic.0076.json": "88f2c5d0672cdf9e322f4d8faa85c7cdd39e73a216387908f628062f85a9dd9b",
+    "models/dynamic-reference/squash.dynamic.0077.json": "5ab9dfed875cd45d6ec33f18107e7844cb4c69b0c6faf9d1436bc33713fef685",
+    "models/dynamic-reference/squash.dynamic.0078.json": "0a857caba614dc578a148793a024000c7035e9e2525da6accf01c2a3b819ddcb",
+    "models/dynamic-reference/squash.dynamic.0079.json": "7ed09ac2d023e61a4e02b7af6d3fb47309d995be86f221ec9593c9e18017153b",
+    "models/dynamic-reference/squash.dynamic.0080.json": "8410a4b299f2c77fe424fabc1e306268c73678d5aeaf2668b00aa90014fc5a88",
+    "models/dynamic-reference/squash.dynamic.0081.json": "b4384deadee6df7af3ec68ab390fd437cbc7a938b9e6c9f1bc30abbd8225850c",
+    "models/dynamic-reference/squash.dynamic.0082.json": "d148e9b67a7bf08487e93560fd050cf6a333edc323f65b6ffd7e64899dfa4f63",
+    "models/dynamic-reference/squash.dynamic.0083.json": "854fe7d258ab70b5821cc18465a5cd71f14a010eb33df66d6c335166d427d5a5",
+    "models/dynamic-reference/squash.dynamic.0084.json": "375c82c37149c16c718a01be3f7334a32cdd2f3d563a7bd40330ab99fe89ad07",
+    "models/dynamic-reference/squash.dynamic.0085.json": "e0e2be568c93dccc0ff052e51114d3b6d13bf570c4e3a44d67097f9270b045e9",
+    "models/dynamic-reference/squash.dynamic.0086.json": "6b4935d5b2d99365dadc625f437d94ad9019535573ebf4908259f2c77ecb1479",
+    "models/dynamic-reference/squash.dynamic.0087.json": "f1a16b18d7c2ef0af9d00fbcfe66793b014e241a91a55fa4c68c3950d0dc483c",
+    "models/dynamic-reference/squash.dynamic.0088.json": "c04970ba60cfe249612da6099ee6397ac2701a80e69fd8606115b28b62f460f6",
+    "models/dynamic-reference/squash.dynamic.0089.json": "0d973ad18a0fad55b5e132ab0e5f93a8f31dc80473ead53226b7d383a79dfcd9",
+    "models/dynamic-reference/squash.dynamic.0090.json": "d00a821ea6e4457acbcf71b44585361fc5b67ebc20438da5c680e0ced0303e6d",
+    "models/dynamic-reference/squash.dynamic.0091.json": "9959877da302f678699ebdce1906ef83cd5a7d5a9fe24ce52e0727a62136ba2d",
+    "models/dynamic-reference/squash.dynamic.0092.json": "01045d752d1fd729761e14b9a56818b54cb71c076b4ddd8ea9cc183f017ca376",
+    "models/dynamic-reference/squash.dynamic.0093.json": "7c2a35e8e9179cf1a6db1a2f895af329e948bca250d4fe8b4e46ddbb30a5040c",
+    "models/dynamic-reference/squash.dynamic.0094.json": "f6aca8bbf3d9a7d49508f0b50d65b55ea7f90a6886ad338e3c006981f21d9c12",
+    "models/dynamic-reference/squash.dynamic.0095.json": "c02165c935ad94f0bc1df5ea2d7658bd3eef519a99458c03ea98073b575db778",
+    "models/dynamic-reference/squash.dynamic.0096.json": "bad0e78cba3a485b77f4f72b60715304b66a3ecc53589778a8ff1179b7e18baf",
+    "models/dynamic-reference/squash.dynamic.0097.json": "0c43cb89518001b18eb782e70c4a197ec84caf71df8f994302baefa8fe598ff8",
+    "models/dynamic-reference/squash.dynamic.0098.json": "fa2234143cac0c11dd74808f56467abde47d951e2d03b813091fc2cc888f5d4e",
+    "models/dynamic-reference/squash.dynamic.0099.json": "3ac2af66aaa5be3fb4eaf1c072f7a0fa6c5fe3ed87cf0a873edbc17bea1b0a0b",
+    "models/dynamic-reference/squash.dynamic.0100.json": "024e6f1b6691dbe22fd3b0746135418f7f78547d3f260d7992b18e79ec78d6b1",
+    "models/dynamic-reference/squash.dynamic.0101.json": "e36cb0d04a913506ae00f306c572d39883219e3b4325962339dd58aba77388c9",
+    "models/dynamic-reference/squash.dynamic.0102.json": "9dbaee2620fc72d7129aad6ff559aa2fd81b945ef96b7710069a46888d282470",
+    "models/dynamic-reference/squash.dynamic.0103.json": "ea3df0e1cf2544d1d4149ec4fb665906dbd1afe8ffc35391bb2169d7f836bf3b",
+    "models/dynamic-reference/squash.dynamic.0104.json": "654d072706fa0e03388b3f50107ceb5d5b83683149f831f9910dfffb98c96bed",
+    "models/dynamic-reference/squash.dynamic.0105.json": "478bc626176129eda1edfe55e63f7ebef5753f445f7e0a1a0bbf1f50c659dadc",
+    "models/dynamic-reference/squash.dynamic.0106.json": "3d5c5e650c9f6ddb7d1af2d1ed6e1812c2e17f55c1a3f5145ca7cfa67b05367b",
+    "models/dynamic-reference/squash.dynamic.0107.json": "a8c89cb6bc0bf4b6661dbd493d52bd3d4ebec797f229fddbc045fca0f5113df0",
+    "models/dynamic-reference/squash.dynamic.0108.json": "0decbfd5371de02253ced5fd9d6450c748da980700d441cd17bfbff00d1dec2a",
+    "models/dynamic-reference/squash.dynamic.0109.json": "99e25391c400100ef5664a4cb89c5e55f8b80ff85a1ab6bb9c0eac68e446ac4a",
+    "models/dynamic-reference/squash.dynamic.0110.json": "5c2fc4a7004b248ddf48cd31dbbb9faf50042aa7dabbf06cd94e9c8e0880cea4",
+    "models/dynamic-reference/squash.dynamic.0111.json": "3da21d51e76ba71768fbf268b963e6a30a5335c0622c30f4d42ca988fee1dfc9",
+    "models/dynamic-reference/squash.dynamic.0112.json": "15dadd10ab5a45568addd32fc55b696c8c09389e42246a2027cd3908732d128b",
+    "models/dynamic-reference/squash.return_of_serve.json": "09cbb9b2f1fdf2fdc1d1e0558980cc2b0813bb41574feccef56dfb0829a5a065",
+    "models/dynamic-reference/squash.serve.json": "a970546607019eafe5e1661512442ce011d305142bb26f59f509140a4f20f7c2"
+  },
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "dev-local-2026",
+    "value": "4654815fe1f3978c3a7e1a25d26958e86dd20a560f11b250c2e13323a3df98fa"
+  },
+  "display": {
+    "name": "Squash",
+    "description": "Squash sports engine: 184 exact catalogue movements organised into 19 action families and 54 recognition groups. Grouping remains provisional.",
+    "color": "#38bdf8",
+    "status": "pilot"
+  }
+}

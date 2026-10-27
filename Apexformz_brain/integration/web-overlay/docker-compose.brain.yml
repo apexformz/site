@@ -1,0 +1,68 @@
+# Local development only. Reuses the existing host PostgreSQL service and accounts.
+# No PostgreSQL service, volume, reset, or automatic migration is defined here.
+name: apexformz-brain-local
+
+services:
+  backend:
+    build: &brain_build
+      context: .
+      dockerfile: infrastructure/docker/brain-local.Dockerfile
+      target: backend
+      additional_contexts:
+        brain_source: ${APEXFORMZ_BRAIN_CONTEXT:-../Apexformz_brain}
+    env_file:
+      - ./apps/backend/.env
+    environment: &backend_environment
+      # Explicit local mode permits the existing local JWT settings and development packs.
+      NODE_ENV: development
+      HOST: 0.0.0.0
+      PORT: "4000"
+      CORS_ORIGIN: ${APEXFORMZ_DOCKER_WEB_ORIGIN:-http://localhost:3001}
+      APEXFORMZ_PACK_TRUST_MODE: development
+      SPORT_PACKS_DIR: /workspace/Apexformz_brain/sport-packs
+      ENABLE_JOB_DISPATCHER: "false"
+      ENABLE_ASSET_RETENTION: "false"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "127.0.0.1:${APEXFORMZ_DOCKER_API_PORT:-4000}:4000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4000/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  frontend:
+    build:
+      <<: *brain_build
+      target: frontend
+      args:
+        NEXT_PUBLIC_API_URL: /api
+        NEXT_PUBLIC_SOCKET_URL: ${APEXFORMZ_DOCKER_SOCKET_URL:-http://localhost:4000}
+        APEXFORMZ_API_ORIGIN: http://backend:4000
+        NEXT_PUBLIC_PACK_TRUST_MODE: development
+    environment:
+      NODE_ENV: production
+      HOSTNAME: 0.0.0.0
+      PORT: "3000"
+      APEXFORMZ_API_ORIGIN: http://backend:4000
+      APEXFORMZ_PACK_TRUST_MODE: development
+      SPORT_PACKS_DIR: /workspace/Apexformz_brain/sport-packs
+    ports:
+      - "127.0.0.1:${APEXFORMZ_DOCKER_WEB_PORT:-3001}:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  # Run explicitly once if Brain tables have not already been prepared by npm run db:prepare.
+  db-prepare:
+    profiles: [setup]
+    build:
+      <<: *brain_build
+      target: database-setup
+    env_file:
+      - ./apps/backend/.env
+    environment: *backend_environment
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: "no"

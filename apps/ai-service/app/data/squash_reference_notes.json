@@ -1,0 +1,29 @@
+{
+  "status": "experimental",
+  "mode": "static 2D joint-angle comparison",
+  "sources": [
+    {
+      "title": "Squash Canada: Grip, Ready Position and Swing",
+      "url": "https://squash.ca/wp-content/uploads/2013/07/Grip-Ready-Position-and-Swing.pdf",
+      "used_for": "Balanced ready-position context; the camera does not infer weight distribution."
+    },
+    {
+      "title": "Squash Canada: Forehand and Backhand Volley",
+      "url": "https://squash.ca/wp-content/uploads/2020/10/Forehand-and-Backhand-Volley.pdf",
+      "used_for": "Bent-elbow preparation and shoulder-height arm context."
+    }
+  ],
+  "target_provenance": "Numeric targets are app-authored broad pose heuristics, not measured expert exemplars or validated coaching thresholds. Existing base tolerance is at least15degrees. Forehand/backhand preparation drills cannot be classified or validated from racket orientation by these checks.",
+  "limits": [
+    "No racket or ball tracking",
+    "No grip assessment",
+    "No dynamic stroke, impact, or recovery scoring",
+    "2D camera projection changes apparent angles",
+    "Synthetic tests verify implementation, not coaching efficacy"
+  ],
+  "poses": [
+    "ready_stance",
+    "forehand_volley_preparation",
+    "backhand_volley_preparation"
+  ]
+}

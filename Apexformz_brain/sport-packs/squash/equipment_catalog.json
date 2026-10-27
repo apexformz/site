@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "squash",
+  "items": [
+    {
+      "id": "racket",
+      "object_class": "squash_racket",
+      "description": "Squash racket in the dominant hand. WSF racket specification (see worldsquash.sport/racket-specification): maximum length 686 mm, maximum width 215 mm, maximum strung area 500 cm2, maximum weight 255 g.",
+      "tracking": "optional_adapter",
+      "adapter_capability": "optional_implement",
+      "dimensions": { "max_length_m": 0.686, "max_width_m": 0.215, "max_strung_area_cm2": 500, "max_mass_g": 255, "note": "Figures from the WSF racket specification as reproduced by secondary sources; TODO_REQUIRES_VALIDATION against the current WSF page before any rule use." },
+      "validation_status": "provisional",
+      "note": "Racket head tracking (SAM 2 object track or point track on the head) enables swing-path, racket-preparation height and estimated-contact criteria; without it those criteria abstain."
+    },
+    {
+      "id": "ball",
+      "object_class": "squash_ball",
+      "description": "WSF specification ball; competition ball is the double yellow dot (slowest). Nominal diameter 40.0 +/- 0.5 mm, mass 24 +/- 1 g; dot colours indicate speed/bounce (double yellow, yellow, red, blue).",
+      "tracking": "offline_only",
+      "adapter_capability": "optional_projectile",
+      "dimensions": { "diameter_m": 0.04, "mass_g": 24, "note": "TODO_REQUIRES_VALIDATION: confirm rebound resilience and tolerances on worldsquash.sport/ball-specification." },
+      "validation_status": "provisional",
+      "note": "A 40 mm black ball at up to 60 m/s is not trackable live by phone cameras; offline deep analysis may attempt it from high frame-rate video. Bounce and wall-contact events needed for faults and lets are not inferred from pose."
+    },
+    {
+      "id": "protective_eyewear",
+      "object_class": "eyewear",
+      "description": "Protective eyewear to a national standard (for example ASTM F803/F3164, BS 7930.1, AS/NZS 4066, CSA P400); recommended for all play, mandatory in WSF doubles and junior events (Rules Appendix 4).",
+      "tracking": "none",
+      "adapter_capability": null,
+      "validation_status": "approved",
+      "note": "May occlude eye landmarks; criteria never use face landmarks."
+    },
+    {
+      "id": "court_lines",
+      "object_class": "court_markings",
+      "description": "50 mm floor and wall lines (short line, half-court line, service boxes, service line, front wall line, back wall line, tin top).",
+      "tracking": "optional_adapter",
+      "adapter_capability": "calibrated_scale",
+      "validation_status": "approved",
+      "note": "Calibration target: detecting the short line, half-court line and service boxes lets the perception layer map image coordinates to the court frame (metres) for T-position and lunge-reach criteria."
+    },
+    {
+      "id": "glass_back_wall",
+      "object_class": "transparent_wall",
+      "description": "Transparent back wall (2.13 m or higher) common on show and club courts.",
+      "tracking": "none",
+      "adapter_capability": null,
+      "validation_status": "approved",
+      "note": "Reflections of players and spectators in glass walls create false detections; filter detections outside the court polygon after calibration (Brumann et al. 2021)."
+    }
+  ]
+}

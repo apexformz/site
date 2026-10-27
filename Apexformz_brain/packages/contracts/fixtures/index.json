@@ -1,0 +1,30 @@
+{
+  "valid": {
+    "pose_frame.json": "poseFrame",
+    "frame_packet.json": "framePacket",
+    "event_envelope.json": "eventEnvelope",
+    "feature_spec.json": "featureSpec",
+    "feature_value.json": "featureValue",
+    "feature_value_missing.json": "featureValue",
+    "movement_event.json": "movementEvent",
+    "criterion_evidence_not_assessable.json": "criterionEvidence",
+    "criterion_evidence_improve.json": "criterionEvidence",
+    "assessment_set.json": "assessmentSet",
+    "feedback_action.json": "feedbackAction",
+    "session_transition.json": "sessionTransition",
+    "calibration.json": "calibration",
+    "session_start_request.json": "sessionStartRequest",
+    "telemetry_sample.json": "telemetrySample",
+    "track_set.json": "trackSet",
+    "equipment_measurement.json": "equipmentMeasurementFrame"
+  },
+  "invalid": {
+    "pose_frame_bad_size.json": "poseFrame",
+    "event_envelope_bad_type.json": "eventEnvelope",
+    "feature_value_null_without_reason.json": "featureValue",
+    "criterion_evidence_feedback_on_abstention.json": "criterionEvidence",
+    "session_transition_bad_state.json": "sessionTransition",
+    "track_set_bad_kind.json": "trackSet",
+    "equipment_measurement_bad_contact.json": "equipmentMeasurementFrame"
+  }
+}

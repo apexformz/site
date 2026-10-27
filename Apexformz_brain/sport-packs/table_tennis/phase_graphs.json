@@ -1,0 +1,1187 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "table_tennis",
+  "graphs": [
+    {
+      "id": "pg.table_tennis.ready_stance",
+      "movement_id": "table_tennis.ready_stance",
+      "kind": "static_hold",
+      "window_ms": 1500,
+      "confirm_hold_ms": 600,
+      "phases": [
+        {
+          "id": "hold",
+          "name": "Ready hold",
+          "kind": "hold",
+          "contact_evidence": "none",
+          "min_duration_ms": 600,
+          "max_duration_ms": null,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.006,
+              "validation_status": "provisional"
+            },
+            {
+              "feature": "max_knee_angle",
+              "op": "lt",
+              "value": 175,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 600,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [],
+      "initial": "hold",
+      "terminal": [
+        "hold"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: seed thresholds pending coach review."
+    },
+    {
+      "id": "pg.table_tennis.forehand_drive",
+      "movement_id": "table_tennis.forehand_drive",
+      "kind": "dynamic_sequence",
+      "window_ms": 3000,
+      "abort_timeout_ms": 4000,
+      "confirm_hold_ms": 60,
+      "allow_skip": false,
+      "phases": [
+        {
+          "id": "ready",
+          "name": "Ready",
+          "kind": "rest",
+          "contact_evidence": "none",
+          "min_duration_ms": 150,
+          "max_duration_ms": null,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 120,
+          "cue_allowed": true
+        },
+        {
+          "id": "backswing",
+          "name": "Backswing",
+          "kind": "preparation",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1500,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 96.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "swing",
+          "name": "Acceleration",
+          "kind": "action",
+          "contact_evidence": "none",
+          "min_duration_ms": 30,
+          "max_duration_ms": 800,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 240.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 30,
+          "cue_allowed": false
+        },
+        {
+          "id": "estimated_contact",
+          "name": "Estimated contact",
+          "kind": "contact",
+          "contact_evidence": "unobserved",
+          "min_duration_ms": 20,
+          "max_duration_ms": 600,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 144.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 20,
+          "cue_allowed": false
+        },
+        {
+          "id": "follow_through",
+          "name": "Follow through",
+          "kind": "follow_through",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1200,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 72.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "recovery",
+          "name": "Recovery",
+          "kind": "recovery",
+          "contact_evidence": "none",
+          "min_duration_ms": 100,
+          "max_duration_ms": 3000,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 100,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [
+        {
+          "from": "ready",
+          "to": "backswing"
+        },
+        {
+          "from": "backswing",
+          "to": "swing"
+        },
+        {
+          "from": "swing",
+          "to": "estimated_contact"
+        },
+        {
+          "from": "estimated_contact",
+          "to": "follow_through"
+        },
+        {
+          "from": "follow_through",
+          "to": "recovery"
+        },
+        {
+          "from": "recovery",
+          "to": "ready"
+        }
+      ],
+      "initial": "ready",
+      "terminal": [
+        "recovery"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: generic stroke seed graph; contact is never observed from body pose and is labelled estimated/unobserved."
+    },
+    {
+      "id": "pg.table_tennis.backhand_drive",
+      "movement_id": "table_tennis.backhand_drive",
+      "kind": "dynamic_sequence",
+      "window_ms": 3000,
+      "abort_timeout_ms": 4000,
+      "confirm_hold_ms": 60,
+      "allow_skip": false,
+      "phases": [
+        {
+          "id": "ready",
+          "name": "Ready",
+          "kind": "rest",
+          "contact_evidence": "none",
+          "min_duration_ms": 150,
+          "max_duration_ms": null,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 120,
+          "cue_allowed": true
+        },
+        {
+          "id": "backswing",
+          "name": "Backswing",
+          "kind": "preparation",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1500,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 96.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "swing",
+          "name": "Acceleration",
+          "kind": "action",
+          "contact_evidence": "none",
+          "min_duration_ms": 30,
+          "max_duration_ms": 800,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 240.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 30,
+          "cue_allowed": false
+        },
+        {
+          "id": "estimated_contact",
+          "name": "Estimated contact",
+          "kind": "contact",
+          "contact_evidence": "unobserved",
+          "min_duration_ms": 20,
+          "max_duration_ms": 600,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 144.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 20,
+          "cue_allowed": false
+        },
+        {
+          "id": "follow_through",
+          "name": "Follow through",
+          "kind": "follow_through",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1200,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 72.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "recovery",
+          "name": "Recovery",
+          "kind": "recovery",
+          "contact_evidence": "none",
+          "min_duration_ms": 100,
+          "max_duration_ms": 3000,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 100,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [
+        {
+          "from": "ready",
+          "to": "backswing"
+        },
+        {
+          "from": "backswing",
+          "to": "swing"
+        },
+        {
+          "from": "swing",
+          "to": "estimated_contact"
+        },
+        {
+          "from": "estimated_contact",
+          "to": "follow_through"
+        },
+        {
+          "from": "follow_through",
+          "to": "recovery"
+        },
+        {
+          "from": "recovery",
+          "to": "ready"
+        }
+      ],
+      "initial": "ready",
+      "terminal": [
+        "recovery"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: generic stroke seed graph; contact is never observed from body pose and is labelled estimated/unobserved."
+    },
+    {
+      "id": "pg.table_tennis.forehand_topspin",
+      "movement_id": "table_tennis.forehand_topspin",
+      "kind": "dynamic_sequence",
+      "window_ms": 3000,
+      "abort_timeout_ms": 4000,
+      "confirm_hold_ms": 60,
+      "allow_skip": false,
+      "phases": [
+        {
+          "id": "ready",
+          "name": "Ready",
+          "kind": "rest",
+          "contact_evidence": "none",
+          "min_duration_ms": 150,
+          "max_duration_ms": null,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 120,
+          "cue_allowed": true
+        },
+        {
+          "id": "backswing",
+          "name": "Backswing",
+          "kind": "preparation",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1500,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 120.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "swing",
+          "name": "Acceleration",
+          "kind": "action",
+          "contact_evidence": "none",
+          "min_duration_ms": 30,
+          "max_duration_ms": 800,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 300.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 30,
+          "cue_allowed": false
+        },
+        {
+          "id": "estimated_contact",
+          "name": "Estimated contact",
+          "kind": "contact",
+          "contact_evidence": "unobserved",
+          "min_duration_ms": 20,
+          "max_duration_ms": 600,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 180.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 20,
+          "cue_allowed": false
+        },
+        {
+          "id": "follow_through",
+          "name": "Follow through",
+          "kind": "follow_through",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1200,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 90.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "recovery",
+          "name": "Recovery",
+          "kind": "recovery",
+          "contact_evidence": "none",
+          "min_duration_ms": 100,
+          "max_duration_ms": 3000,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 100,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [
+        {
+          "from": "ready",
+          "to": "backswing"
+        },
+        {
+          "from": "backswing",
+          "to": "swing"
+        },
+        {
+          "from": "swing",
+          "to": "estimated_contact"
+        },
+        {
+          "from": "estimated_contact",
+          "to": "follow_through"
+        },
+        {
+          "from": "follow_through",
+          "to": "recovery"
+        },
+        {
+          "from": "recovery",
+          "to": "ready"
+        }
+      ],
+      "initial": "ready",
+      "terminal": [
+        "recovery"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: generic stroke seed graph; contact is never observed from body pose and is labelled estimated/unobserved."
+    },
+    {
+      "id": "pg.table_tennis.backhand_topspin",
+      "movement_id": "table_tennis.backhand_topspin",
+      "kind": "dynamic_sequence",
+      "window_ms": 3000,
+      "abort_timeout_ms": 4000,
+      "confirm_hold_ms": 60,
+      "allow_skip": false,
+      "phases": [
+        {
+          "id": "ready",
+          "name": "Ready",
+          "kind": "rest",
+          "contact_evidence": "none",
+          "min_duration_ms": 150,
+          "max_duration_ms": null,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 120,
+          "cue_allowed": true
+        },
+        {
+          "id": "backswing",
+          "name": "Backswing",
+          "kind": "preparation",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1500,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 120.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "swing",
+          "name": "Acceleration",
+          "kind": "action",
+          "contact_evidence": "none",
+          "min_duration_ms": 30,
+          "max_duration_ms": 800,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 300.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 30,
+          "cue_allowed": false
+        },
+        {
+          "id": "estimated_contact",
+          "name": "Estimated contact",
+          "kind": "contact",
+          "contact_evidence": "unobserved",
+          "min_duration_ms": 20,
+          "max_duration_ms": 600,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 180.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 20,
+          "cue_allowed": false
+        },
+        {
+          "id": "follow_through",
+          "name": "Follow through",
+          "kind": "follow_through",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1200,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 90.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "recovery",
+          "name": "Recovery",
+          "kind": "recovery",
+          "contact_evidence": "none",
+          "min_duration_ms": 100,
+          "max_duration_ms": 3000,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 100,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [
+        {
+          "from": "ready",
+          "to": "backswing"
+        },
+        {
+          "from": "backswing",
+          "to": "swing"
+        },
+        {
+          "from": "swing",
+          "to": "estimated_contact"
+        },
+        {
+          "from": "estimated_contact",
+          "to": "follow_through"
+        },
+        {
+          "from": "follow_through",
+          "to": "recovery"
+        },
+        {
+          "from": "recovery",
+          "to": "ready"
+        }
+      ],
+      "initial": "ready",
+      "terminal": [
+        "recovery"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: generic stroke seed graph; contact is never observed from body pose and is labelled estimated/unobserved."
+    },
+    {
+      "id": "pg.table_tennis.push",
+      "movement_id": "table_tennis.push",
+      "kind": "dynamic_sequence",
+      "window_ms": 3000,
+      "abort_timeout_ms": 4000,
+      "confirm_hold_ms": 60,
+      "allow_skip": false,
+      "phases": [
+        {
+          "id": "ready",
+          "name": "Ready",
+          "kind": "rest",
+          "contact_evidence": "none",
+          "min_duration_ms": 150,
+          "max_duration_ms": null,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 120,
+          "cue_allowed": true
+        },
+        {
+          "id": "backswing",
+          "name": "Backswing",
+          "kind": "preparation",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1500,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 48.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "swing",
+          "name": "Push",
+          "kind": "action",
+          "contact_evidence": "none",
+          "min_duration_ms": 30,
+          "max_duration_ms": 800,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 120.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 30,
+          "cue_allowed": false
+        },
+        {
+          "id": "estimated_contact",
+          "name": "Estimated contact",
+          "kind": "contact",
+          "contact_evidence": "unobserved",
+          "min_duration_ms": 20,
+          "max_duration_ms": 600,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 72.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 20,
+          "cue_allowed": false
+        },
+        {
+          "id": "follow_through",
+          "name": "Follow through",
+          "kind": "follow_through",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1200,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 36.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "recovery",
+          "name": "Recovery",
+          "kind": "recovery",
+          "contact_evidence": "none",
+          "min_duration_ms": 100,
+          "max_duration_ms": 3000,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 100,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [
+        {
+          "from": "ready",
+          "to": "backswing"
+        },
+        {
+          "from": "backswing",
+          "to": "swing"
+        },
+        {
+          "from": "swing",
+          "to": "estimated_contact"
+        },
+        {
+          "from": "estimated_contact",
+          "to": "follow_through"
+        },
+        {
+          "from": "follow_through",
+          "to": "recovery"
+        },
+        {
+          "from": "recovery",
+          "to": "ready"
+        }
+      ],
+      "initial": "ready",
+      "terminal": [
+        "recovery"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: generic stroke seed graph; contact is never observed from body pose and is labelled estimated/unobserved."
+    },
+    {
+      "id": "pg.table_tennis.block",
+      "movement_id": "table_tennis.block",
+      "kind": "dynamic_sequence",
+      "window_ms": 3000,
+      "abort_timeout_ms": 4000,
+      "confirm_hold_ms": 60,
+      "allow_skip": false,
+      "phases": [
+        {
+          "id": "ready",
+          "name": "Ready",
+          "kind": "rest",
+          "contact_evidence": "none",
+          "min_duration_ms": 150,
+          "max_duration_ms": null,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 120,
+          "cue_allowed": true
+        },
+        {
+          "id": "backswing",
+          "name": "Preparation",
+          "kind": "preparation",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1500,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 40.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "swing",
+          "name": "Block",
+          "kind": "action",
+          "contact_evidence": "none",
+          "min_duration_ms": 30,
+          "max_duration_ms": 800,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 100.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 30,
+          "cue_allowed": false
+        },
+        {
+          "id": "estimated_contact",
+          "name": "Estimated contact",
+          "kind": "contact",
+          "contact_evidence": "unobserved",
+          "min_duration_ms": 20,
+          "max_duration_ms": 600,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 60.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 20,
+          "cue_allowed": false
+        },
+        {
+          "id": "follow_through",
+          "name": "Follow through",
+          "kind": "follow_through",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1200,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 30.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "recovery",
+          "name": "Recovery",
+          "kind": "recovery",
+          "contact_evidence": "none",
+          "min_duration_ms": 100,
+          "max_duration_ms": 3000,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 100,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [
+        {
+          "from": "ready",
+          "to": "backswing"
+        },
+        {
+          "from": "backswing",
+          "to": "swing"
+        },
+        {
+          "from": "swing",
+          "to": "estimated_contact"
+        },
+        {
+          "from": "estimated_contact",
+          "to": "follow_through"
+        },
+        {
+          "from": "follow_through",
+          "to": "recovery"
+        },
+        {
+          "from": "recovery",
+          "to": "ready"
+        }
+      ],
+      "initial": "ready",
+      "terminal": [
+        "recovery"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: generic stroke seed graph; contact is never observed from body pose and is labelled estimated/unobserved."
+    },
+    {
+      "id": "pg.table_tennis.serve",
+      "movement_id": "table_tennis.serve",
+      "kind": "dynamic_sequence",
+      "window_ms": 3000,
+      "abort_timeout_ms": 4000,
+      "confirm_hold_ms": 60,
+      "allow_skip": false,
+      "phases": [
+        {
+          "id": "ready",
+          "name": "Ready",
+          "kind": "rest",
+          "contact_evidence": "none",
+          "min_duration_ms": 150,
+          "max_duration_ms": null,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 120,
+          "cue_allowed": true
+        },
+        {
+          "id": "backswing",
+          "name": "Toss",
+          "kind": "preparation",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1500,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 80.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "swing",
+          "name": "Acceleration",
+          "kind": "action",
+          "contact_evidence": "none",
+          "min_duration_ms": 30,
+          "max_duration_ms": 800,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_gt",
+              "value": 200.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 30,
+          "cue_allowed": false
+        },
+        {
+          "id": "estimated_contact",
+          "name": "Estimated contact",
+          "kind": "contact",
+          "contact_evidence": "unobserved",
+          "min_duration_ms": 20,
+          "max_duration_ms": 600,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 120.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 20,
+          "cue_allowed": false
+        },
+        {
+          "id": "follow_through",
+          "name": "Follow through",
+          "kind": "follow_through",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 1200,
+          "enter": [
+            {
+              "feature": "dominant_elbow_velocity",
+              "op": "abs_lt",
+              "value": 60.0,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "recovery",
+          "name": "Recovery",
+          "kind": "recovery",
+          "contact_evidence": "none",
+          "min_duration_ms": 100,
+          "max_duration_ms": 3000,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.012,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 100,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [
+        {
+          "from": "ready",
+          "to": "backswing"
+        },
+        {
+          "from": "backswing",
+          "to": "swing"
+        },
+        {
+          "from": "swing",
+          "to": "estimated_contact"
+        },
+        {
+          "from": "estimated_contact",
+          "to": "follow_through"
+        },
+        {
+          "from": "follow_through",
+          "to": "recovery"
+        },
+        {
+          "from": "recovery",
+          "to": "ready"
+        }
+      ],
+      "initial": "ready",
+      "terminal": [
+        "recovery"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: generic stroke seed graph; contact is never observed from body pose and is labelled estimated/unobserved."
+    },
+    {
+      "id": "pg.table_tennis.footwork_recovery",
+      "movement_id": "table_tennis.footwork_recovery",
+      "kind": "dynamic_sequence",
+      "window_ms": 3000,
+      "abort_timeout_ms": 4000,
+      "confirm_hold_ms": 80,
+      "phases": [
+        {
+          "id": "ready",
+          "name": "Ready",
+          "kind": "rest",
+          "contact_evidence": "none",
+          "min_duration_ms": 150,
+          "max_duration_ms": null,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.006,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 150,
+          "cue_allowed": true
+        },
+        {
+          "id": "move",
+          "name": "Move",
+          "kind": "action",
+          "contact_evidence": "none",
+          "min_duration_ms": 60,
+          "max_duration_ms": 2500,
+          "enter": [
+            {
+              "feature": "hip_vertical_velocity",
+              "op": "abs_gt",
+              "value": 0.2,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 40,
+          "cue_allowed": false
+        },
+        {
+          "id": "settle",
+          "name": "Settle",
+          "kind": "recovery",
+          "contact_evidence": "none",
+          "min_duration_ms": 100,
+          "max_duration_ms": 3000,
+          "enter": [
+            {
+              "feature": "body_motion",
+              "op": "lt",
+              "value": 0.01,
+              "validation_status": "provisional"
+            }
+          ],
+          "hold_ms": 100,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [
+        {
+          "from": "ready",
+          "to": "move"
+        },
+        {
+          "from": "move",
+          "to": "settle"
+        },
+        {
+          "from": "settle",
+          "to": "ready"
+        }
+      ],
+      "initial": "ready",
+      "terminal": [
+        "settle"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: generic footwork seed graph."
+    }
+  ]
+}

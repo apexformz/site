@@ -1,0 +1,8 @@
+{
+  "name": "@smartcoach/types",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Legacy ApexFormz (SmartCoach) shared TypeScript types, kept verbatim so the copied frontend/backend compile unchanged. New Brain code must use @apexformz/contracts instead.",
+  "main": "index.ts",
+  "types": "index.ts"
+}

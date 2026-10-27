@@ -1,0 +1,90 @@
+{
+ "kind": "reference_set",
+ "movement_id": "taekwondo.preamble_dollyo_chagi_front_leg_slide",
+ "features": [
+  "left_elbow_angle",
+  "right_elbow_angle",
+  "left_shoulder_angle",
+  "right_shoulder_angle",
+  "left_hip_angle",
+  "right_hip_angle",
+  "left_knee_angle",
+  "right_knee_angle"
+ ],
+ "weights": [
+  0.4,
+  0.4,
+  0.7,
+  0.7,
+  1.5,
+  1.5,
+  1.6,
+  1.6
+ ],
+ "reference_vectors": [
+  [
+   145.5,
+   142.4,
+   37.6,
+   49.5,
+   116.3,
+   118.8,
+   93.5,
+   107.6
+  ],
+  [
+   145.5,
+   142.4,
+   37.6,
+   49.5,
+   116.3,
+   118.8,
+   93.5,
+   107.6
+  ],
+  [
+   178.6,
+   157.0,
+   21.4,
+   26.4,
+   124.8,
+   140.5,
+   139.7,
+   162.1
+  ],
+  [
+   178.6,
+   157.0,
+   21.4,
+   26.4,
+   124.8,
+   140.5,
+   139.7,
+   162.1
+  ],
+  [
+   171.8,
+   null,
+   2.0,
+   null,
+   73.0,
+   173.4,
+   78.4,
+   168.5
+  ],
+  [
+   171.8,
+   null,
+   2.0,
+   null,
+   73.0,
+   173.4,
+   78.4,
+   168.5
+  ]
+ ],
+ "threshold": 20.0,
+ "tolerance": 15.0,
+ "validation_status": "provisional",
+ "provenance": "Legacy taekwondo_reference_frames.json extracted from front/left/right expert videos; weighted RMS distance in degrees. TODO_REQUIRES_VALIDATION."
+}

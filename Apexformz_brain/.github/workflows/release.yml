@@ -1,0 +1,65 @@
+name: local-release-candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      trust_mode:
+        description: 'Production requires signed packs, approved registry and promotion gates'
+        type: choice
+        options: [development, production]
+        default: development
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dedicated-local-release-runner
+  cancel-in-progress: false
+
+jobs:
+  release:
+    # Dedicated trusted runner only. Never run untrusted pull-request code here.
+    # Private models, signing inputs and candidate outputs remain on this machine.
+    runs-on: [self-hosted, linux, x64, apexformz-release]
+    timeout-minutes: 60
+    environment: ${{ inputs.trust_mode == 'production' && 'production-release' || 'release-candidate' }}
+    env:
+      RELEASE_TRUST_MODE: ${{ inputs.trust_mode }}
+      APEXFORMZ_LOCAL_MODEL_BUNDLE: ${{ vars.APEXFORMZ_LOCAL_MODEL_BUNDLE }}
+      APEXFORMZ_LOCAL_SIGNED_PACKS: ${{ vars.APEXFORMZ_LOCAL_SIGNED_PACKS }}
+      APEXFORMZ_LOCAL_RELEASE_OUTPUT: ${{ vars.APEXFORMZ_LOCAL_RELEASE_OUTPUT }}
+      APEXFORMZ_TEST_DATABASE_URL: ${{ secrets.APEXFORMZ_TEST_DATABASE_URL }}
+      APEXFORMZ_POSTGRES_BIN: ${{ vars.APEXFORMZ_POSTGRES_BIN }}
+      APEXFORMZ_RELEASE_PYTHON: ${{ vars.APEXFORMZ_RELEASE_PYTHON }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Require operator-provisioned local paths and isolated database
+        run: |
+          test -d "$APEXFORMZ_LOCAL_MODEL_BUNDLE"
+          test -d "$APEXFORMZ_LOCAL_RELEASE_OUTPUT"
+          test -n "$APEXFORMZ_TEST_DATABASE_URL"
+          if [ "$RELEASE_TRUST_MODE" = production ]; then test -d "$APEXFORMZ_LOCAL_SIGNED_PACKS"; fi
+      - run: npm ci
+      - name: Restore and verify local hash-locked installed models
+        run: npm run models:restore -- --from "$APEXFORMZ_LOCAL_MODEL_BUNDLE"
+      - name: Build, test and stage candidate locally
+        run: |
+          output="$APEXFORMZ_LOCAL_RELEASE_OUTPUT/run-$GITHUB_RUN_ID-attempt-$GITHUB_RUN_ATTEMPT"
+          if [ "$RELEASE_TRUST_MODE" = production ]; then
+            npm run release:check -- --out "$output-checks.json" --production --pack-root "$APEXFORMZ_LOCAL_SIGNED_PACKS" --registry security/pack-trust.production.json
+            npm run release:candidate -- --out "$output" --checks "$output-checks.json" --pack-root "$APEXFORMZ_LOCAL_SIGNED_PACKS"
+            npm run release:containers -- --root "$output" --out "$output-containers.json"
+            npm run release:promote -- --root "$output" --registry security/pack-trust.production.json --containers "$output-containers.json"
+          else
+            npm run release:check -- --out "$output-checks.json"
+            npm run release:candidate -- --out "$output" --checks "$output-checks.json"
+          fi
+          npm run release:verify -- --root "$output"
+      # No artifact uploads/downloads, publication, deployment or approval API calls.
+      # Configure required reviewers and Prevent self-review for production-release separately.

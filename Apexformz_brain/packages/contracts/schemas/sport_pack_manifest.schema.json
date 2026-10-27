@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/sport_pack_manifest.schema.json",
+  "title": "SportPackManifest",
+  "description": "Versioned, signed sport package manifest (TRD 05). Packs own all sport knowledge; the shared core only validates and routes.",
+  "type": "object",
+  "required": ["schema_version", "id", "version", "minimum_core_version", "supported_platforms", "capabilities", "dependencies", "game_rules", "court_geometry", "equipment_catalog", "movements", "phase_graphs", "technique_rubrics", "feedback_templates", "provenance", "models", "asset_hashes", "signature", "display"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "version": { "$ref": "common.schema.json#/$defs/semver" },
+    "minimum_core_version": { "$ref": "common.schema.json#/$defs/semver" },
+    "supported_platforms": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/platform" }, "minItems": 1 },
+    "capabilities": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/capability" }, "minItems": 1 },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["id", "version"],
+        "properties": { "id": { "type": "string" }, "version": { "type": "string" } }
+      }
+    },
+    "game_rules": { "type": "string" },
+    "court_geometry": { "type": "string" },
+    "equipment_catalog": { "type": "string" },
+    "movements": { "type": "string" },
+    "phase_graphs": { "type": "string" },
+    "technique_rubrics": { "type": "string" },
+    "feedback_templates": { "type": "string" },
+    "provenance": { "type": "string" },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "path", "version", "format"],
+        "properties": {
+          "role": { "type": "string", "enum": ["movement_classifier", "phase_segmenter", "reference_set", "criterion_model", "equipment_detector"] },
+          "path": { "type": "string" },
+          "version": { "type": "string" },
+          "format": { "type": "string", "enum": ["onnx", "json", "tflite"] },
+          "digest": { "type": "string" },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "asset_hashes": {
+      "type": "object",
+      "description": "Relative asset path -> sha256 hex digest",
+      "additionalProperties": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+    },
+    "signature": {
+      "type": "object",
+      "required": ["algorithm"],
+      "properties": {
+        "algorithm": { "type": "string", "enum": ["none", "hmac-sha256", "ed25519"] },
+        "key_id": { "type": "string" },
+        "value": { "type": "string" },
+        "signed_fields": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "display": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "color": { "type": "string" },
+        "status": { "type": "string", "enum": ["seed", "pilot", "validated", "legacy_migrated"] }
+      }
+    }
+  }
+}

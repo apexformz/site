@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "badminton",
+  "rule_sets": [
+    {
+      "id": "bwf_laws_rally_scoring",
+      "authority": "Badminton World Federation",
+      "source": { "source": "BWF Laws of Badminton", "ref": "TODO_REQUIRES_VALIDATION: edition/section", "status": "provisional" },
+      "edition": null,
+      "effective_date": null,
+      "discipline": "badminton",
+      "format": "singles_and_doubles",
+      "locale": "en",
+      "validation_status": "provisional",
+      "rules": [
+        { "id": "scoring_system", "kind": "official", "text": "Rally point scoring; game and match point thresholds are defined by the authoritative laws.", "value": null, "adjudicable_from_pose": false, "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: numeric game/match values deliberately omitted until sourced." },
+        { "id": "serve_height_fault", "kind": "official", "text": "Service height restrictions are an official fault condition and require shuttle and racket visibility to adjudicate.", "value": null, "adjudicable_from_pose": false, "validation_status": "provisional" },
+        { "id": "boundary_fault", "kind": "official", "text": "Shuttle landing outside the relevant boundary is a fault; requires shuttle tracking and court calibration.", "adjudicable_from_pose": false, "validation_status": "provisional" },
+        { "id": "net_fault", "kind": "official", "text": "Touching the net with racket or body during play is a fault; requires net and racket visibility.", "adjudicable_from_pose": false, "validation_status": "provisional" },
+        { "id": "training_ready_position_reset", "kind": "coaching_heuristic", "text": "Return to a balanced ready position after each shot during footwork drills.", "adjudicable_from_pose": true, "validation_status": "provisional", "note": "Coaching heuristic, not a rule of the game." },
+        { "id": "safety_clear_space", "kind": "safety", "text": "Ensure at least a racket length of clear space around the athlete before lunging drills.", "adjudicable_from_pose": false, "validation_status": "provisional" }
+      ]
+    }
+  ]
+}

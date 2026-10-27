@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "shooting",
+  "rubric_version": "1.0.0",
+  "aggregation": { "method": "weighted_mean_of_valid_criteria", "minimum_coverage": 0.6 },
+  "features": [
+    { "id": "stance_width_ratio", "kind": "interjoint_distance_ratio", "params": { "a": "left_ankle", "b": "right_ankle", "c": "left_shoulder", "d": "right_shoulder", "dims": "2d" }, "version": "1.0.0", "coordinate_system": "body_relative", "view_applicability": ["front", "back"], "unit": "ratio" },
+    { "id": "trunk_lateral_lean", "kind": "line_inclination", "params": { "from": ["left_hip", "right_hip"], "to": ["left_shoulder", "right_shoulder"], "reference": "vertical" }, "version": "1.0.0", "coordinate_system": "body_relative", "view_applicability": ["front", "back"], "unit": "deg" },
+    { "id": "shoulder_line_tilt", "kind": "line_inclination", "params": { "from": "left_shoulder", "to": "right_shoulder", "reference": "horizontal" }, "version": "1.0.0", "coordinate_system": "body_relative", "view_applicability": ["front", "back"], "unit": "deg" },
+    { "id": "dominant_elbow_angle", "kind": "angle_at", "params": { "a": "dominant_shoulder", "b": "dominant_elbow", "c": "dominant_wrist", "dims": "2d" }, "version": "1.0.0", "coordinate_system": "body_relative", "view_applicability": "any", "unit": "deg" },
+    { "id": "dominant_arm_elevation", "kind": "angle_at", "params": { "a": "dominant_hip", "b": "dominant_shoulder", "c": "dominant_elbow", "dims": "2d" }, "version": "1.0.0", "coordinate_system": "body_relative", "view_applicability": "any", "unit": "deg", "description": "Hip-shoulder-elbow angle; ~90 when the shooting arm is horizontal" },
+    { "id": "dominant_wrist_y_image", "kind": "landmark_coordinate", "params": { "landmark": "dominant_wrist", "axis": "y" }, "version": "1.0.0", "coordinate_system": "image_normalized", "view_applicability": "any", "unit": "normalized" },
+    { "id": "dominant_wrist_x_image", "kind": "landmark_coordinate", "params": { "landmark": "dominant_wrist", "axis": "x" }, "version": "1.0.0", "coordinate_system": "image_normalized", "view_applicability": "any", "unit": "normalized" },
+    { "id": "wrist_stability", "kind": "stability_variability", "params": { "of": "dominant_wrist_y_image", "window_ms": 1000, "stat": "std", "min_samples": 6 }, "version": "1.0.0", "coordinate_system": "image_normalized", "view_applicability": "any", "description": "Std of wrist height over 1 s; a hold-stability proxy, not sight alignment" },
+    { "id": "wrist_drift", "kind": "stability_variability", "params": { "of": "dominant_wrist_x_image", "window_ms": 2000, "stat": "range", "min_samples": 8 }, "version": "1.0.0", "coordinate_system": "image_normalized", "view_applicability": "any" },
+    { "id": "dominant_wrist_velocity", "kind": "time_derivative", "params": { "of": "dominant_wrist_y_image", "window_ms": 120, "method": "finite" }, "version": "1.0.0", "coordinate_system": "image_normalized", "view_applicability": "any" },
+    { "id": "hip_centre_x_image", "kind": "center_of_keypoints", "params": { "landmarks": ["left_hip", "right_hip"], "axis": "x" }, "version": "1.0.0", "coordinate_system": "image_normalized", "view_applicability": "any", "unit": "normalized" },
+    { "id": "body_motion", "kind": "stability_variability", "params": { "of": "hip_centre_x_image", "window_ms": 600, "stat": "std", "min_samples": 4 }, "version": "1.0.0", "coordinate_system": "image_normalized", "view_applicability": "any", "description": "Whole-body stillness proxy" }
+  ],
+  "criteria": [
+    {
+      "criterion_id": "shooting.setup_stance.stance_width", "movement_id": "shooting.setup_stance", "phase_ids": ["hold"],
+      "required_features": ["stance_width_ratio"],
+      "evaluator": { "kind": "range", "aggregate": "window_mean", "range": [0.8, 1.6], "tolerance": 0.3 },
+      "technique_variant": null, "view_constraints": ["front", "back"], "missing_data_policy": "not_assessable", "severity": "medium", "weight": 1.0,
+      "expert_citation": { "source": "TODO_REQUIRES_VALIDATION: coach panel review", "status": "provisional" },
+      "athlete_context": "any", "requires_capabilities": ["body_pose"], "validation_status": "provisional", "validation_version": "0.1-seed", "error_id": "shooting.setup_stance.stance_width_out_of_range",
+      "description": "Feet spacing relative to shoulder width."
+    },
+    {
+      "criterion_id": "shooting.setup_stance.trunk_lateral_lean", "movement_id": "shooting.setup_stance", "phase_ids": ["hold"],
+      "required_features": ["trunk_lateral_lean"],
+      "evaluator": { "kind": "max_abs", "aggregate": "window_mean", "limit": 10, "tolerance": 6 },
+      "technique_variant": null, "view_constraints": ["front", "back"], "missing_data_policy": "not_assessable", "severity": "medium", "weight": 1.0,
+      "expert_citation": { "source": "TODO_REQUIRES_VALIDATION: coach panel review", "status": "provisional" },
+      "athlete_context": "any", "requires_capabilities": ["body_pose"], "validation_status": "provisional", "validation_version": "0.1-seed", "error_id": "shooting.setup_stance.trunk_lean",
+      "description": "Lateral trunk inclination; some lean away from the pistol is a known technique variant, so the limit is deliberately wide and provisional."
+    },
+    {
+      "criterion_id": "shooting.setup_stance.shooting_elbow_extension", "movement_id": "shooting.setup_stance", "phase_ids": ["hold"],
+      "required_features": ["dominant_elbow_angle"],
+      "evaluator": { "kind": "range", "aggregate": "window_mean", "range": [160, 180], "tolerance": 10 },
+      "technique_variant": "air_pistol", "view_constraints": "any", "missing_data_policy": "not_assessable", "severity": "medium", "weight": 1.5,
+      "expert_citation": { "source": "TODO_REQUIRES_VALIDATION: coach panel review", "status": "provisional" },
+      "athlete_context": "any", "requires_capabilities": ["body_pose"], "validation_status": "provisional", "validation_version": "0.1-seed", "error_id": "shooting.setup_stance.elbow_bent"
+    },
+    {
+      "criterion_id": "shooting.setup_stance.shoulder_line_level", "movement_id": "shooting.setup_stance", "phase_ids": ["hold"],
+      "required_features": ["shoulder_line_tilt"],
+      "evaluator": { "kind": "max_abs", "aggregate": "window_mean", "limit": 12, "tolerance": 6 },
+      "technique_variant": null, "view_constraints": ["front", "back"], "missing_data_policy": "not_assessable", "severity": "low", "weight": 0.5,
+      "expert_citation": { "source": "TODO_REQUIRES_VALIDATION: coach panel review", "status": "provisional" },
+      "athlete_context": "any", "requires_capabilities": ["body_pose"], "validation_status": "provisional", "validation_version": "0.1-seed", "error_id": "shooting.setup_stance.shoulders_uneven"
+    },
+    {
+      "criterion_id": "shooting.setup_stance.wrist_stability", "movement_id": "shooting.setup_stance", "phase_ids": ["hold"],
+      "required_features": ["wrist_stability"],
+      "evaluator": { "kind": "stability", "aggregate": "latest", "limit": 0.005, "tolerance": 0.004, "min_confidence": 0.6 },
+      "technique_variant": null, "view_constraints": "any", "missing_data_policy": "uncertain", "severity": "medium", "weight": 1.0,
+      "expert_citation": { "source": "TODO_REQUIRES_VALIDATION: coach panel review", "status": "provisional" },
+      "athlete_context": "any", "requires_capabilities": ["body_pose"], "validation_status": "provisional", "validation_version": "0.1-seed", "error_id": "shooting.setup_stance.unsteady_wrist",
+      "description": "Wrist height variability during the hold; landmark jitter is a known failure mode so confidence gating is strict."
+    },
+    {
+      "criterion_id": "shooting.setup_stance.sight_alignment", "movement_id": "shooting.setup_stance", "phase_ids": ["hold"],
+      "required_features": [],
+      "evaluator": { "kind": "equipment_dependent", "aggregate": "latest", "params": { "equipment": "air_pistol", "measurement_unit": "deg" } },
+      "technique_variant": "air_pistol", "view_constraints": "any", "missing_data_policy": "not_assessable", "severity": "medium", "weight": 1.0,
+      "expert_citation": { "source": "TODO_REQUIRES_VALIDATION: requires calibrated camera or hardware", "status": "provisional" },
+      "athlete_context": "any", "requires_capabilities": ["optional_implement"], "validation_status": "provisional", "validation_version": "0.1-seed", "error_id": "shooting.setup_stance.sight_misaligned",
+      "description": "Sight alignment needs pistol tracking hardware; without it this criterion is NOT_ASSESSABLE by design."
+    },
+    {
+      "criterion_id": "shooting.aiming_hold.hold_stability", "movement_id": "shooting.aiming_hold", "phase_ids": ["hold"],
+      "required_features": ["wrist_stability"],
+      "evaluator": { "kind": "stability", "aggregate": "latest", "limit": 0.004, "tolerance": 0.003, "min_confidence": 0.6 },
+      "technique_variant": null, "view_constraints": "any", "missing_data_policy": "uncertain", "severity": "medium", "weight": 1.0,
+      "expert_citation": { "source": "TODO_REQUIRES_VALIDATION: coach panel review", "status": "provisional" },
+      "athlete_context": "any", "requires_capabilities": ["body_pose"], "validation_status": "provisional", "validation_version": "0.1-seed", "error_id": "shooting.aiming_hold.unsteady"
+    },
+    {
+      "criterion_id": "shooting.aiming_hold.drift", "movement_id": "shooting.aiming_hold", "phase_ids": ["hold"],
+      "required_features": ["wrist_drift"],
+      "evaluator": { "kind": "max_value", "aggregate": "latest", "limit": 0.02, "tolerance": 0.01, "min_confidence": 0.6 },
+      "technique_variant": null, "view_constraints": "any", "missing_data_policy": "uncertain", "severity": "low", "weight": 0.75,
+      "expert_citation": { "source": "TODO_REQUIRES_VALIDATION: coach panel review", "status": "provisional" },
+      "athlete_context": "any", "requires_capabilities": ["body_pose"], "validation_status": "provisional", "validation_version": "0.1-seed", "error_id": "shooting.aiming_hold.drift"
+    }
+  ]
+}

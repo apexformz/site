@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "s",
+  "event_id": "s:1",
+  "monotonic_ms": 1,
+  "sport_pack_id": "b",
+  "sport_pack_version": "1.0.0",
+  "producer": "p",
+  "event_type": "not.a.type",
+  "payload": {}
+}

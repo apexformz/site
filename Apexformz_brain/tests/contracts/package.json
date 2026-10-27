@@ -1,0 +1,12 @@
+{
+  "name": "@apexformz/tests-contracts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Contract parity tests TS<->JSON Schema<->Pydantic",
+  "type": "module",
+  "dependencies": {
+    "@apexformz/runtime": "1.0.0",
+    "@apexformz/contracts": "1.0.0",
+    "@apexformz/sport-runtime": "1.0.0"
+  }
+}

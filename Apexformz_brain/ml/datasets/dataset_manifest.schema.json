@@ -1,0 +1,500 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/ml/dataset_manifest.schema.json",
+  "title": "ApexFormz dataset manifest",
+  "description": "Immutable, reproducible dataset version (TRD 12). Raw video lives in encrypted object storage; this manifest holds object URIs + sha256 and split ids. Athletes are pseudonymous. execution_id groups all synchronized views of one execution; all of them must share a split.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "dataset_version",
+    "created_at",
+    "sport_pack_id",
+    "sport_pack_version",
+    "pose_model",
+    "athletes",
+    "capture_sessions",
+    "cameras",
+    "view_streams",
+    "executions",
+    "annotations",
+    "splits",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "dataset_version": {
+      "type": "string",
+      "description": "Immutable id, e.g. badminton-lunge-2026.10-v3"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "sport_pack_id": {
+      "type": "string"
+    },
+    "sport_pack_version": {
+      "type": "string"
+    },
+    "pose_model": {
+      "type": "object",
+      "required": [
+        "model_id",
+        "version"
+      ],
+      "properties": {
+        "model_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "digest": {
+          "type": "string"
+        }
+      }
+    },
+    "athletes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "athlete_id",
+          "handedness",
+          "context",
+          "consent"
+        ],
+        "properties": {
+          "athlete_id": {
+            "type": "string",
+            "description": "Pseudonymous id; never a name or email"
+          },
+          "handedness": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "unknown"
+            ]
+          },
+          "context": {
+            "type": "string",
+            "enum": [
+              "novice",
+              "intermediate",
+              "advanced",
+              "unknown"
+            ]
+          },
+          "consent": {
+            "type": "object",
+            "required": [
+              "purpose",
+              "retention_until",
+              "guardian_authorized"
+            ],
+            "properties": {
+              "purpose": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "training",
+                    "evaluation",
+                    "deep_analysis",
+                    "quality_improvement"
+                  ]
+                }
+              },
+              "retention_until": {
+                "type": "string"
+              },
+              "guardian_authorized": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "withdrawn_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "capture_sessions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "capture_session_id",
+          "athlete_id",
+          "location_id",
+          "captured_at"
+        ],
+        "properties": {
+          "capture_session_id": {
+            "type": "string"
+          },
+          "athlete_id": {
+            "type": "string"
+          },
+          "location_id": {
+            "type": "string"
+          },
+          "captured_at": {
+            "type": "string"
+          },
+          "camera_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "cameras": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "camera_id",
+          "view",
+          "nominal_fps",
+          "resolution"
+        ],
+        "properties": {
+          "camera_id": {
+            "type": "string"
+          },
+          "view": {
+            "type": "string",
+            "enum": [
+              "front",
+              "back",
+              "left",
+              "right",
+              "front_left",
+              "front_right",
+              "back_left",
+              "back_right",
+              "top",
+              "unknown"
+            ]
+          },
+          "nominal_fps": {
+            "type": "number"
+          },
+          "resolution": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "device_class": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "view_streams": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "view_stream_id",
+          "capture_session_id",
+          "camera_id",
+          "object_uri",
+          "sha256",
+          "encrypted"
+        ],
+        "properties": {
+          "view_stream_id": {
+            "type": "string"
+          },
+          "capture_session_id": {
+            "type": "string"
+          },
+          "camera_id": {
+            "type": "string"
+          },
+          "object_uri": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "encrypted": {
+            "type": "boolean"
+          },
+          "duration_ms": {
+            "type": "number"
+          },
+          "pose_path": {
+            "type": "string",
+            "description": "Local extracted PoseFrame JSONL path, relative to this manifest; raw object_uri is retained."
+          },
+          "pose_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 of the extracted JSONL artifact."
+          }
+        }
+      }
+    },
+    "executions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "execution_id",
+          "capture_session_id",
+          "athlete_id",
+          "movement_id",
+          "view_stream_ids",
+          "start_ms",
+          "end_ms"
+        ],
+        "properties": {
+          "execution_id": {
+            "type": "string"
+          },
+          "capture_session_id": {
+            "type": "string"
+          },
+          "athlete_id": {
+            "type": "string"
+          },
+          "movement_id": {
+            "type": "string"
+          },
+          "view_stream_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "start_ms": {
+            "type": "number"
+          },
+          "end_ms": {
+            "type": "number"
+          },
+          "sample_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Derived photo/frame/video samples; all inherit the execution's split"
+          }
+        }
+      }
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "annotation_id",
+          "execution_id",
+          "annotator_id",
+          "version",
+          "created_at",
+          "labels"
+        ],
+        "properties": {
+          "annotation_id": {
+            "type": "string"
+          },
+          "execution_id": {
+            "type": "string"
+          },
+          "annotator_id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "supersedes": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Label changes create a new version; never overwrite"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "object",
+            "properties": {
+              "movement_id": {
+                "type": "string"
+              },
+              "boundaries_ms": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "phases": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "phase_id",
+                    "start_ms",
+                    "end_ms"
+                  ],
+                  "properties": {
+                    "phase_id": {
+                      "type": "string"
+                    },
+                    "start_ms": {
+                      "type": "number"
+                    },
+                    "end_ms": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "static": {
+                "type": "boolean"
+              },
+              "view": {
+                "type": "string"
+              },
+              "handedness": {
+                "type": "string"
+              },
+              "criteria_outcomes": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string",
+                  "enum": [
+                    "PASS",
+                    "IMPROVE",
+                    "UNCERTAIN",
+                    "NOT_ASSESSABLE"
+                  ]
+                }
+              },
+              "visibility": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "partial",
+                  "poor"
+                ]
+              },
+              "capture_quality": {
+                "type": "string",
+                "enum": [
+                  "good",
+                  "acceptable",
+                  "poor"
+                ]
+              },
+              "ordinal_tag": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "perfect",
+                  "good",
+                  "average",
+                  "bad",
+                  null
+                ],
+                "description": "Allowed initial tag; never replaces specific error labels"
+              }
+            }
+          },
+          "disagreement": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Expert disagreement preserved as uncertainty, never silently resolved"
+          }
+        }
+      }
+    },
+    "splits": {
+      "type": "object",
+      "required": [
+        "seed",
+        "assignments",
+        "holdouts"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer"
+        },
+        "assignments": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "train",
+              "val",
+              "test"
+            ]
+          },
+          "description": "execution_id -> split"
+        },
+        "holdouts": {
+          "type": "object",
+          "properties": {
+            "locations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "cameras": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "algorithm_commit",
+        "dependency_lockfile_sha256",
+        "processing_config"
+      ],
+      "properties": {
+        "algorithm_commit": {
+          "type": "string"
+        },
+        "dependency_lockfile_sha256": {
+          "type": "string"
+        },
+        "processing_config": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

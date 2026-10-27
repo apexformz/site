@@ -1,0 +1,379 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "taekwondo",
+  "catalog_version": "1.0.0-legacy",
+  "default_locale": "en",
+  "policy": {
+    "global_min_interval_ms": 6000,
+    "positive_reinforcement_interval_ms": 15000,
+    "max_secondary_queue": 2
+  },
+  "entries": [
+    {
+      "error_id": "taekwondo.ap_chagi_front_kick.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.ap_chagi_front_kick.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.dollyo_chagi_roundhouse_kick.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.dollyo_chagi_roundhouse_kick.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.yeop_chagi_side_kick.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.yeop_chagi_side_kick.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.dwi_chagi_back_kick.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.dwi_chagi_back_kick.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.miro_chagi_push_kick.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.miro_chagi_push_kick.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.bandae_dollyo_chagi_reverse_roundhouse.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.bandae_dollyo_chagi_reverse_roundhouse.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.twio_ap_chagi_jumping_front_kick.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.twio_ap_chagi_jumping_front_kick.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.baka_chagi_side_slide_roundhouse.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.baka_chagi_side_slide_roundhouse.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.preamble_dollyo_chagi_front_leg_slide.stance_match_off",
+      "cue": {
+        "en": "Match the reference stance more closely."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    },
+    {
+      "error_id": "taekwondo.preamble_dollyo_chagi_front_leg_slide.form_match_off",
+      "cue": {
+        "en": "Your kick shape differs from the reference; check knee and hip angles."
+      },
+      "rationale": {
+        "en": "Nearest-expert-frame distance exceeded the provisional tolerance."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 2,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good match to the reference."
+      }
+    }
+  ],
+  "generic": {
+    "AMBIGUOUS_SUBJECT": {
+      "en": "Two people are in view. Please make sure only you are in the frame."
+    },
+    "FRAMING_INVALID": {
+      "en": "Step back so your whole body, including your feet, is visible."
+    },
+    "MISSING_JOINT": {
+      "en": "Some joints are hidden. Keep your full body in view."
+    },
+    "LOW_CONFIDENCE": {
+      "en": "Tracking is unsteady. Improve lighting and face the camera."
+    },
+    "VIEW_INVALID": {
+      "en": "This check needs a front, left or right camera view."
+    },
+    "TIME_GAP": {
+      "en": "Tracking paused. Resume when you are ready."
+    },
+    "TRACK_CHANGED": {
+      "en": "Lost track of you for a moment. Checks restart now."
+    },
+    "MODEL_UNAVAILABLE": {
+      "en": "Reference data for this kick is not loaded."
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "kind": "reference_set",
+  "movement_id": "squash.static.0033",
+  "features": [
+    "left_knee_angle",
+    "right_knee_angle",
+    "left_hip_angle",
+    "right_hip_angle",
+    "dominant_elbow_angle",
+    "nondominant_elbow_angle",
+    "dominant_arm_elevation",
+    "nondominant_arm_elevation"
+  ],
+  "weights": [
+    1.0,
+    1.0,
+    0.8,
+    0.8,
+    0.6,
+    0.4,
+    0.6,
+    0.4
+  ],
+  "reference_vectors": [
+    [
+      158.9,
+      93.4,
+      168.9,
+      53.7,
+      169.3,
+      null,
+      73.1,
+      null
+    ],
+    [
+      165.3,
+      137.4,
+      155,
+      99.7,
+      176.5,
+      154.8,
+      54.6,
+      30.1
+    ],
+    [
+      176.5,
+      174.4,
+      125.3,
+      165.2,
+      179.7,
+      163.3,
+      21,
+      47.4
+    ]
+  ],
+  "reference_views": [
+    "front",
+    "left",
+    "right"
+  ],
+  "reference_handedness": [
+    "right",
+    "right",
+    "right"
+  ],
+  "reference_handedness_assumed": [
+    false,
+    false,
+    false
+  ],
+  "unit": "deg",
+  "threshold": 15.0,
+  "tolerance": 10.0,
+  "validation_status": "provisional",
+  "nearest_other_movement": {
+    "movement_id": "squash.static.0049",
+    "rms_deg": 15.8
+  },
+  "provenance": "Capture-labeled Data Capture static poses (3 captures), extracted with deployed feature engine and global quality checks. Pixel orientation corrected only for audited exact sources; source handedness is recorded, never inferred. Weighted RMS to same-view references. One athlete; technique correctness and thresholds remain unvalidated.",
+  "source_dataset": {
+    "dataset_version": "squash-static_pose-orientation-26b091875c62274d",
+    "manifest_sha256": "d2448956d6437f5f84f4d96942778c6cd941376be1d3a974174a9ec47c07c636",
+    "reference_vectors_sha256": "d688fc5c6642fb6e61b216fccec88e30658a19fe24f32610ee23b2ecde16d74d",
+    "parent_reference_sha256": "92b74abee7593e9b729f43b7401a5fbf6da041bfbe8184e6f7718b3b88ff4127"
+  }
+}

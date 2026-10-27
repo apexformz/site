@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": null,
+  "video_ref": "asset://clips/demo-001",
+  "source": {
+    "model_id": "bootstapir",
+    "version": "v2",
+    "delegate": "cuda"
+  },
+  "kind": "point",
+  "coordinate_system": "image_normalized",
+  "image_size": [
+    1280,
+    720
+  ],
+  "frame_count": 3,
+  "fps": 30.0,
+  "tracks": [
+    {
+      "track_id": "t0",
+      "label": "implement_head",
+      "assigned_subject_id": "track-1",
+      "query": {
+        "frame_id": 0,
+        "x": 0.5,
+        "y": 0.4
+      },
+      "points": [
+        {
+          "frame_id": 0,
+          "timestamp_ms": 0,
+          "x": 0.5,
+          "y": 0.4,
+          "visible": true,
+          "confidence": 0.98,
+          "bbox": null
+        },
+        {
+          "frame_id": 1,
+          "timestamp_ms": 33.3,
+          "x": 0.51,
+          "y": 0.39,
+          "visible": true,
+          "confidence": 0.97
+        },
+        {
+          "frame_id": 2,
+          "timestamp_ms": 66.6,
+          "x": 0.52,
+          "y": 0.38,
+          "visible": false,
+          "confidence": 0.2
+        }
+      ]
+    }
+  ],
+  "retrospective": true,
+  "notes": [
+    "offline tracker; not usable for live latency claims"
+  ]
+}

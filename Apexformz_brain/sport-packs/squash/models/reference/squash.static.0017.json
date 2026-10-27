@@ -1,0 +1,99 @@
+{
+  "kind": "reference_set",
+  "movement_id": "squash.static.0017",
+  "features": [
+    "left_knee_angle",
+    "right_knee_angle",
+    "left_hip_angle",
+    "right_hip_angle",
+    "dominant_elbow_angle",
+    "nondominant_elbow_angle",
+    "dominant_arm_elevation",
+    "nondominant_arm_elevation"
+  ],
+  "weights": [
+    1.0,
+    1.0,
+    0.8,
+    0.8,
+    0.6,
+    0.4,
+    0.6,
+    0.4
+  ],
+  "reference_vectors": [
+    [
+      164.6,
+      158.8,
+      161,
+      174.8,
+      68.3,
+      null,
+      11.8,
+      null
+    ],
+    [
+      156.6,
+      152.8,
+      151.6,
+      173.2,
+      null,
+      83.6,
+      null,
+      14.2
+    ],
+    [
+      178,
+      174.8,
+      156.5,
+      161.5,
+      94.6,
+      null,
+      40.2,
+      31
+    ],
+    [
+      174.5,
+      163.1,
+      166.4,
+      162.9,
+      94,
+      83.3,
+      40.2,
+      32.3
+    ]
+  ],
+  "reference_views": [
+    "back",
+    "front",
+    "left",
+    "right"
+  ],
+  "reference_handedness": [
+    "right",
+    "right",
+    "right",
+    "right"
+  ],
+  "reference_handedness_assumed": [
+    false,
+    false,
+    false,
+    false
+  ],
+  "unit": "deg",
+  "threshold": 15.0,
+  "tolerance": 10.0,
+  "validation_status": "provisional",
+  "nearest_other_movement": {
+    "movement_id": "squash.static.0018",
+    "rms_deg": 4.0
+  },
+  "provenance": "Capture-labeled Data Capture static poses (4 captures), extracted with deployed feature engine and global quality checks. Pixel orientation corrected only for audited exact sources; source handedness is recorded, never inferred. Weighted RMS to same-view references. One athlete; technique correctness and thresholds remain unvalidated.",
+  "source_dataset": {
+    "dataset_version": "squash-static_pose-orientation-26b091875c62274d",
+    "manifest_sha256": "d2448956d6437f5f84f4d96942778c6cd941376be1d3a974174a9ec47c07c636",
+    "reference_vectors_sha256": "d688fc5c6642fb6e61b216fccec88e30658a19fe24f32610ee23b2ecde16d74d",
+    "parent_reference_sha256": "9886f04d2b3698de05421e4bbab23d64cedf1b10d6b1095ec8145c76cf459835"
+  }
+}

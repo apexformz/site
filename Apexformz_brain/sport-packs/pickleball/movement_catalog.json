@@ -1,0 +1,396 @@
+{
+ "schema_version": "1.0.0",
+ "sport_id": "pickleball",
+ "movements": [
+  {
+   "uuid": "18a924c3-ea81-580e-98c1-4ae1e5f0eba2",
+   "id": "pickleball.ready_position",
+   "canonical_name": "Ready position",
+   "aliases": [
+    {
+     "name": "ready position",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "static",
+   "permitted_views": [
+    "front",
+    "back",
+    "front_left",
+    "front_right"
+   ],
+   "phase_graph_id": "pg.pickleball.ready_position",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "pickleball.ready_position.stance_width",
+    "pickleball.ready_position.knee_flexion"
+   ],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "beginner",
+   "description": "Balanced base position between shots.",
+   "family_id": "pickleball.family.ready_positions",
+   "group_id": "pickleball.group.ready_position"
+  },
+  {
+   "uuid": "b7a855a2-feb0-550b-900b-0cb6a9c7c3e6",
+   "id": "pickleball.forehand_drive",
+   "canonical_name": "Forehand drive",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.pickleball.forehand_drive",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "pickleball.backhand_drive",
+     "relation": "mirror_side",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "pickleball.family.paddle_strokes",
+   "group_id": "pickleball.group.forehand_swings"
+  },
+  {
+   "uuid": "e9889c00-00f1-56c1-bdc8-3fcd949fbc8e",
+   "id": "pickleball.backhand_drive",
+   "canonical_name": "Backhand drive",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.pickleball.backhand_drive",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "pickleball.forehand_drive",
+     "relation": "mirror_side",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "pickleball.family.paddle_strokes",
+   "group_id": "pickleball.group.backhand_swings"
+  },
+  {
+   "uuid": "be13f229-c360-5e13-8fb4-8d0160a39e42",
+   "id": "pickleball.dink",
+   "canonical_name": "Dink",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.pickleball.dink",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "pickleball.family.paddle_strokes",
+   "group_id": "pickleball.group.compact_paddle_strokes"
+  },
+  {
+   "uuid": "afb9331d-911e-5920-ad87-7fc0fcb124a1",
+   "id": "pickleball.volley",
+   "canonical_name": "Volley",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.pickleball.volley",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "pickleball.family.paddle_strokes",
+   "group_id": "pickleball.group.compact_paddle_strokes"
+  },
+  {
+   "uuid": "7b9aa7cd-5f26-50e4-9777-37208db02648",
+   "id": "pickleball.serve",
+   "canonical_name": "Serve",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.pickleball.serve",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "pickleball.family.paddle_strokes",
+   "group_id": "pickleball.group.service_actions"
+  },
+  {
+   "uuid": "114f6a30-870a-53f3-b85c-f9e3f64a0f36",
+   "id": "pickleball.overhead",
+   "canonical_name": "Overhead",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.pickleball.overhead",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "pickleball.family.paddle_strokes",
+   "group_id": "pickleball.group.overhead_strokes"
+  },
+  {
+   "uuid": "76eb44ec-7c57-5ddd-b9c1-f47855a2431a",
+   "id": "pickleball.split_step",
+   "canonical_name": "Split step",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "back",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.pickleball.split_step",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "pickleball.family.court_footwork",
+   "group_id": "pickleball.group.preparation_recovery_steps"
+  },
+  {
+   "uuid": "4ed5842c-6598-5080-af8f-9720aea91714",
+   "id": "pickleball.recovery",
+   "canonical_name": "Recovery",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "back",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.pickleball.recovery",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "pickleball.family.court_footwork",
+   "group_id": "pickleball.group.preparation_recovery_steps"
+  }
+ ],
+ "taxonomy": {
+  "version": "1.1.0",
+  "levels": [
+   "family",
+   "group",
+   "movement"
+  ],
+  "validation_status": "provisional",
+  "method": {
+   "kind": "source_grounded_semantic_hierarchy",
+   "source_ids": [
+    "usap_terms",
+    "usap_skills"
+   ],
+   "research_file": "ml/sports/recognition_taxonomy_sources.json",
+   "preserves_catalogue_ids": true,
+   "accuracy_validated": false
+  },
+  "recognition": {
+   "group_threshold": 0.6,
+   "family_threshold": 0.6,
+   "margin": 0.1,
+   "validation_status": "provisional"
+  },
+  "families": [
+   {
+    "id": "pickleball.family.ready_positions",
+    "name": "Ready positions",
+    "type": "static",
+    "groups": [
+     {
+      "id": "pickleball.group.ready_position",
+      "name": "Ready position",
+      "members": [
+       "pickleball.ready_position"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usap_terms"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Body preparation rather than a shot label."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "usap_terms"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   },
+   {
+    "id": "pickleball.family.paddle_strokes",
+    "name": "Paddle strokes",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "pickleball.group.forehand_swings",
+      "name": "Forehand swings",
+      "members": [
+       "pickleball.forehand_drive"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usap_skills"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Side is kept explicit."
+      }
+     },
+     {
+      "id": "pickleball.group.backhand_swings",
+      "name": "Backhand swings",
+      "members": [
+       "pickleball.backhand_drive"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usap_skills"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Side is kept explicit."
+      }
+     },
+     {
+      "id": "pickleball.group.compact_paddle_strokes",
+      "name": "Compact paddle strokes",
+      "members": [
+       "pickleball.dink",
+       "pickleball.volley"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usap_terms"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Both can use short actions; bounce/contact/court evidence distinguishes the exact shot."
+      }
+     },
+     {
+      "id": "pickleball.group.overhead_strokes",
+      "name": "Overhead strokes",
+      "members": [
+       "pickleball.overhead"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usap_terms"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Do not infer winning outcome or tactical intent."
+      }
+     },
+     {
+      "id": "pickleball.group.service_actions",
+      "name": "Service actions",
+      "members": [
+       "pickleball.serve"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usap_terms"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "A serve label needs shot-sequence/context evidence."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "usap_terms",
+      "usap_skills"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   },
+   {
+    "id": "pickleball.family.court_footwork",
+    "name": "Court footwork",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "pickleball.group.preparation_recovery_steps",
+      "name": "Preparation and recovery steps",
+      "members": [
+       "pickleball.split_step",
+       "pickleball.recovery"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usap_skills"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Footwork category; exact phase remains separate."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "usap_skills"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,11 @@
+{
+  "full_body_framing": true,
+  "camera_tilt_deg": 2.5,
+  "nominal_view": "front",
+  "handedness": "right",
+  "handedness_assumed": false,
+  "floor_orientation_available": false,
+  "scale_known": false,
+  "scale_marker_m": null,
+  "athlete_context": "intermediate"
+}

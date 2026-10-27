@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "sess-fixture",
+  "event_id": "sess-fixture:00000007",
+  "monotonic_ms": 1400.5,
+  "wall_clock_iso": "2026-10-25T10:00:00Z",
+  "sport_pack_id": "badminton",
+  "sport_pack_version": "1.0.0",
+  "producer": "apexformz-brain-runtime",
+  "event_type": "session.transition",
+  "payload": {
+    "from": "READY",
+    "to": "ACTIVE",
+    "monotonic_ms": 1400.5,
+    "reason": "session_started",
+    "error_code": null
+  },
+  "sequence": 7
+}

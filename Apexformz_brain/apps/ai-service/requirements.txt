@@ -1,0 +1,36 @@
+fastapi>=0.103.1
+uvicorn[standard]>=0.23.2
+pydantic>=2.3.0
+numpy>=1.25.2
+opencv-python-headless>=4.10,<5  # Image decoding for perception/tracking jobs; no GUI runtime
+scipy>=1.11.2
+python-dotenv>=1.0.0
+pytest>=7.4.2
+
+# ApexFormz Brain contracts (install from the monorepo: pip install -e ../../packages/contracts/python)
+jsonschema>=4.18
+referencing>=0.30
+httpx>=0.27  # FastAPI TestClient
+cryptography==50.0.0  # Independent Ed25519 sport-pack verification
+rfc8785==0.1.4  # Canonical signing bytes shared with the browser/Node verifier
+boto3>=1.42
+mediapipe==0.10.35
+pillow>=12.0
+
+# DTW trajectory comparison (required for trajectory similarity scoring)
+dtaidistance>=2.3.0
+
+# Biomechanical math
+pyomeca>=2020.0
+xarray>=0.19.0
+
+# Optional: install torch separately only when ST-GCN AQA scoring is needed.
+# It is intentionally excluded from the live-service image because it pulls
+# a very large CUDA runtime that is not required for pose/dynamic analysis.
+
+# --- OPTIONAL: Advanced video analysis (only needed for /analyze/video with MMPose) ---
+# Uncomment the lines below if you want MMPose support for higher-accuracy offline video analysis.
+# These are heavy dependencies (~2GB+) and are NOT required for the live webcam path.
+# mmengine>=0.10.0
+# mmdet>=3.0.0
+# mmpose>=1.0.0

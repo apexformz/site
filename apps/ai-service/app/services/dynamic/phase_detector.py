@@ -12,11 +12,13 @@ import math
 import collections
 from typing import Dict, List, Any, Optional, Tuple
 
+from .pyomeca_adapter import PyomecaStreamAdapter
+
 
 # Rolling buffer size for velocity computation
 VELOCITY_BUFFER_SIZE = 5
-# Minimum frames between phase transitions to prevent rapid flickering
-MIN_FRAMES_BETWEEN_TRANSITIONS = 3
+# Minimum seconds between phase transitions to prevent rapid flickering.
+MIN_SECONDS_BETWEEN_TRANSITIONS = 0.20
 
 
 def _compute_angle(p1: Dict, p2: Dict, p3: Dict) -> float:
@@ -85,9 +87,15 @@ class PhaseDetector:
         self.frames_since_last_transition = 0
         self.total_frames = 0
         self.rep_count = 0
+        self.last_rep_frame = 0
+        self.trigger_hold_frames = 0
+        self.trigger_hold_target = -1
 
         # Rolling angle history for velocity computation
         self.angle_history: collections.deque = collections.deque(maxlen=VELOCITY_BUFFER_SIZE)
+        
+        # Pyomeca Adapter for scientific biomechanics and filtering
+        self.pyomeca_adapter = PyomecaStreamAdapter(fps_estimate=fps_estimate, window_size=15)
         
         # Store the keyframe captured at each phase transition
         self.phase_keyframes: Dict[int, Dict[str, Any]] = {}
@@ -103,10 +111,19 @@ class PhaseDetector:
     def current_phase_name(self) -> str:
         return self.current_phase.get("name", f"phase_{self.current_phase_index}")
 
+    def set_fps_estimate(self, fps_estimate: float):
+        """Use measured stream timing while retaining the configured fallback."""
+        self.fps_estimate = max(float(fps_estimate), 1.0)
+        self.dt = 1.0 / self.fps_estimate
+        self.pyomeca_adapter.fps = self.fps_estimate
+
+    @property
+    def min_frames_between_transitions(self) -> int:
+        return max(2, round(self.fps_estimate * MIN_SECONDS_BETWEEN_TRANSITIONS))
+
     def compute_angular_velocities(self) -> Dict[str, float]:
         """
-        Compute angular velocity (degrees/frame) for each joint
-        from the rolling angle history buffer.
+        Fallback velocity computation if Pyomeca does not return velocities.
         """
         if len(self.angle_history) < 2:
             return {}
@@ -119,7 +136,7 @@ class PhaseDetector:
             curr = latest[joint]
             prev = previous[joint]
             if curr >= 0 and prev >= 0:
-                # Velocity in degrees per frame, normalized to degrees per time unit
+                # Velocity in degrees per time unit
                 velocities[joint] = (curr - prev) / self.dt
             else:
                 velocities[joint] = 0.0
@@ -178,43 +195,80 @@ class PhaseDetector:
         self.frames_in_current_phase += 1
         self.frames_since_last_transition += 1
 
-        # Compute angles for this frame
-        angles = compute_all_angles(keypoints)
+        # 1. Use Pyomeca adapter for angles and velocities
+        angles, velocities = self.pyomeca_adapter.process_frame(keypoints)
+        
+        # 2. Append to history and fallback on velocity if pyomeca returned empty
         self.angle_history.append(angles)
-
-        # Compute velocities
-        velocities = self.compute_angular_velocities()
+        if not velocities:
+            velocities = self.compute_angular_velocities()
 
         # Check if we should transition to the next phase
         phase_changed = False
         captured_keyframe = None
 
-        if self.frames_since_last_transition >= MIN_FRAMES_BETWEEN_TRANSITIONS:
-            next_phase_index = (self.current_phase_index + 1) % len(self.phases)
-            next_phase = self.phases[next_phase_index]
-            trigger = next_phase.get("trigger", "initial")
-
-            if self._check_trigger(trigger, angles, velocities):
-                # Phase transition!
-                phase_changed = True
+        if self.frames_since_last_transition >= self.min_frames_between_transitions:
+            # Look ahead logic:
+            # - Phase 0 (Stance) MUST go to Phase 1 (no skipping the start of movement)
+            # - Other phases can skip 1 phase (lookahead=2) if the user is sloppy or frames drop
+            # - Never allow a lookahead to wrap around to 0 (unless we are on the very last phase)
+            if self.current_phase_index == 0:
+                max_lookahead = 1
+            else:
+                max_lookahead = max(1, min(2, len(self.phases) - 1 - self.current_phase_index))
                 
-                # If we wrapped around to phase 0, that's a completed rep
-                if next_phase_index == 0 and self.total_frames > len(self.phases):
-                    self.rep_count += 1
+            # If we are at the last phase, we must be able to wrap to 0
+            if self.current_phase_index == len(self.phases) - 1:
+                max_lookahead = 1
+            
+            for lookahead in range(1, max_lookahead + 1):
+                next_phase_index = (self.current_phase_index + lookahead) % len(self.phases)
+                next_phase = self.phases[next_phase_index]
+                trigger = next_phase.get("trigger", "initial")
 
-                self.current_phase_index = next_phase_index
-                self.frames_in_current_phase = 0
-                self.frames_since_last_transition = 0
-                
-                # Capture the keyframe at this transition
-                captured_keyframe = {
-                    "angles": angles,
-                    "keypoints": keypoints,
-                    "frame_index": self.total_frames,
-                    "velocities": velocities,
-                }
-                self.phase_keyframes[next_phase_index] = captured_keyframe
-                self.phase_timestamps[next_phase_index] = self.total_frames
+                if self._check_trigger(trigger, angles, velocities):
+                    if trigger == "initial":
+                        # Instant transition for phase 0
+                        self.trigger_hold_frames = 2
+                    elif self.trigger_hold_target == next_phase_index:
+                        self.trigger_hold_frames += 1
+                    else:
+                        self.trigger_hold_target = next_phase_index
+                        self.trigger_hold_frames = 1
+                        
+                    hold_target = max(2, round(self.fps_estimate * 0.12))
+                    if self.trigger_hold_frames >= hold_target:
+                        # Phase transition!
+                        phase_changed = True
+                        
+                        # If we wrapped around, that's a completed rep
+                        if next_phase_index < self.current_phase_index and self.total_frames > len(self.phases):
+                            frames_since_last = self.total_frames - self.last_rep_frame
+                            # Require at least half a second, independent of FPS.
+                            if frames_since_last >= max(10, round(self.fps_estimate * 0.5)):
+                                self.rep_count += 1
+                                self.last_rep_frame = self.total_frames
+
+                        self.current_phase_index = next_phase_index
+                        self.frames_in_current_phase = 0
+                        self.frames_since_last_transition = 0
+                        self.trigger_hold_frames = 0
+                        self.trigger_hold_target = -1
+                        
+                        # Capture the keyframe at this transition
+                        captured_keyframe = {
+                            "angles": angles,
+                            "keypoints": keypoints,
+                            "frame_index": self.total_frames,
+                            "velocities": velocities,
+                        }
+                        self.phase_keyframes[next_phase_index] = captured_keyframe
+                        self.phase_timestamps[next_phase_index] = self.total_frames
+                        break  # Stop checking further phases once we transition
+                else:
+                    if self.trigger_hold_target == next_phase_index:
+                        self.trigger_hold_frames = 0
+                        self.trigger_hold_target = -1
 
         return {
             "current_phase": self.current_phase_name,
@@ -235,6 +289,10 @@ class PhaseDetector:
         self.frames_since_last_transition = 0
         self.total_frames = 0
         self.rep_count = 0
+        self.last_rep_frame = 0
+        self.trigger_hold_frames = 0
+        self.trigger_hold_target = -1
         self.angle_history.clear()
         self.phase_keyframes.clear()
         self.phase_timestamps = {0: 0}
+        self.pyomeca_adapter.reset()

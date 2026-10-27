@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "sess-fixture",
+  "monotonic_ms": 60000,
+  "stage_durations_ms": {
+    "signal_ms_ema": 0.4,
+    "features_ms_ema": 0.9,
+    "temporal_ms_ema": 0.1,
+    "scoring_ms_ema": 0.2,
+    "coaching_ms_ema": 0.05
+  },
+  "queue_age_ms": 12,
+  "discarded_frames": 3,
+  "dropped_inferences": 0,
+  "timeouts": 0,
+  "memory_mb": null,
+  "observed_fps": 24.8,
+  "abstention_reasons": {
+    "VIEW_INVALID": 12,
+    "CONTACT_UNOBSERVED": 1
+  },
+  "unknown_movement_rate": 0.02,
+  "criteria_coverage": 0.71,
+  "executed_packs": [
+    "badminton@1.0.0"
+  ],
+  "thermal_state": null
+}

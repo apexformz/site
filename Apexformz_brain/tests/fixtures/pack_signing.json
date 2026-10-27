@@ -1,0 +1,97 @@
+{
+  "purpose": "Public cross-language verification vector only. Private key was ephemeral and is not stored.",
+  "registry": {
+    "schema_version": "1.0.0",
+    "keys": [
+      {
+        "key_id": "test-vector-only-never-production",
+        "algorithm": "ed25519",
+        "public_key": "03d110454f0a139d1ee19033cafff6954b9c3d2f612d31fc38aa6c5284d0a71b",
+        "status": "active",
+        "purpose": "test"
+      }
+    ]
+  },
+  "manifest": {
+    "schema_version": "1.0.0",
+    "id": "badminton",
+    "version": "1.0.0",
+    "minimum_core_version": "1.0.0",
+    "supported_platforms": [
+      "web",
+      "android",
+      "ios"
+    ],
+    "capabilities": [
+      "body_pose",
+      "optional_implement",
+      "optional_projectile"
+    ],
+    "dependencies": [
+      {
+        "id": "common_features",
+        "version": "^1.0"
+      }
+    ],
+    "game_rules": "competition_rules.json",
+    "court_geometry": "court_geometry.json",
+    "equipment_catalog": "equipment_catalog.json",
+    "movements": "movement_catalog.json",
+    "phase_graphs": "phase_graphs.json",
+    "technique_rubrics": "technique_criteria.json",
+    "feedback_templates": "feedback_templates.json",
+    "provenance": "provenance.json",
+    "models": [],
+    "asset_hashes": {
+      "competition_rules.json": "94f25830dc17a56ecfb2c4b32bd988e8d0fb766f8d8024520cd4b761b18c91f1",
+      "court_geometry.json": "80f9660dc27f722b58d0ce3d11786f6aeea8629648962d56fdec838fb49414ca",
+      "equipment_catalog.json": "59e05fd38eeea52ff2e33d0fb4186ce2eb5f8aa1cbd972d05a032c2517ee1d1e",
+      "movement_catalog.json": "99c8f25ad239b2020fa0af3c7a6ffc70aa0739072cf4f0eaac73823b8f5124c0",
+      "phase_graphs.json": "0a2240eaa91856dc2e4139f568a71881c08918456aedf892498fecf92301ce1f",
+      "technique_criteria.json": "b9a2efc590bb5b88718ebb98e3762d04acb53ab02d729ca1005ec03e25d80a51",
+      "feedback_templates.json": "4f21f53c38ad7ba0c8aa9f83738d2a1c2055d5c8450774239598e4f55f7b6483",
+      "provenance.json": "d324e75d715b10c952954f31f6ed13b89edff3948c8e301e73b53cf33ea160c1"
+    },
+    "signature": {
+      "algorithm": "ed25519",
+      "key_id": "test-vector-only-never-production",
+      "value": "a3591c0a657f5fd0d79d3bed750553f8f96da4f6135198944f012acb16adc6a4ddce2d79cfdff05a3d95fca9d49f373e9e3ab502e04bd11b5f8252168ad7460b"
+    },
+    "display": {
+      "name": "Signing fixture - 羽球 🏸",
+      "description": "Footwork and stroke preparation coaching seeds. First vertical slice: ready stance (static) and lunge (dynamic).",
+      "color": "#00d4ff",
+      "status": "seed"
+    }
+  },
+  "payload_sha256": "b467d8788c35af8d921f85b4956cc16e1db7ff750244fbc4f488f39d95bb2697",
+  "canonical_cases": [
+    {
+      "name": "numeric keys and Unicode",
+      "input": {
+        "2": "two",
+        "10": "ten",
+        "😀": "emoji",
+        "דּ": "bmp",
+        "__proto__": {
+          "a": 1
+        },
+        "text": "羽球\n"
+      },
+      "expected": "{\"10\":\"ten\",\"2\":\"two\",\"__proto__\":{\"a\":1},\"text\":\"羽球\\n\",\"😀\":\"emoji\",\"דּ\":\"bmp\"}"
+    },
+    {
+      "name": "ECMAScript number formatting",
+      "input": [
+        0,
+        -0.0,
+        1.0,
+        1e-07,
+        1e-06,
+        1e-05,
+        1234.25
+      ],
+      "expected": "[0,0,1,1e-7,0.000001,0.00001,1234.25]"
+    }
+  ]
+}

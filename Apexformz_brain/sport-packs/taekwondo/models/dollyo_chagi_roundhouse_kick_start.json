@@ -1,0 +1,90 @@
+{
+ "kind": "reference_set",
+ "movement_id": "taekwondo.dollyo_chagi_roundhouse_kick",
+ "features": [
+  "left_elbow_angle",
+  "right_elbow_angle",
+  "left_shoulder_angle",
+  "right_shoulder_angle",
+  "left_hip_angle",
+  "right_hip_angle",
+  "left_knee_angle",
+  "right_knee_angle"
+ ],
+ "weights": [
+  0.4,
+  0.4,
+  0.7,
+  0.7,
+  1.5,
+  1.5,
+  1.6,
+  1.6
+ ],
+ "reference_vectors": [
+  [
+   171.8,
+   167.3,
+   11.9,
+   10.2,
+   177.4,
+   175.9,
+   177.5,
+   175.2
+  ],
+  [
+   171.8,
+   167.3,
+   11.9,
+   10.2,
+   177.4,
+   175.9,
+   177.5,
+   175.2
+  ],
+  [
+   166.9,
+   160.7,
+   5.9,
+   8.9,
+   163.4,
+   169.9,
+   171.5,
+   178.1
+  ],
+  [
+   166.9,
+   160.7,
+   5.9,
+   8.9,
+   163.4,
+   169.9,
+   171.5,
+   178.1
+  ],
+  [
+   161.3,
+   null,
+   2.2,
+   null,
+   163.2,
+   176.6,
+   172.6,
+   178.1
+  ],
+  [
+   161.3,
+   null,
+   2.2,
+   null,
+   163.2,
+   176.6,
+   172.6,
+   178.1
+  ]
+ ],
+ "threshold": 20.0,
+ "tolerance": 15.0,
+ "validation_status": "provisional",
+ "provenance": "Legacy taekwondo_reference_frames.json extracted from front/left/right expert videos; weighted RMS distance in degrees. TODO_REQUIRES_VALIDATION."
+}

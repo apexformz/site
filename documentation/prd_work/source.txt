@@ -1,0 +1,1711 @@
+0: [Normal] APEXFORMZ V2
+1: [Normal] Product Requirements Document
+2: [Normal] Modular Human-Motion Intelligence + Sport-Specific Expert Engines
+3: [Normal] Document Status: Master Product & Engineering PRD
+Version: 2.0
+Date: September 2026
+Product: ApexFormz / SmartCoach
+Primary Objective: Transform the existing multi-sport pose-analysis architecture into a scalable, modular sports-intelligence platform built around a shared Human Motion Engine and isolated Sport Expert Engines.
+5: [Normal] 1. EXECUTIVE SUMMARY
+6: [Normal] ApexFormz currently operates as a real-time biomechanical coaching platform built around:
+7: [Normal] browser-based MediaPipe pose extraction,
+8: [Normal] a Next.js user interface,
+9: [Normal] Node.js/Express orchestration,
+10: [Normal] Socket.IO real-time transport,
+11: [Normal] a FastAPI AI-analysis service,
+12: [Normal] static pose analysis,
+13: [Normal] dynamic phase-based movement analysis,
+14: [Normal] nearest-neighbour expert-frame matching,
+15: [Normal] DTW trajectory analysis,
+16: [Normal] kinetic-chain validation,
+17: [Normal] signal filtering,
+18: [Normal] ST-GCN Action Quality Assessment,
+19: [Normal] PostgreSQL persistence,
+20: [Normal] gamification,
+21: [Normal] and social training systems.
+22: [Normal] The current platform already separates static and dynamic movement analysis and maintains movement definitions through sport/movement configuration.
+However, ApexFormz is now moving from a controlled prototype architecture toward a real-world multi-sport platform.
+23: [Normal] The next architectural challenge is domain isolation.
+24: [Normal] Sports may contain superficially similar body configurations while requiring very different biomechanical interpretation.
+25: [Normal] Examples:
+26: [Normal] badminton overhead forehand vs tennis serve,
+27: [Normal] badminton forehand vs tennis forehand,
+28: [Normal] cricket bowling vs throwing,
+29: [Normal] boxing rotation vs racquet-sport rotation,
+30: [Normal] Taekwondo kicking vs football kicking.
+31: [Normal] A universal movement reference database can therefore create semantic ambiguity even when the pose geometry itself is correctly measured.
+32: [Normal] The V2 architecture solves this through hierarchical intelligence:
+33: [Normal] CAMERA / VIDEO
+34: [Normal]       ↓
+35: [Normal] PERCEPTION CORE
+36: [Normal]       ↓
+37: [Normal] UNIVERSAL HUMAN MOTION ENGINE
+38: [Normal]       ↓
+39: [Normal] SPORT CONTEXT / SPORT ROUTER
+40: [Normal]       ↓
+41: [Normal] SPORT EXPERT ENGINE
+42: [Normal]       ↓
+43: [Normal] MOVEMENT ROUTER
+44: [Normal]       ↓
+45: [Normal] MOVEMENT EXPERT ENGINE
+46: [Normal]       ↓
+47: [Normal] BIOMECHANICAL ANALYSIS
+48: [Normal]       ↓
+49: [Normal] COACHING INTELLIGENCE
+50: [Normal]       ↓
+51: [Normal] ATHLETE INTELLIGENCE
+52: [Normal] The Universal Human Motion Engine understands the human body.
+53: [Normal] The Sport Engine understands the sport.
+54: [Normal] The Movement Engine understands the specific movement.
+55: [Normal] The Coaching Engine explains what should change.
+56: [Normal] The Athlete Intelligence layer understands the athlete over time.
+57: [Normal] This modular architecture becomes the foundation for future ApexFormz sports.
+59: [Normal] 2. PRODUCT VISION
+60: [Normal] ApexFormz should become:
+61: [Normal] A modular human-performance intelligence platform capable of understanding how an athlete moves, interpreting that movement within the correct sport, evaluating it against validated expert execution, and delivering real-time personalized coaching.
+62: [Normal] The platform should not merely answer:
+63: [Normal] “Where is the athlete's knee?”
+64: [Normal] It should eventually answer:
+65: [Normal] “During the acceleration phase of your badminton smash, your shoulder initiated before your hip rotation, reducing kinetic-chain efficiency. On your previous eight reps, this sequencing problem occurred six times.”
+66: [Normal] The long-term ApexFormz intelligence hierarchy is therefore:
+67: [Normal] Layer 1 — Perception
+68: [Normal] What does the camera observe?
+69: [Normal] Layer 2 — Human Motion
+70: [Normal] What is the body physically doing?
+71: [Normal] Layer 3 — Sport Understanding
+72: [Normal] What does this body movement mean within badminton, tennis, cricket, Taekwondo, etc.?
+73: [Normal] Layer 4 — Movement Understanding
+74: [Normal] Which exact movement and phase is being performed?
+75: [Normal] Layer 5 — Biomechanical Evaluation
+76: [Normal] How does this execution differ from accepted expert execution?
+77: [Normal] Layer 6 — Coaching
+78: [Normal] What correction should the athlete make?
+79: [Normal] Layer 7 — Athlete Intelligence
+80: [Normal] What recurring strengths, weaknesses, improvements and patterns exist for this athlete?
+82: [Normal] 3. PROBLEM STATEMENT
+83: [Normal] 3.1 Current scaling problem
+84: [Normal] The current dynamic architecture supports multiple sports and movements through movement configuration and routing. Dynamic sessions maintain their own state and the FrameMatcher uses expert reference frames for movement comparison.
+85: [Normal] This is appropriate for the current stage.
+86: [Normal] However, as the reference database grows, the platform needs stronger architectural guarantees that:
+87: [Normal] badminton data cannot affect tennis scoring,
+88: [Normal] tennis references cannot affect Taekwondo analysis,
+89: [Normal] movement-specific rules cannot leak between movements,
+90: [Normal] sport-specific biomechanics remain isolated,
+91: [Normal] sport-specific models can be developed independently,
+92: [Normal] scoring criteria can differ between sports,
+93: [Normal] future ML models can use shared representations without sharing incorrect decision boundaries.
+94: [Normal] The problem is not simply database size.
+95: [Normal] The fundamental problem is semantic contamination.
+96: [Normal] A human configuration can be geometrically similar across sports while carrying different biomechanical meaning.
+98: [Normal] 4. PRODUCT GOALS
+99: [Normal] 4.1 Primary goals
+100: [Normal] ApexFormz V2 shall:
+101: [Normal] Introduce a universal Human Motion Engine that contains only sport-independent movement intelligence.
+102: [Normal] Introduce isolated Sport Expert Engines.
+103: [Normal] Introduce isolated Movement Expert Engines within each sport.
+104: [Normal] Prevent cross-sport reference matching by architecture.
+105: [Normal] Support different scoring systems for different sports and movements.
+106: [Normal] Allow sport engines to request specific motion features from the Core Engine.
+107: [Normal] Preserve the existing real-time latency architecture.
+108: [Normal] Reuse existing DynamicAnalyzer capabilities wherever appropriate.
+109: [Normal] Support sport-specific reference datasets.
+110: [Normal] Support sport-specific ML models in the future.
+111: [Normal] Support explicit sport selection immediately.
+112: [Normal] Support optional automatic sport/movement recognition later.
+113: [Normal] Make adding a new sport primarily a plugin/configuration/data task rather than requiring changes to the central analysis engine.
+114: [Normal] Build a foundation for longitudinal athlete intelligence.
+116: [Normal] 5. NON-GOALS FOR INITIAL V2
+117: [Normal] The initial architecture migration will NOT require:
+118: [Normal] fully autonomous sport recognition,
+119: [Normal] fully autonomous movement recognition for every sport,
+120: [Normal] replacing MediaPipe,
+121: [Normal] replacing the Next.js frontend,
+122: [Normal] replacing the Node backend,
+123: [Normal] replacing FastAPI,
+124: [Normal] rewriting gamification,
+125: [Normal] training a universal deep-learning sports model,
+126: [Normal] multi-person tracking,
+127: [Normal] mobile-native applications,
+128: [Normal] fully automated coach certification,
+129: [Normal] real-time ball/shuttle/racket tracking for all sports.
+130: [Normal] These may be added after the modular engine foundation is stable.
+132: [Normal] 6. CURRENT PLATFORM BASELINE
+133: [Normal] The existing platform uses three major application services:
+134: [Normal] apps/frontend
+135: [Normal] apps/backend
+136: [Normal] apps/ai-service
+137: [Normal] with shared TypeScript types and PostgreSQL persistence.
+138: [Normal] 6.1 Existing frontend
+139: [Normal] The frontend currently:
+140: [Normal] captures webcam video,
+141: [Normal] initializes MediaPipe Pose Landmarker,
+142: [Normal] extracts body landmarks,
+143: [Normal] opens authenticated Socket.IO sessions,
+144: [Normal] emits frame data,
+145: [Normal] receives analysis results,
+146: [Normal] displays scores,
+147: [Normal] displays issues,
+148: [Normal] displays phase,
+149: [Normal] displays rep count,
+150: [Normal] renders the body skeleton.
+151: [Normal] 6.2 Existing backend
+152: [Normal] The Node backend currently:
+153: [Normal] manages authentication,
+154: [Normal] manages training sessions,
+155: [Normal] determines static/dynamic routing,
+156: [Normal] relays frames,
+157: [Normal] uses keep-alive connections to the AI service,
+158: [Normal] drops stale queued frames,
+159: [Normal] persists results,
+160: [Normal] manages XP,
+161: [Normal] manages streaks,
+162: [Normal] manages leaderboards,
+163: [Normal] manages Circles.
+164: [Normal] The existing:
+165: [Normal] frameInFlight
+166: [Normal] pendingFrame
+167: [Normal] strategy must be retained.
+168: [Normal] Real-time movement coaching must prioritize the newest frame rather than processing every historical frame.
+169: [Normal] 6.3 Existing AI capabilities
+170: [Normal] Existing AI components include:
+171: [Normal] static pose analyzer,
+172: [Normal] BaseAnalyzer,
+173: [Normal] AnalyzerRegistry,
+174: [Normal] DynamicAnalyzer,
+175: [Normal] PhaseDetector,
+176: [Normal] PyomecaStreamAdapter,
+177: [Normal] One Euro KeypointSmoother,
+178: [Normal] FrameMatcher,
+179: [Normal] KineticChainValidator,
+180: [Normal] TrajectoryScorer,
+181: [Normal] MovementRegistry,
+182: [Normal] ST-GCN AQA,
+183: [Normal] expert-frame data,
+184: [Normal] movement blueprints.
+185: [Normal] These components should be reorganized—not discarded.
+187: [Normal] 7. TARGET SYSTEM ARCHITECTURE
+188: [Normal] The target ApexFormz architecture shall be:
+189: [Normal]                        FRONTEND
+190: [Normal]                            │
+191: [Normal]                            ▼
+192: [Normal]                     MEDIA CAPTURE
+193: [Normal]                            │
+194: [Normal]                            ▼
+195: [Normal]                 BODY / OBJECT PERCEPTION
+196: [Normal]                            │
+197: [Normal]                            ▼
+198: [Normal]               UNIVERSAL HUMAN MOTION ENGINE
+199: [Normal]                            │
+200: [Normal]                            ▼
+201: [Normal]                      SPORT ROUTER
+202: [Normal]                            │
+203: [Normal]        ┌───────────────────┼────────────────────┐
+204: [Normal]        │                   │                    │
+205: [Normal]        ▼                   ▼                    ▼
+206: [Normal]  BADMINTON ENGINE      TENNIS ENGINE      TAEKWONDO ENGINE
+207: [Normal]        │                   │                    │
+208: [Normal]        ▼                   ▼                    ▼
+209: [Normal]  MOVEMENT ROUTER       MOVEMENT ROUTER      MOVEMENT ROUTER
+210: [Normal]        │                   │                    │
+211: [Normal]        ▼                   ▼                    ▼
+212: [Normal]  SMASH ENGINE          FOREHAND ENGINE      AP CHAGI ENGINE
+213: [Normal]        │                   │                    │
+214: [Normal]        └───────────────────┼────────────────────┘
+215: [Normal]                            ▼
+216: [Normal]                   BIOMECHANICS ENGINE
+217: [Normal]                            ▼
+218: [Normal]                     COACHING ENGINE
+219: [Normal]                            ▼
+220: [Normal]                   ATHLETE INTELLIGENCE
+221: [Normal]                            ▼
+222: [Normal]                         BACKEND
+223: [Normal]                            ▼
+224: [Normal]                        DATABASE
+226: [Normal] 8. CORE DESIGN PRINCIPLE
+227: [Normal] The Core Engine must contain measurements.
+228: [Normal] The Sport Engine must contain meaning.
+229: [Normal] Example:
+230: [Normal] Core Engine output:
+231: [Normal] {
+232: [Normal]   "right_knee_angle": 104,
+233: [Normal]   "right_knee_angular_velocity": -187,
+234: [Normal]   "hip_rotation_velocity": 121,
+235: [Normal]   "shoulder_rotation_velocity": 203
+236: [Normal] }
+237: [Normal] The Core Engine must NOT conclude:
+238: [Normal] "Bad badminton smash"
+239: [Normal] The Badminton Smash Engine may interpret those measurements as:
+240: [Normal] shoulder rotation began before hip rotation
+241: [Normal] and the Coaching Engine may produce:
+242: [Normal] Initiate the stroke from your hips before accelerating your shoulder.
+243: [Normal] This separation is mandatory.
+245: [Normal] 9. MODULE 01 — PERCEPTION CORE
+246: [Normal] 9.1 Purpose
+247: [Normal] Convert visual input into structured observations.
+248: [Normal] 9.2 V2 input sources
+249: [Normal] Initial:
+250: [Normal] webcam,
+251: [Normal] uploaded video.
+252: [Normal] Future:
+253: [Normal] mobile camera,
+254: [Normal] multi-camera,
+255: [Normal] prerecorded coach footage,
+256: [Normal] external camera devices.
+257: [Normal] 9.3 Current implementation
+258: [Normal] MediaPipe Pose Landmarker currently extracts body landmarks in-browser.
+259: [Normal] This should remain the default V2 implementation.
+260: [Normal] 9.4 Required output
+261: [Normal] The perception layer shall produce:
+262: [Normal] interface RawPoseObservation {
+263: [Normal]     timestampMs: number;
+264: [Normal]     frameId: string;
+266: [Normal]     landmarks: Landmark[];
+268: [Normal]     detectionConfidence: number;
+270: [Normal]     source: {
+271: [Normal]         width: number;
+272: [Normal]         height: number;
+273: [Normal]         fpsEstimate: number;
+274: [Normal]     };
+275: [Normal] }
+276: [Normal] Landmark must include:
+277: [Normal] interface Landmark {
+278: [Normal]     name: string;
+279: [Normal]     x: number;
+280: [Normal]     y: number;
+281: [Normal]     z?: number;
+282: [Normal]     visibility: number;
+283: [Normal] }
+284: [Normal] Critical requirement
+285: [Normal] The V2 data contract must explicitly preserve z whenever the underlying pose detector provides it.
+286: [Normal] The current frontend documentation demonstrates a type containing x/y without z while AI documentation describes optional 3D processing.
+The V2 implementation must verify and standardize this.
+288: [Normal] 10. MODULE 02 — UNIVERSAL HUMAN MOTION ENGINE
+289: [Normal] 10.1 Purpose
+290: [Normal] Transform raw landmarks into a standardized, sport-neutral representation of human motion.
+291: [Normal] 10.2 Responsibilities
+292: [Normal] The engine shall calculate, where technically possible:
+293: [Normal] Skeleton geometry
+294: [Normal] joint positions,
+295: [Normal] body centre,
+296: [Normal] shoulder width,
+297: [Normal] hip width,
+298: [Normal] limb lengths,
+299: [Normal] torso vector.
+300: [Normal] Joint geometry
+301: [Normal] elbow angle,
+302: [Normal] shoulder angle,
+303: [Normal] hip angle,
+304: [Normal] knee angle,
+305: [Normal] ankle angle where supported,
+306: [Normal] torso inclination,
+307: [Normal] shoulder-line orientation,
+308: [Normal] hip-line orientation.
+309: [Normal] Motion derivatives
+310: [Normal] position velocity,
+311: [Normal] joint angular velocity,
+312: [Normal] acceleration,
+313: [Normal] angular acceleration,
+314: [Normal] jerk.
+315: [Normal] Temporal information
+316: [Normal] movement active/inactive,
+317: [Normal] temporal history,
+318: [Normal] onset detection,
+319: [Normal] movement termination,
+320: [Normal] approximate repetition boundaries.
+321: [Normal] Body orientation
+322: [Normal] left/right orientation,
+323: [Normal] body-facing direction,
+324: [Normal] vertical/horizontal orientation,
+325: [Normal] stance direction.
+326: [Normal] Signal confidence
+327: [Normal] Every feature must contain a confidence value where appropriate.
+329: [Normal] 11. UNIVERSAL MOTION REPRESENTATION
+330: [Normal] The Human Motion Engine shall return a MotionFrame.
+331: [Normal] Example:
+332: [Normal] interface MotionFrame {
+334: [Normal]     timestampMs: number;
+336: [Normal]     landmarks: NormalizedLandmarks;
+338: [Normal]     jointAngles: Record<string, number>;
+340: [Normal]     jointAngularVelocity: Record<string, number>;
+342: [Normal]     jointAngularAcceleration: Record<string, number>;
+344: [Normal]     positionVelocity: Record<string, Vector3>;
+346: [Normal]     body: {
+347: [Normal]         torsoLean: number;
+348: [Normal]         shoulderRotation: number;
+349: [Normal]         hipRotation: number;
+350: [Normal]         shoulderHipSeparation: number;
+351: [Normal]         centerOfBody: Vector3;
+352: [Normal]     };
+354: [Normal]     orientation: {
+355: [Normal]         vertical: boolean;
+356: [Normal]         facingDirection?: string;
+357: [Normal]         dominantSideEstimate?: "left" | "right" | "unknown";
+358: [Normal]     };
+360: [Normal]     confidence: {
+361: [Normal]         tracking: number;
+362: [Normal]         visibility: number;
+363: [Normal]     };
+365: [Normal]     motionState: {
+366: [Normal]         active: boolean;
+367: [Normal]         onsetProbability?: number;
+368: [Normal]     };
+369: [Normal] }
+370: [Normal] This object becomes the primary input to all sport engines.
+372: [Normal] 12. SIGNAL PROCESSING
+373: [Normal] The existing One Euro filtering and optional Pyomeca/Butterworth pipeline should become services available to the Human Motion Engine.
+374: [Normal] Proposed structure:
+375: [Normal] core/
+376: [Normal]   signal/
+377: [Normal]     one_euro.py
+378: [Normal]     butterworth.py
+379: [Normal]     derivative.py
+380: [Normal]     interpolation.py
+381: [Normal] Sport engines should not independently implement smoothing unless they have a documented special requirement.
+383: [Normal] 13. FEATURE REGISTRY
+384: [Normal] ApexFormz should introduce a Feature Registry.
+385: [Normal] Example:
+386: [Normal] Feature Registry
+388: [Normal] joint_angle.right_knee
+389: [Normal] joint_velocity.right_knee
+390: [Normal] torso.rotation
+391: [Normal] hip.rotation
+392: [Normal] shoulder.rotation
+393: [Normal] center.vertical_velocity
+394: [Normal] body.orientation
+395: [Normal] Sport engines declare which features they require.
+396: [Normal] Example:
+397: [Normal] {
+398: [Normal]   "sport": "badminton",
+399: [Normal]   "required_features": [
+400: [Normal]     "shoulder.rotation",
+401: [Normal]     "hip.rotation",
+402: [Normal]     "joint_angle.right_elbow",
+403: [Normal]     "joint_velocity.right_elbow"
+404: [Normal]   ]
+405: [Normal] }
+406: [Normal] This creates a stable contract between universal motion processing and sport-specific intelligence.
+408: [Normal] 14. MODULE 03 — SPORT ROUTER
+409: [Normal] 14.1 Purpose
+410: [Normal] Determine which Sport Expert Engine receives the MotionFrame.
+411: [Normal] 14.2 V2 Phase 1
+412: [Normal] Sport is explicitly selected by the user.
+413: [Normal] Example:
+414: [Normal] /train/badminton
+415: [Normal] creates:
+416: [Normal] {
+417: [Normal]   "sport": "badminton"
+418: [Normal] }
+419: [Normal] The backend/AI service then resolves:
+420: [Normal] SPORT_ENGINE_REGISTRY["badminton"]
+421: [Normal] No other sport engine may participate in scoring.
+422: [Normal] 14.3 Future automatic recognition
+423: [Normal] Future implementation may return:
+424: [Normal] {
+425: [Normal]   "badminton": 0.91,
+426: [Normal]   "tennis": 0.05,
+427: [Normal]   "squash": 0.03,
+428: [Normal]   "unknown": 0.01
+429: [Normal] }
+430: [Normal] Automatic routing must use confidence thresholds.
+431: [Normal] If confidence is insufficient:
+432: [Normal] sport_status = "uncertain"
+433: [Normal] The system must not silently select a sport.
+435: [Normal] 15. SPORT ENGINE REGISTRY
+436: [Normal] Introduce:
+437: [Normal] SPORT_ENGINE_REGISTRY = {
+438: [Normal]     "taekwondo": TaekwondoEngine,
+439: [Normal]     "badminton": BadmintonEngine,
+440: [Normal]     "tennis": TennisEngine,
+441: [Normal]     "cricket": CricketEngine,
+442: [Normal] }
+443: [Normal] Every registered engine must satisfy the same contract.
+444: [Normal] Example:
+445: [Normal] class SportEngine(ABC):
+447: [Normal]     @abstractmethod
+448: [Normal]     def supported_movements(self):
+449: [Normal]         pass
+451: [Normal]     @abstractmethod
+452: [Normal]     def create_session(self, config):
+453: [Normal]         pass
+455: [Normal]     @abstractmethod
+456: [Normal]     def classify_movement(self, motion_window):
+457: [Normal]         pass
+459: [Normal]     @abstractmethod
+460: [Normal]     def get_movement_engine(self, movement_name):
+461: [Normal]         pass
+463: [Normal]     @abstractmethod
+464: [Normal]     def required_features(self):
+465: [Normal]         pass
+467: [Normal] 16. MODULE 04 — SPORT EXPERT ENGINE
+468: [Normal] Each sport engine owns:
+469: [Normal] terminology,
+470: [Normal] movement inventory,
+471: [Normal] biomechanical rules,
+472: [Normal] reference dataset,
+473: [Normal] allowed phase models,
+474: [Normal] movement classifier,
+475: [Normal] scoring policies,
+476: [Normal] sport-level coaching logic,
+477: [Normal] sport-specific models,
+478: [Normal] equipment requirements.
+479: [Normal] It must NOT own:
+480: [Normal] generic landmark extraction,
+481: [Normal] generic angle mathematics,
+482: [Normal] generic signal filtering,
+483: [Normal] authentication,
+484: [Normal] session persistence.
+486: [Normal] 17. PROPOSED DIRECTORY STRUCTURE
+487: [Normal] Recommended AI-service refactor:
+488: [Normal] apps/ai-service/app/
+490: [Normal] core/
+491: [Normal] ├── perception/
+492: [Normal] ├── motion/
+493: [Normal] │   ├── normalization.py
+494: [Normal] │   ├── angles.py
+495: [Normal] │   ├── velocity.py
+496: [Normal] │   ├── acceleration.py
+497: [Normal] │   ├── orientation.py
+498: [Normal] │   └── motion_frame.py
+499: [Normal] │
+500: [Normal] ├── signal/
+501: [Normal] │   ├── one_euro.py
+502: [Normal] │   ├── butterworth.py
+503: [Normal] │   └── interpolation.py
+504: [Normal] │
+505: [Normal] ├── features/
+506: [Normal] │   ├── registry.py
+507: [Normal] │   └── extractor.py
+508: [Normal] │
+509: [Normal] └── confidence/
+510: [Normal]     └── tracking_quality.py
+513: [Normal] sports/
+514: [Normal] ├── base/
+515: [Normal] │   ├── sport_engine.py
+516: [Normal] │   ├── movement_engine.py
+517: [Normal] │   └── contracts.py
+518: [Normal] │
+519: [Normal] ├── taekwondo/
+520: [Normal] │   ├── engine.py
+521: [Normal] │   ├── movements/
+522: [Normal] │   │   ├── ap_chagi.py
+523: [Normal] │   │   ├── dollyo_chagi.py
+524: [Normal] │   │   └── ...
+525: [Normal] │   ├── data/
+526: [Normal] │   ├── models/
+527: [Normal] │   └── rules/
+528: [Normal] │
+529: [Normal] ├── badminton/
+530: [Normal] │   ├── engine.py
+531: [Normal] │   ├── movements/
+532: [Normal] │   ├── data/
+533: [Normal] │   ├── models/
+534: [Normal] │   └── rules/
+535: [Normal] │
+536: [Normal] ├── tennis/
+537: [Normal] │   └── ...
+538: [Normal] │
+539: [Normal] └── cricket/
+540: [Normal]     └── ...
+543: [Normal] analysis/
+544: [Normal] ├── phase/
+545: [Normal] ├── matching/
+546: [Normal] ├── trajectory/
+547: [Normal] ├── kinetic_chain/
+548: [Normal] ├── scoring/
+549: [Normal] └── coaching/
+552: [Normal] athlete/
+553: [Normal] ├── profiling/
+554: [Normal] ├── trends/
+555: [Normal] ├── weakness_detection/
+556: [Normal] └── personalization/
+558: [Normal] 18. MODULE 05 — MOVEMENT ROUTER
+559: [Normal] Within each sport, the Sport Engine selects the specific movement.
+560: [Normal] Example:
+561: [Normal] Badminton Engine
+562: [Normal]        │
+563: [Normal]        ├── smash
+564: [Normal]        ├── clear
+565: [Normal]        ├── drop
+566: [Normal]        ├── drive
+567: [Normal]        ├── serve
+568: [Normal]        └── net shot
+569: [Normal] There are two operating modes.
+570: [Normal] Explicit movement
+571: [Normal] User selects:
+572: [Normal] Badminton → Smash
+573: [Normal] This should remain the default early architecture.
+574: [Normal] Automatic movement recognition
+575: [Normal] Later:
+576: [Normal] {
+577: [Normal]   "smash": 0.87,
+578: [Normal]   "clear": 0.08,
+579: [Normal]   "drop": 0.03,
+580: [Normal]   "unknown": 0.02
+581: [Normal] }
+582: [Normal] Confidence gates are mandatory.
+584: [Normal] 19. MOVEMENT ENGINE CONTRACT
+585: [Normal] Each movement engine should implement something similar to:
+586: [Normal] class MovementEngine(ABC):
+588: [Normal]     movement_id: str
+590: [Normal]     @abstractmethod
+591: [Normal]     def required_features(self):
+592: [Normal]         pass
+594: [Normal]     @abstractmethod
+595: [Normal]     def process_frame(self, motion_frame):
+596: [Normal]         pass
+598: [Normal]     @abstractmethod
+599: [Normal]     def detect_phase(self, motion_frame):
+600: [Normal]         pass
+602: [Normal]     @abstractmethod
+603: [Normal]     def score_frame(self, motion_frame):
+604: [Normal]         pass
+606: [Normal]     @abstractmethod
+607: [Normal]     def complete_rep(self):
+608: [Normal]         pass
+610: [Normal]     @abstractmethod
+611: [Normal]     def generate_analysis(self):
+612: [Normal]         pass
+613: [Normal] Movement engines may internally use shared ApexFormz analysis modules.
+615: [Normal] 20. EXISTING DYNAMICANALYZER MIGRATION
+616: [Normal] The existing DynamicAnalyzer currently coordinates approximately ten analysis stages, including readiness, normalization, filtering, phase detection, scoring, trajectory recording, fluidity, confidence and overall scoring.
+617: [Normal] V2 should decompose this responsibility.
+618: [Normal] Current:
+619: [Normal] DynamicAnalyzer
+620: [Normal]     owns almost everything
+621: [Normal] V2:
+622: [Normal] MovementEngine
+623: [Normal]       │
+624: [Normal]       ├── PhaseDetector
+625: [Normal]       ├── ReferenceMatcher
+626: [Normal]       ├── TrajectoryScorer
+627: [Normal]       ├── KineticChainValidator
+628: [Normal]       ├── FluidityScorer
+629: [Normal]       └── MovementScorePolicy
+630: [Normal] DynamicAnalyzer can temporarily remain as an adapter during migration.
+632: [Normal] 21. MODULE 06 — PHASE ENGINE
+633: [Normal] The current FSM-based PhaseDetector should become a reusable framework rather than being conceptually tied to one global dynamic engine.
+634: [Normal] Each movement owns its phase definition.
+635: [Normal] Example:
+636: [Normal] Badminton Smash
+638: [Normal] 0 Ready
+639: [Normal] 1 Preparation
+640: [Normal] 2 Loading
+641: [Normal] 3 Acceleration
+642: [Normal] 4 Contact
+643: [Normal] 5 Follow-through
+644: [Normal] 6 Recovery
+645: [Normal] Taekwondo may define:
+646: [Normal] 0 Stance
+647: [Normal] 1 Chamber
+648: [Normal] 2 Extension
+649: [Normal] 3 Rechamber
+650: [Normal] 4 Return
+651: [Normal] Phase configuration must remain movement-specific.
+653: [Normal] 22. PHASE-AWARE REFERENCE MATCHING
+654: [Normal] This is a major V2 requirement.
+655: [Normal] Current expert frame matching uses expert movement frames and maintains a separate stance pool.
+656: [Normal] V2 must support:
+657: [Normal] movement
+658: [Normal]   ├── phase_0 reference frames
+659: [Normal]   ├── phase_1 reference frames
+660: [Normal]   ├── phase_2 reference frames
+661: [Normal]   ├── phase_3 reference frames
+662: [Normal] When athlete phase = acceleration:
+663: [Normal] search only acceleration reference frames
+664: [Normal] not:
+665: [Normal] search every frame in the entire movement
+666: [Normal] This reduces semantic ambiguity even inside the same movement.
+668: [Normal] 23. REFERENCE DATA ARCHITECTURE
+669: [Normal] Recommended hierarchy:
+670: [Normal] reference_data/
+672: [Normal] badminton/
+673: [Normal]   smash/
+674: [Normal]     manifest.json
+675: [Normal]     front/
+676: [Normal]     side/
+677: [Normal]     rear/
+678: [Normal]     phase_index.json
+679: [Normal]     trajectories.json
+680: [Normal]     phase_centroids.json
+682: [Normal]   clear/
+683: [Normal]   drop/
+686: [Normal] tennis/
+687: [Normal]   forehand/
+688: [Normal]   backhand/
+689: [Normal]   serve/
+692: [Normal] taekwondo/
+693: [Normal]   ap_chagi/
+694: [Normal]   dollyo_chagi/
+696: [Normal] 24. REFERENCE MANIFEST
+697: [Normal] Every movement dataset must contain metadata.
+698: [Normal] Example:
+699: [Normal] {
+700: [Normal]   "sport": "badminton",
+701: [Normal]   "movement": "smash",
+703: [Normal]   "version": "1.0",
+705: [Normal]   "athletes": 18,
+707: [Normal]   "recordings": 91,
+709: [Normal]   "camera_views": [
+710: [Normal]     "front",
+711: [Normal]     "side",
+712: [Normal]     "rear"
+713: [Normal]   ],
+715: [Normal]   "dominant_hand": [
+716: [Normal]     "right",
+717: [Normal]     "left"
+718: [Normal]   ],
+720: [Normal]   "phases": [
+721: [Normal]     "ready",
+722: [Normal]     "preparation",
+723: [Normal]     "loading",
+724: [Normal]     "acceleration",
+725: [Normal]     "contact",
+726: [Normal]     "follow_through",
+727: [Normal]     "recovery"
+728: [Normal]   ]
+729: [Normal] }
+731: [Normal] 25. REFERENCE DATA VERSIONING
+732: [Normal] Reference datasets must be immutable once released.
+733: [Normal] Example:
+734: [Normal] badminton-smash:v1.0
+735: [Normal] badminton-smash:v1.1
+736: [Normal] badminton-smash:v2.0
+737: [Normal] Training sessions must record which dataset version produced the score.
+738: [Normal] This is essential for reproducibility.
+740: [Normal] 26. REFERENCE QUALITY CONTROL
+741: [Normal] Expert data should eventually contain:
+742: [Normal] athlete identity anonymized ID,
+743: [Normal] expertise classification,
+744: [Normal] recording camera,
+745: [Normal] dominant side,
+746: [Normal] movement type,
+747: [Normal] valid/invalid sample label,
+748: [Normal] recording quality,
+749: [Normal] phase annotations,
+750: [Normal] coach approval,
+751: [Normal] reference confidence.
+752: [Normal] Not every "expert" video should automatically become a canonical reference.
+754: [Normal] 27. MODULE 07 — REFERENCE MATCHER
+755: [Normal] The current FrameMatcher uses weighted nearest-neighbour comparison against expert joint-angle frames.
+756: [Normal] V2 should generalize it into:
+757: [Normal] ReferenceMatcher
+758: [Normal] with retrieval constraints:
+759: [Normal] SPORT
+760: [Normal] AND MOVEMENT
+761: [Normal] AND PHASE
+762: [Normal] AND optionally:
+763: [Normal] VIEW
+764: [Normal] DOMINANT SIDE
+765: [Normal] ATHLETE PROFILE RANGE
+766: [Normal] Example query:
+767: [Normal] sport = badminton
+768: [Normal] movement = smash
+769: [Normal] phase = acceleration
+770: [Normal] view = side
+771: [Normal] dominant_hand = right
+772: [Normal] Then nearest-neighbour matching happens only within this filtered domain.
+774: [Normal] 28. FUTURE REFERENCE INDEXING
+775: [Normal] The existing matcher performs brute-force O(N) search.
+776: [Normal] As data grows, implement an abstraction supporting:
+777: [Normal] Initial:
+778: [Normal] BruteForceIndex
+779: [Normal] Later:
+780: [Normal] KDTreeIndex
+781: [Normal] HNSWIndex
+782: [Normal] FAISSIndex
+783: [Normal] The movement engine should not care which search implementation is used.
+785: [Normal] 29. FEATURE VECTOR
+786: [Normal] The reference vector should no longer be limited conceptually to eight angles.
+787: [Normal] Example:
+788: [Normal] angles
+789: [Normal] +
+790: [Normal] angular velocity
+791: [Normal] +
+792: [Normal] body orientation
+793: [Normal] +
+794: [Normal] hip rotation
+795: [Normal] +
+796: [Normal] shoulder rotation
+797: [Normal] +
+798: [Normal] torso lean
+799: [Normal] +
+800: [Normal] relative landmark geometry
+801: [Normal] +
+802: [Normal] centre displacement
+803: [Normal] Different movement engines specify feature weights.
+805: [Normal] 30. MOVEMENT-SPECIFIC FEATURE WEIGHTS
+806: [Normal] Example Taekwondo:
+807: [Normal] hip rotation           1.8
+808: [Normal] knee extension         2.0
+809: [Normal] support knee           1.2
+810: [Normal] shoulder position      0.5
+811: [Normal] Example badminton smash:
+812: [Normal] shoulder rotation      1.7
+813: [Normal] elbow extension        1.5
+814: [Normal] hip rotation           1.4
+815: [Normal] torso rotation         1.4
+816: [Normal] wrist/forearm signal   future
+817: [Normal] No universal joint-weight table should be assumed across every sport.
+819: [Normal] 31. MODULE 08 — TRAJECTORY ENGINE
+820: [Normal] The existing DTW trajectory scorer should become a reusable movement-analysis service.
+821: [Normal] Input:
+822: [Normal] athlete movement trajectory
+823: [Normal] reference trajectory
+824: [Normal] feature selection
+825: [Normal] Output:
+826: [Normal] {
+827: [Normal]   "similarity": 84.1,
+828: [Normal]   "features_compared": [
+829: [Normal]     "right_knee",
+830: [Normal]     "right_hip"
+831: [Normal]   ],
+832: [Normal]   "confidence": 0.91
+833: [Normal] }
+834: [Normal] Movement engines determine:
+835: [Normal] which joints/features matter,
+836: [Normal] how trajectory contributes to total score.
+838: [Normal] 32. MODULE 09 — KINETIC CHAIN ENGINE
+839: [Normal] The existing KineticChainValidator should be generalized.
+840: [Normal] Instead of hard-coded segment vocabulary, define a registry.
+841: [Normal] Example:
+842: [Normal] hips
+843: [Normal] torso
+844: [Normal] shoulders
+845: [Normal] elbows
+846: [Normal] wrists
+847: [Normal] knees
+848: [Normal] ankles
+849: [Normal] Movement config:
+850: [Normal] {
+851: [Normal]   "expected_chain": [
+852: [Normal]     "hips",
+853: [Normal]     "torso",
+854: [Normal]     "shoulder",
+855: [Normal]     "elbow",
+856: [Normal]     "wrist"
+857: [Normal]   ]
+858: [Normal] }
+859: [Normal] The system calculates peak activation timing and evaluates ordering.
+861: [Normal] 33. MODULE 10 — FLUIDITY ENGINE
+862: [Normal] The existing jerk-based fluidity logic may remain available as one metric.
+863: [Normal] However, fluidity must not automatically contribute the same percentage for every sport.
+864: [Normal] Example:
+865: [Normal] Yoga:
+866: [Normal] fluidity may be irrelevant
+867: [Normal] Badminton:
+868: [Normal] fluidity moderately relevant
+869: [Normal] Gymnastics:
+870: [Normal] fluidity highly relevant
+871: [Normal] Movement scoring policy determines weight.
+873: [Normal] 34. MODULE 11 — AQA MODEL LAYER
+874: [Normal] The current ST-GCN runs asynchronously after rep completion.
+875: [Normal] V2 should convert this into a generic:
+876: [Normal] ActionQualityModel
+877: [Normal] interface.
+878: [Normal] Example:
+879: [Normal] class ActionQualityModel:
+881: [Normal]     def infer(
+882: [Normal]         self,
+883: [Normal]         trajectory,
+884: [Normal]         sport,
+885: [Normal]         movement
+886: [Normal]     ) -> AQAResult:
+887: [Normal]         ...
+888: [Normal] Each sport may eventually have:
+889: [Normal] taekwondo_aqa_v2
+890: [Normal] badminton_aqa_v1
+891: [Normal] tennis_aqa_v1
+892: [Normal] A universal AQA model should not be assumed.
+894: [Normal] 35. NO RANDOM PRODUCTION SCORES
+895: [Normal] The current technical documentation notes that missing ST-GCN weights may produce randomized testing scores.
+896: [Normal] V2 production requirement:
+897: [Normal] If model unavailable:
+898: [Normal] {
+899: [Normal]   "aqa_status": "unavailable",
+900: [Normal]   "aqa_score": null
+901: [Normal] }
+902: [Normal] Never fabricate a score.
+904: [Normal] 36. MODULE 12 — SCORING ENGINE
+905: [Normal] The scoring system must become configuration-driven.
+906: [Normal] Example schema:
+907: [Normal] {
+908: [Normal]   "movement": "ap_chagi",
+910: [Normal]   "components": {
+911: [Normal]     "phase_quality": 0.30,
+912: [Normal]     "trajectory": 0.25,
+913: [Normal]     "kinetic_chain": 0.20,
+914: [Normal]     "extension": 0.15,
+915: [Normal]     "balance": 0.10
+916: [Normal]   }
+917: [Normal] }
+918: [Normal] Another movement can use an entirely different formula.
+920: [Normal] 37. SCORE OBJECT
+921: [Normal] Return more than a single overall score.
+922: [Normal] Example:
+923: [Normal] {
+924: [Normal]   "overall": 82,
+926: [Normal]   "components": {
+927: [Normal]     "phase_accuracy": 87,
+928: [Normal]     "trajectory": 79,
+929: [Normal]     "kinetic_chain": 66,
+930: [Normal]     "fluidity": 91,
+931: [Normal]     "balance": 84
+932: [Normal]   },
+934: [Normal]   "confidence": 0.92
+935: [Normal] }
+936: [Normal] The UI can still display one main number.
+937: [Normal] But ApexFormz must preserve the richer scoring information.
+939: [Normal] 38. SCORE CONFIDENCE
+940: [Normal] A score without confidence can be misleading.
+941: [Normal] Return:
+942: [Normal] {
+943: [Normal]   "score": 84,
+944: [Normal]   "confidence": 0.94
+945: [Normal] }
+946: [Normal] Low confidence may result from:
+947: [Normal] occlusion,
+948: [Normal] poor lighting,
+949: [Normal] incomplete body visibility,
+950: [Normal] uncertain phase,
+951: [Normal] ambiguous movement,
+952: [Normal] unsupported camera angle.
+953: [Normal] When confidence falls below threshold, coaching should degrade safely.
+955: [Normal] 39. MODULE 13 — COACHING ENGINE
+956: [Normal] The Coaching Engine transforms analysis into athlete-facing feedback.
+957: [Normal] Input:
+958: [Normal] movement analysis
+959: [Normal] +
+960: [Normal] phase
+961: [Normal] +
+962: [Normal] detected errors
+963: [Normal] +
+964: [Normal] error severity
+965: [Normal] +
+966: [Normal] athlete history
+967: [Normal] Output:
+968: [Normal] primary correction
+969: [Normal] secondary correction
+970: [Normal] positive observation
+971: [Normal] confidence
+973: [Normal] 40. COACHING PRIORITY
+974: [Normal] Do not show ten simultaneous corrections.
+975: [Normal] Priority model:
+976: [Normal] Safety issue
+977: [Normal]     ↓
+978: [Normal] Major mechanical issue
+979: [Normal]     ↓
+980: [Normal] Major performance issue
+981: [Normal]     ↓
+982: [Normal] Persistent recurring issue
+983: [Normal]     ↓
+984: [Normal] Minor optimization
+985: [Normal] Recommended live UI:
+986: [Normal] 1 primary correction
+987: [Normal] +
+988: [Normal] maximum 1 secondary correction
+989: [Normal] Detailed analysis may appear after the rep/session.
+991: [Normal] 41. COACHING RULE FORMAT
+992: [Normal] Example:
+993: [Normal] {
+994: [Normal]   "rule_id": "badminton.smash.hip_lead",
+996: [Normal]   "condition": {
+997: [Normal]     "shoulder_peak_before_hip_peak_ms": "> 80"
+998: [Normal]   },
+1000: [Normal]   "severity": "medium",
+1002: [Normal]   "message": "Your shoulder is initiating before your hips.",
+1004: [Normal]   "correction": "Start the rotation from the hips, then accelerate the shoulder."
+1005: [Normal] }
+1006: [Normal] Rules should remain sport/movement-specific.
+1008: [Normal] 42. MODULE 14 — ATHLETE INTELLIGENCE
+1009: [Normal] This is the long-term personalization layer.
+1010: [Normal] Current ApexFormz already stores sessions, frames, scores, XP and user statistics.
+1011: [Normal] V2 should begin storing structured performance metrics.
+1012: [Normal] Example:
+1013: [Normal] Athlete
+1014: [Normal]  └── Badminton
+1015: [Normal]       └── Smash
+1016: [Normal]            ├── phase scores
+1017: [Normal]            ├── kinetic chain
+1018: [Normal]            ├── recurring issues
+1019: [Normal]            ├── average score
+1020: [Normal]            ├── best score
+1021: [Normal]            ├── consistency
+1022: [Normal]            └── trend
+1024: [Normal] 43. ATHLETE WEAKNESS MODEL
+1025: [Normal] Example:
+1026: [Normal] Over 10 smash reps:
+1027: [Normal] hip initiation late
+1028: [Normal] 8/10 reps
+1030: [Normal] elbow low
+1031: [Normal] 3/10 reps
+1033: [Normal] recovery slow
+1034: [Normal] 5/10 reps
+1035: [Normal] The Athlete Intelligence layer may conclude:
+1036: [Normal] PRIMARY RECURRING ISSUE:
+1037: [Normal] late hip initiation
+1038: [Normal] The next session can focus coaching accordingly.
+1040: [Normal] 44. DATABASE CHANGES
+1041: [Normal] Existing models should remain, including:
+1042: [Normal] User,
+1043: [Normal] TrainingSession,
+1044: [Normal] PoseFrame,
+1045: [Normal] UserStats,
+1046: [Normal] EnhancedStreak,
+1047: [Normal] Achievement,
+1048: [Normal] Leaderboard,
+1049: [Normal] Circle.
+1050: [Normal] Add or extend models conceptually with:
+1051: [Normal] Sport
+1052: [Normal] Movement
+1053: [Normal] MovementVersion
+1054: [Normal] ReferenceDatasetVersion
+1055: [Normal] RepAnalysis
+1056: [Normal] MetricResult
+1057: [Normal] DetectedIssue
+1058: [Normal] AthleteMovementProfile
+1059: [Normal] MovementProgress
+1061: [Normal] 45. REP ANALYSIS MODEL
+1062: [Normal] Recommended model:
+1063: [Normal] RepAnalysis
+1065: [Normal] id
+1066: [Normal] session_id
+1067: [Normal] rep_number
+1068: [Normal] sport
+1069: [Normal] movement
+1070: [Normal] movement_version
+1071: [Normal] reference_dataset_version
+1073: [Normal] start_timestamp
+1074: [Normal] end_timestamp
+1076: [Normal] overall_score
+1077: [Normal] score_confidence
+1079: [Normal] phase_scores JSON
+1080: [Normal] component_scores JSON
+1082: [Normal] trajectory_score
+1083: [Normal] kinetic_chain_score
+1084: [Normal] fluidity_score
+1085: [Normal] aqa_score
+1087: [Normal] issues JSON
+1088: [Normal] This will be more useful than reconstructing everything from raw frames.
+1090: [Normal] 46. RAW FRAME STORAGE STRATEGY
+1091: [Normal] Current architecture persists analyzed PoseFrame records.
+1092: [Normal] At scale, full per-frame relational storage can become expensive.
+1093: [Normal] V2 should introduce configurable persistence:
+1094: [Normal] Mode A
+1095: [Normal] Debug mode:
+1096: [Normal] store every frame
+1097: [Normal] Mode B
+1098: [Normal] Production normal:
+1099: [Normal] store sampled frames
+1100: [Normal] +
+1101: [Normal] phase transition frames
+1102: [Normal] +
+1103: [Normal] issue frames
+1104: [Normal] +
+1105: [Normal] rep trajectories
+1106: [Normal] Mode C
+1107: [Normal] Research:
+1108: [Normal] store complete trajectory
+1109: [Normal] This must be configurable per environment/session.
+1111: [Normal] 47. BACKEND SESSION CONTRACT
+1112: [Normal] Existing:
+1113: [Normal] session:start
+1114: [Normal] frame:submit
+1115: [Normal] feedback:result
+1116: [Normal] session:stop
+1117: [Normal] should remain for compatibility.
+1118: [Normal] Extend session:start:
+1119: [Normal] {
+1120: [Normal]   "sessionId": "...",
+1121: [Normal]   "sport": "badminton",
+1122: [Normal]   "movement": "smash",
+1124: [Normal]   "analysisMode": "dynamic",
+1126: [Normal]   "dominantSide": "right",
+1128: [Normal]   "cameraView": "front"
+1129: [Normal] }
+1131: [Normal] 48. NEW FRAME RESULT CONTRACT
+1132: [Normal] Recommended:
+1133: [Normal] interface ApexAnalysisResult {
+1135: [Normal]     sessionId: string;
+1137: [Normal]     sport: string;
+1138: [Normal]     movement: string;
+1140: [Normal]     phase: {
+1141: [Normal]         name: string;
+1142: [Normal]         index: number;
+1143: [Normal]         confidence: number;
+1144: [Normal]     };
+1146: [Normal]     rep: {
+1147: [Normal]         count: number;
+1148: [Normal]         completed: boolean;
+1149: [Normal]     };
+1151: [Normal]     scoring: {
+1152: [Normal]         overall: number;
+1153: [Normal]         confidence: number;
+1154: [Normal]         components: Record<string, number>;
+1155: [Normal]     };
+1157: [Normal]     issues: CoachingIssue[];
+1159: [Normal]     metrics: Record<string, number>;
+1161: [Normal]     tracking: {
+1162: [Normal]         confidence: number;
+1163: [Normal]         bodyVisible: boolean;
+1164: [Normal]     };
+1166: [Normal]     diagnostics?: {
+1167: [Normal]         engineVersion: string;
+1168: [Normal]         sportEngineVersion: string;
+1169: [Normal]         movementEngineVersion: string;
+1170: [Normal]         referenceDatasetVersion: string;
+1171: [Normal]     };
+1172: [Normal] }
+1174: [Normal] 49. AI SERVICE API
+1175: [Normal] Recommended V2 endpoints:
+1176: [Normal] POST /v2/analyze/frame
+1177: [Normal] POST /v2/analyze/rep
+1178: [Normal] POST /v2/session/start
+1179: [Normal] POST /v2/session/end
+1181: [Normal] GET /v2/sports
+1182: [Normal] GET /v2/sports/{sport}/movements
+1184: [Normal] GET /v2/engines/status
+1185: [Normal] GET /v2/health
+1186: [Normal] During migration, existing endpoints remain available.
+1188: [Normal] 50. SESSION STATE
+1189: [Normal] The current DynamicAnalyzer session registry exists in process memory and therefore limits horizontal scaling.
+1190: [Normal] V2 abstraction:
+1191: [Normal] SessionStateStore
+1192: [Normal] Development implementation:
+1193: [Normal] InMemorySessionStateStore
+1194: [Normal] Production target:
+1195: [Normal] RedisSessionStateStore
+1196: [Normal] The analysis engine must not depend directly on Python process memory.
+1198: [Normal] 51. SPORT ENGINE SESSION STATE
+1199: [Normal] Each session should hold:
+1200: [Normal] sport engine
+1201: [Normal] movement engine
+1202: [Normal] phase state
+1203: [Normal] signal filters
+1204: [Normal] trajectory
+1205: [Normal] kinetic state
+1206: [Normal] rep counter
+1207: [Normal] issue history
+1208: [Normal] score history
+1209: [Normal] Example:
+1210: [Normal] AnalysisSession {
+1211: [Normal]     core_state,
+1212: [Normal]     sport_session,
+1213: [Normal]     movement_session
+1214: [Normal] }
+1216: [Normal] 52. FRONTEND REQUIREMENTS
+1217: [Normal] The frontend should preserve:
+1218: [Normal] webcam panel,
+1219: [Normal] body skeleton,
+1220: [Normal] live score,
+1221: [Normal] issue display,
+1222: [Normal] phase,
+1223: [Normal] rep count.
+1224: [Normal] Add:
+1225: [Normal] Sport indicator
+1226: [Normal] BADMINTON
+1227: [Normal] Movement indicator
+1228: [Normal] SMASH
+1229: [Normal] Engine state
+1230: [Normal] Ready
+1231: [Normal] Tracking
+1232: [Normal] Movement detected
+1233: [Normal] Analyzing
+1234: [Normal] Confidence warning
+1235: [Normal] Move slightly farther from the camera.
+1236: [Normal] Rep breakdown
+1237: [Normal] Smash #4
+1239: [Normal] Overall      83
+1240: [Normal] Timing       78
+1241: [Normal] Kinetic      71
+1242: [Normal] Trajectory   89
+1243: [Normal] Recovery     86
+1245: [Normal] 53. FEEDBACK STABILIZATION
+1246: [Normal] Existing dynamic analysis stabilizes issues across multiple frames.
+1247: [Normal] Retain and extend.
+1248: [Normal] Possible state:
+1249: [Normal] candidate issue
+1250: [Normal] confirmed issue
+1251: [Normal] resolved issue
+1252: [Normal] persistent issue
+1253: [Normal] Do not flash feedback based on one noisy frame.
+1255: [Normal] 54. CAMERA ORIENTATION HANDLING
+1256: [Normal] Movement references can be camera-sensitive.
+1257: [Normal] Each session should have:
+1258: [Normal] camera_view =
+1259: [Normal] front
+1260: [Normal] front-left
+1261: [Normal] left
+1262: [Normal] rear-left
+1263: [Normal] rear
+1264: [Normal] rear-right
+1265: [Normal] right
+1266: [Normal] front-right
+1267: [Normal] unknown
+1268: [Normal] Initially user may select view manually.
+1269: [Normal] Later camera orientation may be estimated.
+1270: [Normal] ReferenceMatcher should prefer compatible views.
+1272: [Normal] 55. HANDEDNESS / DOMINANT SIDE
+1273: [Normal] Racquet and combat sports often differ by side.
+1274: [Normal] Sport engine session should know:
+1275: [Normal] dominant_side
+1276: [Normal] Options:
+1277: [Normal] left
+1278: [Normal] right
+1279: [Normal] unknown
+1280: [Normal] Mirroring should remain supported where valid, but mirroring must be movement-aware.
+1281: [Normal] A left-handed tennis forehand is not simply blindly interchangeable with all right-handed reference conditions.
+1283: [Normal] 56. EQUIPMENT INTELLIGENCE — FUTURE FOUNDATION
+1284: [Normal] The architecture should support future equipment perception even if V2 does not implement it fully.
+1285: [Normal] Generic object contract:
+1286: [Normal] interface TrackedSportObject {
+1287: [Normal]     type: string;
+1288: [Normal]     position: Vector3;
+1289: [Normal]     velocity?: Vector3;
+1290: [Normal]     confidence: number;
+1291: [Normal] }
+1292: [Normal] Examples:
+1293: [Normal] Badminton:
+1294: [Normal] racket
+1295: [Normal] shuttle
+1296: [Normal] Tennis:
+1297: [Normal] racket
+1298: [Normal] ball
+1299: [Normal] Cricket:
+1300: [Normal] bat
+1301: [Normal] ball
+1302: [Normal] Football:
+1303: [Normal] ball
+1304: [Normal] Sport engines may declare optional/required objects.
+1306: [Normal] 57. MODEL ARCHITECTURE — FUTURE
+1307: [Normal] If learned representations are introduced, the preferred architecture is:
+1308: [Normal] Shared Human Motion Encoder
+1309: [Normal]             │
+1310: [Normal]             ├── Badminton Head
+1311: [Normal]             ├── Tennis Head
+1312: [Normal]             ├── Cricket Head
+1313: [Normal]             └── Taekwondo Head
+1314: [Normal] This permits shared understanding of human motion while maintaining sport-specific decision boundaries.
+1315: [Normal] Movement-specific heads may exist below sport heads.
+1317: [Normal] 58. VERSIONING
+1318: [Normal] Every analysis result should eventually identify:
+1319: [Normal] core_engine_version
+1320: [Normal] sport_engine_version
+1321: [Normal] movement_engine_version
+1322: [Normal] reference_dataset_version
+1323: [Normal] model_version
+1324: [Normal] scoring_policy_version
+1325: [Normal] Example:
+1326: [Normal] {
+1327: [Normal]   "core": "2.1.0",
+1328: [Normal]   "sport_engine": "badminton-1.3.0",
+1329: [Normal]   "movement_engine": "smash-2.0.1",
+1330: [Normal]   "dataset": "badminton-smash-ref-1.4",
+1331: [Normal]   "scoring": "smash-score-1.2"
+1332: [Normal] }
+1333: [Normal] This is essential for debugging and scientific evaluation.
+1335: [Normal] 59. OBSERVABILITY
+1336: [Normal] Log per analysis session:
+1337: [Normal] latency
+1338: [Normal] FPS
+1339: [Normal] tracking confidence
+1340: [Normal] sport engine
+1341: [Normal] movement engine
+1342: [Normal] phase transitions
+1343: [Normal] reference search latency
+1344: [Normal] scoring latency
+1345: [Normal] errors
+1346: [Normal] dropped frames
+1347: [Normal] Metrics:
+1348: [Normal] P50 latency
+1349: [Normal] P95 latency
+1350: [Normal] P99 latency
+1351: [Normal] frames/sec
+1352: [Normal] AI service failures
+1353: [Normal] phase confidence
+1354: [Normal] movement confidence
+1356: [Normal] 60. PERFORMANCE REQUIREMENTS
+1357: [Normal] The current target described by the project is approximately under 150 ms from frame capture to displayed feedback.
+1358: [Normal] V2 should preserve this class of responsiveness.
+1359: [Normal] Targets:
+1360: [Normal] P50 AI analysis: < 60 ms
+1361: [Normal] P95 AI analysis: < 120 ms
+1362: [Normal] End-to-end feedback target: < 150 ms where environment permits
+1363: [Normal] AQA and other expensive post-rep models must remain outside the live frame hot path.
+1365: [Normal] 61. FRAME BACKPRESSURE
+1366: [Normal] Retain:
+1367: [Normal] frameInFlight
+1368: [Normal] +
+1369: [Normal] latest pending frame
+1370: [Normal] Never create an unlimited analysis queue.
+1371: [Normal] The newest athlete state is more valuable than perfectly processing every camera frame.
+1373: [Normal] 62. CONFIDENCE GATES
+1374: [Normal] Every important inference should support uncertainty.
+1375: [Normal] Examples:
+1376: [Normal] Tracking confidence
+1377: [Normal] Low:
+1378: [Normal] Do not provide precise biomechanical correction.
+1379: [Normal] Movement confidence
+1380: [Normal] Low:
+1381: [Normal] Movement unclear. Perform again.
+1382: [Normal] Phase confidence
+1383: [Normal] Low:
+1384: [Normal] Avoid phase-specific correction.
+1385: [Normal] Reference confidence
+1386: [Normal] Low:
+1387: [Normal] General correction only.
+1388: [Normal] The product must be designed to abstain when evidence is insufficient.
+1390: [Normal] 63. SAFETY BEHAVIOUR
+1391: [Normal] ApexFormz should not present uncertain analysis as certainty.
+1392: [Normal] Issue object:
+1393: [Normal] {
+1394: [Normal]   "type": "hip_rotation",
+1395: [Normal]   "severity": "medium",
+1396: [Normal]   "confidence": 0.91,
+1397: [Normal]   "message": "Your hip rotation appears late."
+1398: [Normal] }
+1399: [Normal] Language can reflect uncertainty when necessary:
+1400: [Normal] Your hip rotation appears to be starting late.
+1401: [Normal] rather than falsely asserting exact biomechanics under poor visibility.
+1403: [Normal] 64. INITIAL SPORT MIGRATION
+1404: [Normal] The first sport migrated into the modular architecture should be:
+1405: [Normal] Taekwondo
+1406: [Normal] because the existing project already has:
+1407: [Normal] ten dynamic movements,
+1408: [Normal] phase definitions,
+1409: [Normal] expert-video frame infrastructure,
+1410: [Normal] FrameMatcher support,
+1411: [Normal] trajectory scoring,
+1412: [Normal] AQA model,
+1413: [Normal] current validation work.
+1414: [Normal] This makes Taekwondo the best reference implementation of a Sport Engine.
+1416: [Normal] 65. TAEKWONDO V2 STRUCTURE
+1417: [Normal] Example:
+1418: [Normal] TaekwondoEngine
+1420: [Normal] ├── ApChagiEngine
+1421: [Normal] ├── DollyoChagiEngine
+1422: [Normal] ├── YeopChagiEngine
+1423: [Normal] ├── DwiChagiEngine
+1424: [Normal] └── remaining movements
+1425: [Normal] Each movement receives:
+1426: [Normal] phase definition
+1427: [Normal] reference dataset
+1428: [Normal] joint weights
+1429: [Normal] kinetic chain
+1430: [Normal] trajectory configuration
+1431: [Normal] scoring configuration
+1432: [Normal] coaching rules
+1434: [Normal] 66. SECOND SPORT
+1435: [Normal] After the Taekwondo architecture is stable, implement either badminton or another chosen sport as the first new native V2 sport.
+1436: [Normal] The goal is not only to support that sport.
+1437: [Normal] The purpose is to prove that:
+1438: [Normal] adding a new sport does not require rewriting ApexFormz Core.
+1440: [Normal] 67. SPORT PACKAGE DEFINITION
+1441: [Normal] A sport package should ideally contain:
+1442: [Normal] sport.yaml
+1443: [Normal] movements/
+1444: [Normal] references/
+1445: [Normal] rules/
+1446: [Normal] models/
+1447: [Normal] tests/
+1448: [Normal] Example:
+1449: [Normal] sport: badminton
+1450: [Normal] version: 1.0
+1452: [Normal] supported_movements:
+1453: [Normal]   - smash
+1454: [Normal]   - clear
+1455: [Normal]   - drop
+1457: [Normal] required_core_features:
+1458: [Normal]   - shoulder_rotation
+1459: [Normal]   - hip_rotation
+1460: [Normal]   - elbow_angle
+1462: [Normal] 68. MOVEMENT PACKAGE
+1463: [Normal] Example:
+1464: [Normal] sports/badminton/movements/smash/
+1466: [Normal] definition.yaml
+1467: [Normal] phases.yaml
+1468: [Normal] scoring.yaml
+1469: [Normal] kinetic_chain.yaml
+1470: [Normal] coaching_rules.yaml
+1471: [Normal] references/
+1472: [Normal] tests/
+1473: [Normal] This allows sports experts and engineers to work with explicit movement definitions.
+1475: [Normal] 69. TESTING STRATEGY
+1476: [Normal] Each movement engine needs:
+1477: [Normal] Unit tests
+1478: [Normal] angle processing,
+1479: [Normal] trigger logic,
+1480: [Normal] score calculation,
+1481: [Normal] reference filtering.
+1482: [Normal] Recorded trajectory tests
+1483: [Normal] Known trajectory:
+1484: [Normal] expected phases
+1485: [Normal] expected rep count
+1486: [Normal] expected major issues
+1487: [Normal] Regression tests
+1488: [Normal] Reference engine version update must not unexpectedly alter baseline test scores.
+1489: [Normal] Real athlete tests
+1490: [Normal] Athlete performs:
+1491: [Normal] correct movement
+1492: [Normal] known incorrect movement A
+1493: [Normal] known incorrect movement B
+1494: [Normal] Validate output with a qualified coach.
+1496: [Normal] 70. GOLDEN MOVEMENT TEST SET
+1497: [Normal] Create a permanent validation dataset.
+1498: [Normal] Per movement:
+1499: [Normal] 20 correct examples
+1500: [Normal] 20 moderate examples
+1501: [Normal] 20 intentionally incorrect examples
+1502: [Normal] Eventually increase substantially.
+1503: [Normal] Each sample receives human expert annotations.
+1504: [Normal] Automated evaluation then checks:
+1505: [Normal] phase accuracy
+1506: [Normal] rep detection
+1507: [Normal] issue detection
+1508: [Normal] score correlation
+1509: [Normal] false positive rate
+1510: [Normal] false negative rate
+1512: [Normal] 71. REQUIRED VALIDATION METRICS
+1513: [Normal] Do not rely only on “the output looks good.”
+1514: [Normal] Measure:
+1515: [Normal] Movement recognition
+1516: [Normal] precision
+1517: [Normal] recall
+1518: [Normal] F1
+1519: [Normal] Phase detection
+1520: [Normal] phase accuracy
+1521: [Normal] transition timing error
+1522: [Normal] Issue detection
+1523: [Normal] issue precision
+1524: [Normal] issue recall
+1525: [Normal] Rep detection
+1526: [Normal] rep-count accuracy
+1527: [Normal] Scoring
+1528: [Normal] Compare Apex score with expert coach scoring.
+1529: [Normal] Metrics:
+1530: [Normal] Pearson correlation
+1531: [Normal] Spearman correlation
+1532: [Normal] MAE
+1533: [Normal] Reliability
+1534: [Normal] Repeated similar movement should produce similar scores.
+1536: [Normal] 72. LATENCY TESTING
+1537: [Normal] Measure separately:
+1538: [Normal] MediaPipe latency
+1539: [Normal] network latency
+1540: [Normal] backend relay
+1541: [Normal] core motion processing
+1542: [Normal] sport-engine processing
+1543: [Normal] reference lookup
+1544: [Normal] response serialization
+1545: [Normal] frontend render
+1546: [Normal] This prevents unexplained end-to-end delays.
+1548: [Normal] 73. MIGRATION PLAN
+1549: [Normal] Phase 1 — Core extraction
+1550: [Normal] Move generic logic out of DynamicAnalyzer:
+1551: [Normal] normalization
+1552: [Normal] angles
+1553: [Normal] filtering
+1554: [Normal] orientation
+1555: [Normal] velocity
+1556: [Normal] confidence
+1557: [Normal] Create Human Motion Engine.
+1558: [Normal] No behavior change.
+1560: [Normal] Phase 2 — Sport Engine interface
+1561: [Normal] Create:
+1562: [Normal] BaseSportEngine
+1563: [Normal] SportEngineRegistry
+1564: [Normal] MovementEngine
+1565: [Normal] Wrap existing Taekwondo dynamic pipeline.
+1566: [Normal] No major scoring changes.
+1568: [Normal] Phase 3 — Taekwondo migration
+1569: [Normal] Move:
+1570: [Normal] Taekwondo movements
+1571: [Normal] Taekwondo references
+1572: [Normal] Taekwondo weights
+1573: [Normal] Taekwondo phase definitions
+1574: [Normal] Taekwondo AQA
+1575: [Normal] inside:
+1576: [Normal] sports/taekwondo/
+1578: [Normal] Phase 4 — Movement-level isolation
+1579: [Normal] Create individual Taekwondo Movement Engines.
+1580: [Normal] Example:
+1581: [Normal] ApChagiEngine
+1582: [Normal] DollyoChagiEngine
+1584: [Normal] Phase 5 — Phase-aware references
+1585: [Normal] Update extraction pipeline to label expert frames by phase.
+1586: [Normal] Matcher query becomes:
+1587: [Normal] sport + movement + phase
+1589: [Normal] Phase 6 — Score-policy architecture
+1590: [Normal] Remove universal rep weighting assumptions.
+1591: [Normal] Create movement-specific score configuration.
+1593: [Normal] Phase 7 — Coaching Engine
+1594: [Normal] Separate raw issue detection from athlete-facing language.
+1596: [Normal] Phase 8 — Athlete Intelligence
+1597: [Normal] Persist structured rep metrics.
+1598: [Normal] Implement recurring weakness detection.
+1600: [Normal] Phase 9 — Second sport
+1601: [Normal] Implement BadmintonEngine or chosen sport entirely through the new plugin interface.
+1602: [Normal] Success criterion:
+1603: [Normal] No modification to Human Motion Engine should be necessary except adding genuinely universal features.
+1605: [Normal] 74. BACKWARD COMPATIBILITY
+1606: [Normal] During migration:
+1607: [Normal] Current endpoints:
+1608: [Normal] /analyze
+1609: [Normal] /analyze/dynamic
+1610: [Normal] should remain operational.
+1611: [Normal] Internally:
+1612: [Normal] /analyze/dynamic
+1613: [Normal]        ↓
+1614: [Normal] LegacyDynamicAdapter
+1615: [Normal]        ↓
+1616: [Normal] SportEngineRegistry
+1617: [Normal] Once migration is complete, frontend can move to /v2.
+1619: [Normal] 75. DEFINITION OF DONE — CORE ENGINE
+1620: [Normal] The Core Engine is complete when:
+1621: [Normal] MediaPipe landmarks enter one common pipeline.
+1622: [Normal] 2D/3D representation is standardized.
+1623: [Normal] z values are preserved where available.
+1624: [Normal] generic angles work independently of sport.
+1625: [Normal] generic velocities work independently of sport.
+1626: [Normal] generic smoothing is centralized.
+1627: [Normal] generic confidence is centralized.
+1628: [Normal] no sport-specific terms exist inside the core package.
+1629: [Normal] automated tests pass.
+1631: [Normal] 76. DEFINITION OF DONE — SPORT ENGINE
+1632: [Normal] A Sport Engine is complete when:
+1633: [Normal] registered through SportEngineRegistry,
+1634: [Normal] declares supported movements,
+1635: [Normal] loads only its own references,
+1636: [Normal] contains its own biomechanical definitions,
+1637: [Normal] contains its own movement list,
+1638: [Normal] supports independent versioning,
+1639: [Normal] can be disabled without affecting other sports,
+1640: [Normal] passes isolation tests.
+1642: [Normal] 77. ISOLATION TEST
+1643: [Normal] Mandatory test:
+1644: [Normal] Session sport = badminton
+1645: [Normal] Then verify:
+1646: [Normal] tennis reference repository access count = 0
+1647: [Normal] taekwondo reference repository access count = 0
+1648: [Normal] cricket reference repository access count = 0
+1649: [Normal] This should be testable programmatically.
+1651: [Normal] 78. DEFINITION OF DONE — MOVEMENT ENGINE
+1652: [Normal] Movement Engine complete when:
+1653: [Normal] phase model implemented,
+1654: [Normal] rep detection implemented,
+1655: [Normal] reference dataset connected,
+1656: [Normal] scoring policy configured,
+1657: [Normal] coaching rules configured,
+1658: [Normal] unit tests pass,
+1659: [Normal] golden dataset validation passes,
+1660: [Normal] latency within target.
+1662: [Normal] 79. ACCEPTANCE CRITERIA FOR V2 FOUNDATION
+1663: [Normal] The architecture release is accepted when all of the following are true:
+1664: [Normal] Existing Taekwondo analysis operates through TaekwondoEngine.
+1665: [Normal] Human Motion Engine contains no Taekwondo-specific logic.
+1666: [Normal] Movement references are sport-isolated.
+1667: [Normal] Movement references are movement-isolated.
+1668: [Normal] Phase-specific matching is supported.
+1669: [Normal] Scoring policies are configurable by movement.
+1670: [Normal] Coaching rules are separate from raw scoring.
+1671: [Normal] Core and sport-engine versions appear in diagnostics.
+1672: [Normal] Existing frontend continues to receive real-time feedback.
+1673: [Normal] Existing authentication/gamification functionality continues working.
+1674: [Normal] AI hot-path latency has not materially regressed.
+1675: [Normal] No production system returns randomized AQA scores.
+1676: [Normal] Automated tests verify sport isolation.
+1678: [Normal] 80. DEVELOPMENT PRIORITY
+1679: [Normal] Recommended engineering order:
+1680: [Normal] P0 — Architecture
+1681: [Normal] Human Motion Engine
+1682: [Normal] Sport Engine interface
+1683: [Normal] Movement Engine interface
+1684: [Normal] registry
+1685: [Normal] standardized frame contracts.
+1686: [Normal] P0 — Reliability
+1687: [Normal] proper z-coordinate contract,
+1688: [Normal] confidence handling,
+1689: [Normal] production AQA fallback,
+1690: [Normal] session lifecycle,
+1691: [Normal] engine versioning.
+1692: [Normal] P1 — Taekwondo migration
+1693: [Normal] move existing dynamic system into Sport Engine architecture,
+1694: [Normal] phase-specific reference organization,
+1695: [Normal] per-movement scoring.
+1696: [Normal] P1 — Dataset architecture
+1697: [Normal] manifests,
+1698: [Normal] versioning,
+1699: [Normal] phase labels,
+1700: [Normal] expert metadata.
+1701: [Normal] P1 — Validation
+1702: [Normal] golden datasets,
+1703: [Normal] coach annotations,
+1704: [Normal] automated scoring comparison.
+1705: [Normal] P2 — Athlete intelligence
+1706: [Normal] recurring issue tracking,
+1707: [Normal] progression metrics,
+1708: [Normal] movement profiles.
+1709: [Normal] P2 — New sport
+1710: [Normal] Badminton Engine.
+1711: [Normal] P3 — Equipment perception
+1712: [Normal] racket,
+1713: [Normal] shuttle,
+1714: [Normal] ball,
+1715: [Normal] bat.
+1716: [Normal] P3 — automatic recognition
+1717: [Normal] sport classifier,
+1718: [Normal] movement classifier.
+1720: [Normal] 81. MAJOR ENGINEERING RISKS
+1721: [Normal] Risk 1 — False precision
+1722: [Normal] Computer vision may generate precise numbers that are not biomechanically reliable.
+1723: [Normal] Mitigation:
+1724: [Normal] confidence
+1725: [Normal] view awareness
+1726: [Normal] visibility gates
+1727: [Normal] uncertainty-aware coaching
+1729: [Normal] Risk 2 — Dataset quality
+1730: [Normal] A poor expert dataset makes sophisticated algorithms unreliable.
+1731: [Normal] Mitigation:
+1732: [Normal] expert validation
+1733: [Normal] dataset versioning
+1734: [Normal] multiple athletes
+1735: [Normal] multiple camera views
+1736: [Normal] controlled recordings
+1738: [Normal] Risk 3 — Over-generalization
+1739: [Normal] Trying to make one algorithm fit every sport can destroy sport-specific accuracy.
+1740: [Normal] Mitigation:
+1741: [Normal] Sport Engine architecture
+1742: [Normal] Movement Engine architecture
+1744: [Normal] Risk 4 — excessive specialization
+1745: [Normal] Duplicating generic logic across sport engines creates maintenance problems.
+1746: [Normal] Mitigation:
+1747: [Normal] Universal Human Motion Engine
+1748: [Normal] shared analysis primitives
+1749: [Normal] clear contracts
+1751: [Normal] Risk 5 — reference dataset growth
+1752: [Normal] Brute-force nearest-neighbour matching will eventually become expensive.
+1753: [Normal] Mitigation:
+1754: [Normal] hierarchical filtering
+1755: [Normal] phase filtering
+1756: [Normal] ANN indexes
+1758: [Normal] 82. CORE PRODUCT PRINCIPLE
+1759: [Normal] ApexFormz should follow:
+1760: [Normal] Share perception.
+Share human-motion mathematics.
+Isolate sport semantics.
+Isolate movement knowledge.
+Personalize coaching.
+1761: [Normal] That principle should guide future architectural decisions.
+1763: [Normal] 83. FINAL TARGET ARCHITECTURE
+1764: [Normal]                          APEXFORMZ
+1765: [Normal]                              │
+1766: [Normal]                              ▼
+1767: [Normal]                   ┌────────────────────┐
+1768: [Normal]                   │   PERCEPTION CORE  │
+1769: [Normal]                   │ MediaPipe / Vision │
+1770: [Normal]                   └─────────┬──────────┘
+1771: [Normal]                             │
+1772: [Normal]                             ▼
+1773: [Normal]              ┌─────────────────────────────┐
+1774: [Normal]              │ UNIVERSAL HUMAN MOTION CORE │
+1775: [Normal]              │                             │
+1776: [Normal]              │ Geometry                    │
+1777: [Normal]              │ Angles                      │
+1778: [Normal]              │ Velocity                    │
+1779: [Normal]              │ Acceleration                │
+1780: [Normal]              │ Rotation                    │
+1781: [Normal]              │ Orientation                 │
+1782: [Normal]              │ Signal Filtering            │
+1783: [Normal]              │ Confidence                  │
+1784: [Normal]              └──────────────┬──────────────┘
+1785: [Normal]                             │
+1786: [Normal]                             ▼
+1787: [Normal]                     ┌──────────────┐
+1788: [Normal]                     │ SPORT ROUTER │
+1789: [Normal]                     └──────┬───────┘
+1790: [Normal]                            │
+1791: [Normal]         ┌──────────────────┼───────────────────┐
+1792: [Normal]         │                  │                   │
+1793: [Normal]         ▼                  ▼                   ▼
+1794: [Normal]  ┌────────────┐      ┌────────────┐      ┌────────────┐
+1795: [Normal]  │ Badminton  │      │   Tennis   │      │ Taekwondo  │
+1796: [Normal]  │   Engine   │      │   Engine   │      │   Engine   │
+1797: [Normal]  └──────┬─────┘      └─────┬──────┘      └─────┬──────┘
+1798: [Normal]         │                  │                   │
+1799: [Normal]         ▼                  ▼                   ▼
+1800: [Normal]  Movement Router      Movement Router     Movement Router
+1801: [Normal]         │                  │                   │
+1802: [Normal]         ▼                  ▼                   ▼
+1803: [Normal]  Smash Engine        Forehand Engine      Ap Chagi Engine
+1804: [Normal]  Clear Engine        Serve Engine         Dollyo Engine
+1805: [Normal]  Drop Engine         Backhand Engine      ...
+1806: [Normal]         │                  │                   │
+1807: [Normal]         └──────────────────┼───────────────────┘
+1808: [Normal]                            │
+1809: [Normal]                            ▼
+1810: [Normal]              ┌───────────────────────────┐
+1811: [Normal]              │ SHARED ANALYSIS SERVICES │
+1812: [Normal]              │                           │
+1813: [Normal]              │ Phase Engine              │
+1814: [Normal]              │ Reference Matcher         │
+1815: [Normal]              │ DTW Trajectory            │
+1816: [Normal]              │ Kinetic Chain             │
+1817: [Normal]              │ Fluidity                  │
+1818: [Normal]              │ AQA Interface             │
+1819: [Normal]              └─────────────┬─────────────┘
+1820: [Normal]                            │
+1821: [Normal]                            ▼
+1822: [Normal]                  ┌─────────────────┐
+1823: [Normal]                  │ SCORING POLICY  │
+1824: [Normal]                  │ per movement    │
+1825: [Normal]                  └────────┬────────┘
+1826: [Normal]                           │
+1827: [Normal]                           ▼
+1828: [Normal]                  ┌─────────────────┐
+1829: [Normal]                  │ COACHING ENGINE │
+1830: [Normal]                  └────────┬────────┘
+1831: [Normal]                           │
+1832: [Normal]                           ▼
+1833: [Normal]                ┌──────────────────────┐
+1834: [Normal]                │ ATHLETE INTELLIGENCE │
+1835: [Normal]                │                      │
+1836: [Normal]                │ History              │
+1837: [Normal]                │ Persistent weakness  │
+1838: [Normal]                │ Improvement          │
+1839: [Normal]                │ Personalization      │
+1840: [Normal]                └──────────┬───────────┘
+1841: [Normal]                           │
+1842: [Normal]                           ▼
+1843: [Normal]                       APEXFORMZ UI
+1845: [Normal] 84. PRODUCT OUTCOME
+1846: [Normal] After this transition, ApexFormz will no longer be structured conceptually as:
+1847: [Normal] one pose-analysis engine containing many sports.
+1848: [Normal] It becomes:
+1849: [Normal] a universal human-motion intelligence platform hosting independently evolving sport-specific coaching engines.
+1850: [Normal] This provides:
+1851: [Normal] stronger domain accuracy,
+1852: [Normal] reduced cross-sport confusion,
+1853: [Normal] better dataset organization,
+1854: [Normal] independent sport development,
+1855: [Normal] sport-specific biomechanics,
+1856: [Normal] sport-specific scoring,
+1857: [Normal] sport-specific ML models,
+1858: [Normal] easier testing,
+1859: [Normal] easier scaling,
+1860: [Normal] easier scientific validation,
+1861: [Normal] clearer product extensibility,
+1862: [Normal] and a stronger long-term technical moat.
+1863: [Normal] The architecture can then grow from:
+1864: [Normal] Taekwondo
+1865: [Normal] to:
+1866: [Normal] Taekwondo
+1867: [Normal] Badminton
+1868: [Normal] Tennis
+1869: [Normal] Cricket
+1870: [Normal] Boxing
+1871: [Normal] Running
+1872: [Normal] Football
+1873: [Normal] Yoga
+1874: [Normal] Strength Training
+1875: [Normal] without turning the AI service into one increasingly fragile universal rules engine.
+1876: [Normal] The central ApexFormz principle becomes:
+1877: [Normal] One body-understanding core. Many expert sports brains. One personalized athlete intelligence layer.

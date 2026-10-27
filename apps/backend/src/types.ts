@@ -1,10 +1,19 @@
+// LEGACY SHIM: copied from the original Apexformz repo (packages/types). Brain code uses @apexformz/contracts.
 // Shared TypeScript types for all SmartCoach services
 
-export type Sport = 'cricket' | 'tennis' | 'yoga' | 'running' | 'boxing' | 'football';
+export type Sport = 'cricket' | 'tennis' | 'yoga' | 'running' | 'boxing' | 'football' | 'taekwondo' | 'pickleball' | 'paddle' | 'badminton' | 'shooting' | 'table_tennis' | 'squash';
+
+/** Sports whose coaching runs on-device in the ApexFormz Brain (sport packs) rather than the legacy relay. */
+export const BRAIN_SPORTS: readonly Sport[] = ['badminton', 'shooting', 'pickleball', 'table_tennis', 'squash'];
+export function isBrainSport(sport: string): boolean {
+  return (BRAIN_SPORTS as readonly string[]).includes(sport);
+}
 
 export interface Keypoint {
   x: number;
   y: number;
+  /** Optional MediaPipe world/depth coordinate when the detector provides it. */
+  z?: number;
   score: number;
   name: string;
 }
@@ -125,7 +134,6 @@ export interface PoseFrame {
   angles: JointAngles;
   feedback: JointFeedback[];
   frame_score: number;
-  created_at?: string;
 }
 
 export interface LeaderboardEntry {
@@ -260,7 +268,10 @@ export interface DynamicFrameAnalysis extends FrameAnalysis {
   phase_changed: boolean;
   phase_scores: Record<string, number>;
   rep_count: number;
+  rep_completed?: boolean;
   fluidity_score: number;
+  trajectory_similarity?: number;
+  aqa_grade?: number;
   kinetic_chain: KineticChainResult;
   total_phases: number;
   is_cyclical: boolean;

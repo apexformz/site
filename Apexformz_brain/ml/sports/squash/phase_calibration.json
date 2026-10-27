@@ -1,0 +1,176 @@
+{
+ "status": "provisional_training_proxy",
+ "production_eligible": false,
+ "evaluation_split": "train",
+ "phase_accuracy": null,
+ "phase_boundary_error_ms": null,
+ "method": "key phase reached on own training clips - 0.5 x key phase reached on other templates' training clips",
+ "key_phases": {
+  "stroke": "estimated_contact",
+  "lunge": "bottom",
+  "travel": "move",
+  "split": "hop",
+  "recovery": "recovering"
+ },
+ "source_quality": "preserved_including_identity_flags_and_tracked_subject_id",
+ "dataset": {
+  "path": "data/squash/dataset_dynamic_movement.json",
+  "sha256": "95b2dd043b2fd60b50edf422eb81c8f0e99bbba19466e0deac3f9cfd90e0f421"
+ },
+ "limitations": [
+  "No reviewed phase boundaries are used; activation is not phase accuracy.",
+  "Threshold selection and reported activation use the same training captures; no independent validation.",
+  "Other-template captures are proxy negatives, not reviewed negative phase examples.",
+  "Streams from the same execution are correlated; clip counts are not independent executions."
+ ],
+ "clips": 359,
+ "executions": 359,
+ "omitted_no_graph": [],
+ "omitted_unsupported_template": [],
+ "templates": {
+  "travel": {
+   "baseline": {
+    "sensitivity": 0.2777777777777778,
+    "foreign_activation": 0.22325581395348837,
+    "full_completion": 0.10416666666666667,
+    "score": 0.1661498708010336
+   },
+   "best": {
+    "adjust": {
+     "body_travel": {
+      "scale": 0.85
+     }
+    },
+    "sensitivity": 0.375,
+    "foreign_activation": 0.24651162790697675,
+    "full_completion": 0.09722222222222222,
+    "score": 0.2517441860465116
+   },
+   "n_own_clips": 144,
+   "n_foreign_clips": 215
+  },
+  "recovery": {
+   "baseline": {
+    "sensitivity": 0.24358974358974358,
+    "foreign_activation": 0.3274021352313167,
+    "full_completion": 0.02564102564102564,
+    "score": 0.07988867597408522
+   },
+   "best": {
+    "adjust": {
+     "body_travel": {
+      "scale": 0.5
+     }
+    },
+    "sensitivity": 0.4230769230769231,
+    "foreign_activation": 0.4875444839857651,
+    "full_completion": 0.07692307692307693,
+    "score": 0.17930468108404052
+   },
+   "n_own_clips": 78,
+   "n_foreign_clips": 281
+  },
+  "split": {
+   "baseline": {
+    "sensitivity": 0.25,
+    "foreign_activation": 0.2084507042253521,
+    "full_completion": 0.25,
+    "score": 0.14577464788732394
+   },
+   "best": {
+    "adjust": {
+     "hip_vertical_velocity": {
+      "scale": 0.7
+     },
+     "body_motion": {
+      "scale": 0.7
+     }
+    },
+    "sensitivity": 0.5,
+    "foreign_activation": 0.36901408450704226,
+    "full_completion": 0.5,
+    "score": 0.3154929577464789
+   },
+   "n_own_clips": 4,
+   "n_foreign_clips": 355
+  },
+  "lunge": {
+   "baseline": {
+    "sensitivity": 0.3939393939393939,
+    "foreign_activation": 0.27300613496932513,
+    "full_completion": 0,
+    "score": 0.25743632645473136
+   },
+   "best": {
+    "adjust": {
+     "lead_knee_angle": {
+      "offset": 10
+     }
+    },
+    "sensitivity": 0.42424242424242425,
+    "foreign_activation": 0.254601226993865,
+    "full_completion": 0.030303030303030304,
+    "score": 0.29694181074549175
+   },
+   "n_own_clips": 33,
+   "n_foreign_clips": 326
+  },
+  "stroke": {
+   "baseline": {
+    "sensitivity": 0.51,
+    "foreign_activation": 0.39768339768339767,
+    "full_completion": 0.26,
+    "score": 0.3111583011583012
+   },
+   "best": {
+    "adjust": {
+     "dominant_elbow_velocity": {
+      "scale": 1.5
+     },
+     "dominant_wrist_rel_y": {
+      "offset": 0.2
+     }
+    },
+    "sensitivity": 0.6,
+    "foreign_activation": 0.36293436293436293,
+    "full_completion": 0.33,
+    "score": 0.41853281853281854
+   },
+   "n_own_clips": 100,
+   "n_foreign_clips": 259
+  }
+ },
+ "chosen_adjustments": {
+  "travel": {
+   "body_travel": {
+    "scale": 0.85
+   }
+  },
+  "recovery": {
+   "body_travel": {
+    "scale": 0.5
+   }
+  },
+  "split": {
+   "hip_vertical_velocity": {
+    "scale": 0.7
+   },
+   "body_motion": {
+    "scale": 0.7
+   }
+  },
+  "lunge": {
+   "lead_knee_angle": {
+    "offset": 10
+   }
+  },
+  "stroke": {
+   "dominant_elbow_velocity": {
+    "scale": 1.5
+   },
+   "dominant_wrist_rel_y": {
+    "offset": 0.2
+   }
+  }
+ }
+}

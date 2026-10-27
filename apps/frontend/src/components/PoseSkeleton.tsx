@@ -2,12 +2,15 @@
 
 import React, { useEffect, useRef } from 'react';
 import { PoseKeypoints, FrameAnalysis, Hand } from '@smartcoach/types';
+import { skeletonFeedbackStyle, type VisualCue } from '@apexformz/brain-client';
 
 interface PoseSkeletonProps {
   pose: PoseKeypoints | null;
   hands?: Hand[] | null;
   face?: any[] | null;
-  analysis: FrameAnalysis | null;
+  analysis: (FrameAnalysis & { visual_cues?: VisualCue[] }) | null;
+  /** Evidence-led overlay: neutral tracking is not a correct-technique verdict. */
+  coaching?: boolean;
   width: number;
   height: number;
   videoWidth?: number;
@@ -72,6 +75,7 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
   hands,
   face,
   analysis, 
+  coaching = false,
   width, 
   height,
   videoWidth = 1280,
@@ -131,16 +135,13 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
         const kp1 = kpMap.get(p1);
         const kp2 = kpMap.get(p2);
 
-        // Lower threshold (0.05) to prevent "coming and going" in close-ups
-        if (kp1 && kp2 && kp1.score > 0.05 && kp2.score > 0.05) {
-          const joint1 = p1.includes('_') ? p1.split('_')[1] : p1;
-          const joint2 = p2.includes('_') ? p2.split('_')[1] : p2;
-
-          // Highlight error joints in red
-          const hasError = analysis?.issues?.some(i => {
-            const jointName = i.joint.toLowerCase();
-            return jointName.includes(joint1) || jointName.includes(joint2);
-          });
+        // Coaching overlays require visible landmarks; a faint detected point is not reliable correction geometry.
+        const visibilityThreshold = coaching ? 0.5 : 0.05;
+        if (kp1 && kp2 && kp1.score > visibilityThreshold && kp2.score > visibilityThreshold) {
+          const feedbackStyle = skeletonFeedbackStyle(analysis?.visual_cues, p1, p2);
+          // Legacy callers may name a specific anatomical joint, never a feature substring.
+          const hasError = coaching ? feedbackStyle.state === 'improve'
+            : analysis?.issues?.some(i => i.severity !== 'none' && (i.joint === p1 || i.joint === p2));
 
           ctx.beginPath();
           ctx.moveTo(getX(kp1.x / videoWidth), getY(kp1.y / videoHeight));
@@ -150,6 +151,7 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
           const avgScore = (kp1.score + kp2.score) / 2;
           ctx.globalAlpha = Math.min(1.0, avgScore * 2); 
 
+          ctx.setLineDash(coaching && feedbackStyle.dashed ? [7, 4] : []);
           if (hasError) {
             ctx.lineWidth = 4;
             ctx.strokeStyle = '#ff4757';
@@ -157,11 +159,12 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
             ctx.shadowColor = '#ff4757';
           } else {
             ctx.lineWidth = 2.5; // Slightly thicker for "Technical Map" stability
-            ctx.strokeStyle = '#00d4ff';
+            ctx.strokeStyle = coaching ? feedbackStyle.color : '#00d4ff';
             ctx.shadowBlur = 4;
-            ctx.shadowColor = 'rgba(0, 212, 255, 0.5)';
+            ctx.shadowColor = coaching ? feedbackStyle.color : 'rgba(0, 212, 255, 0.5)';
           }
           ctx.stroke();
+          ctx.setLineDash([]);
           ctx.globalAlpha = 1.0;
         }
       });
@@ -686,6 +689,8 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
       };
 
       // Apply Technical Meshes in Sequence for Coordinate Sharing
+      // Decorative meshes synthesize points and hide correction colors; guided coaching uses measured landmarks only.
+      if (!coaching) {
       drawArmMesh('left_shoulder', 'left_elbow', false);
       drawArmMesh('left_elbow', 'left_wrist', true);
       drawArmMesh('right_shoulder', 'right_elbow', false);
@@ -699,10 +704,11 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
       drawLegMesh(false, pelvicNodes);
       drawShinMesh(true);
       drawShinMesh(false);
+      }
 
       // Draw Body Junctions
       pose.keypoints.forEach(kp => {
-        if (kp.score > 0.05) {
+        if (kp.score > (coaching ? 0.5 : 0.05)) {
           const ax = getX(kp.x / videoWidth);
           const ay = getY(kp.y / videoHeight);
           
@@ -711,7 +717,7 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
           ctx.arc(ax, ay, 3.5, 0, 2 * Math.PI); // Larger Junctions for Volume
           ctx.fillStyle = '#ffffff';
           ctx.fill();
-          ctx.strokeStyle = '#00d4ff';
+          ctx.strokeStyle = coaching ? skeletonFeedbackStyle(analysis?.visual_cues, kp.name).color : '#00d4ff';
           ctx.lineWidth = 1.8;
           ctx.stroke();
           ctx.globalAlpha = 1.0;
@@ -1064,7 +1070,7 @@ export const PoseSkeleton: React.FC<PoseSkeletonProps> = ({
     }
 
     ctx.shadowBlur = 0;
-  }, [pose, hands, analysis, width, height, videoWidth, videoHeight]);
+  }, [pose, hands, analysis, coaching, width, height, videoWidth, videoHeight]);
 
   return (
     <canvas 

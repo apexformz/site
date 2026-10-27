@@ -1,0 +1,90 @@
+{
+ "kind": "reference_set",
+ "movement_id": "taekwondo.baka_chagi_side_slide_roundhouse",
+ "features": [
+  "left_elbow_angle",
+  "right_elbow_angle",
+  "left_shoulder_angle",
+  "right_shoulder_angle",
+  "left_hip_angle",
+  "right_hip_angle",
+  "left_knee_angle",
+  "right_knee_angle"
+ ],
+ "weights": [
+  0.4,
+  0.4,
+  0.7,
+  0.7,
+  1.5,
+  1.5,
+  1.6,
+  1.6
+ ],
+ "reference_vectors": [
+  [
+   175.9,
+   99.9,
+   60.0,
+   29.7,
+   119.1,
+   103.1,
+   178.7,
+   85.3
+  ],
+  [
+   175.9,
+   99.9,
+   60.0,
+   29.7,
+   119.1,
+   103.1,
+   178.7,
+   85.3
+  ],
+  [
+   164.6,
+   145.0,
+   3.8,
+   4.4,
+   162.6,
+   174.3,
+   162.0,
+   178.1
+  ],
+  [
+   164.6,
+   145.0,
+   3.8,
+   4.4,
+   162.6,
+   174.3,
+   162.0,
+   178.1
+  ],
+  [
+   99.2,
+   173.3,
+   20.4,
+   2.1,
+   153.2,
+   158.8,
+   179.2,
+   171.6
+  ],
+  [
+   99.2,
+   173.3,
+   20.4,
+   2.1,
+   153.2,
+   158.8,
+   179.2,
+   171.6
+  ]
+ ],
+ "threshold": 20.0,
+ "tolerance": 15.0,
+ "validation_status": "provisional",
+ "provenance": "Legacy taekwondo_reference_frames.json extracted from front/left/right expert videos; weighted RMS distance in degrees. TODO_REQUIRES_VALIDATION."
+}

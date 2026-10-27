@@ -1,0 +1,2261 @@
+{
+ "schema_version": "1.0.0",
+ "status": "provisional",
+ "previous_snapshot": "data/audit/movement-taxonomy/taxonomy-before-refresh.json",
+ "previous_sha256": "bda803a0b95ca9d3a50488d784ec64460cf72bae313f93b4de4802c5f014442b",
+ "datasets": {
+  "static": {
+   "dataset_version": "squash-static_pose-be82806aa342e28f",
+   "executions": 266,
+   "usable_captures": 263,
+   "athletes": 1,
+   "split_counts": {
+    "train": 266
+   },
+   "frame_counts": {
+    "frames_read": 266,
+    "frames_usable": 263,
+    "frames_in_descriptors": 263,
+    "rejected_insufficient_observed_channels": 3
+   },
+   "excluded_captures": [
+    {
+     "execution_id": "capture-5b0636da68590a698b7c23359cf528606d7212bfb319b19cc179b6af7ee470dc",
+     "movement_id": "squash.static.0063",
+     "reason": "no_identity_safe_segment_with_sufficient_observation"
+    },
+    {
+     "execution_id": "capture-76e1e926db6c475707e746a59b22b8286b66772356b858cf625aa402dd83cb89",
+     "movement_id": "squash.static.0025",
+     "reason": "no_identity_safe_segment_with_sufficient_observation"
+    },
+    {
+     "execution_id": "capture-1cde82a15d6d99af3cab0f255d3c952708d1a3eefaa1f499d7bfefba5e869f8c",
+     "movement_id": "squash.static.0054",
+     "reason": "no_identity_safe_segment_with_sufficient_observation"
+    }
+   ],
+   "descriptor_policy": "identity_only + tracker_root_v1; longest safe contiguous segment; >=60% observed channels"
+  },
+  "dynamic": {
+   "dataset_version": "squash-dynamic_movement-7a22334889657087",
+   "executions": 359,
+   "usable_captures": 359,
+   "athletes": 1,
+   "split_counts": {
+    "train": 359
+   },
+   "frame_counts": {
+    "frames_read": 58426,
+    "frames_usable": 53162,
+    "rejected_invalid_time_or_torso": 3365,
+    "rejected_root_jump": 872,
+    "frames_in_descriptors": 32446,
+    "rejected_insufficient_observed_channels": 806,
+    "continuity_boundaries": 214,
+    "rejected_identity_unsafe": 221
+   },
+   "excluded_captures": [],
+   "descriptor_policy": "identity_only + tracker_root_v1; longest safe contiguous segment; >=60% observed channels"
+  }
+ },
+ "model_coverage": {
+  "static_pose": {
+   "modelled_classes": 68,
+   "unknown_training_support": 0,
+   "unsupported_catalogue_classes": [
+    {
+     "movement_id": "squash.static.0023",
+     "name": "One-leg balance stance"
+    },
+    {
+     "movement_id": "squash.static.0057",
+     "name": "T-position athletic stance"
+    }
+   ],
+   "training_exclusions": []
+  },
+  "dynamic_movement": {
+   "modelled_classes": 109,
+   "unknown_training_support": 0,
+   "unsupported_catalogue_classes": [
+    {
+     "movement_id": "squash.dynamic.0028",
+     "name": "One-leg reaching movement"
+    },
+    {
+     "movement_id": "squash.dynamic.0082",
+     "name": "Defensive retreat"
+    },
+    {
+     "movement_id": "squash.dynamic.0093",
+     "name": "Drop-shot movement"
+    }
+   ],
+   "training_exclusions": [
+    {
+     "class_id": "squash.dynamic.0093",
+     "class_name": "Drop-shot movement",
+     "source_capture_count": 3,
+     "prepared_capture_count": 3,
+     "preparation_exclusion_reasons": {},
+     "usable_windows": {
+      "train": 0,
+      "val": 0,
+      "test": 0
+     },
+     "reason": "no usable training windows after quality, visibility and split filtering"
+    }
+   ]
+  }
+ },
+ "catalogue_movements": 182,
+ "measured_movements": 178,
+ "unmeasured_movements": [
+  {
+   "movement_id": "squash.static.0023",
+   "name": "One-leg balance stance",
+   "type": "static",
+   "category": "General",
+   "reason": "no usable capture in the prepared dataset"
+  },
+  {
+   "movement_id": "squash.static.0057",
+   "name": "T-position athletic stance",
+   "type": "static",
+   "category": "T-Position Movement",
+   "reason": "no usable capture in the prepared dataset"
+  },
+  {
+   "movement_id": "squash.dynamic.0028",
+   "name": "One-leg reaching movement",
+   "type": "dynamic",
+   "category": "Lunge & Reach Movements",
+   "reason": "no usable capture in the prepared dataset"
+  },
+  {
+   "movement_id": "squash.dynamic.0082",
+   "name": "Defensive retreat",
+   "type": "dynamic",
+   "category": "Defensive Squash Movements",
+   "reason": "no usable capture in the prepared dataset"
+  }
+ ],
+ "families": 18,
+ "groups": 53,
+ "membership_changes": [
+  {
+   "movement_id": "squash.dynamic.0001",
+   "name": "Forward movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forward_travel",
+    "group_id": "squash.group.dynamic.forward_travel.forward_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0002",
+   "name": "Backward movement",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backward_travel",
+    "group_id": "squash.group.dynamic.backward_travel.backward_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0003",
+   "name": "Lateral movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0004",
+   "name": "Side shuffle",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0005",
+   "name": "Forward sprint",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forward_travel",
+    "group_id": "squash.group.dynamic.forward_travel.forward_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0006",
+   "name": "Backward recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0007",
+   "name": "Diagonal forward movement",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forward_travel",
+    "group_id": "squash.group.dynamic.forward_travel.forward_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0008",
+   "name": "Diagonal backward movement",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backward_travel",
+    "group_id": "squash.group.dynamic.backward_travel.backward_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0009",
+   "name": "Split-step",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.direction_change_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0010",
+   "name": "Quick acceleration",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.quick_deceleration_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.direction_change_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0011",
+   "name": "Quick deceleration",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.quick_deceleration_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.direction_change_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0012",
+   "name": "Direction change",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.direction_change_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.direction_change_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0013",
+   "name": "Pivot turn",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.direction_change_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.pivot_turn_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0014",
+   "name": "Court recovery movement",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0015",
+   "name": "Return-to-T movement",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0016",
+   "name": "Front-to-back movement",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backward_travel",
+    "group_id": "squash.group.dynamic.backward_travel.movement_toward_back_wall_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0017",
+   "name": "Back-to-front movement",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.back_to_front_movement_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forward_travel",
+    "group_id": "squash.group.dynamic.forward_travel.forward_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0018",
+   "name": "Corner-to-corner movement",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.court_travel",
+    "group_id": "squash.group.dynamic.court_travel.corner_to_corner_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0019",
+   "name": "Forehand lunge",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.forehand_lunge_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.side_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0020",
+   "name": "Backhand lunge",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.extended_backhand_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.backhand_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0021",
+   "name": "Forward lunge",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.forehand_lunge_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.side_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0022",
+   "name": "Side lunge",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.forehand_lunge_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.side_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0023",
+   "name": "Deep front-court lunge",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.forehand_lunge_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.side_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0024",
+   "name": "Extended forehand reach",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.extended_forehand_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.high_ball_reach_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0025",
+   "name": "Extended backhand reach",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.extended_backhand_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.backhand_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0026",
+   "name": "Low-ball reach",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.extended_forehand_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.high_ball_reach_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0027",
+   "name": "High-ball reach",
+   "before": {
+    "family_id": "squash.family.dynamic.explosive_transitions_reaches",
+    "group_id": "squash.group.dynamic.explosive_transitions_reaches.high_ball_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.high_ball_reach_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0028",
+   "name": "One-leg reaching movement",
+   "before": null,
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.uncaptured_0028"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0029",
+   "name": "Recovery from lunge",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.fast_t_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0035",
+   "name": "Forehand drop-shot movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_drop_shot_movement_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_lob_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0036",
+   "name": "Forehand boast movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_boast_movement_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_boast_movement"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0037",
+   "name": "Forehand lob movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_lob_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0038",
+   "name": "Forehand swing + recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_court_shot_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.forehand_swing_recovery_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0039",
+   "name": "Forehand target transition",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.extended_forehand_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_lob_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0040",
+   "name": "Backhand swing",
+   "before": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_volley_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0041",
+   "name": "Backhand drive",
+   "before": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_volley_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0042",
+   "name": "Backhand cross-court swing",
+   "before": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_volley_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0043",
+   "name": "Backhand straight-line swing",
+   "before": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_volley_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0044",
+   "name": "Backhand volley",
+   "before": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_volley_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0045",
+   "name": "Backhand drop-shot movement",
+   "before": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_drop_shot_movement_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_volley_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0046",
+   "name": "Backhand boast movement",
+   "before": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_drop_shot_movement_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_volley_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0047",
+   "name": "Backhand lob movement",
+   "before": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_lob_movement"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0048",
+   "name": "Backhand swing + recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.fast_t_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.back_court_shot_recovery_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0049",
+   "name": "Backhand target transition",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.extended_backhand_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backhand_strokes",
+    "group_id": "squash.group.dynamic.backhand_strokes.backhand_target_transition"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0050",
+   "name": "Drive swing",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0051",
+   "name": "Drop-shot swing",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_drop_shot_movement_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0052",
+   "name": "Boast swing",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_boast_movement_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0053",
+   "name": "Lob swing",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0054",
+   "name": "Volley swing",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0055",
+   "name": "Kill-shot swing",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.forehand_straight_line_swing_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0056",
+   "name": "Cross-court swing",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.cross_court_swing"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0057",
+   "name": "Straight-drive swing",
+   "before": {
+    "family_id": "squash.family.dynamic.forehand_strokes",
+    "group_id": "squash.group.dynamic.forehand_strokes.straight_drive_swing"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0058",
+   "name": "Defensive shot movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.defensive_shot_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0059",
+   "name": "Attacking shot movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.defensive_shot_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0060",
+   "name": "Movement toward front wall",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forward_travel",
+    "group_id": "squash.group.dynamic.forward_travel.forward_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0061",
+   "name": "Front-court shot + recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_court_shot_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.back_court_shot_recovery_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0062",
+   "name": "Front corner → T recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0063",
+   "name": "Front left → front right movement",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0064",
+   "name": "Front right → front left movement",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0065",
+   "name": "Front-to-back recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_court_shot_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0066",
+   "name": "Movement toward back wall",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backward_travel",
+    "group_id": "squash.group.dynamic.backward_travel.movement_toward_back_wall_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0067",
+   "name": "Back-court lunge",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.back_court_lunge"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.back_court_lunge"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0068",
+   "name": "Back-court shot + recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_court_shot_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.back_court_shot_recovery_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0069",
+   "name": "Back corner → T recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0070",
+   "name": "Back left → back right movement",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0071",
+   "name": "Back right → back left movement",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0072",
+   "name": "Back-to-front recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.back_to_front_recovery"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0073",
+   "name": "Front corner → T",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0074",
+   "name": "Back corner → T",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.back_to_front_movement_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.back_corner_t_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0075",
+   "name": "Side wall → T",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0076",
+   "name": "T → front corner",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forward_travel",
+    "group_id": "squash.group.dynamic.forward_travel.forward_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0077",
+   "name": "T → back corner",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.backward_travel",
+    "group_id": "squash.group.dynamic.backward_travel.movement_toward_back_wall_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0078",
+   "name": "T → left side",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0079",
+   "name": "T → right side",
+   "before": {
+    "family_id": "squash.family.dynamic.explosive_transitions_reaches",
+    "group_id": "squash.group.dynamic.explosive_transitions_reaches.lateral_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0080",
+   "name": "Rapid T recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.rapid_t_recovery"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0081",
+   "name": "T-position direction change",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.direction_change_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.direction_change_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0082",
+   "name": "Defensive retreat",
+   "before": null,
+   "after": {
+    "family_id": "squash.family.dynamic.backward_travel",
+    "group_id": "squash.group.dynamic.backward_travel.uncaptured_0082"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0083",
+   "name": "Defensive lateral movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0084",
+   "name": "Defensive lunge",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.defensive_lunge"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.side_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0085",
+   "name": "Low-ball recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_court_shot_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0086",
+   "name": "Emergency reach",
+   "before": {
+    "family_id": "squash.family.dynamic.explosive_transitions_reaches",
+    "group_id": "squash.group.dynamic.explosive_transitions_reaches.high_ball_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lunges_reaches",
+    "group_id": "squash.group.dynamic.lunges_reaches.high_ball_reach_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0087",
+   "name": "Emergency direction change",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.direction_change_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.pivot_turn_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0088",
+   "name": "Defensive shot + recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_court_shot_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.defensive_shot_recovery"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0089",
+   "name": "Corner escape movement",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.corner_escape_movement"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.court_travel",
+    "group_id": "squash.group.dynamic.court_travel.corner_to_corner_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0090",
+   "name": "Forward attacking movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.forward_travel",
+    "group_id": "squash.group.dynamic.forward_travel.forward_attacking_movement"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0091",
+   "name": "Attack-to-corner movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.court_travel",
+    "group_id": "squash.group.dynamic.court_travel.corner_to_corner_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0092",
+   "name": "Volley movement",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.volley_movement"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0093",
+   "name": "Drop-shot movement",
+   "before": {
+    "family_id": "squash.family.dynamic.explosive_transitions_reaches",
+    "group_id": "squash.group.dynamic.explosive_transitions_reaches.lateral_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.unspecified_strokes",
+    "group_id": "squash.group.dynamic.unspecified_strokes.drop_shot_movement"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0094",
+   "name": "Rapid target transition",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.direction_change_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0095",
+   "name": "Attack + recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_court_shot_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.back_court_shot_recovery_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0096",
+   "name": "Fast T recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.fast_t_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0097",
+   "name": "Shot → recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.fast_t_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.back_court_shot_recovery_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0098",
+   "name": "Lunge → recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.lunge_recovery"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.lunge_recovery"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0099",
+   "name": "Forehand → recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.forehand_swing_recovery_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0100",
+   "name": "Backhand → recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.backhand_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.back_court_shot_recovery_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0101",
+   "name": "Volley → recovery",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.stroke_recovery",
+    "group_id": "squash.group.dynamic.stroke_recovery.back_court_shot_recovery_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0102",
+   "name": "Front court → T",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.front_corner_t_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0103",
+   "name": "Back court → T",
+   "before": {
+    "family_id": "squash.family.dynamic.recovery_return_to_t",
+    "group_id": "squash.group.dynamic.recovery_return_to_t.backhand_recovery_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.back_corner_t_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0104",
+   "name": "Left court → right court",
+   "before": {
+    "family_id": "squash.family.dynamic.lateral_backward_travel_pivots",
+    "group_id": "squash.group.dynamic.lateral_backward_travel_pivots.movement_toward_back_wall_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0105",
+   "name": "Right court → left court",
+   "before": {
+    "family_id": "squash.family.dynamic.explosive_transitions_reaches",
+    "group_id": "squash.group.dynamic.explosive_transitions_reaches.lateral_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.lateral_travel",
+    "group_id": "squash.group.dynamic.lateral_travel.right_court_left_court"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0106",
+   "name": "Forward → backward",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.forward_backward_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0107",
+   "name": "Backward → forward",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.backward_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.direction_change_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0108",
+   "name": "Lateral → forward",
+   "before": {
+    "family_id": "squash.family.dynamic.explosive_transitions_reaches",
+    "group_id": "squash.group.dynamic.explosive_transitions_reaches.lateral_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.forward_backward_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0109",
+   "name": "Lateral → backward",
+   "before": {
+    "family_id": "squash.family.dynamic.forward_travel_lunges_reaches",
+    "group_id": "squash.group.dynamic.forward_travel_lunges_reaches.quick_deceleration_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.direction_change_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0110",
+   "name": "Pivot → sprint",
+   "before": {
+    "family_id": "squash.family.dynamic.explosive_transitions_reaches",
+    "group_id": "squash.group.dynamic.explosive_transitions_reaches.lateral_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.direction_changes",
+    "group_id": "squash.group.dynamic.direction_changes.direction_change_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0111",
+   "name": "Sprint → hitting position",
+   "before": {
+    "family_id": "squash.family.dynamic.explosive_transitions_reaches",
+    "group_id": "squash.group.dynamic.explosive_transitions_reaches.lateral_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.court_travel",
+    "group_id": "squash.group.dynamic.court_travel.sprint_hitting_position"
+   }
+  },
+  {
+   "movement_id": "squash.dynamic.0112",
+   "name": "Hitting position → recovery stance",
+   "before": {
+    "family_id": "squash.family.dynamic.explosive_transitions_reaches",
+    "group_id": "squash.group.dynamic.explosive_transitions_reaches.lateral_forward_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.dynamic.recovery",
+    "group_id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0001",
+   "name": "Ready stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.semi_open_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.semi_open_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0002",
+   "name": "Neutral standing stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.semi_open_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.semi_open_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0003",
+   "name": "Athletic crouched stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.back_court_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0004",
+   "name": "Low ready stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.back_court_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0005",
+   "name": "Open stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.semi_open_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.semi_open_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0006",
+   "name": "Semi-open stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.semi_open_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.semi_open_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0007",
+   "name": "Closed stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.semi_open_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.semi_open_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0008",
+   "name": "Forehand preparation stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.forehand_positions",
+    "group_id": "squash.group.static.forehand_positions.open_forehand_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0009",
+   "name": "Backhand preparation stance",
+   "before": {
+    "family_id": "squash.family.static.backhand_side_positions",
+    "group_id": "squash.group.static.backhand_side_positions.backhand_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.backhand_positions",
+    "group_id": "squash.group.static.backhand_positions.backhand_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0010",
+   "name": "Forehand hitting stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.forehand_positions",
+    "group_id": "squash.group.static.forehand_positions.open_forehand_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0011",
+   "name": "Backhand hitting stance",
+   "before": {
+    "family_id": "squash.family.static.backhand_side_positions",
+    "group_id": "squash.group.static.backhand_side_positions.backhand_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.backhand_positions",
+    "group_id": "squash.group.static.backhand_positions.backhand_hitting_stance"
+   }
+  },
+  {
+   "movement_id": "squash.static.0012",
+   "name": "Volley stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.kill_shot_position_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.volley_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0013",
+   "name": "Defensive stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.semi_open_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.semi_open_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0014",
+   "name": "Attacking stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.semi_open_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.semi_open_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0015",
+   "name": "Front-court stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.back_court_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0016",
+   "name": "Mid-court stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.semi_open_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.semi_open_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0017",
+   "name": "Back-court stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.back_court_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0018",
+   "name": "Corner stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.back_court_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0019",
+   "name": "Deep lunge stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.deep_lunge_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.forehand_lunge_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0020",
+   "name": "Low lunge stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.low_lunge_stance"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.forehand_lunge_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0021",
+   "name": "Side-lunge stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.side_lunge_stance"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.forehand_lunge_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0022",
+   "name": "Extended-reach stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.deep_lunge_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.forehand_lunge_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0023",
+   "name": "One-leg balance stance",
+   "before": null,
+   "after": {
+    "family_id": "squash.family.static.balance_holds",
+    "group_id": "squash.group.static.balance_holds.uncaptured_0023"
+   }
+  },
+  {
+   "movement_id": "squash.static.0024",
+   "name": "Recovery stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.follow_through_recovery",
+    "group_id": "squash.group.static.follow_through_recovery.recovery_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0025",
+   "name": "Follow-through position",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.follow_through_position_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.follow_through_recovery",
+    "group_id": "squash.group.static.follow_through_recovery.follow_through_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0026",
+   "name": "Open forehand stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.forehand_positions",
+    "group_id": "squash.group.static.forehand_positions.open_forehand_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0027",
+   "name": "Closed forehand stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.semi_open_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.forehand_positions",
+    "group_id": "squash.group.static.forehand_positions.closed_forehand_stance"
+   }
+  },
+  {
+   "movement_id": "squash.static.0028",
+   "name": "Forehand lunge position",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.deep_lunge_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.forehand_lunge_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0029",
+   "name": "Extended forehand reach",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.extended_forehand_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.extended_forehand_reach_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0030",
+   "name": "Forehand follow-through",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.follow_through_position_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.follow_through_recovery",
+    "group_id": "squash.group.static.follow_through_recovery.follow_through_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0031",
+   "name": "Backhand stance",
+   "before": {
+    "family_id": "squash.family.static.backhand_side_positions",
+    "group_id": "squash.group.static.backhand_side_positions.backhand_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.backhand_positions",
+    "group_id": "squash.group.static.backhand_positions.backhand_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0032",
+   "name": "Backhand lunge position",
+   "before": {
+    "family_id": "squash.family.static.backhand_side_positions",
+    "group_id": "squash.group.static.backhand_side_positions.backhand_lunge_position_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.forehand_lunge_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0033",
+   "name": "Extended backhand reach",
+   "before": {
+    "family_id": "squash.family.static.backhand_side_positions",
+    "group_id": "squash.group.static.backhand_side_positions.backhand_lunge_position_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.extended_backhand_reach"
+   }
+  },
+  {
+   "movement_id": "squash.static.0034",
+   "name": "Backhand follow-through",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.backhand_follow_through"
+   },
+   "after": {
+    "family_id": "squash.family.static.follow_through_recovery",
+    "group_id": "squash.group.static.follow_through_recovery.follow_through_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0035",
+   "name": "Drive hitting pose",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.straight_drive_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.straight_drive_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0036",
+   "name": "Drop-shot hitting pose",
+   "before": {
+    "family_id": "squash.family.static.low_soft_shot_poses",
+    "group_id": "squash.group.static.low_soft_shot_poses.lob_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.drop_shot_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0037",
+   "name": "Boast hitting pose",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.straight_drive_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.straight_drive_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0038",
+   "name": "Lob hitting pose",
+   "before": {
+    "family_id": "squash.family.static.low_soft_shot_poses",
+    "group_id": "squash.group.static.low_soft_shot_poses.lob_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.drop_shot_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0039",
+   "name": "Volley hitting pose",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.kill_shot_position_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.volley_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0040",
+   "name": "Kill-shot hitting pose",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.kill_shot_position_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.volley_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0041",
+   "name": "Cross-court hitting pose",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.straight_drive_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.straight_drive_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0042",
+   "name": "Straight-drive hitting pose",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.straight_drive_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.straight_drive_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0043",
+   "name": "Defensive shot pose",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.straight_drive_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.straight_drive_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0044",
+   "name": "Attacking shot pose",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.attacking_shot_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.volley_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0045",
+   "name": "Front-court ready stance",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.straight_drive_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.front_court_ready_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0046",
+   "name": "Front-court lunge",
+   "before": {
+    "family_id": "squash.family.static.front_court_defensive_lunges",
+    "group_id": "squash.group.static.front_court_defensive_lunges.defensive_lunge_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.front_court_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0047",
+   "name": "Deep front-court lunge",
+   "before": {
+    "family_id": "squash.family.static.front_court_defensive_lunges",
+    "group_id": "squash.group.static.front_court_defensive_lunges.defensive_lunge_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.front_court_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0048",
+   "name": "Low-ball reaching stance",
+   "before": {
+    "family_id": "squash.family.static.low_soft_shot_poses",
+    "group_id": "squash.group.static.low_soft_shot_poses.lob_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.extended_forehand_reach_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0049",
+   "name": "Front-court hitting position",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.straight_drive_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.straight_drive_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0050",
+   "name": "Front-court recovery position",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.straight_drive_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.follow_through_recovery",
+    "group_id": "squash.group.static.follow_through_recovery.recovery_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0051",
+   "name": "Back-court ready stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.t_position_ready_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.t_position_ready_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0052",
+   "name": "Back-court hitting stance",
+   "before": {
+    "family_id": "squash.family.static.back_court_low_positions",
+    "group_id": "squash.group.static.back_court_low_positions.back_court_hitting_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.straight_drive_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0053",
+   "name": "Deep back-court stance",
+   "before": {
+    "family_id": "squash.family.static.back_court_low_positions",
+    "group_id": "squash.group.static.back_court_low_positions.back_court_hitting_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.deep_back_court_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0054",
+   "name": "Defensive back-court stance",
+   "before": {
+    "family_id": "squash.family.static.back_court_low_positions",
+    "group_id": "squash.group.static.back_court_low_positions.back_court_hitting_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.deep_back_court_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0055",
+   "name": "Back-court follow-through",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.follow_through_position_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.follow_through_recovery",
+    "group_id": "squash.group.static.follow_through_recovery.follow_through_position_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0056",
+   "name": "T-position ready stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.t_position_ready_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.t_position_ready_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0057",
+   "name": "T-position athletic stance",
+   "before": null,
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.uncaptured_0057"
+   }
+  },
+  {
+   "movement_id": "squash.static.0058",
+   "name": "T-position defensive stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.t_position_ready_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.t_position_ready_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0059",
+   "name": "T-position attacking stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.attacking_shot_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.t_position_ready_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0060",
+   "name": "Defensive ready stance",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.t_position_ready_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.t_position_ready_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0061",
+   "name": "Defensive lunge",
+   "before": {
+    "family_id": "squash.family.static.front_court_defensive_lunges",
+    "group_id": "squash.group.static.front_court_defensive_lunges.defensive_lunge_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.front_court_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0062",
+   "name": "Low defensive stance",
+   "before": {
+    "family_id": "squash.family.static.hitting_poses_follow_throughs",
+    "group_id": "squash.group.static.hitting_poses_follow_throughs.straight_drive_hitting_pose_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.front_court_ready_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0063",
+   "name": "Extended defensive reach",
+   "before": {
+    "family_id": "squash.family.static.front_court_defensive_lunges",
+    "group_id": "squash.group.static.front_court_defensive_lunges.extended_defensive_reach"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.front_court_lunge_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0064",
+   "name": "Defensive hitting position",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.extended_forehand_reach_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.defensive_hitting_position"
+   }
+  },
+  {
+   "movement_id": "squash.static.0065",
+   "name": "Defensive recovery position",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.follow_through_recovery",
+    "group_id": "squash.group.static.follow_through_recovery.recovery_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0066",
+   "name": "Attacking ready stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.ready_stances",
+    "group_id": "squash.group.static.ready_stances.back_court_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0067",
+   "name": "Attacking forehand stance",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.back_court_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.forehand_positions",
+    "group_id": "squash.group.static.forehand_positions.open_forehand_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0068",
+   "name": "Attacking backhand stance",
+   "before": {
+    "family_id": "squash.family.static.backhand_side_positions",
+    "group_id": "squash.group.static.backhand_side_positions.backhand_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.backhand_positions",
+    "group_id": "squash.group.static.backhand_positions.backhand_stance_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0069",
+   "name": "Kill-shot position",
+   "before": {
+    "family_id": "squash.family.static.upright_ready_stances",
+    "group_id": "squash.group.static.upright_ready_stances.kill_shot_position_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.hitting_positions",
+    "group_id": "squash.group.static.hitting_positions.volley_hitting_pose_and_similar"
+   }
+  },
+  {
+   "movement_id": "squash.static.0070",
+   "name": "Aggressive lunge position",
+   "before": {
+    "family_id": "squash.family.static.forehand_athletic_positions",
+    "group_id": "squash.group.static.forehand_athletic_positions.deep_lunge_stance_and_similar"
+   },
+   "after": {
+    "family_id": "squash.family.static.lunge_reach_positions",
+    "group_id": "squash.group.static.lunge_reach_positions.forehand_lunge_position_and_similar"
+   }
+  }
+ ],
+ "note": "Dataset audit and exploratory grouping, not held-out recognition accuracy. Exact movement IDs and model weights/thresholds remain unchanged."
+}

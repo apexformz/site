@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "pickleball",
+  "catalog_version": "1.0.0",
+  "default_locale": "en",
+  "policy": {
+    "global_min_interval_ms": 6000,
+    "positive_reinforcement_interval_ms": 15000,
+    "max_secondary_queue": 3
+  },
+  "entries": [
+    {
+      "error_id": "pickleball.ready_position.stance_width_out_of_range",
+      "cue": {
+        "en": "Set your feet about shoulder-width apart."
+      },
+      "rationale": {
+        "en": "A balanced base speeds up the first step."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 3,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Good base width."
+      }
+    },
+    {
+      "error_id": "pickleball.ready_position.knees_too_straight",
+      "cue": {
+        "en": "Soften your knees so you are ready to move."
+      },
+      "rationale": {
+        "en": "Straight knees delay the first step."
+      },
+      "demonstration_ref": null,
+      "review_status": "draft",
+      "cooldown_ms": 8000,
+      "persistence_count": 3,
+      "severity": "medium",
+      "positive_cue": {
+        "en": "Nice loaded knees."
+      }
+    }
+  ],
+  "generic": {
+    "AMBIGUOUS_SUBJECT": {
+      "en": "Two people are in view. Please make sure only you are in the frame."
+    },
+    "FRAMING_INVALID": {
+      "en": "Step back so your whole body, including your feet, is visible."
+    },
+    "MISSING_JOINT": {
+      "en": "Some joints are hidden. Keep your full body in view."
+    },
+    "LOW_CONFIDENCE": {
+      "en": "Tracking is unsteady. Improve lighting and face the camera."
+    },
+    "VIEW_INVALID": {
+      "en": "This check needs a different camera angle; it is paused for now."
+    },
+    "TIME_GAP": {
+      "en": "Tracking paused. Resume when you are ready."
+    },
+    "TRACK_CHANGED": {
+      "en": "Lost track of you for a moment. Checks restart now."
+    },
+    "HANDEDNESS_UNKNOWN": {
+      "en": "Set your paddle hand in the session setup to enable arm checks."
+    },
+    "CAPABILITY_MISSING": {
+      "en": "Paddle or ball tracking is not active, so contact checks are off."
+    },
+    "CONTACT_UNOBSERVED": {
+      "en": "Ball contact cannot be seen from body tracking alone."
+    }
+  }
+}

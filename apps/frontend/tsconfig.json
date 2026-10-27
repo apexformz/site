@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "webworker"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,10 +23,67 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@smartcoach/types": ["../../packages/types/index.ts"]
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "@smartcoach/types": [
+        "../../packages/types/index.ts"
+      ],
+      "@apexformz/contracts": [
+        "../../Apexformz_brain/packages/contracts/src/index.ts"
+      ],
+      "@apexformz/contracts/schemas/*": [
+        "../../Apexformz_brain/packages/contracts/schemas/*"
+      ],
+      "@apexformz/signal": [
+        "../../Apexformz_brain/packages/signal/src/index.ts"
+      ],
+      "@apexformz/features": [
+        "../../Apexformz_brain/packages/features/src/index.ts"
+      ],
+      "@apexformz/perception": [
+        "../../Apexformz_brain/packages/perception/src/index.ts"
+      ],
+      "@apexformz/sport-runtime": [
+        "../../Apexformz_brain/packages/sport-runtime/src/index.ts"
+      ],
+      "@apexformz/sport-runtime/node": [
+        "../../Apexformz_brain/packages/sport-runtime/src/node.ts"
+      ],
+      "@apexformz/analysis": [
+        "../../Apexformz_brain/packages/analysis/src/index.ts"
+      ],
+      "@apexformz/scoring": [
+        "../../Apexformz_brain/packages/scoring/src/index.ts"
+      ],
+      "@apexformz/coaching": [
+        "../../Apexformz_brain/packages/coaching/src/index.ts"
+      ],
+      "@apexformz/runtime": [
+        "../../Apexformz_brain/packages/runtime/src/index.ts"
+      ],
+      "@apexformz/brain-client": [
+        "../../Apexformz_brain/packages/brain-client/src/index.ts"
+      ],
+      "@apexformz/brain-client/worker": [
+        "../../Apexformz_brain/packages/brain-client/src/worker.ts"
+      ],
+      "@apexformz/brain-client/react": [
+        "../../Apexformz_brain/packages/brain-client/src/react/useApexBrain.ts"
+      ],
+      "@apexformz/brain-client/inference-worker": [
+        "../../Apexformz_brain/packages/brain-client/src/inference_worker.ts"
+      ]
+    },
+    "target": "ES2022"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

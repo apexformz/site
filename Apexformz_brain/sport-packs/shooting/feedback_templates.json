@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "shooting",
+  "catalog_version": "1.0.0",
+  "default_locale": "en",
+  "policy": { "global_min_interval_ms": 8000, "positive_reinforcement_interval_ms": 20000, "max_secondary_queue": 2 },
+  "entries": [
+    { "error_id": "shooting.setup_stance.stance_width_out_of_range", "cue": { "en": "Set your feet roughly shoulder-width apart before you raise the pistol." }, "rationale": { "en": "A repeatable base width makes the hold reproducible." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 10000, "persistence_count": 3, "severity": "medium", "positive_cue": { "en": "Base looks consistent." } },
+    { "error_id": "shooting.setup_stance.trunk_lean", "cue": { "en": "Keep your torso tall; check your lean against your usual setup." }, "rationale": { "en": "Unintended lateral lean changes the hold geometry." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 10000, "persistence_count": 3, "severity": "medium" },
+    { "error_id": "shooting.setup_stance.elbow_bent", "cue": { "en": "Lock your shooting arm a little straighter." }, "rationale": { "en": "A consistent elbow angle reduces hold variability." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 10000, "persistence_count": 3, "severity": "medium", "positive_cue": { "en": "Arm extension is steady." } },
+    { "error_id": "shooting.setup_stance.shoulders_uneven", "cue": { "en": "Level your shoulders before settling into the hold." }, "rationale": { "en": "Shoulder tilt is a common source of drift." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 12000, "persistence_count": 3, "severity": "low" },
+    { "error_id": "shooting.setup_stance.unsteady_wrist", "cue": { "en": "Settle your breathing and let the wrist quiet down before aiming." }, "rationale": { "en": "Wrist motion in setup carries into the hold." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 12000, "persistence_count": 3, "severity": "medium" },
+    { "error_id": "shooting.setup_stance.sight_misaligned", "cue": { "en": "Check your sight picture." }, "rationale": { "en": "Requires pistol tracking; shown only when hardware evidence exists." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 15000, "persistence_count": 2, "severity": "medium" },
+    { "error_id": "shooting.aiming_hold.unsteady", "cue": { "en": "Your hold moved more than usual. Reset and rebuild the position." }, "rationale": { "en": "Posture stability is a proxy, not a shot score." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 15000, "persistence_count": 2, "severity": "medium" },
+    { "error_id": "shooting.aiming_hold.drift", "cue": { "en": "The pistol hand drifted sideways during the hold." }, "rationale": { "en": "Drift indicates fatigue or an unbalanced stance." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 15000, "persistence_count": 2, "severity": "low" }
+  ],
+  "generic": {
+    "AMBIGUOUS_SUBJECT": { "en": "Another person is in the frame. Only the shooter should be visible." },
+    "FRAMING_INVALID": { "en": "Move the camera back so your whole body and feet are visible." },
+    "MISSING_JOINT": { "en": "Some joints are hidden. Keep your full body in view of the camera." },
+    "LOW_CONFIDENCE": { "en": "Tracking is unsteady. Improve lighting and reduce clutter behind you." },
+    "VIEW_INVALID": { "en": "This check needs a different camera angle; it is paused for now." },
+    "TIME_GAP": { "en": "Tracking paused. Checks restart when tracking resumes." },
+    "TRACK_CHANGED": { "en": "Lost track of you briefly. Checks restart now." },
+    "HANDEDNESS_UNKNOWN": { "en": "Set your shooting hand in the session setup to enable arm checks." },
+    "CAPABILITY_MISSING": { "en": "Pistol tracking hardware is not connected, so sight checks are off." },
+    "SAFETY": { "en": "Keep the camera and anyone operating it behind the firing line." }
+  }
+}

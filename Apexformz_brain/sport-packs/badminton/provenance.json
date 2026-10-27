@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "badminton",
+  "version": "1.0.0",
+  "created_at": "2026-10-25",
+  "authors": ["ApexFormz Brain engineering (seed content)"],
+  "sources": [
+    { "id": "trd_06", "type": "internal", "citation": "ApexFormz TRD 06 Badminton Sport Brain v1.0 (24 Oct 2026): movement taxonomy seeds, phase model, criteria families", "status": "provisional" },
+    { "id": "bwf_laws", "type": "official_rules", "citation": "BWF Laws of Badminton (edition to be recorded)", "status": "provisional" },
+    { "id": "coach_panel", "type": "coach_review", "citation": "Coach review panel for ontology approval and rubric cutoffs (not yet convened)", "status": "provisional" }
+  ],
+  "validation_summary": { "approved": 0, "provisional": 10, "disabled": 0 },
+  "open_items": [
+    "TODO_REQUIRES_VALIDATION: fill court geometry values from the approved BWF edition",
+    "TODO_REQUIRES_VALIDATION: record scoring thresholds (game/match points) from the approved BWF edition",
+    "TODO_REQUIRES_VALIDATION: coach panel approval of all nine movement ontology seeds and aliases",
+    "TODO_REQUIRES_VALIDATION: lunge phase thresholds (knee angle 148/138/125/150 degrees) must be fitted on annotated recordings",
+    "TODO_REQUIRES_VALIDATION: every criterion range/limit is an engineering seed; none may be published as a coaching rule until approved",
+    "TODO_REQUIRES_VALIDATION: feedback cues are drafts pending human review",
+    "TODO_REQUIRES_VALIDATION: racket adapter and shuttle tracking are unimplemented; contact criteria abstain by design"
+  ]
+}

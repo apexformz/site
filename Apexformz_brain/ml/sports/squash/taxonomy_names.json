@@ -1,0 +1,79 @@
+{
+  "version": "1.1.0",
+  "validation_status": "provisional",
+  "basis": "Catalogue action/side constraints informed by ml/sports/recognition_taxonomy_sources.json; measured close groups are clustered inside each broad family. Names remain engineering proposals pending coach review.",
+  "semantic_families": {
+    "static.ready_stances": {
+      "name": "Ready and standing positions",
+      "description": "Ready, neutral and court-position stances; tactical intent is not inferred from body pose."
+    },
+    "static.forehand_positions": {
+      "name": "Forehand preparation and hitting positions",
+      "description": "Catalogue-labelled forehand-side stroke positions."
+    },
+    "static.backhand_positions": {
+      "name": "Backhand preparation and hitting positions",
+      "description": "Catalogue-labelled backhand-side stroke positions."
+    },
+    "static.hitting_positions": {
+      "name": "Hitting positions",
+      "description": "Stroke and contact preparations with no side asserted by the source label."
+    },
+    "static.lunge_reach_positions": {
+      "name": "Lunge and reach positions",
+      "description": "Low or extended reaching bases, including side-specific catalogue variants."
+    },
+    "static.follow_through_recovery": {
+      "name": "Follow-through and recovery positions",
+      "description": "Post-stroke holds and recovery positions."
+    },
+    "static.balance_holds": {
+      "name": "Balance holds",
+      "description": "Single-leg balance holds; currently no usable recording."
+    },
+    "dynamic.forehand_strokes": {
+      "name": "Forehand strokes",
+      "description": "Catalogue-labelled forehand swings; precise shot trajectory requires racket and ball evidence."
+    },
+    "dynamic.backhand_strokes": {
+      "name": "Backhand strokes",
+      "description": "Catalogue-labelled backhand swings; precise shot trajectory requires racket and ball evidence."
+    },
+    "dynamic.unspecified_strokes": {
+      "name": "Strokes with unspecified side",
+      "description": "Generic stroke labels do not imply forehand or backhand."
+    },
+    "dynamic.stroke_recovery": {
+      "name": "Stroke and recovery sequences",
+      "description": "A labelled stroke followed by recovery, without inferring tactical success."
+    },
+    "dynamic.lunges_reaches": {
+      "name": "Lunges and reaches",
+      "description": "Lunges and reaching motions, independent of attacking or defensive intent."
+    },
+    "dynamic.recovery": {
+      "name": "Recovery steps and return movements",
+      "description": "Recovery footwork; return-to-T labels depend on known court context."
+    },
+    "dynamic.forward_travel": {
+      "name": "Forward travel",
+      "description": "Source-labelled forward or front-court travel; direction is relative to the documented capture context."
+    },
+    "dynamic.backward_travel": {
+      "name": "Backward travel",
+      "description": "Source-labelled backward or back-court travel; direction is relative to the documented capture context."
+    },
+    "dynamic.lateral_travel": {
+      "name": "Lateral travel",
+      "description": "Source-labelled side-to-side travel and shuffles."
+    },
+    "dynamic.direction_changes": {
+      "name": "Footwork preparation and direction changes",
+      "description": "Split steps, pivots, starts, stops and changes of travel direction."
+    },
+    "dynamic.court_travel": {
+      "name": "Court travel and transitions",
+      "description": "Court travel with unspecified direction or a transition into a hitting position."
+    }
+  }
+}

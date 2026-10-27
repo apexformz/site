@@ -1,0 +1,15 @@
+{
+  "id": "left_knee_angle",
+  "kind": "angle_at",
+  "params": {
+    "a": "left_hip",
+    "b": "left_knee",
+    "c": "left_ankle",
+    "dims": "2d"
+  },
+  "version": "1.0.0",
+  "coordinate_system": "body_relative",
+  "view_applicability": "any",
+  "unit": "deg",
+  "description": "Interior knee angle"
+}

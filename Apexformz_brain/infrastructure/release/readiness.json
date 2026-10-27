@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "notice": "Deny by default. Engineering tests cannot approve scientific, coaching, privacy or physical-device evidence.",
+  "reviews": [
+    { "id": "athlete-held-out-evaluation", "status": "pending", "reviewer": null, "evidence_path": null, "evidence_sha256": null },
+    { "id": "coach-validation", "status": "pending", "reviewer": null, "evidence_path": null, "evidence_sha256": null },
+    { "id": "physical-device-validation", "status": "pending", "reviewer": null, "evidence_path": null, "evidence_sha256": null },
+    { "id": "privacy-review", "status": "pending", "reviewer": null, "evidence_path": null, "evidence_sha256": null },
+    { "id": "canary-and-rollback-review", "status": "pending", "reviewer": null, "evidence_path": null, "evidence_sha256": null }
+  ]
+}

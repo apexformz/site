@@ -1,0 +1,306 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "pickleball",
+  "rubric_version": "1.0.0",
+  "aggregation": {
+    "method": "weighted_mean_of_valid_criteria",
+    "minimum_coverage": 0.6
+  },
+  "features": [
+    {
+      "id": "left_knee_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "left_hip",
+        "b": "left_knee",
+        "c": "left_ankle",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "right_knee_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "right_hip",
+        "b": "right_knee",
+        "c": "right_ankle",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "max_knee_angle",
+      "kind": "max_of",
+      "params": {
+        "features": [
+          "left_knee_angle",
+          "right_knee_angle"
+        ]
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "lead_knee_angle",
+      "kind": "min_of",
+      "params": {
+        "features": [
+          "left_knee_angle",
+          "right_knee_angle"
+        ]
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "dominant_elbow_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "dominant_shoulder",
+        "b": "dominant_elbow",
+        "c": "dominant_wrist",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "dominant_elbow_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "dominant_elbow_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "dominant_arm_elevation",
+      "kind": "angle_at",
+      "params": {
+        "a": "dominant_hip",
+        "b": "dominant_shoulder",
+        "c": "dominant_elbow",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "trunk_lateral_lean",
+      "kind": "line_inclination",
+      "params": {
+        "from": [
+          "left_hip",
+          "right_hip"
+        ],
+        "to": [
+          "left_shoulder",
+          "right_shoulder"
+        ],
+        "reference": "vertical"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": [
+        "front",
+        "back"
+      ],
+      "unit": "deg"
+    },
+    {
+      "id": "shoulder_hip_twist",
+      "kind": "segment_orientation",
+      "params": {
+        "from": "left_shoulder",
+        "to": "right_shoulder",
+        "plane": "xz"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": [
+        "front",
+        "back"
+      ],
+      "unit": "deg",
+      "description": "Shoulder line orientation in the horizontal plane using model depth; depth ambiguity is a known failure mode"
+    },
+    {
+      "id": "stance_width_ratio",
+      "kind": "interjoint_distance_ratio",
+      "params": {
+        "a": "left_ankle",
+        "b": "right_ankle",
+        "c": "left_shoulder",
+        "d": "right_shoulder",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": [
+        "front",
+        "back"
+      ],
+      "unit": "ratio"
+    },
+    {
+      "id": "hip_centre_x_image",
+      "kind": "center_of_keypoints",
+      "params": {
+        "landmarks": [
+          "left_hip",
+          "right_hip"
+        ],
+        "axis": "x"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any",
+      "unit": "normalized"
+    },
+    {
+      "id": "hip_centre_y_image",
+      "kind": "center_of_keypoints",
+      "params": {
+        "landmarks": [
+          "left_hip",
+          "right_hip"
+        ],
+        "axis": "y"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any",
+      "unit": "normalized"
+    },
+    {
+      "id": "body_motion",
+      "kind": "stability_variability",
+      "params": {
+        "of": "hip_centre_x_image",
+        "window_ms": 600,
+        "stat": "std",
+        "min_samples": 4
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any"
+    },
+    {
+      "id": "hip_vertical_velocity",
+      "kind": "time_derivative",
+      "params": {
+        "of": "hip_centre_y_image",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any"
+    },
+    {
+      "id": "stroke_sequencing",
+      "kind": "relative_phase_timing",
+      "params": {
+        "features": [
+          "lead_knee_angle",
+          "dominant_elbow_angle"
+        ],
+        "window_ms": 1500
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "score"
+    }
+  ],
+  "criteria": [
+    {
+      "criterion_id": "pickleball.ready_position.stance_width",
+      "movement_id": "pickleball.ready_position",
+      "phase_ids": [
+        "hold"
+      ],
+      "required_features": [
+        "stance_width_ratio"
+      ],
+      "evaluator": {
+        "kind": "range",
+        "aggregate": "window_mean",
+        "range": [
+          1.0,
+          1.9
+        ],
+        "tolerance": 0.3
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "back"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "pickleball.ready_position.stance_width_out_of_range"
+    },
+    {
+      "criterion_id": "pickleball.ready_position.knee_flexion",
+      "movement_id": "pickleball.ready_position",
+      "phase_ids": [
+        "hold"
+      ],
+      "required_features": [
+        "max_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "max_value",
+        "aggregate": "window_mean",
+        "limit": 168,
+        "tolerance": 8
+      },
+      "technique_variant": null,
+      "view_constraints": "any",
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "pickleball.ready_position.knees_too_straight"
+    }
+  ]
+}

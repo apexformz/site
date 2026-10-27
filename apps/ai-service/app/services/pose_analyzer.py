@@ -13,7 +13,7 @@ def calculate_angle(p1: Dict[str, float], p2: Dict[str, float], p3: Dict[str, fl
     Calculate angle between 3 points (p2 is the vertex).
     Returns angle in degrees (0 to 180).
     """
-    if p1['score'] < 0.3 or p2['score'] < 0.3 or p3['score'] < 0.3:
+    if p1.get('score', 0) < 0.3 or p2.get('score', 0) < 0.3 or p3.get('score', 0) < 0.3:
         return -1.0 # Invalid/unseen angle
 
     radians = math.atan2(p3['y'] - p2['y'], p3['x'] - p2['x']) - \
@@ -123,7 +123,7 @@ def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = N
     
     # Optional: Combine with hand feedback if available
     # Hand feedback is now optional and can be appended to the issues list
-    if hands:
+    if hands and sport != 'squash':
         hand_feedback = analyze_hands(hands)
         for hf in hand_feedback:
             analysis_result['issues'].append({
@@ -138,5 +138,6 @@ def analyze_pose(sport: str, keypoints: List[Dict[str, Any]], pose_name: str = N
         "overall_severity": analysis_result['overall_severity'],
         "issues": analysis_result['issues'],
         "pose_name": pose_name,
-        "joint_angles": visible_angles
+        "joint_angles": visible_angles,
+        **({"analysis_mode": "experimental_static"} if sport == 'squash' else {})
     }

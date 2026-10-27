@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "pickleball",
+  "rule_sets": [
+    {
+      "id": "pickleball_official_rules",
+      "authority": "USA Pickleball / IFP (to be confirmed)",
+      "source": {
+        "source": "Official pickleball rulebook",
+        "ref": "TODO_REQUIRES_VALIDATION",
+        "status": "provisional"
+      },
+      "edition": null,
+      "effective_date": null,
+      "discipline": "pickleball",
+      "format": "singles_and_doubles",
+      "locale": "en",
+      "validation_status": "provisional",
+      "rules": [
+        {
+          "id": "two_bounce",
+          "kind": "official",
+          "text": "The two-bounce rule applies after the serve; adjudication requires ball bounce evidence.",
+          "value": null,
+          "adjudicable_from_pose": false,
+          "validation_status": "provisional"
+        },
+        {
+          "id": "non_volley_zone",
+          "kind": "official",
+          "text": "Volleying while touching the non-volley zone is a fault; requires foot and ball contact evidence.",
+          "value": null,
+          "adjudicable_from_pose": false,
+          "validation_status": "provisional"
+        },
+        {
+          "id": "serve_rules",
+          "kind": "official",
+          "text": "Serve motion and contact height are restricted; requires paddle and ball visibility.",
+          "value": null,
+          "adjudicable_from_pose": false,
+          "validation_status": "provisional"
+        },
+        {
+          "id": "scoring",
+          "kind": "official",
+          "text": "Side-out scoring variants are rule-edition specific.",
+          "value": null,
+          "adjudicable_from_pose": false,
+          "validation_status": "provisional"
+        },
+        {
+          "id": "training_ready_reset",
+          "kind": "coaching_heuristic",
+          "text": "Return to the ready position after each shot.",
+          "value": null,
+          "adjudicable_from_pose": true,
+          "validation_status": "provisional"
+        }
+      ]
+    }
+  ]
+}

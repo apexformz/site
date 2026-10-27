@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "taekwondo",
+  "items": [
+    {
+      "id": "hogu",
+      "object_class": "body_protector",
+      "description": "Chest protector",
+      "tracking": "none",
+      "adapter_capability": null,
+      "validation_status": "provisional"
+    },
+    {
+      "id": "pss",
+      "object_class": "sensor_system",
+      "description": "Protector and scoring system",
+      "tracking": "optional_adapter",
+      "adapter_capability": "optional_sensor",
+      "validation_status": "provisional",
+      "note": "Scoring events come from the PSS, never from pose."
+    }
+  ]
+}

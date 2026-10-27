@@ -1,0 +1,49 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build output
+dist/
+.next/
+out/
+*.tsbuildinfo
+apps/frontend/public/runtime/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# Private capture media, derived athlete poses, and local training runs
+data/
+ml/runs/
+*.pt
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Prisma
+apps/backend/prisma/migrations/dev.db*
+
+# Large model binaries are referenced, not committed
+*.onnx
+*.pth
+!apps/ai-service/app/data/st_gcn_taekwondo.pth
+*.task
+*.private.pem
+!sport-packs/**/models/README.md
+
+# Benchmark reports are kept as evidence (machine details are inside each report)

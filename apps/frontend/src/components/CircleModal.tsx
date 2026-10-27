@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Users, X, Plus, LogIn, Loader2, Share2, Copy, Check } from 'lucide-react';
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Users, X, ArrowRight, Loader2, Copy, Check, Plus } from 'lucide-react';
 import { api } from '@/lib/api';
 
 interface CircleModalProps {
@@ -14,224 +16,293 @@ export function CircleModal({ isOpen, onClose, onSuccess }: CircleModalProps) {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
   const [createdCircleId, setCreatedCircleId] = useState<string | null>(null);
-  const [isCopied, setIsCopied] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!inputValue.trim()) return;
-
+  const [copyStatus, setCopyStatus] = useState('');
+  const dialog = useRef<HTMLDialogElement>(null);
+  const reducedMotion = useReducedMotion();
+  useEffect(() => {
+    const element = dialog.current;
+    if (!element) return;
+    if (isOpen && !element.open) element.showModal();
+    if (!isOpen && element.open) element.close();
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return;
+      const controls = Array.from(
+        element.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((control) => control.getClientRects().length > 0);
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (!first) {
+        event.preventDefault();
+        element.focus();
+        return;
+      }
+      if (!element.contains(document.activeElement)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+      } else if (
+        event.shiftKey &&
+        (document.activeElement === first || document.activeElement === element)
+      ) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', trapFocus, true);
+    return () => {
+      document.removeEventListener('keydown', trapFocus, true);
+      document.body.style.overflow = previous;
+      if (element.open) element.close();
+    };
+  }, [isOpen]);
+  const handleClose = () => {
+    if (isLoading) return;
+    if (createdCircleId) onSuccess();
+    setInputValue('');
+    setError(null);
+    setCreatedCircleId(null);
+    setCopyStatus('');
+    onClose();
+  };
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!inputValue.trim() || isLoading) return;
     setIsLoading(true);
     setError(null);
-
     try {
       if (activeTab === 'create') {
-        const res = await api.post('/circles', { name: inputValue });
+        const res = await api.post('/circles', { name: inputValue.trim() });
         setCreatedCircleId(res.data.data.id);
         setInputValue('');
       } else {
-        await api.post('/circles/join', { circleId: inputValue });
+        await api.post('/circles/join', { circleId: inputValue.trim() });
         onSuccess();
-        handleClose();
+        setInputValue('');
+        setError(null);
+        onClose();
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Something went wrong');
+      setError(
+        err.response?.data?.error || 'Something went wrong. Please try again.',
+      );
     } finally {
       setIsLoading(false);
     }
   };
-
-  const handleCopy = () => {
-    if (createdCircleId) {
-      navigator.clipboard.writeText(createdCircleId);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
+  const handleCopy = async () => {
+    if (!createdCircleId) return;
+    try {
+      await navigator.clipboard.writeText(createdCircleId);
+      setCopyStatus('Invite code copied');
+    } catch {
+      setCopyStatus('Could not copy. Select the code to copy it manually.');
     }
   };
-
-  const handleFinishCreate = () => {
-    onSuccess();
-    handleClose();
-  };
-
-  const handleClose = () => {
-    setInputValue('');
-    setError(null);
-    setCreatedCircleId(null);
-    onClose();
-  };
-
-  if (!isOpen) return null;
-
   return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-        {/* Backdrop */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={handleClose}
-          className="absolute inset-0 bg-black/60 backdrop-blur-xl"
-        />
-
+    <dialog
+      ref={dialog}
+      aria-labelledby="circle-modal-title"
+      onCancel={(event) => {
+        event.preventDefault();
+        handleClose();
+      }}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) handleClose();
+      }}
+      className="m-auto w-[calc(100%-32px)] max-w-[520px] max-h-[90dvh] overflow-y-auto p-0 bg-transparent text-foreground backdrop:bg-background/70 backdrop:backdrop-blur-md rounded-[28px]"
+    >
+      {isOpen && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 30 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-[420px] bg-background/80 border border-white/5 rounded-[2rem] p-8 shadow-2xl overflow-hidden z-10"
-          style={{boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5), 0 0 100px -20px rgba(var(--primary), 0.15)'}}
+          initial={reducedMotion ? false : { opacity: 0, y: 16, scale: 0.975 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          className="relative border border-border rounded-[28px] bg-surface-raised overflow-hidden"
+          style={{ boxShadow: 'var(--shadow-card)' }}
         >
-          {/* Ambient Glows */}
-          <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-secondary/20 rounded-full blur-[100px] pointer-events-none" />
-
-          {/* Header */}
-          <div className="flex items-center justify-between mb-8 relative z-10">
-            <h2 className="text-2xl font-black uppercase italic tracking-wider flex items-center gap-3">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                {createdCircleId ? 'Circle Minted' : 'Streak Circle'}
+          <div className="flex items-start justify-between gap-5 p-6 sm:p-8 pb-0 sm:pb-0">
+            <div className="min-w-0">
+              <span className="clay-icon w-14 h-14 rounded-[20px] mb-5">
+                <Users size={25} strokeWidth={1.6} />
               </span>
-            </h2>
+              <h2
+                id="circle-modal-title"
+                className="text-2xl sm:text-3xl font-semibold tracking-tight"
+              >
+                {createdCircleId ? 'Circle created' : 'Training circle'}
+              </h2>
+              <p className="text-base leading-relaxed text-muted mt-3">
+                {createdCircleId
+                  ? 'Your team has a place to come together.'
+                  : 'Make progress with people who keep you going.'}
+              </p>
+            </div>
             <button
               onClick={handleClose}
-              className="p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 transform hover:scale-110"
+              disabled={isLoading}
+              aria-label="Close circle dialog"
+              className="p-3 shrink-0 rounded-2xl border border-border bg-surface text-muted hover:text-foreground hover:bg-surface-inset transition-colors disabled:opacity-30"
             >
-              <X className="w-5 h-5" />
+              <X size={19} />
             </button>
           </div>
-
-          {!createdCircleId ? (
-            <div className="relative z-10">
-              {/* Premium Pill Tabs */}
-              <div className="flex bg-black/50 rounded-full p-1.5 mb-8 border border-white/5 relative">
-                <button
-                  onClick={() => { setActiveTab('join'); setError(null); setInputValue(''); }}
-                  className={`flex-1 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-full transition-all duration-300 relative z-10 ${
-                    activeTab === 'join' ? 'text-white' : 'text-white/40 hover:text-white/70'
-                  }`}
+          <div className="p-6 sm:p-8">
+            {!createdCircleId ? (
+              <>
+                <div
+                  className="flex gap-1 bg-surface-inset border border-border rounded-2xl p-1.5 mb-7"
+                  aria-label="Circle action"
                 >
-                  Join Circle
-                </button>
-                <button
-                  onClick={() => { setActiveTab('create'); setError(null); setInputValue(''); }}
-                  className={`flex-1 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-full transition-all duration-300 relative z-10 ${
-                    activeTab === 'create' ? 'text-white' : 'text-white/40 hover:text-white/70'
-                  }`}
-                >
-                  Create New
-                </button>
-                {/* Active Pill Background indicator */}
-                <div 
-                  className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-gradient-to-r from-white/10 to-white/5 border border-white/10 rounded-full shadow-lg transition-transform duration-300 ease-out`}
-                  style={{ transform: activeTab === 'create' ? 'translateX(100%)' : 'translateX(0)' }}
-                />
-              </div>
-
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                <div className="flex flex-col gap-2 relative group">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-primary ml-1 transition-colors group-focus-within:text-white">
-                    {activeTab === 'join' ? 'Invite Code' : 'Circle Identity Name'}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      placeholder={activeTab === 'join' ? 'e.g. A1B2C3D4' : 'e.g. The Iron Sharpeners'}
-                      className="w-full bg-black/40 border border-white/10 rounded-2xl px-5 py-4 outline-none text-white placeholder-white/20 text-sm font-medium transition-all duration-300 focus:border-primary/50 focus:bg-black/60 shadow-inner"
-                    />
-                    {/* Animated Edge Glow on Focus */}
-                    <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-r from-primary to-secondary blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500" />
-                  </div>
-                  
-                  {error && (
-                    <motion.span 
-                      initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} 
-                      className="text-[10px] text-accent-danger font-bold uppercase tracking-widest px-2 mt-1 flex items-center gap-1"
+                  {(['join', 'create'] as const).map((tab) => (
+                    <button
+                      key={tab}
+                      type="button"
+                      disabled={isLoading}
+                      aria-pressed={activeTab === tab}
+                      onClick={() => {
+                        setActiveTab(tab);
+                        setError(null);
+                        setInputValue('');
+                      }}
+                      className={`relative flex-1 text-sm font-medium py-3 rounded-xl transition-colors ${activeTab === tab ? 'text-primary' : 'text-muted hover:text-foreground'}`}
                     >
-                      <X className="w-3 h-3" /> {error}
-                    </motion.span>
+                      {activeTab === tab && (
+                        <motion.span
+                          layoutId="circle-tab"
+                          className="absolute inset-0 rounded-xl border border-border bg-surface-raised shadow-sm"
+                          transition={
+                            reducedMotion
+                              ? { duration: 0 }
+                              : { type: 'spring', stiffness: 360, damping: 32 }
+                          }
+                        />
+                      )}
+                      <span className="relative">
+                        {tab === 'join' ? 'Join a circle' : 'Create a circle'}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <label
+                    htmlFor="circle-input"
+                    className="text-sm font-semibold text-foreground block mb-3"
+                  >
+                    {activeTab === 'join' ? 'Invite code' : 'Circle name'}
+                  </label>
+                  <input
+                    id="circle-input"
+                    required
+                    minLength={activeTab === 'join' ? 6 : 3}
+                    maxLength={activeTab === 'join' ? undefined : 30}
+                    disabled={isLoading}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder={
+                      activeTab === 'join'
+                        ? 'Paste your invite code'
+                        : 'e.g. Weekend training club'
+                    }
+                    className="w-full bg-surface-inset border border-border rounded-2xl px-4 py-4 text-base text-foreground placeholder:text-subtle outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all"
+                  />
+                  <p className="text-sm text-muted mt-3 leading-relaxed">
+                    {activeTab === 'join'
+                      ? 'Get an invite code from your circle leader.'
+                      : 'Choose a name your team will recognise, from 3 to 30 characters.'}
+                  </p>
+                  {error && (
+                    <p
+                      role="alert"
+                      className="text-sm text-accent-danger rounded-2xl border border-accent-danger/15 bg-accent-danger/5 p-4 mt-5 leading-relaxed"
+                    >
+                      {error}
+                    </p>
                   )}
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isLoading || !inputValue.trim()}
-                  className="group relative w-full overflow-hidden rounded-2xl p-px mt-2 disabled:opacity-50 disabled:cursor-not-allowed transform transition-transform active:scale-95"
-                >
-                  {/* Animated Border Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-70 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundSize: '200% auto', animation: 'aurora 3s linear infinite' }} />
-                  
-                  <div className="relative flex items-center justify-center gap-3 bg-background group-hover:bg-background/80 px-4 py-4 rounded-[15px] transition-colors duration-300">
+                  <button
+                    type="submit"
+                    disabled={isLoading || !inputValue.trim()}
+                    aria-busy={isLoading}
+                    className="btn-primary mt-7 w-full flex items-center justify-center gap-2.5 text-base disabled:opacity-40"
+                  >
                     {isLoading ? (
-                      <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                      <>
+                        <Loader2
+                          size={19}
+                          className="animate-spin motion-reduce:animate-none"
+                        />
+                        {activeTab === 'join' ? 'Joining…' : 'Creating…'}
+                      </>
                     ) : (
-                      activeTab === 'join' ? <LogIn className="w-4 h-4 text-primary" /> : <Plus className="w-4 h-4 text-primary" />
+                      <>
+                        {activeTab === 'join' ? 'Join circle' : 'Create circle'}
+                        {activeTab === 'join' ? (
+                          <ArrowRight size={19} />
+                        ) : (
+                          <Plus size={19} />
+                        )}
+                      </>
                     )}
-                    <span className="text-xs font-black uppercase tracking-[0.2em] text-white">
-                      {activeTab === 'join' ? 'INITIALIZE JOIN' : 'MINT CIRCLE'}
-                    </span>
-                  </div>
-                </button>
-              </form>
-            </div>
-          ) : (
-             <motion.div 
-               initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-               className="relative z-10 flex flex-col items-center justify-center text-center py-6 gap-6"
-             >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl animate-pulse" />
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary p-1 relative z-10">
-                     <div className="w-full h-full bg-background rounded-full flex items-center justify-center">
-                        <Check className="w-8 h-8 text-primary" />
-                     </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-black uppercase italic tracking-wider mb-2">Circle Live</h3>
-                  <p className="text-[11px] text-white/50 leading-relaxed max-w-[250px] mx-auto font-medium">
-                    Share this unique 8-character invite code with fellow athletes. Their performance will now sync directly to your HUD.
+                  </button>
+                </form>
+              </>
+            ) : (
+              <div>
+                <div className="rounded-2xl bg-primary/[.05] border border-primary/15 p-4 flex items-center gap-3 mb-7">
+                  <span className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    <Check size={20} />
+                  </span>
+                  <p className="text-sm text-muted leading-relaxed">
+                    All set. Share the invite code with your first teammate.
                   </p>
                 </div>
-                
-                <div 
-                  onClick={handleCopy}
-                  className="group cursor-pointer bg-black/60 hover:bg-black/80 border border-white/10 hover:border-primary/50 transition-all duration-300 rounded-2xl p-5 flex items-center justify-between gap-4 w-full relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="text-xs font-mono text-primary/80 group-hover:text-primary truncate relative z-10 select-none">
+                <p className="block text-sm font-semibold mb-3">
+                  Your invite code
+                </p>
+                <div className="flex items-center gap-3 rounded-2xl bg-surface-inset border border-border p-3.5">
+                  <code className="text-sm text-foreground break-all flex-1 select-all">
                     {createdCircleId}
-                  </span>
-                  <div className="p-2 bg-white/5 rounded-xl shrink-0 relative z-10 group-hover:bg-primary/20 transition-colors">
-                    {isCopied ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4 text-white/50 group-hover:text-primary transition-colors" />}
-                  </div>
+                  </code>
+                  <button
+                    type="button"
+                    onClick={handleCopy}
+                    aria-label="Copy invite code"
+                    className="shrink-0 p-3 rounded-xl border border-border bg-surface-raised hover:bg-primary/5 text-primary"
+                  >
+                    {copyStatus === 'Invite code copied' ? (
+                      <Check size={18} />
+                    ) : (
+                      <Copy size={18} />
+                    )}
+                  </button>
                 </div>
-
-                {isCopied && <span className="text-[10px] font-bold text-primary tracking-widest uppercase absolute bottom-24">Token Copied</span>}
-                
-                <button
-                  onClick={handleFinishCreate}
-                  className="w-full py-4 mt-2 text-xs font-black uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors"
+                <p
+                  aria-live="polite"
+                  className="text-sm text-primary min-h-5 mt-3"
                 >
-                  RETURN TO DASHBOARD
+                  {copyStatus}
+                </p>
+                <p className="text-sm text-muted leading-relaxed mt-5">
+                  Teammates can enter this code under “Join a circle” on the
+                  Circles page.
+                </p>
+                <button
+                  onClick={handleClose}
+                  className="btn-primary flex items-center justify-center gap-2.5 w-full mt-7 text-base"
+                >
+                  Done <ArrowRight size={19} />
                 </button>
-             </motion.div>
-          )}
+              </div>
+            )}
+          </div>
         </motion.div>
-
-        <style jsx>{`
-          @keyframes aurora {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-          }
-        `}</style>
-      </div>
-    </AnimatePresence>
+      )}
+    </dialog>
   );
 }

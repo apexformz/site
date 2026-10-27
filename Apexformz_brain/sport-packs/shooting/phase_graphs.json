@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "shooting",
+  "graphs": [
+    {
+      "id": "pg.shooting.setup_stance", "movement_id": "shooting.setup_stance", "kind": "static_hold", "window_ms": 2000, "confirm_hold_ms": 500,
+      "phases": [
+        { "id": "hold", "name": "Setup hold", "kind": "hold", "contact_evidence": "none", "min_duration_ms": 500, "max_duration_ms": null,
+          "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.006, "validation_status": "provisional" }, { "feature": "dominant_arm_elevation", "op": "gt", "value": 70, "validation_status": "provisional" } ],
+          "hold_ms": 500, "cue_allowed": true }
+      ],
+      "edges": [], "initial": "hold", "terminal": ["hold"], "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: motion threshold and arm elevation are seeds for the first vertical slice."
+    },
+    {
+      "id": "pg.shooting.aiming_hold", "movement_id": "shooting.aiming_hold", "kind": "static_hold", "window_ms": 3000, "confirm_hold_ms": 800,
+      "phases": [
+        { "id": "hold", "name": "Aiming hold", "kind": "hold", "contact_evidence": "none", "min_duration_ms": 800, "max_duration_ms": null,
+          "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.004, "validation_status": "provisional" }, { "feature": "dominant_arm_elevation", "op": "gt", "value": 75, "validation_status": "provisional" } ],
+          "hold_ms": 800, "cue_allowed": false }
+      ],
+      "edges": [], "initial": "hold", "terminal": ["hold"], "validation_status": "provisional", "note": "Cues are suppressed during the hold (attention budget); feedback is delivered after the hold ends."
+    },
+    {
+      "id": "pg.shooting.trigger_phase_proxy", "movement_id": "shooting.trigger_phase_proxy", "kind": "dynamic_sequence", "window_ms": 4000, "abort_timeout_ms": 8000, "confirm_hold_ms": 100,
+      "phases": [
+        { "id": "holding", "name": "Holding", "kind": "hold", "contact_evidence": "none", "min_duration_ms": 500, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.004, "validation_status": "provisional" }, { "feature": "dominant_arm_elevation", "op": "gt", "value": 75, "validation_status": "provisional" } ], "hold_ms": 500, "cue_allowed": false },
+        { "id": "trigger_proxy", "name": "Trigger proxy (unsensed)", "kind": "contact", "contact_evidence": "unobserved", "min_duration_ms": 30, "max_duration_ms": 1500, "enter": [ { "feature": "dominant_wrist_velocity", "op": "abs_gt", "value": 0.06, "validation_status": "provisional" } ], "hold_ms": 30, "cue_allowed": false },
+        { "id": "follow_through", "name": "Follow through", "kind": "follow_through", "contact_evidence": "none", "min_duration_ms": 300, "max_duration_ms": 4000, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.006, "validation_status": "provisional" } ], "hold_ms": 300, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "holding", "to": "trigger_proxy" }, { "from": "trigger_proxy", "to": "follow_through" }, { "from": "follow_through", "to": "holding" } ],
+      "initial": "holding", "terminal": ["follow_through"], "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: the trigger event itself is only confirmed when a sensed signal is integrated; this graph only labels a proxy."
+    },
+    {
+      "id": "pg.shooting.follow_through_hold", "movement_id": "shooting.follow_through_hold", "kind": "dynamic_sequence", "window_ms": 4000, "abort_timeout_ms": 8000, "confirm_hold_ms": 100,
+      "phases": [
+        { "id": "post_shot", "name": "Post shot", "kind": "preparation", "contact_evidence": "none", "min_duration_ms": 100, "enter": [ { "feature": "dominant_arm_elevation", "op": "gt", "value": 75, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": false },
+        { "id": "hold", "name": "Follow-through hold", "kind": "hold", "contact_evidence": "none", "min_duration_ms": 500, "max_duration_ms": 5000, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.005, "validation_status": "provisional" } ], "hold_ms": 500, "cue_allowed": false },
+        { "id": "lower", "name": "Lower", "kind": "recovery", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 4000, "enter": [ { "feature": "dominant_arm_elevation", "op": "lt", "value": 60, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "post_shot", "to": "hold" }, { "from": "hold", "to": "lower" }, { "from": "lower", "to": "post_shot" } ],
+      "initial": "post_shot", "terminal": ["lower"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: generic seed graph."
+    },
+    {
+      "id": "pg.shooting.recovery_reset", "movement_id": "shooting.recovery_reset", "kind": "dynamic_sequence", "window_ms": 4000, "abort_timeout_ms": 10000, "confirm_hold_ms": 100,
+      "phases": [
+        { "id": "raised", "name": "Arm raised", "kind": "preparation", "contact_evidence": "none", "min_duration_ms": 100, "enter": [ { "feature": "dominant_arm_elevation", "op": "gt", "value": 70, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": false },
+        { "id": "lowering", "name": "Lowering", "kind": "action", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 4000, "enter": [ { "feature": "dominant_arm_elevation", "op": "lt", "value": 60, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": false },
+        { "id": "reset", "name": "Reset", "kind": "rest", "contact_evidence": "none", "min_duration_ms": 300, "max_duration_ms": null, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.006, "validation_status": "provisional" }, { "feature": "dominant_arm_elevation", "op": "lt", "value": 40, "validation_status": "provisional" } ], "hold_ms": 300, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "raised", "to": "lowering" }, { "from": "lowering", "to": "reset" }, { "from": "reset", "to": "raised" } ],
+      "initial": "raised", "terminal": ["reset"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: generic seed graph."
+    }
+  ]
+}

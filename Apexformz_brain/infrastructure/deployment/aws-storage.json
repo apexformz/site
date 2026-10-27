@@ -1,0 +1,21 @@
+{
+  "account_id": "350445709199",
+  "region": "ap-southeast-2",
+  "bucket": "apexformz-brain-350445709199-f075de79",
+  "log_bucket": "apexformz-brain-350445709199-f075de79-logs",
+  "status": "ready",
+  "created": [
+    "apexformz-brain-350445709199-f075de79",
+    "apexformz-brain-350445709199-f075de79-logs"
+  ],
+  "alarms": [
+    "apexformz-brain-350445709199-f075de79-Healthy",
+    "apexformz-brain-350445709199-f075de79-QueueDepth",
+    "apexformz-brain-350445709199-f075de79-ExpiredLeases",
+    "apexformz-brain-350445709199-f075de79-BackupAgeHours",
+    "apexformz-brain-350445709199-f075de79-PendingDeletions"
+  ],
+  "deletion_ledger_retention": "indefinite; required when restoring older backups",
+  "cloudtrail_data_events": "not enabled; configure account audit trail before public production",
+  "runtime_role": "arn:aws:iam::350445709199:role/ApexFormzRuntime-f075de79"
+}

@@ -1,55 +1,53 @@
-"use client";
-
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import { Sport } from '@smartcoach/types';
-import { motion } from 'framer-motion';
+import { Focus } from 'lucide-react';
 
-interface PostureReferenceProps {
+export function PostureReference({
+  sport,
+  poseName,
+}: {
   sport: Sport;
   poseName?: string;
-}
-
-export const PostureReference: React.FC<PostureReferenceProps> = ({ sport, poseName }) => {
-  // Try specific pose first, fall back to generic sport
-  const imageUrl = poseName ? `/postures/${sport}_${poseName}.png` : `/postures/${sport}.png`;
-
+}) {
+  const [fallback, setFallback] = useState(0);
+  useEffect(() => setFallback(0), [sport, poseName]);
+  const imageUrl =
+    poseName && fallback === 0
+      ? `/postures/${sport}_${poseName}.${sport === 'squash' ? 'svg' : 'png'}`
+      : `/postures/${sport}.${sport === 'squash' ? 'svg' : 'png'}`;
   return (
-    <div className="flex flex-col gap-3 mt-4">
-      <div className="flex flex-col gap-1 px-1">
-        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Target Posture Reference</h3>
-        <div className="h-px w-8 bg-primary/40" />
+    <div className="glass-card overflow-hidden" style={{ borderRadius: 28 }}>
+      <div className="px-6 pt-6 flex items-center gap-2.5 text-base font-semibold text-foreground">
+        <Focus className="w-5 h-5 text-primary" /> Movement reference
       </div>
-
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="glass-card overflow-hidden border-primary/20 bg-black/40 group relative"
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 opacity-60 pointer-events-none" />
-        
-        <img 
-          src={imageUrl} 
-          alt={`Perfect ${sport} posture blueprint`}
-          className="w-full aspect-[4/3] object-cover mix-blend-screen opacity-90 group-hover:scale-110 transition-transform duration-700"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://placehold.co/400x300/black/cyan?text=Reference+Loading';
-          }}
-        />
-
-        <div className="absolute bottom-3 left-3 z-20">
-          <div className="flex flex-col">
-            <span className="text-[8px] font-bold text-primary uppercase tracking-[0.3em]">Perfect Form</span>
-            <span className="text-[10px] font-black italic text-white uppercase tracking-tight">Technical Blueprint</span>
+      <div className="relative m-4 rounded-[22px] bg-surface-inset h-64 flex items-center justify-center">
+        {fallback < 2 ? (
+          <img
+            src={imageUrl}
+            alt={`${(poseName || sport).replace(/_/g, ' ')} posture reference`}
+            className="w-full h-full object-contain p-4 rounded-2xl"
+            onError={() => setFallback((current) => current + 1)}
+          />
+        ) : (
+          <div className="text-center p-6">
+            <Focus className="w-14 h-14 text-primary/50 mx-auto mb-4 stroke-1" />
+            <p className="text-sm text-muted leading-relaxed">
+              Reference unavailable. Follow the live coaching cues.
+            </p>
           </div>
-        </div>
-
-        {/* Scanline Effect */}
-        <div className="absolute inset-0 z-15 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] opacity-20" />
-      </motion.div>
-      
-      <p className="px-1 text-[9px] text-white/30 leading-relaxed font-medium uppercase tracking-wider italic">
-        * Match your skeleton to the blueprints above for maximum accuracy.
-      </p>
+        )}
+      </div>
+      <div className="px-6 pb-7">
+        <p className="text-base font-semibold capitalize">
+          {(poseName || sport).replace(/_/g, ' ')}
+        </p>
+        <p className="text-sm text-muted leading-relaxed mt-3">
+          {sport === 'squash'
+            ? 'Illustrative position guide, not an expert capture. Either side may be used; racket position is not assessed.'
+            : 'Use this as a guide for your stance and alignment.'}
+        </p>
+      </div>
     </div>
   );
-};
+}

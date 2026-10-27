@@ -1,0 +1,1684 @@
+{
+ "schema_version": "1.0.0",
+ "sport_id": "squash",
+ "version": "1.1.0",
+ "levels": [
+  "family",
+  "group",
+  "movement"
+ ],
+ "method": {
+  "description": "Research-constrained catalogue action/side families, then Ward close-group clustering on a classical-MDS embedding of 0.6 x same-view pose distance + 0.4 x label distance within each family; group count chosen by silhouette.",
+  "pose_weight": 0.6,
+  "semantic_family_source": "ml/sports/recognition_taxonomy_sources.json",
+  "source_catalog": {
+   "uri": "s3://apexformz-datacapture-prod-350445709199-ap-southeast-2-labels/catalog/1.0.0.json",
+   "sha256": "231f7c9a203221d5ae4953aa9d5b2b25b811f92bcf6964fe85ed8092d1426fb9",
+   "subset": "sport_id == squash",
+   "copied_at": "2026-10-25"
+  },
+  "datasets": [
+   "data/squash/dataset_static_pose.json",
+   "data/squash/dataset_dynamic_movement.json"
+  ],
+  "dataset_sha256": {
+   "dataset_static_pose.json": "0f82e4534248c4fb4641d2eb0a6a8a0073e39a185c6cbba0366d8d57f8357c71",
+   "dataset_dynamic_movement.json": "f3c9f45b2ed281df4c090169403c85d729cde67f5ca490b27736aef763ce53dc"
+  },
+  "descriptor_policy": "identity_only and tracker_root_v1 continuity; longest contiguous segment; pairwise jointly observed channels (>=60%); same-view comparisons",
+  "athletes": 1,
+  "validation_status": "provisional",
+  "note": "TODO_REQUIRES_VALIDATION: one expert athlete; re-run on new athletes and confirm with the coach panel."
+ },
+ "families": [
+  {
+   "id": "squash.family.static.ready_stances",
+   "name": "Ready and standing positions",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Ready and standing positions",
+   "description": "Ready, neutral and court-position stances; tactical intent is not inferred from body pose.",
+   "medoid": "squash.static.0005",
+   "type": "static",
+   "members": [
+    "squash.static.0001",
+    "squash.static.0002",
+    "squash.static.0003",
+    "squash.static.0004",
+    "squash.static.0005",
+    "squash.static.0006",
+    "squash.static.0007",
+    "squash.static.0013",
+    "squash.static.0014",
+    "squash.static.0015",
+    "squash.static.0016",
+    "squash.static.0017",
+    "squash.static.0018",
+    "squash.static.0045",
+    "squash.static.0051",
+    "squash.static.0053",
+    "squash.static.0054",
+    "squash.static.0056",
+    "squash.static.0058",
+    "squash.static.0059",
+    "squash.static.0060",
+    "squash.static.0062",
+    "squash.static.0066",
+    "squash.static.0057"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.static.ready_stances.semi_open_stance_and_similar",
+     "name": "Semi-open stance and similar",
+     "members": [
+      "squash.static.0001",
+      "squash.static.0002",
+      "squash.static.0005",
+      "squash.static.0006",
+      "squash.static.0007",
+      "squash.static.0013",
+      "squash.static.0014",
+      "squash.static.0016"
+     ],
+     "pose_within_mean": 0.4821
+    },
+    {
+     "id": "squash.group.static.ready_stances.back_court_stance_and_similar",
+     "name": "Back-court stance and similar",
+     "members": [
+      "squash.static.0003",
+      "squash.static.0004",
+      "squash.static.0015",
+      "squash.static.0017",
+      "squash.static.0018",
+      "squash.static.0066"
+     ],
+     "pose_within_mean": 0.7327
+    },
+    {
+     "id": "squash.group.static.ready_stances.front_court_ready_stance_and_similar",
+     "name": "Front-court ready stance and similar",
+     "members": [
+      "squash.static.0045",
+      "squash.static.0062"
+     ],
+     "pose_within_mean": 0.7405
+    },
+    {
+     "id": "squash.group.static.ready_stances.t_position_ready_stance_and_similar",
+     "name": "T-position ready stance and similar",
+     "members": [
+      "squash.static.0051",
+      "squash.static.0056",
+      "squash.static.0058",
+      "squash.static.0059",
+      "squash.static.0060"
+     ],
+     "pose_within_mean": 0.5997
+    },
+    {
+     "id": "squash.group.static.ready_stances.deep_back_court_stance_and_similar",
+     "name": "Deep back-court stance and similar",
+     "members": [
+      "squash.static.0053",
+      "squash.static.0054"
+     ],
+     "pose_within_mean": 1.1014
+    },
+    {
+     "id": "squash.group.static.ready_stances.uncaptured_0057",
+     "name": "T-position athletic stance",
+     "members": [
+      "squash.static.0057"
+     ],
+     "pose_within_mean": null,
+     "data_status": "no_usable_capture"
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 0.9836,
+    "pose_between_mean": 1.2787,
+    "pose_cohesion_ratio": 0.7692,
+    "label_profile": {
+     "actions": {
+      "stance": 23,
+      "travel": 1
+     },
+     "side": {
+      "neutral": 23
+     },
+     "zone": {
+      "front": 2,
+      "mid": 1,
+      "back": 4,
+      "t": 3
+     },
+     "intent": {
+      "neutral": 15,
+      "defend": 5,
+      "attack": 3
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 162.2,
+     "trunk_inclination_deg": 4.1,
+     "stance_width_torso": 0.78,
+     "racket_hand_above_shoulder_torso": -0.19
+    },
+    "source_categories": {
+     "General": 13,
+     "Front-Court Movement": 1,
+     "Back-Court Movement": 3,
+     "T-Position Movement": 3,
+     "Defensive Squash Movements": 2,
+     "Attacking Squash Movements": 1
+    }
+   }
+  },
+  {
+   "id": "squash.family.static.forehand_positions",
+   "name": "Forehand preparation and hitting positions",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Forehand preparation and hitting positions",
+   "description": "Catalogue-labelled forehand-side stroke positions.",
+   "medoid": "squash.static.0026",
+   "type": "static",
+   "members": [
+    "squash.static.0008",
+    "squash.static.0010",
+    "squash.static.0026",
+    "squash.static.0027",
+    "squash.static.0067"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.static.forehand_positions.open_forehand_stance_and_similar",
+     "name": "Open forehand stance and similar",
+     "members": [
+      "squash.static.0008",
+      "squash.static.0010",
+      "squash.static.0026",
+      "squash.static.0067"
+     ],
+     "pose_within_mean": 0.7113
+    },
+    {
+     "id": "squash.group.static.forehand_positions.closed_forehand_stance",
+     "name": "Closed forehand stance",
+     "members": [
+      "squash.static.0027"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 0.8658,
+    "pose_between_mean": 1.1299,
+    "pose_cohesion_ratio": 0.7663,
+    "label_profile": {
+     "actions": {
+      "stance": 5,
+      "swing": 1
+     },
+     "side": {
+      "forehand": 5
+     },
+     "zone": {},
+     "intent": {
+      "neutral": 4,
+      "attack": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 163.5,
+     "trunk_inclination_deg": 1.8,
+     "stance_width_torso": 0.92,
+     "racket_hand_above_shoulder_torso": -0.35
+    },
+    "source_categories": {
+     "General": 2,
+     "Forehand Movements": 2,
+     "Attacking Squash Movements": 1
+    }
+   }
+  },
+  {
+   "id": "squash.family.static.backhand_positions",
+   "name": "Backhand preparation and hitting positions",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Backhand preparation and hitting positions",
+   "description": "Catalogue-labelled backhand-side stroke positions.",
+   "medoid": "squash.static.0031",
+   "type": "static",
+   "members": [
+    "squash.static.0009",
+    "squash.static.0011",
+    "squash.static.0031",
+    "squash.static.0068"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.static.backhand_positions.backhand_stance_and_similar",
+     "name": "Backhand stance and similar",
+     "members": [
+      "squash.static.0009",
+      "squash.static.0031",
+      "squash.static.0068"
+     ],
+     "pose_within_mean": 0.3112
+    },
+    {
+     "id": "squash.group.static.backhand_positions.backhand_hitting_stance",
+     "name": "Backhand hitting stance",
+     "members": [
+      "squash.static.0011"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 0.4786,
+    "pose_between_mean": 1.3258,
+    "pose_cohesion_ratio": 0.361,
+    "label_profile": {
+     "actions": {
+      "stance": 4,
+      "swing": 1
+     },
+     "side": {
+      "backhand": 4
+     },
+     "zone": {},
+     "intent": {
+      "neutral": 3,
+      "attack": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 161.3,
+     "trunk_inclination_deg": 3.9,
+     "stance_width_torso": 0.93,
+     "racket_hand_above_shoulder_torso": -0.33
+    },
+    "source_categories": {
+     "General": 2,
+     "Backhand Movements": 1,
+     "Attacking Squash Movements": 1
+    }
+   }
+  },
+  {
+   "id": "squash.family.static.hitting_positions",
+   "name": "Hitting positions",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Hitting positions",
+   "description": "Stroke and contact preparations with no side asserted by the source label.",
+   "medoid": "squash.static.0041",
+   "type": "static",
+   "members": [
+    "squash.static.0012",
+    "squash.static.0035",
+    "squash.static.0036",
+    "squash.static.0037",
+    "squash.static.0038",
+    "squash.static.0039",
+    "squash.static.0040",
+    "squash.static.0041",
+    "squash.static.0042",
+    "squash.static.0043",
+    "squash.static.0044",
+    "squash.static.0049",
+    "squash.static.0052",
+    "squash.static.0064",
+    "squash.static.0069"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.static.hitting_positions.volley_hitting_pose_and_similar",
+     "name": "Volley hitting pose and similar",
+     "members": [
+      "squash.static.0012",
+      "squash.static.0039",
+      "squash.static.0040",
+      "squash.static.0044",
+      "squash.static.0069"
+     ],
+     "pose_within_mean": 0.7273
+    },
+    {
+     "id": "squash.group.static.hitting_positions.straight_drive_hitting_pose_and_similar",
+     "name": "Straight-drive hitting pose and similar",
+     "members": [
+      "squash.static.0035",
+      "squash.static.0037",
+      "squash.static.0041",
+      "squash.static.0042",
+      "squash.static.0043",
+      "squash.static.0049",
+      "squash.static.0052"
+     ],
+     "pose_within_mean": 0.8398
+    },
+    {
+     "id": "squash.group.static.hitting_positions.drop_shot_hitting_pose_and_similar",
+     "name": "Drop-shot hitting pose and similar",
+     "members": [
+      "squash.static.0036",
+      "squash.static.0038"
+     ],
+     "pose_within_mean": 0.6397
+    },
+    {
+     "id": "squash.group.static.hitting_positions.defensive_hitting_position",
+     "name": "Defensive hitting position",
+     "members": [
+      "squash.static.0064"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.2351,
+    "pose_between_mean": 1.3549,
+    "pose_cohesion_ratio": 0.9116,
+    "label_profile": {
+     "actions": {
+      "swing": 15,
+      "stance": 15
+     },
+     "side": {
+      "neutral": 15
+     },
+     "zone": {
+      "front": 1,
+      "back": 1
+     },
+     "intent": {
+      "neutral": 10,
+      "attack": 3,
+      "defend": 2
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 152.4,
+     "trunk_inclination_deg": 3.0,
+     "stance_width_torso": 1.11,
+     "racket_hand_above_shoulder_torso": 0.18
+    },
+    "source_categories": {
+     "General": 1,
+     "Squash Shot-Specific Poses": 10,
+     "Front-Court Movement": 1,
+     "Back-Court Movement": 1,
+     "Defensive Squash Movements": 1,
+     "Attacking Squash Movements": 1
+    }
+   }
+  },
+  {
+   "id": "squash.family.static.lunge_reach_positions",
+   "name": "Lunge and reach positions",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Lunge and reach positions",
+   "description": "Low or extended reaching bases, including side-specific catalogue variants.",
+   "medoid": "squash.static.0028",
+   "type": "static",
+   "members": [
+    "squash.static.0019",
+    "squash.static.0020",
+    "squash.static.0021",
+    "squash.static.0022",
+    "squash.static.0028",
+    "squash.static.0029",
+    "squash.static.0032",
+    "squash.static.0033",
+    "squash.static.0046",
+    "squash.static.0047",
+    "squash.static.0048",
+    "squash.static.0061",
+    "squash.static.0063",
+    "squash.static.0070"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.static.lunge_reach_positions.forehand_lunge_position_and_similar",
+     "name": "Forehand lunge position and similar",
+     "members": [
+      "squash.static.0019",
+      "squash.static.0020",
+      "squash.static.0021",
+      "squash.static.0022",
+      "squash.static.0028",
+      "squash.static.0032",
+      "squash.static.0070"
+     ],
+     "pose_within_mean": 1.2229
+    },
+    {
+     "id": "squash.group.static.lunge_reach_positions.extended_forehand_reach_and_similar",
+     "name": "Extended forehand reach and similar",
+     "members": [
+      "squash.static.0029",
+      "squash.static.0048"
+     ],
+     "pose_within_mean": 1.1407
+    },
+    {
+     "id": "squash.group.static.lunge_reach_positions.extended_backhand_reach",
+     "name": "Extended backhand reach",
+     "members": [
+      "squash.static.0033"
+     ],
+     "pose_within_mean": null
+    },
+    {
+     "id": "squash.group.static.lunge_reach_positions.front_court_lunge_and_similar",
+     "name": "Front-court lunge and similar",
+     "members": [
+      "squash.static.0046",
+      "squash.static.0047",
+      "squash.static.0061",
+      "squash.static.0063"
+     ],
+     "pose_within_mean": 1.2281
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.6009,
+    "pose_between_mean": 1.5536,
+    "pose_cohesion_ratio": 1.0305,
+    "label_profile": {
+     "actions": {
+      "lunge": 9,
+      "stance": 8,
+      "reach": 5
+     },
+     "side": {
+      "neutral": 10,
+      "forehand": 2,
+      "backhand": 2
+     },
+     "zone": {
+      "front": 2
+     },
+     "intent": {
+      "neutral": 11,
+      "defend": 2,
+      "attack": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 145.7,
+     "trunk_inclination_deg": 19.0,
+     "stance_width_torso": 1.78,
+     "racket_hand_above_shoulder_torso": -0.14
+    },
+    "source_categories": {
+     "General": 4,
+     "Forehand Movements": 2,
+     "Backhand Movements": 2,
+     "Front-Court Movement": 3,
+     "Defensive Squash Movements": 2,
+     "Attacking Squash Movements": 1
+    }
+   }
+  },
+  {
+   "id": "squash.family.static.follow_through_recovery",
+   "name": "Follow-through and recovery positions",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Follow-through and recovery positions",
+   "description": "Post-stroke holds and recovery positions.",
+   "medoid": "squash.static.0025",
+   "type": "static",
+   "members": [
+    "squash.static.0024",
+    "squash.static.0025",
+    "squash.static.0030",
+    "squash.static.0034",
+    "squash.static.0050",
+    "squash.static.0055",
+    "squash.static.0065"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.static.follow_through_recovery.recovery_stance_and_similar",
+     "name": "Recovery stance and similar",
+     "members": [
+      "squash.static.0024",
+      "squash.static.0050",
+      "squash.static.0065"
+     ],
+     "pose_within_mean": 0.9891
+    },
+    {
+     "id": "squash.group.static.follow_through_recovery.follow_through_position_and_similar",
+     "name": "Follow-through position and similar",
+     "members": [
+      "squash.static.0025",
+      "squash.static.0030",
+      "squash.static.0034",
+      "squash.static.0055"
+     ],
+     "pose_within_mean": 0.9259
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.0206,
+    "pose_between_mean": 1.2537,
+    "pose_cohesion_ratio": 0.8141,
+    "label_profile": {
+     "actions": {
+      "recovery": 3,
+      "stance": 4,
+      "follow_through": 4
+     },
+     "side": {
+      "neutral": 5,
+      "forehand": 1,
+      "backhand": 1
+     },
+     "zone": {
+      "front": 1,
+      "back": 1
+     },
+     "intent": {
+      "neutral": 6,
+      "defend": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 161.9,
+     "trunk_inclination_deg": 10.5,
+     "stance_width_torso": 0.78,
+     "racket_hand_above_shoulder_torso": -0.04
+    },
+    "source_categories": {
+     "General": 2,
+     "Forehand Movements": 1,
+     "Backhand Movements": 1,
+     "Front-Court Movement": 1,
+     "Back-Court Movement": 1,
+     "Defensive Squash Movements": 1
+    }
+   }
+  },
+  {
+   "id": "squash.family.static.balance_holds",
+   "name": "Balance holds",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Balance holds",
+   "description": "Single-leg balance holds; currently no usable recording.",
+   "medoid": null,
+   "type": "static",
+   "members": [
+    "squash.static.0023"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.static.balance_holds.uncaptured_0023",
+     "name": "One-leg balance stance",
+     "members": [
+      "squash.static.0023"
+     ],
+     "pose_within_mean": null,
+     "data_status": "no_usable_capture"
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": null,
+    "pose_between_mean": null,
+    "pose_cohesion_ratio": null,
+    "source": "catalogue_only"
+   }
+  },
+  {
+   "id": "squash.family.dynamic.forward_travel",
+   "name": "Forward travel",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Forward travel",
+   "description": "Source-labelled forward or front-court travel; direction is relative to the documented capture context.",
+   "medoid": "squash.dynamic.0001",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0001",
+    "squash.dynamic.0005",
+    "squash.dynamic.0007",
+    "squash.dynamic.0017",
+    "squash.dynamic.0060",
+    "squash.dynamic.0076",
+    "squash.dynamic.0090"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.forward_travel.forward_movement_and_similar",
+     "name": "Forward movement and similar",
+     "members": [
+      "squash.dynamic.0001",
+      "squash.dynamic.0005",
+      "squash.dynamic.0007",
+      "squash.dynamic.0017",
+      "squash.dynamic.0060",
+      "squash.dynamic.0076"
+     ],
+     "pose_within_mean": 1.0604
+    },
+    {
+     "id": "squash.group.dynamic.forward_travel.forward_attacking_movement",
+     "name": "Forward attacking movement",
+     "members": [
+      "squash.dynamic.0090"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.1704,
+    "pose_between_mean": 1.2775,
+    "pose_cohesion_ratio": 0.9162,
+    "label_profile": {
+     "actions": {
+      "travel": 7
+     },
+     "side": {
+      "neutral": 7
+     },
+     "zone": {
+      "front": 3,
+      "back": 1,
+      "t": 1
+     },
+     "intent": {
+      "neutral": 6,
+      "attack": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 155.4,
+     "trunk_inclination_deg": 1.5,
+     "stance_width_torso": 0.76,
+     "racket_hand_above_shoulder_torso": -0.38,
+     "travel_path_torso": 5.41,
+     "peak_speed_torso_per_s": 6.08,
+     "knee_range_deg": 68.5,
+     "elbow_range_deg": 96.2
+    },
+    "source_categories": {
+     "Court Movement": 4,
+     "Front-Court Movement": 1,
+     "T-Position Movement": 1,
+     "Attacking Squash Movements": 1
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.backward_travel",
+   "name": "Backward travel",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Backward travel",
+   "description": "Source-labelled backward or back-court travel; direction is relative to the documented capture context.",
+   "medoid": "squash.dynamic.0016",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0002",
+    "squash.dynamic.0008",
+    "squash.dynamic.0016",
+    "squash.dynamic.0066",
+    "squash.dynamic.0077",
+    "squash.dynamic.0082"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.backward_travel.backward_movement_and_similar",
+     "name": "Backward movement and similar",
+     "members": [
+      "squash.dynamic.0002",
+      "squash.dynamic.0008"
+     ],
+     "pose_within_mean": 0.9812
+    },
+    {
+     "id": "squash.group.dynamic.backward_travel.movement_toward_back_wall_and_similar",
+     "name": "Movement toward back wall and similar",
+     "members": [
+      "squash.dynamic.0016",
+      "squash.dynamic.0066",
+      "squash.dynamic.0077"
+     ],
+     "pose_within_mean": 0.7063
+    },
+    {
+     "id": "squash.group.dynamic.backward_travel.uncaptured_0082",
+     "name": "Defensive retreat",
+     "members": [
+      "squash.dynamic.0082"
+     ],
+     "pose_within_mean": null,
+     "data_status": "no_usable_capture"
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 0.9585,
+    "pose_between_mean": 1.2486,
+    "pose_cohesion_ratio": 0.7676,
+    "label_profile": {
+     "actions": {
+      "travel": 5
+     },
+     "side": {
+      "neutral": 5
+     },
+     "zone": {
+      "front": 1,
+      "back": 3,
+      "t": 1
+     },
+     "intent": {
+      "neutral": 5
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 154.2,
+     "trunk_inclination_deg": 2.0,
+     "stance_width_torso": 0.72,
+     "racket_hand_above_shoulder_torso": -0.43,
+     "travel_path_torso": 5.46,
+     "peak_speed_torso_per_s": 4.63,
+     "knee_range_deg": 73.0,
+     "elbow_range_deg": 106.6
+    },
+    "source_categories": {
+     "Court Movement": 3,
+     "Back-Court Movement": 1,
+     "T-Position Movement": 1
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.lateral_travel",
+   "name": "Lateral travel",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Lateral travel",
+   "description": "Source-labelled side-to-side travel and shuffles.",
+   "medoid": "squash.dynamic.0064",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0003",
+    "squash.dynamic.0004",
+    "squash.dynamic.0063",
+    "squash.dynamic.0064",
+    "squash.dynamic.0070",
+    "squash.dynamic.0071",
+    "squash.dynamic.0078",
+    "squash.dynamic.0079",
+    "squash.dynamic.0083",
+    "squash.dynamic.0104",
+    "squash.dynamic.0105"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.lateral_travel.front_right_front_left_movement_and_similar",
+     "name": "Front right → front left movement and similar",
+     "members": [
+      "squash.dynamic.0003",
+      "squash.dynamic.0004",
+      "squash.dynamic.0063",
+      "squash.dynamic.0064",
+      "squash.dynamic.0070",
+      "squash.dynamic.0071",
+      "squash.dynamic.0078",
+      "squash.dynamic.0079",
+      "squash.dynamic.0083",
+      "squash.dynamic.0104"
+     ],
+     "pose_within_mean": 1.1286
+    },
+    {
+     "id": "squash.group.dynamic.lateral_travel.right_court_left_court",
+     "name": "Right court → left court",
+     "members": [
+      "squash.dynamic.0105"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.2366,
+    "pose_between_mean": 1.3118,
+    "pose_cohesion_ratio": 0.9426,
+    "label_profile": {
+     "actions": {
+      "travel": 11
+     },
+     "side": {
+      "neutral": 11
+     },
+     "zone": {
+      "front": 2,
+      "t": 8,
+      "side": 8,
+      "back": 2
+     },
+     "intent": {
+      "neutral": 10,
+      "defend": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 156.7,
+     "trunk_inclination_deg": 0.4,
+     "stance_width_torso": 0.73,
+     "racket_hand_above_shoulder_torso": -0.27,
+     "travel_path_torso": 6.5,
+     "peak_speed_torso_per_s": 6.72,
+     "knee_range_deg": 76.6,
+     "elbow_range_deg": 106.1
+    },
+    "source_categories": {
+     "Court Movement": 2,
+     "Front-Court Movement": 2,
+     "Back-Court Movement": 2,
+     "T-Position Movement": 2,
+     "Defensive Squash Movements": 1,
+     "Recovery / Transition Movements": 2
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.recovery",
+   "name": "Recovery steps and return movements",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Recovery steps and return movements",
+   "description": "Recovery footwork; return-to-T labels depend on known court context.",
+   "medoid": "squash.dynamic.0014",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0006",
+    "squash.dynamic.0014",
+    "squash.dynamic.0015",
+    "squash.dynamic.0029",
+    "squash.dynamic.0062",
+    "squash.dynamic.0065",
+    "squash.dynamic.0069",
+    "squash.dynamic.0072",
+    "squash.dynamic.0073",
+    "squash.dynamic.0074",
+    "squash.dynamic.0075",
+    "squash.dynamic.0080",
+    "squash.dynamic.0085",
+    "squash.dynamic.0096",
+    "squash.dynamic.0098",
+    "squash.dynamic.0102",
+    "squash.dynamic.0103",
+    "squash.dynamic.0112"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.recovery.court_recovery_movement_and_similar",
+     "name": "Court recovery movement and similar",
+     "members": [
+      "squash.dynamic.0006",
+      "squash.dynamic.0014",
+      "squash.dynamic.0015",
+      "squash.dynamic.0029",
+      "squash.dynamic.0062",
+      "squash.dynamic.0065",
+      "squash.dynamic.0069",
+      "squash.dynamic.0072",
+      "squash.dynamic.0073",
+      "squash.dynamic.0075",
+      "squash.dynamic.0080",
+      "squash.dynamic.0085",
+      "squash.dynamic.0096",
+      "squash.dynamic.0102",
+      "squash.dynamic.0112"
+     ],
+     "pose_within_mean": 0.9736
+    },
+    {
+     "id": "squash.group.dynamic.recovery.back_corner_t_and_similar",
+     "name": "Back corner → T and similar",
+     "members": [
+      "squash.dynamic.0074",
+      "squash.dynamic.0103"
+     ],
+     "pose_within_mean": 2.2758
+    },
+    {
+     "id": "squash.group.dynamic.recovery_return_to_t.lunge_recovery",
+     "name": "Lunge → recovery",
+     "members": [
+      "squash.dynamic.0098"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.1581,
+    "pose_between_mean": 1.2993,
+    "pose_cohesion_ratio": 0.8913,
+    "label_profile": {
+     "actions": {
+      "recovery": 18,
+      "travel": 12,
+      "lunge": 2,
+      "swing": 1,
+      "stance": 1
+     },
+     "side": {
+      "neutral": 18
+     },
+     "zone": {
+      "t": 10,
+      "front": 5,
+      "back": 5,
+      "side": 1
+     },
+     "intent": {
+      "neutral": 16,
+      "defend": 1,
+      "attack": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 156.6,
+     "trunk_inclination_deg": 4.4,
+     "stance_width_torso": 0.74,
+     "racket_hand_above_shoulder_torso": -0.4,
+     "travel_path_torso": 6.24,
+     "peak_speed_torso_per_s": 5.57,
+     "knee_range_deg": 74.4,
+     "elbow_range_deg": 95.8
+    },
+    "source_categories": {
+     "Court Movement": 3,
+     "Lunge & Reach Movements": 1,
+     "Front-Court Movement": 2,
+     "Back-Court Movement": 2,
+     "T-Position Movement": 4,
+     "Defensive Squash Movements": 1,
+     "Attacking Squash Movements": 1,
+     "Recovery / Transition Movements": 4
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.direction_changes",
+   "name": "Footwork preparation and direction changes",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Footwork preparation and direction changes",
+   "description": "Split steps, pivots, starts, stops and changes of travel direction.",
+   "medoid": "squash.dynamic.0012",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0009",
+    "squash.dynamic.0010",
+    "squash.dynamic.0011",
+    "squash.dynamic.0012",
+    "squash.dynamic.0013",
+    "squash.dynamic.0081",
+    "squash.dynamic.0087",
+    "squash.dynamic.0094",
+    "squash.dynamic.0106",
+    "squash.dynamic.0107",
+    "squash.dynamic.0108",
+    "squash.dynamic.0109",
+    "squash.dynamic.0110"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.direction_changes.direction_change_and_similar",
+     "name": "Direction change and similar",
+     "members": [
+      "squash.dynamic.0009",
+      "squash.dynamic.0010",
+      "squash.dynamic.0011",
+      "squash.dynamic.0012",
+      "squash.dynamic.0081",
+      "squash.dynamic.0094",
+      "squash.dynamic.0107",
+      "squash.dynamic.0109",
+      "squash.dynamic.0110"
+     ],
+     "pose_within_mean": 1.1235
+    },
+    {
+     "id": "squash.group.dynamic.direction_changes.pivot_turn_and_similar",
+     "name": "Pivot turn and similar",
+     "members": [
+      "squash.dynamic.0013",
+      "squash.dynamic.0087"
+     ],
+     "pose_within_mean": 1.5036
+    },
+    {
+     "id": "squash.group.dynamic.direction_changes.forward_backward_and_similar",
+     "name": "Forward → backward and similar",
+     "members": [
+      "squash.dynamic.0106",
+      "squash.dynamic.0108"
+     ],
+     "pose_within_mean": 1.4828
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.3082,
+    "pose_between_mean": 1.331,
+    "pose_cohesion_ratio": 0.9829,
+    "label_profile": {
+     "actions": {
+      "split_step": 1,
+      "change_direction": 7,
+      "stance": 1,
+      "travel": 6
+     },
+     "side": {
+      "neutral": 13
+     },
+     "zone": {
+      "t": 2
+     },
+     "intent": {
+      "neutral": 11,
+      "defend": 1,
+      "attack": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 151.9,
+     "trunk_inclination_deg": 4.1,
+     "stance_width_torso": 0.86,
+     "racket_hand_above_shoulder_torso": -0.47,
+     "travel_path_torso": 5.14,
+     "peak_speed_torso_per_s": 6.47,
+     "knee_range_deg": 65.9,
+     "elbow_range_deg": 85.8
+    },
+    "source_categories": {
+     "Court Movement": 5,
+     "T-Position Movement": 1,
+     "Defensive Squash Movements": 1,
+     "Attacking Squash Movements": 1,
+     "Recovery / Transition Movements": 5
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.court_travel",
+   "name": "Court travel and transitions",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Court travel and transitions",
+   "description": "Court travel with unspecified direction or a transition into a hitting position.",
+   "medoid": "squash.dynamic.0091",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0018",
+    "squash.dynamic.0089",
+    "squash.dynamic.0091",
+    "squash.dynamic.0111"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.court_travel.corner_to_corner_movement_and_similar",
+     "name": "Corner-to-corner movement and similar",
+     "members": [
+      "squash.dynamic.0018",
+      "squash.dynamic.0089",
+      "squash.dynamic.0091"
+     ],
+     "pose_within_mean": 1.309
+    },
+    {
+     "id": "squash.group.dynamic.court_travel.sprint_hitting_position",
+     "name": "Sprint → hitting position",
+     "members": [
+      "squash.dynamic.0111"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.2615,
+    "pose_between_mean": 1.3355,
+    "pose_cohesion_ratio": 0.9446,
+    "label_profile": {
+     "actions": {
+      "travel": 4,
+      "change_direction": 1,
+      "swing": 1,
+      "stance": 1
+     },
+     "side": {
+      "neutral": 4
+     },
+     "zone": {
+      "t": 1
+     },
+     "intent": {
+      "neutral": 2,
+      "defend": 1,
+      "attack": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 148.1,
+     "trunk_inclination_deg": 3.8,
+     "stance_width_torso": 0.8,
+     "racket_hand_above_shoulder_torso": -0.56,
+     "travel_path_torso": 5.74,
+     "peak_speed_torso_per_s": 6.92,
+     "knee_range_deg": 79.2,
+     "elbow_range_deg": 102.1
+    },
+    "source_categories": {
+     "Court Movement": 1,
+     "Defensive Squash Movements": 1,
+     "Attacking Squash Movements": 1,
+     "Recovery / Transition Movements": 1
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.lunges_reaches",
+   "name": "Lunges and reaches",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Lunges and reaches",
+   "description": "Lunges and reaching motions, independent of attacking or defensive intent.",
+   "medoid": "squash.dynamic.0019",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0019",
+    "squash.dynamic.0020",
+    "squash.dynamic.0021",
+    "squash.dynamic.0022",
+    "squash.dynamic.0023",
+    "squash.dynamic.0024",
+    "squash.dynamic.0025",
+    "squash.dynamic.0026",
+    "squash.dynamic.0027",
+    "squash.dynamic.0067",
+    "squash.dynamic.0084",
+    "squash.dynamic.0086",
+    "squash.dynamic.0028"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.lunges_reaches.side_lunge_and_similar",
+     "name": "Side lunge and similar",
+     "members": [
+      "squash.dynamic.0019",
+      "squash.dynamic.0021",
+      "squash.dynamic.0022",
+      "squash.dynamic.0023",
+      "squash.dynamic.0084"
+     ],
+     "pose_within_mean": 1.3731
+    },
+    {
+     "id": "squash.group.dynamic.lunges_reaches.backhand_lunge_and_similar",
+     "name": "Backhand lunge and similar",
+     "members": [
+      "squash.dynamic.0020",
+      "squash.dynamic.0025"
+     ],
+     "pose_within_mean": 1.1283
+    },
+    {
+     "id": "squash.group.dynamic.lunges_reaches.high_ball_reach_and_similar",
+     "name": "High-ball reach and similar",
+     "members": [
+      "squash.dynamic.0024",
+      "squash.dynamic.0026",
+      "squash.dynamic.0027",
+      "squash.dynamic.0086"
+     ],
+     "pose_within_mean": 1.1992
+    },
+    {
+     "id": "squash.group.dynamic.lateral_backward_travel_pivots.back_court_lunge",
+     "name": "Back-court lunge",
+     "members": [
+      "squash.dynamic.0067"
+     ],
+     "pose_within_mean": null
+    },
+    {
+     "id": "squash.group.dynamic.lunges_reaches.uncaptured_0028",
+     "name": "One-leg reaching movement",
+     "members": [
+      "squash.dynamic.0028"
+     ],
+     "pose_within_mean": null,
+     "data_status": "no_usable_capture"
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.4784,
+    "pose_between_mean": 1.4336,
+    "pose_cohesion_ratio": 1.0312,
+    "label_profile": {
+     "actions": {
+      "lunge": 7,
+      "travel": 1,
+      "reach": 5
+     },
+     "side": {
+      "forehand": 2,
+      "backhand": 2,
+      "neutral": 8
+     },
+     "zone": {
+      "front": 1,
+      "back": 1
+     },
+     "intent": {
+      "neutral": 10,
+      "defend": 2
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 153.0,
+     "trunk_inclination_deg": 0.4,
+     "stance_width_torso": 1.13,
+     "racket_hand_above_shoulder_torso": -0.39,
+     "travel_path_torso": 6.28,
+     "peak_speed_torso_per_s": 7.21,
+     "knee_range_deg": 76.8,
+     "elbow_range_deg": 103.1
+    },
+    "source_categories": {
+     "Lunge & Reach Movements": 9,
+     "Back-Court Movement": 1,
+     "Defensive Squash Movements": 2
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.forehand_strokes",
+   "name": "Forehand strokes",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Forehand strokes",
+   "description": "Catalogue-labelled forehand swings; precise shot trajectory requires racket and ball evidence.",
+   "medoid": "squash.dynamic.0033",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0030",
+    "squash.dynamic.0031",
+    "squash.dynamic.0032",
+    "squash.dynamic.0033",
+    "squash.dynamic.0034",
+    "squash.dynamic.0035",
+    "squash.dynamic.0036",
+    "squash.dynamic.0037",
+    "squash.dynamic.0039"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.forehand_strokes.forehand_straight_line_swing_and_similar",
+     "name": "Forehand straight-line swing and similar",
+     "members": [
+      "squash.dynamic.0030",
+      "squash.dynamic.0031",
+      "squash.dynamic.0032",
+      "squash.dynamic.0033",
+      "squash.dynamic.0034"
+     ],
+     "pose_within_mean": 0.9872
+    },
+    {
+     "id": "squash.group.dynamic.forehand_strokes.forehand_lob_movement_and_similar",
+     "name": "Forehand lob movement and similar",
+     "members": [
+      "squash.dynamic.0035",
+      "squash.dynamic.0037",
+      "squash.dynamic.0039"
+     ],
+     "pose_within_mean": 1.1564
+    },
+    {
+     "id": "squash.group.dynamic.forehand_strokes.forehand_boast_movement",
+     "name": "Forehand boast movement",
+     "members": [
+      "squash.dynamic.0036"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.2086,
+    "pose_between_mean": 1.3787,
+    "pose_cohesion_ratio": 0.8766,
+    "label_profile": {
+     "actions": {
+      "swing": 8,
+      "travel": 4
+     },
+     "side": {
+      "forehand": 9
+     },
+     "zone": {},
+     "intent": {
+      "neutral": 9
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 156.0,
+     "trunk_inclination_deg": 8.3,
+     "stance_width_torso": 0.8,
+     "racket_hand_above_shoulder_torso": -0.08,
+     "travel_path_torso": 3.42,
+     "peak_speed_torso_per_s": 4.92,
+     "knee_range_deg": 56.6,
+     "elbow_range_deg": 125.5
+    },
+    "source_categories": {
+     "Forehand Movements": 9
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.stroke_recovery",
+   "name": "Stroke and recovery sequences",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Stroke and recovery sequences",
+   "description": "A labelled stroke followed by recovery, without inferring tactical success.",
+   "medoid": "squash.dynamic.0061",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0038",
+    "squash.dynamic.0048",
+    "squash.dynamic.0061",
+    "squash.dynamic.0068",
+    "squash.dynamic.0088",
+    "squash.dynamic.0095",
+    "squash.dynamic.0097",
+    "squash.dynamic.0099",
+    "squash.dynamic.0100",
+    "squash.dynamic.0101"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.stroke_recovery.forehand_swing_recovery_and_similar",
+     "name": "Forehand swing + recovery and similar",
+     "members": [
+      "squash.dynamic.0038",
+      "squash.dynamic.0099"
+     ],
+     "pose_within_mean": 1.1362
+    },
+    {
+     "id": "squash.group.dynamic.stroke_recovery.back_court_shot_recovery_and_similar",
+     "name": "Back-court shot + recovery and similar",
+     "members": [
+      "squash.dynamic.0048",
+      "squash.dynamic.0061",
+      "squash.dynamic.0068",
+      "squash.dynamic.0095",
+      "squash.dynamic.0097",
+      "squash.dynamic.0100",
+      "squash.dynamic.0101"
+     ],
+     "pose_within_mean": 1.1003
+    },
+    {
+     "id": "squash.group.dynamic.stroke_recovery.defensive_shot_recovery",
+     "name": "Defensive shot + recovery",
+     "members": [
+      "squash.dynamic.0088"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.2074,
+    "pose_between_mean": 1.2967,
+    "pose_cohesion_ratio": 0.9311,
+    "label_profile": {
+     "actions": {
+      "swing": 7,
+      "recovery": 10,
+      "travel": 4
+     },
+     "side": {
+      "forehand": 2,
+      "backhand": 2,
+      "neutral": 6
+     },
+     "zone": {
+      "front": 1,
+      "back": 1,
+      "t": 1
+     },
+     "intent": {
+      "neutral": 8,
+      "defend": 1,
+      "attack": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 158.9,
+     "trunk_inclination_deg": 5.4,
+     "stance_width_torso": 0.85,
+     "racket_hand_above_shoulder_torso": -0.34,
+     "travel_path_torso": 5.16,
+     "peak_speed_torso_per_s": 6.27,
+     "knee_range_deg": 70.7,
+     "elbow_range_deg": 105.2
+    },
+    "source_categories": {
+     "Forehand Movements": 1,
+     "Backhand Movements": 1,
+     "Front-Court Movement": 1,
+     "Back-Court Movement": 1,
+     "Defensive Squash Movements": 1,
+     "Attacking Squash Movements": 1,
+     "Recovery / Transition Movements": 4
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.backhand_strokes",
+   "name": "Backhand strokes",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Backhand strokes",
+   "description": "Catalogue-labelled backhand swings; precise shot trajectory requires racket and ball evidence.",
+   "medoid": "squash.dynamic.0042",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0040",
+    "squash.dynamic.0041",
+    "squash.dynamic.0042",
+    "squash.dynamic.0043",
+    "squash.dynamic.0044",
+    "squash.dynamic.0045",
+    "squash.dynamic.0046",
+    "squash.dynamic.0047",
+    "squash.dynamic.0049"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.backhand_strokes.backhand_volley_and_similar",
+     "name": "Backhand volley and similar",
+     "members": [
+      "squash.dynamic.0040",
+      "squash.dynamic.0041",
+      "squash.dynamic.0042",
+      "squash.dynamic.0043",
+      "squash.dynamic.0044",
+      "squash.dynamic.0045",
+      "squash.dynamic.0046"
+     ],
+     "pose_within_mean": 1.11
+    },
+    {
+     "id": "squash.group.dynamic.backhand_strokes.backhand_lob_movement",
+     "name": "Backhand lob movement",
+     "members": [
+      "squash.dynamic.0047"
+     ],
+     "pose_within_mean": null
+    },
+    {
+     "id": "squash.group.dynamic.backhand_strokes.backhand_target_transition",
+     "name": "Backhand target transition",
+     "members": [
+      "squash.dynamic.0049"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.3438,
+    "pose_between_mean": 1.5223,
+    "pose_cohesion_ratio": 0.8827,
+    "label_profile": {
+     "actions": {
+      "swing": 8,
+      "travel": 4
+     },
+     "side": {
+      "backhand": 9
+     },
+     "zone": {},
+     "intent": {
+      "neutral": 9
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 152.7,
+     "trunk_inclination_deg": 3.9,
+     "stance_width_torso": 0.87,
+     "racket_hand_above_shoulder_torso": -0.56,
+     "travel_path_torso": 4.71,
+     "peak_speed_torso_per_s": 6.21,
+     "knee_range_deg": 56.9,
+     "elbow_range_deg": 101.7
+    },
+    "source_categories": {
+     "Backhand Movements": 9
+    }
+   }
+  },
+  {
+   "id": "squash.family.dynamic.unspecified_strokes",
+   "name": "Strokes with unspecified side",
+   "name_source": "research_constrained_catalogue_proposal",
+   "generated_name": "Strokes with unspecified side",
+   "description": "Generic stroke labels do not imply forehand or backhand.",
+   "medoid": "squash.dynamic.0054",
+   "type": "dynamic",
+   "members": [
+    "squash.dynamic.0050",
+    "squash.dynamic.0051",
+    "squash.dynamic.0052",
+    "squash.dynamic.0053",
+    "squash.dynamic.0054",
+    "squash.dynamic.0055",
+    "squash.dynamic.0056",
+    "squash.dynamic.0057",
+    "squash.dynamic.0058",
+    "squash.dynamic.0059",
+    "squash.dynamic.0092",
+    "squash.dynamic.0093"
+   ],
+   "groups": [
+    {
+     "id": "squash.group.dynamic.unspecified_strokes.kill_shot_swing_and_similar",
+     "name": "Kill-shot swing and similar",
+     "members": [
+      "squash.dynamic.0050",
+      "squash.dynamic.0051",
+      "squash.dynamic.0052",
+      "squash.dynamic.0053",
+      "squash.dynamic.0054",
+      "squash.dynamic.0055",
+      "squash.dynamic.0056",
+      "squash.dynamic.0057",
+      "squash.dynamic.0092"
+     ],
+     "pose_within_mean": 1.1307
+    },
+    {
+     "id": "squash.group.dynamic.unspecified_strokes.defensive_shot_movement_and_similar",
+     "name": "Defensive shot movement and similar",
+     "members": [
+      "squash.dynamic.0058",
+      "squash.dynamic.0059"
+     ],
+     "pose_within_mean": 1.2162
+    },
+    {
+     "id": "squash.group.dynamic.unspecified_strokes.drop_shot_movement",
+     "name": "Drop-shot movement",
+     "members": [
+      "squash.dynamic.0093"
+     ],
+     "pose_within_mean": null
+    }
+   ],
+   "evidence": {
+    "pose_within_mean": 1.3953,
+    "pose_between_mean": 1.4222,
+    "pose_cohesion_ratio": 0.9811,
+    "label_profile": {
+     "actions": {
+      "swing": 12,
+      "travel": 4
+     },
+     "side": {
+      "neutral": 12
+     },
+     "zone": {},
+     "intent": {
+      "neutral": 7,
+      "attack": 4,
+      "defend": 1
+     }
+    },
+    "pose_profile": {
+     "lead_knee_angle_deg": 152.5,
+     "trunk_inclination_deg": 6.1,
+     "stance_width_torso": 0.75,
+     "racket_hand_above_shoulder_torso": -0.24,
+     "travel_path_torso": 5.08,
+     "peak_speed_torso_per_s": 8.94,
+     "knee_range_deg": 70.6,
+     "elbow_range_deg": 126.1
+    },
+    "source_categories": {
+     "Squash Shot-Specific Poses": 10,
+     "Attacking Squash Movements": 2
+    }
+   }
+  }
+ ],
+ "uncovered": [
+  {
+   "movement_id": "squash.static.0023",
+   "name": "One-leg balance stance",
+   "type": "static",
+   "category": "General",
+   "reason": "no usable capture in the prepared dataset"
+  },
+  {
+   "movement_id": "squash.static.0057",
+   "name": "T-position athletic stance",
+   "type": "static",
+   "category": "T-Position Movement",
+   "reason": "no usable capture in the prepared dataset"
+  },
+  {
+   "movement_id": "squash.dynamic.0028",
+   "name": "One-leg reaching movement",
+   "type": "dynamic",
+   "category": "Lunge & Reach Movements",
+   "reason": "no usable capture in the prepared dataset"
+  },
+  {
+   "movement_id": "squash.dynamic.0082",
+   "name": "Defensive retreat",
+   "type": "dynamic",
+   "category": "Defensive Squash Movements",
+   "reason": "no usable capture in the prepared dataset"
+  }
+ ]
+}

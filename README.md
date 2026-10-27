@@ -1,60 +1,41 @@
-# SmartCoach – AI-Powered Sports Training Platform
+# ApexFormz
 
-SmartCoach is a production-grade sports training platform that uses real-time AI pose estimation to provide athletes with instant, personalized feedback on their technique.
+ApexFormz contains the web interface, account and session services, the ApexFormz Brain, and the sports engines in one repository. The live squash studio runs pose tracking and the Brain in browser workers; the Brain API stores signed-in sessions and results. The legacy Python AI service supports other sports.
 
-## 🚀 Quick Start (Docker)
+## Repository layout
 
-The entire system can be launched with a single command:
+| Path | Contents |
+| --- | --- |
+| `apps/frontend` | Next.js interface, squash setup, studio, and session review |
+| `apps/backend` | Legacy account and other-sport source; local squash startup delegates to the Brain API |
+| `apps/ai-service` | Legacy Python sports analysis |
+| `Apexformz_brain/packages` | Perception, features, scoring, coaching, runtime, contracts, and browser client |
+| `Apexformz_brain/sport-packs` | Squash and other sport catalogues, criteria, and installed reference models |
+| `Apexformz_brain/apps` | Brain API and maintained browser adapter source |
+| `Apexformz_brain/ml`, `Apexformz_brain/tests` | Training code, model metadata, and verification code |
 
-```bash
-docker-compose up --build
-```
+Installed browser model files are under `Apexformz_brain/apps/frontend/public/models`. Original athlete recordings, private pose data, training runs, local database, credentials, and generated browser runtime files are excluded from Git. The installed dynamic reference bank is included with the squash sport pack.
 
-Access the application at: `http://localhost:3000`
+## Local setup
 
-## 🏗️ Architecture
+Requires Node.js 22.12 or newer, npm, and PostgreSQL. From the repository root:
 
-- **Frontend**: Next.js 14 (App Router) with TailwindCSS, Framer Motion, and TensorFlow.js.
-- **Backend API**: Node.js + Express + TypeScript, using Prisma and Socket.IO for real-time relay.
-- **AI Service**: Python 3.11 + FastAPI with custom trigonometry-based pose analysis.
-- **Database**: PostgreSQL for persisting sessions, progress, and leaderboards.
-
-## 🛠️ Local Development Setup
-
-### 1. Backend
-```bash
-cd apps/backend
-npm install
-# Copy .env.example to .env and configure DATABASE_URL
-npx prisma migrate dev
+```powershell
+npm ci --ignore-scripts
+npm ci --prefix Apexformz_brain --ignore-scripts
+npm run db:generate
+# Configure apps/backend/.env from apps/backend/.env.example
+npm run db:plan
+npm run db:prepare
 npm run dev
 ```
 
-### 2. AI Service
-```bash
-cd apps/ai-service
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-```
+The web interface opens at `http://localhost:3000`. PostgreSQL must be available at `DATABASE_URL` in `apps/backend/.env`. The additive Brain database setup refuses changes to existing tables. For a local development build, set both `NEXT_PUBLIC_PACK_TRUST_MODE` and `APEXFORMZ_PACK_TRUST_MODE` to `development` before building. Production pack signing and deployment requirements are documented in `Apexformz_brain/docs`.
 
-### 3. Frontend
-```bash
-cd apps/frontend
-npm install
-# Copy .env.example to .env
-npm run dev
-```
+The root `prepare:brain` command stages the maintained Brain browser adapter and model assets into the web app. The staged copies and browser runtimes are generated during development and builds. Edit the source under `Apexformz_brain`, then run `npm run prepare:brain`.
 
-## 🧠 Core Features
+The optional `docker-compose.brain.yml` is a local recipe that reuses an existing PostgreSQL service. `npm run demo` is a Windows convenience command for an existing `smartcoach-db` container.
 
-- **Real-Time Skeleton Overlay**: Browser-based inference using MoveNet.
-- **Duplex Feedback Loop**: 30 FPS keypoint streaming to AI service with ms-latency response.
-- **Smart Scoring**: Dynamic proficiency calculation based on joint angle variances.
-- **Gamification**: XP tracking, level progression, and achievement rewards.
-- **Responsive Theme**: Premium Futuristic Dark Mode with Glassmorphism.
+## Squash coaching coverage
 
-## 🛡️ Privacy & Security
-
-- **Edge Processing**: Video frames never leave the client device.
-- **Abstract Data Only**: Only keypoint coordinates are sent to the AI service.
-- **Secure Auth**: JWT token rotation and secure session management.
+The squash catalogue includes static positions and dynamic movements. Dynamic comparison uses the installed recorded reference bank. The current bank has 110 dynamic movements with at least partial recorded sequences; 13 have uninterrupted captured sequences according to the extractor. These recordings are from one right-handed athlete. Four catalogue movements have no usable recording. The interface reports reference coverage, view and hand requirements, and unavailable scoring rather than inventing a technique verdict. See `BRAIN_INTEGRATION.md` and `Apexformz_brain/docs` for architecture and limitations.

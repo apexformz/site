@@ -1,0 +1,70 @@
+# Alert definitions (TRD 14). Thresholds marked provisional are engineering seeds, not validated SLOs.
+version: 1
+alerts:
+  - id: stuck_job_queue
+    description: Deep-analysis jobs stay QUEUED/RUNNING too long
+    signal: max(now - analysis_jobs.created_at) where status in (QUEUED, RUNNING)
+    threshold: "> 15m"
+    severity: page
+    runbook: Check ai-service health, PostgreSQL job leases/retry deadlines and terminal FAILED rows; retry idempotently by job_id.
+    provisional: true
+
+  - id: deployment_signature_failure
+    description: Any SIGNATURE_INVALID or ASSET_HASH_MISMATCH during pack/model install
+    signal: count(error.code in (SIGNATURE_INVALID, ASSET_HASH_MISMATCH))
+    threshold: "> 0 in 5m"
+    severity: page
+    runbook: Stop rollout; verify artifact registry digests and signing key id; previous known-good stays active.
+
+  - id: crash_rate_regression
+    description: Crash-free session rate drops versus previous release
+    signal: crash_free_sessions_rate(canary) - crash_free_sessions_rate(baseline)
+    threshold: "< -0.5pp over 1h with n >= 200 sessions"
+    severity: page
+    runbook: Halt canary; roll back pack/model via registry.rollback(); keep known-good.
+    provisional: true
+
+  - id: severe_latency_regression
+    description: Pose inference or stage P95 regresses on a device class
+    signal: p95(stage_durations_ms.*_ms_max) canary vs baseline per device_class
+    threshold: "> +40% for 30m"
+    severity: ticket
+    runbook: Compare model variant (float vs int8), WASM/WebGPU delegate, resolution fallback engagement.
+    provisional: true
+
+  - id: abstention_drift
+    description: Abstention reasons or criteria coverage drift after a release
+    signal: rate(abstention_reasons.*), mean(criteria_coverage) canary vs baseline
+    threshold: "coverage drop > 10pp or any reason rate x2 for 1h"
+    severity: ticket
+    runbook: Inspect feature VIEW_INVALID/LOW_CONFIDENCE shares; check pose model delegate; review pack threshold changes.
+    provisional: true
+
+  - id: unknown_movement_spike
+    description: UNKNOWN/ABORTED rate rises
+    signal: mean(unknown_movement_rate)
+    threshold: "> 0.4 for 1h"
+    severity: ticket
+    provisional: true
+
+  - id: sync_backlog
+    description: Client outboxes cannot drain
+    signal: p95(outbox_pending at session completion), ingestion 5xx rate
+    threshold: "pending > 500 events or 5xx > 1%"
+    severity: ticket
+    runbook: Never discard unsynced sessions; check ingestion auth and DB; clients retry with deterministic backoff.
+    provisional: true
+
+  - id: ingestion_duplicate_storm
+    description: Replayed event ids far above normal retry rate (possible replay attack or client bug)
+    signal: duplicates / accepted on /api/v1/sessions/{id}/events
+    threshold: "> 0.5 for 15m"
+    severity: ticket
+    provisional: true
+
+  - id: pose_worker_timeouts
+    description: Worker/inference timeouts
+    signal: sum(timeouts)
+    threshold: "> 5 per session on > 2% of sessions"
+    severity: ticket
+    provisional: true

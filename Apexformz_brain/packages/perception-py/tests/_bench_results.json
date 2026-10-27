@@ -1,0 +1,23 @@
+{
+  "mediapipe": {
+    "fps": 34.2,
+    "delegate": "CPU",
+    "framing_ok_ratio": 1.0,
+    "frames": 40,
+    "wall_s": 1.9
+  },
+  "rtmlib_rtmo": {
+    "fps": 24.2,
+    "delegate": "onnxruntime:cuda",
+    "framing_ok_ratio": 0.975,
+    "frames": 40,
+    "wall_s": 1.7
+  },
+  "rtmlib_body": {
+    "fps": 22.3,
+    "delegate": "onnxruntime:cuda",
+    "framing_ok_ratio": 1.0,
+    "frames": 30,
+    "wall_s": 1.4
+  }
+}

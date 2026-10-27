@@ -1,0 +1,48 @@
+{
+  "name": "@apexformz/frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "prepare:runtime": "node scripts/prepare-brain-runtime-assets.mjs",
+    "predev": "npm run prepare:runtime",
+    "dev": "next dev",
+    "prebuild": "npm run prepare:runtime",
+    "build": "next build",
+    "prestart": "npm run prepare:runtime",
+    "start": "next start",
+    "pretypecheck": "npm run prepare:runtime",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "fetch:models": "node scripts/fetch-onnx-models.mjs"
+  },
+  "dependencies": {
+    "@apexformz/brain-client": "1.0.0",
+    "@apexformz/contracts": "1.0.0",
+    "@apexformz/perception": "1.0.0",
+    "@apexformz/runtime": "1.0.0",
+    "@apexformz/sport-runtime": "1.0.0",
+    "@mediapipe/holistic": "^0.5.1675471629",
+    "@mediapipe/tasks-vision": "^0.10.22",
+    "@smartcoach/types": "1.0.0",
+    "@tensorflow/tfjs": "^4.21.0",
+    "axios": "^1.7.7",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.5.6",
+    "lucide-react": "^0.446.0",
+    "next": "15.5.28",
+    "onnxruntime-web": "^1.30.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.12.7",
+    "socket.io-client": "^4.8.0",
+    "tailwind-merge": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.5",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2"
+  }
+}

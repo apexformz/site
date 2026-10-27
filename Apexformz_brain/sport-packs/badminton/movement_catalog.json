@@ -1,0 +1,492 @@
+{
+ "schema_version": "1.0.0",
+ "sport_id": "badminton",
+ "movements": [
+  {
+   "uuid": "6f1d2b8a-3c4e-4f5a-9b6c-7d8e9f0a1b01",
+   "id": "badminton.ready_stance",
+   "canonical_name": "Ready stance",
+   "aliases": [
+    {
+     "name": "ready position",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "base position",
+     "locale": "en",
+     "status": "proposed"
+    }
+   ],
+   "type": "static",
+   "permitted_views": [
+    "front",
+    "back",
+    "front_left",
+    "front_right"
+   ],
+   "phase_graph_id": "pg.badminton.ready_stance",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "badminton.ready_stance.stance_width",
+    "badminton.ready_stance.knee_flexion",
+    "badminton.ready_stance.trunk_lateral_lean"
+   ],
+   "similar": [
+    {
+     "movement_id": "badminton.split_step",
+     "relation": "precedes",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "description": "Balanced athletic base position between shots.",
+   "difficulty": "beginner",
+   "family_id": "badminton.family.ready_positions",
+   "group_id": "badminton.group.ready_stance"
+  },
+  {
+   "uuid": "6f1d2b8a-3c4e-4f5a-9b6c-7d8e9f0a1b02",
+   "id": "badminton.split_step",
+   "canonical_name": "Split step",
+   "aliases": [
+    {
+     "name": "split-step",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "back",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.badminton.split_step",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "badminton.ready_stance",
+     "relation": "follows",
+     "hard_negative": true
+    },
+    {
+     "movement_id": "badminton.recovery_footwork",
+     "relation": "overlaps",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "description": "Small preparatory hop before moving to the shuttle.",
+   "difficulty": "intermediate",
+   "family_id": "badminton.family.court_footwork",
+   "group_id": "badminton.group.preparation_recovery_steps"
+  },
+  {
+   "uuid": "6f1d2b8a-3c4e-4f5a-9b6c-7d8e9f0a1b03",
+   "id": "badminton.lunge",
+   "canonical_name": "Lunge",
+   "aliases": [
+    {
+     "name": "forward lunge",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "net lunge",
+     "locale": "en",
+     "status": "proposed"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right",
+    "front_left",
+    "front_right"
+   ],
+   "phase_graph_id": "pg.badminton.lunge",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "badminton.lunge.lead_knee_depth",
+    "badminton.lunge.knee_foot_alignment",
+    "badminton.lunge.trunk_forward_lean",
+    "badminton.lunge.recovery_time",
+    "badminton.lunge.racket_arm_extension",
+    "badminton.lunge.sequencing",
+    "badminton.lunge.racket_contact_height"
+   ],
+   "similar": [
+    {
+     "movement_id": "badminton.recovery_footwork",
+     "relation": "contains",
+     "hard_negative": false
+    }
+   ],
+   "review_status": "coach_review_required",
+   "description": "Long controlled step toward the shuttle with the lead knee loading over the foot, followed by a push-back recovery.",
+   "difficulty": "intermediate",
+   "family_id": "badminton.family.court_footwork",
+   "group_id": "badminton.group.lunging_reaches"
+  },
+  {
+   "uuid": "6f1d2b8a-3c4e-4f5a-9b6c-7d8e9f0a1b04",
+   "id": "badminton.overhead_clear",
+   "canonical_name": "Overhead clear",
+   "aliases": [
+    {
+     "name": "clear",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "left",
+    "right",
+    "back"
+   ],
+   "phase_graph_id": "pg.badminton.overhead_clear",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "badminton.overhead_smash",
+     "relation": "same_preparation",
+     "hard_negative": true
+    },
+    {
+     "movement_id": "badminton.drop_shot",
+     "relation": "same_preparation",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "badminton.family.racket_strokes",
+   "group_id": "badminton.group.overhead_strokes"
+  },
+  {
+   "uuid": "6f1d2b8a-3c4e-4f5a-9b6c-7d8e9f0a1b05",
+   "id": "badminton.overhead_smash",
+   "canonical_name": "Overhead smash",
+   "aliases": [
+    {
+     "name": "smash",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "left",
+    "right",
+    "back"
+   ],
+   "phase_graph_id": "pg.badminton.overhead_smash",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "badminton.overhead_clear",
+     "relation": "same_preparation",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "advanced",
+   "family_id": "badminton.family.racket_strokes",
+   "group_id": "badminton.group.overhead_strokes"
+  },
+  {
+   "uuid": "6f1d2b8a-3c4e-4f5a-9b6c-7d8e9f0a1b06",
+   "id": "badminton.drop_shot",
+   "canonical_name": "Drop shot",
+   "aliases": [
+    {
+     "name": "drop",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "left",
+    "right",
+    "back"
+   ],
+   "phase_graph_id": "pg.badminton.drop_shot",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "badminton.overhead_clear",
+     "relation": "same_preparation",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "advanced",
+   "family_id": "badminton.family.racket_strokes",
+   "group_id": "badminton.group.overhead_strokes"
+  },
+  {
+   "uuid": "6f1d2b8a-3c4e-4f5a-9b6c-7d8e9f0a1b07",
+   "id": "badminton.forehand_drive",
+   "canonical_name": "Forehand drive",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.badminton.forehand_drive",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "badminton.backhand_drive",
+     "relation": "mirror_side",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "badminton.family.racket_strokes",
+   "group_id": "badminton.group.forehand_drives"
+  },
+  {
+   "uuid": "6f1d2b8a-3c4e-4f5a-9b6c-7d8e9f0a1b08",
+   "id": "badminton.backhand_drive",
+   "canonical_name": "Backhand drive",
+   "aliases": [],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.badminton.backhand_drive",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "badminton.forehand_drive",
+     "relation": "mirror_side",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "badminton.family.racket_strokes",
+   "group_id": "badminton.group.backhand_drives"
+  },
+  {
+   "uuid": "6f1d2b8a-3c4e-4f5a-9b6c-7d8e9f0a1b09",
+   "id": "badminton.recovery_footwork",
+   "canonical_name": "Recovery footwork",
+   "aliases": [
+    {
+     "name": "recovery",
+     "locale": "en",
+     "status": "proposed"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "front",
+    "back",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.badminton.recovery_footwork",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "badminton.split_step",
+     "relation": "overlaps",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "badminton.family.court_footwork",
+   "group_id": "badminton.group.preparation_recovery_steps"
+  }
+ ],
+ "taxonomy": {
+  "version": "1.1.0",
+  "levels": [
+   "family",
+   "group",
+   "movement"
+  ],
+  "validation_status": "provisional",
+  "method": {
+   "kind": "source_grounded_semantic_hierarchy",
+   "source_ids": [
+    "bwf_shuttle_time"
+   ],
+   "research_file": "ml/sports/recognition_taxonomy_sources.json",
+   "preserves_catalogue_ids": true,
+   "accuracy_validated": false
+  },
+  "recognition": {
+   "group_threshold": 0.6,
+   "family_threshold": 0.6,
+   "margin": 0.1,
+   "validation_status": "provisional"
+  },
+  "families": [
+   {
+    "id": "badminton.family.ready_positions",
+    "name": "Ready positions",
+    "type": "static",
+    "groups": [
+     {
+      "id": "badminton.group.ready_stance",
+      "name": "Ready stance",
+      "members": [
+       "badminton.ready_stance"
+      ],
+      "evidence": {
+       "source_ids": [
+        "bwf_shuttle_time"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "A posture category; no stroke intent is inferred."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "bwf_shuttle_time"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   },
+   {
+    "id": "badminton.family.court_footwork",
+    "name": "Court footwork",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "badminton.group.preparation_recovery_steps",
+      "name": "Preparation and recovery steps",
+      "members": [
+       "badminton.split_step",
+       "badminton.recovery_footwork"
+      ],
+      "evidence": {
+       "source_ids": [
+        "bwf_shuttle_time"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Preparatory and repositioning footwork remain distinct exact labels."
+      }
+     },
+     {
+      "id": "badminton.group.lunging_reaches",
+      "name": "Lunging reaches",
+      "members": [
+       "badminton.lunge"
+      ],
+      "evidence": {
+       "source_ids": [
+        "bwf_shuttle_time"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Court destination requires additional context."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "bwf_shuttle_time"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   },
+   {
+    "id": "badminton.family.racket_strokes",
+    "name": "Racket strokes",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "badminton.group.overhead_strokes",
+      "name": "Overhead strokes",
+      "members": [
+       "badminton.overhead_clear",
+       "badminton.overhead_smash",
+       "badminton.drop_shot"
+      ],
+      "evidence": {
+       "source_ids": [
+        "bwf_shuttle_time"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Clear/drop/smash share overhead preparation; do not infer shuttle trajectory from body pose alone."
+      }
+     },
+     {
+      "id": "badminton.group.forehand_drives",
+      "name": "Forehand drive strokes",
+      "members": [
+       "badminton.forehand_drive"
+      ],
+      "evidence": {
+       "source_ids": [
+        "bwf_shuttle_time"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Preserve racket-side evidence."
+      }
+     },
+     {
+      "id": "badminton.group.backhand_drives",
+      "name": "Backhand drive strokes",
+      "members": [
+       "badminton.backhand_drive"
+      ],
+      "evidence": {
+       "source_ids": [
+        "bwf_shuttle_time"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Preserve racket-side evidence."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "bwf_shuttle_time"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   }
+  ]
+ }
+}

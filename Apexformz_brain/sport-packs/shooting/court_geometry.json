@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "shooting",
+  "coordinate_frame": {
+    "id": "shooting_range_frame",
+    "origin": "centre of the firing line on the floor of the athlete's lane",
+    "axes": "+x toward the right of the lane when facing the target, +y toward the target, +z up",
+    "units": "m"
+  },
+  "formats": ["air_pistol_10m", "air_rifle_10m"],
+  "named_landmarks": [
+    { "id": "target_distance", "description": "Firing line to target face", "value_m": null, "applies_to": ["air_pistol_10m", "air_rifle_10m"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: fill from the approved ISSF rule edition." },
+    { "id": "lane_width", "description": "Width of one firing point", "value_m": null, "applies_to": ["air_pistol_10m", "air_rifle_10m"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION" },
+    { "id": "target_centre_height", "description": "Height of target centre above the floor", "value_m": null, "applies_to": ["air_pistol_10m", "air_rifle_10m"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION" },
+    { "id": "camera_safe_zone_behind_line", "description": "Minimum distance behind the firing line for a camera on a tripod", "value_m": null, "applies_to": ["air_pistol_10m", "air_rifle_10m"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: range safety officer approval required; never place cameras forward of the firing line." }
+  ],
+  "polygons": [],
+  "validation_status": "provisional",
+  "provenance": { "source": "ISSF General Technical Rules and discipline rules", "ref": "TODO_REQUIRES_VALIDATION: edition/section", "status": "provisional" },
+  "notes": ["Store disciplines separately (air pistol, air rifle); never share numeric geometry across disciplines without a source."]
+}

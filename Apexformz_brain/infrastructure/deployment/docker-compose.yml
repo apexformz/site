@@ -1,0 +1,171 @@
+# Local/staging stack. Production requires ingress/TLS and protected infrastructure.
+# Create .env from .env.example; private signing keys are never mounted in services.
+services:
+  operations:
+    profiles: [operations]
+    build:
+      context: ../..
+      dockerfile: infrastructure/deployment/operations.Dockerfile
+    restart: unless-stopped
+    environment:
+      PGHOST: postgres
+      PGUSER: apexformz
+      PGDATABASE: apexformz
+      PGPASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      APEXFORMZ_SERVICE_TOKEN: ${APEXFORMZ_SERVICE_TOKEN:?set APEXFORMZ_SERVICE_TOKEN}
+      APEXFORMZ_S3_BUCKET: ${APEXFORMZ_S3_BUCKET:-}
+      AWS_REGION: ${AWS_REGION:-ap-southeast-2}
+      AWS_SHARED_CREDENTIALS_FILE: /run/secrets/aws_credentials
+    secrets:
+      - aws_credentials
+      - aws_session
+    tmpfs:
+      - /tmp:mode=1777,size=512m
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_started
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: apexformz
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set a URL-safe random database password}
+      POSTGRES_DB: apexformz
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U apexformz -d apexformz"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  migrate:
+    build:
+      context: ../..
+      dockerfile: apps/backend/Dockerfile
+      target: migrate
+    environment:
+      DATABASE_URL: postgresql://apexformz:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/apexformz
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+  ai-service:
+    build:
+      context: ../..
+      dockerfile: apps/ai-service/Dockerfile
+    environment:
+      APEXFORMZ_ENV: production
+      APEXFORMZ_PACK_TRUST_MODE: ${PACK_TRUST_MODE:-production}
+      APEXFORMZ_PACK_TRUST_REGISTRY_PATH: /trust/pack-trust.production.json
+      CORS_ORIGIN: ${PUBLIC_APP_ORIGIN:-http://localhost:3000}
+      APEXFORMZ_SERVICE_TOKEN: ${APEXFORMZ_SERVICE_TOKEN:?set a service token of at least 32 characters}
+      APEXFORMZ_S3_BUCKET: ${APEXFORMZ_S3_BUCKET:-}
+      APEXFORMZ_AWS_ACCOUNT_ID: ${APEXFORMZ_AWS_ACCOUNT_ID:-}
+      AWS_REGION: ${AWS_REGION:-ap-southeast-2}
+      AWS_SHARED_CREDENTIALS_FILE: /run/secrets/aws_credentials
+    volumes:
+      - ${PACK_ROOT:-../../sport-packs}:/app/sport-packs:ro
+      - ../../security/pack-trust.production.json:/trust/pack-trust.production.json:ro
+    secrets:
+      - aws_credentials
+      - aws_session
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  backend:
+    build:
+      context: ../..
+      dockerfile: apps/backend/Dockerfile
+      target: runner
+    environment: &backend_environment
+      DATABASE_URL: postgresql://apexformz:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/apexformz
+      JWT_SECRET: ${JWT_SECRET:?set an independent random JWT_SECRET of at least 32 characters}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:?set an independent random JWT_REFRESH_SECRET of at least 32 characters}
+      AI_SERVICE_URL: http://ai-service:8000
+      CORS_ORIGIN: ${PUBLIC_APP_ORIGIN:-http://localhost:3000}
+      APEXFORMZ_PACK_TRUST_MODE: ${PACK_TRUST_MODE:-production}
+      APEXFORMZ_PACK_TRUST_REGISTRY_PATH: /trust/pack-trust.production.json
+      APEXFORMZ_SERVICE_TOKEN: ${APEXFORMZ_SERVICE_TOKEN:?set APEXFORMZ_SERVICE_TOKEN}
+      APEXFORMZ_S3_BUCKET: ${APEXFORMZ_S3_BUCKET:-}
+      APEXFORMZ_AWS_ACCOUNT_ID: ${APEXFORMZ_AWS_ACCOUNT_ID:-}
+      AWS_REGION: ${AWS_REGION:-ap-southeast-2}
+      AWS_SHARED_CREDENTIALS_FILE: /run/secrets/aws_credentials
+    volumes: &backend_volumes
+      - ${PACK_ROOT:-../../sport-packs}:/app/sport-packs:ro
+      - ../../security/pack-trust.production.json:/trust/pack-trust.production.json:ro
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-4000}:4000"
+    secrets:
+      - aws_credentials
+      - aws_session
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      ai-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:4000/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  backend-canary:
+    profiles: [canary]
+    image: ${CANARY_BACKEND_IMAGE:-apexformz-ops-backend:latest}
+    environment:
+      <<: *backend_environment
+      ENABLE_JOB_DISPATCHER: 'false'
+      ENABLE_ASSET_RETENTION: 'false'
+      APEXFORMZ_RELEASE_ID: canary
+    volumes: *backend_volumes
+    secrets:
+      - aws_credentials
+      - aws_session
+    ports:
+      - "127.0.0.1:4101:4000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:4000/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  gateway:
+    profiles: [canary]
+    image: nginx:stable-alpine
+    ports:
+      - "127.0.0.1:4102:4000"
+    volumes:
+      - ./gateway:/etc/nginx/conf.d:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+  frontend:
+    build:
+      context: ../..
+      dockerfile: apps/frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:4000/api}
+        NEXT_PUBLIC_SOCKET_URL: ${PUBLIC_SOCKET_URL:-http://localhost:4000}
+        NEXT_PUBLIC_PACK_TRUST_MODE: ${PACK_TRUST_MODE:-production}
+        NEXT_PUBLIC_PACK_TRUST_REGISTRY_JSON: ${PACK_TRUST_REGISTRY_JSON:-}
+    environment:
+      APEXFORMZ_PACK_TRUST_MODE: ${PACK_TRUST_MODE:-production}
+      APEXFORMZ_PACK_TRUST_REGISTRY_PATH: /trust/pack-trust.production.json
+    volumes:
+      - ${PACK_ROOT:-../../sport-packs}:/app/sport-packs:ro
+      - ../../security/pack-trust.production.json:/trust/pack-trust.production.json:ro
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-3000}:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+volumes:
+  postgres_data:
+secrets:
+  aws_credentials:
+    file: ${AWS_CREDENTIALS_FILE:-../../data/local-aws/credentials}
+  aws_session:
+    file: ${AWS_SESSION_FILE:-../../data/local-aws/session.json}

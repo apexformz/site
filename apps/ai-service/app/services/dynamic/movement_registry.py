@@ -79,7 +79,7 @@ def get_or_create_analyzer(session_key: str, sport: str, pose_name: str) -> Opti
             return None
     
     config = DYNAMIC_LOOKUP[sport][pose_name]
-    analyzer = DynamicAnalyzer(config)
+    analyzer = DynamicAnalyzer(config, movement_key=pose_name)
     SESSION_ANALYZERS[session_key] = analyzer
     return analyzer
 
@@ -88,7 +88,8 @@ def analyze_dynamic_frame(
     session_key: str,
     sport: str,
     pose_name: str,
-    keypoints: List[Dict[str, Any]]
+    keypoints: List[Dict[str, Any]],
+    timestamp_ms: Optional[int] = None,
 ) -> Dict[str, Any]:
     """
     Main entry point for dynamic frame analysis.
@@ -129,8 +130,12 @@ def analyze_dynamic_frame(
             "is_cyclical": False,
         }
     
-    return analyzer.analyze_frame(keypoints)
+    return analyzer.analyze_frame(keypoints, timestamp_ms=timestamp_ms)
 
+def set_aqa_grade(session_key: str, grade: float):
+    """Update the AQA grade for a session (called by background task)."""
+    if session_key in SESSION_ANALYZERS:
+        SESSION_ANALYZERS[session_key].latest_aqa_grade = grade
 
 def cleanup_session(session_key: str):
     """Remove a session's analyzer to free memory."""

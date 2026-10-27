@@ -1,0 +1,112 @@
+{
+  "kind": "reference_set",
+  "movement_id": "squash.static.0021",
+  "features": [
+    "left_knee_angle",
+    "right_knee_angle",
+    "left_hip_angle",
+    "right_hip_angle",
+    "dominant_elbow_angle",
+    "nondominant_elbow_angle",
+    "dominant_arm_elevation",
+    "nondominant_arm_elevation"
+  ],
+  "weights": [
+    1.0,
+    1.0,
+    0.8,
+    0.8,
+    0.6,
+    0.4,
+    0.6,
+    0.4
+  ],
+  "reference_vectors": [
+    [
+      177.8,
+      130.6,
+      147.4,
+      120,
+      59.6,
+      null,
+      27.9,
+      null
+    ],
+    [
+      172.9,
+      123.4,
+      153.5,
+      97.2,
+      69.7,
+      94.9,
+      56.8,
+      33.7
+    ],
+    [
+      170.3,
+      159.7,
+      173.6,
+      164.1,
+      43.9,
+      136.9,
+      41.5,
+      8.4
+    ],
+    [
+      170.9,
+      168.3,
+      173.3,
+      177,
+      54,
+      131.7,
+      53.8,
+      0.5
+    ],
+    [
+      173.5,
+      170.3,
+      178.3,
+      174.4,
+      58.2,
+      142.8,
+      46.4,
+      9.3
+    ]
+  ],
+  "reference_views": [
+    "back",
+    "front",
+    "left",
+    "right",
+    "right"
+  ],
+  "reference_handedness": [
+    "right",
+    "right",
+    "right",
+    "right",
+    "right"
+  ],
+  "reference_handedness_assumed": [
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "unit": "deg",
+  "threshold": 15.0,
+  "tolerance": 10.0,
+  "validation_status": "provisional",
+  "nearest_other_movement": {
+    "movement_id": "squash.static.0050",
+    "rms_deg": 7.9
+  },
+  "provenance": "Capture-labeled Data Capture static poses (5 captures), extracted with deployed feature engine and global quality checks. Pixel orientation corrected only for audited exact sources; source handedness is recorded, never inferred. Weighted RMS to same-view references. One athlete; technique correctness and thresholds remain unvalidated.",
+  "source_dataset": {
+    "dataset_version": "squash-static_pose-orientation-26b091875c62274d",
+    "manifest_sha256": "d2448956d6437f5f84f4d96942778c6cd941376be1d3a974174a9ec47c07c636",
+    "reference_vectors_sha256": "d688fc5c6642fb6e61b216fccec88e30658a19fe24f32610ee23b2ecde16d74d",
+    "parent_reference_sha256": "6f9b6e07aa25fb28a8b7a1585894188859b8d5ab3924a25ea4864322c9ef95a5"
+  }
+}

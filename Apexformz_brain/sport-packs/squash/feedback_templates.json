@@ -1,0 +1,842 @@
+{
+ "schema_version": "1.0.0",
+ "sport_id": "squash",
+ "catalog_version": "1.0.0",
+ "default_locale": "en",
+ "policy": {
+  "global_min_interval_ms": 6000,
+  "positive_reinforcement_interval_ms": 15000,
+  "max_secondary_queue": 3
+ },
+ "entries": [
+  {
+   "error_id": "squash.cue.knees_too_straight",
+   "cue": {
+    "en": "Soften your knees so you can push off either way."
+   },
+   "rationale": {
+    "en": "Straight knees delay the first step."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Nice loaded knees."
+   }
+  },
+  {
+   "error_id": "squash.cue.stance_width",
+   "cue": {
+    "en": "Adjust your base: feet about shoulder-width apart or a little wider."
+   },
+   "rationale": {
+    "en": "A balanced base lets you move to any corner."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Good base width."
+   }
+  },
+  {
+   "error_id": "squash.cue.racket_hand_low",
+   "cue": {
+    "en": "Keep the racket up and in front."
+   },
+   "rationale": {
+    "en": "A low racket costs preparation time on the next shot."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low"
+  },
+  {
+   "error_id": "squash.cue.trunk_lateral_lean",
+   "cue": {
+    "en": "Keep your shoulders level over your hips."
+   },
+   "rationale": {
+    "en": "Lateral lean shifts weight off the balls of the feet."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low"
+  },
+  {
+   "error_id": "squash.cue.posture_vs_reference",
+   "cue": {
+    "en": "Match the reference position more closely: check knee bend and arm position."
+   },
+   "rationale": {
+    "en": "This compares your joint angles with the recorded expert position for the same camera view."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Close to the reference position."
+   }
+  },
+  {
+   "error_id": "squash.cue.no_knee_bend",
+   "cue": {
+    "en": "Bend the front knee and get down to the ball."
+   },
+   "rationale": {
+    "en": "Hitting from an upright stance loses reach and control."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Good low position."
+   }
+  },
+  {
+   "error_id": "squash.cue.late_preparation",
+   "cue": {
+    "en": "Get the racket up and back before the ball arrives."
+   },
+   "rationale": {
+    "en": "Early preparation turns a rushed hit into a controlled downswing."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Nice early preparation."
+   }
+  },
+  {
+   "error_id": "squash.cue.stay_low",
+   "cue": {
+    "en": "Sit lower: bend the knees and keep the racket compact."
+   },
+   "rationale": {
+    "en": "Straight knees delay the first step."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Nice loaded knees."
+   }
+  },
+  {
+   "error_id": "squash.cue.lead_knee_depth",
+   "cue": {
+    "en": "Let the front knee load to about a right angle."
+   },
+   "rationale": {
+    "en": "A deep, controlled lunge drops the hips and reaches the ball with balance."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Good lunge depth."
+   }
+  },
+  {
+   "error_id": "squash.cue.knee_not_over_foot",
+   "cue": {
+    "en": "Keep your front knee over your foot."
+   },
+   "rationale": {
+    "en": "The knee finishing above the ankle protects the joint and lets you push back."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "high",
+   "positive_cue": {
+    "en": "Knee lined up well."
+   }
+  },
+  {
+   "error_id": "squash.cue.excessive_trunk_lean",
+   "cue": {
+    "en": "Stay taller through the chest as you reach."
+   },
+   "rationale": {
+    "en": "Excess forward lean slows the push back."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium"
+  },
+  {
+   "error_id": "squash.cue.torso_collapsed",
+   "cue": {
+    "en": "Reach with the arm and legs, not by folding the torso."
+   },
+   "rationale": {
+    "en": "A collapsed torso makes the push back slower and less balanced."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium"
+  },
+  {
+   "error_id": "squash.cue.low_follow_through",
+   "cue": {
+    "en": "Finish the swing high toward your target."
+   },
+   "rationale": {
+    "en": "A high follow-through keeps length on drives and lobs."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low"
+  },
+  {
+   "error_id": "squash.cue.upright_while_moving",
+   "cue": {
+    "en": "Stay low as you move: keep the knees bent."
+   },
+   "rationale": {
+    "en": "A low centre lets you stop and change direction quickly."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Nice low movement."
+   }
+  },
+  {
+   "error_id": "squash.cue.off_balance_arrival",
+   "cue": {
+    "en": "Arrive balanced: shoulders level over the hips."
+   },
+   "rationale": {
+    "en": "A balanced arrival lets you hit or push off immediately."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low"
+  },
+  {
+   "error_id": "squash.cue.slow_travel",
+   "cue": {
+    "en": "Move with quicker, shorter steps."
+   },
+   "rationale": {
+    "en": "Shorter steps get you there sooner and balanced."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low"
+  },
+  {
+   "error_id": "squash.cue.slow_recovery",
+   "cue": {
+    "en": "Get back quicker after the shot."
+   },
+   "rationale": {
+    "en": "From the T every corner is reachable."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low",
+   "positive_cue": {
+    "en": "Good recovery."
+   }
+  },
+  {
+   "error_id": "squash.cue.landing_width",
+   "cue": {
+    "en": "Land the split step with your feet about shoulder-width apart."
+   },
+   "rationale": {
+    "en": "A balanced landing lets you push off in any direction."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium"
+  },
+  {
+   "error_id": "squash.cue.landing_knees_straight",
+   "cue": {
+    "en": "Land softer with bent knees so you are loaded to move."
+   },
+   "rationale": {
+    "en": "Stiff landings lose the elastic push-off."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium"
+  },
+  {
+   "error_id": "squash.cue.arm_before_legs",
+   "cue": {
+    "en": "Let the legs lead; the racket arm comes through last."
+   },
+   "rationale": {
+    "en": "Leg-first sequencing transfers power and keeps balance."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low"
+  },
+  {
+   "error_id": "squash.cue.head_moving",
+   "cue": {
+    "en": "Keep your head still through contact."
+   },
+   "rationale": {
+    "en": "A still head keeps the eyes on the ball and the body balanced."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low"
+  },
+  {
+   "error_id": "squash.cue.off_balance",
+   "cue": {
+    "en": "Stay balanced over your front foot through the shot."
+   },
+   "rationale": {
+    "en": "Leaning sideways through contact costs accuracy and recovery speed."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low"
+  },
+  {
+   "error_id": "squash.cue.jerky_swing",
+   "cue": {
+    "en": "Smooth the swing: one continuous motion from preparation to follow-through."
+   },
+   "rationale": {
+    "en": "Smooth acceleration gives repeatable contact."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low"
+  },
+  {
+   "error_id": "squash.cue.slow_recovery_after_shot",
+   "cue": {
+    "en": "After the shot, move straight back toward the T."
+   },
+   "rationale": {
+    "en": "Recovering to the T keeps every corner in reach."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "low",
+   "positive_cue": {
+    "en": "Good recovery to the T."
+   }
+  },
+  {
+   "error_id": "squash.cue.contact_height",
+   "cue": {
+    "en": "Meet the ball at a consistent height."
+   },
+   "rationale": {
+    "en": "Shown only when racket tracking evidence exists."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium"
+  },
+  {
+   "error_id": "squash.cue.swing_too_fast",
+   "cue": {
+    "en": "Slow the swing and push the ball into the corner."
+   },
+   "rationale": {
+    "en": "The drop is a controlled push, not a hit."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Soft hands on the drop."
+   }
+  },
+  {
+   "error_id": "squash.cue.foot_fault_risk",
+   "cue": {
+    "en": "Keep one foot clearly inside the service box as you strike the serve."
+   },
+   "rationale": {
+    "en": "Rule 5.7.2 requires one foot inside the box with no part touching a boundary line."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 8000,
+   "persistence_count": 2,
+   "severity": "medium"
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.sequence",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "Your observed movement follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_left_knee_angle",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_left_hip_angle",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_right_knee_angle",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_right_hip_angle",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_dominant_elbow_angle",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_dominant_arm_elevation",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_dominant_wrist_x",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_dominant_wrist_y",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_nondominant_elbow_angle",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_nondominant_arm_elevation",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_nondominant_wrist_x",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_nondominant_wrist_y",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_trunk_lean",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_left_ankle_x",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_left_ankle_y",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_right_ankle_x",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_right_ankle_y",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_head_x",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_head_y",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_root_x",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  },
+  {
+   "error_id": "squash.cue.dynamic_reference.dynamic_ref_root_y",
+   "cue": {
+    "en": "Follow the recorded movement path through the full attempt."
+   },
+   "rationale": {
+    "en": "This comparison uses an expert-labelled recording with provisional alignment and tolerances."
+   },
+   "demonstration_ref": null,
+   "review_status": "draft",
+   "cooldown_ms": 6000,
+   "persistence_count": 2,
+   "severity": "medium",
+   "positive_cue": {
+    "en": "That observed part follows the recorded reference."
+   }
+  }
+ ],
+ "generic": {
+  "AMBIGUOUS_SUBJECT": {
+   "en": "Two people are in view. Make sure only the practising player is on court in frame."
+  },
+  "FRAMING_INVALID": {
+   "en": "Step back so your whole body, including your feet, is visible in the camera."
+  },
+  "MISSING_JOINT": {
+   "en": "Some joints are hidden. Keep your full body in view, racket arm included."
+  },
+  "LOW_CONFIDENCE": {
+   "en": "Tracking is unsteady. Improve lighting and avoid standing in front of the glass reflections."
+  },
+  "VIEW_INVALID": {
+   "en": "This check needs a different camera angle; it is paused for now."
+  },
+  "TIME_GAP": {
+   "en": "Tracking paused. Resume when you are ready."
+  },
+  "TRACK_CHANGED": {
+   "en": "Lost track of you for a moment. Checks restart now."
+  },
+  "HANDEDNESS_UNKNOWN": {
+   "en": "Set your racket hand in the session setup to enable swing checks."
+  },
+  "CAPABILITY_MISSING": {
+   "en": "Racket tracking is not active, so contact-height checks are off."
+  },
+  "CONTACT_UNOBSERVED": {
+   "en": "Ball contact cannot be seen from body tracking alone."
+  },
+  "SAFETY": {
+   "en": "Keep your training partner outside the swing arc and wear protective eyewear."
+  },
+  "WITHIN_NORMAL_VARIANCE": {
+   "en": "That repetition was within your normal range of variation; no correction."
+  },
+  "MOVEMENT_NOT_CONFIRMED": {
+   "en": "This looks like a different movement from your selected drill, so technique tips are paused. Switch drills or return to the selected movement."
+  }
+ }
+}

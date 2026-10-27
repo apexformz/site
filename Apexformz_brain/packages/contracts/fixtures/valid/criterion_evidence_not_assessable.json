@@ -1,0 +1,35 @@
+{
+  "criterion_id": "badminton.lunge.racket_contact_height",
+  "movement_id": "badminton.lunge",
+  "phase_id": "bottom",
+  "state": "NOT_ASSESSABLE",
+  "score": null,
+  "measurement": {
+    "value": null,
+    "unit": "normalized",
+    "reason": "CONTACT_UNOBSERVED"
+  },
+  "confidence": {
+    "movement": 0.97,
+    "assessment": null
+  },
+  "evidence": {
+    "frame_ids": [
+      100,
+      101,
+      102
+    ],
+    "view": "front",
+    "feature_ids": []
+  },
+  "feedback": null,
+  "provenance": {
+    "sport_pack": "1.0.0",
+    "rubric": "1.0.0",
+    "validation_status": "provisional",
+    "evaluator": "equipment_dependent",
+    "provisional": true
+  },
+  "severity": "medium",
+  "timestamp_ms": 1500
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "table_tennis",
+  "rule_sets": [
+    {
+      "id": "table_tennis_official_rules",
+      "authority": "International Table Tennis Federation",
+      "source": {
+        "source": "ITTF Handbook",
+        "ref": "TODO_REQUIRES_VALIDATION",
+        "status": "provisional"
+      },
+      "edition": null,
+      "effective_date": null,
+      "discipline": "table_tennis",
+      "format": "singles_and_doubles",
+      "locale": "en",
+      "validation_status": "provisional",
+      "rules": [
+        {
+          "id": "serve_toss",
+          "kind": "official",
+          "text": "The ball must be tossed near-vertically to a minimum height during service; requires ball visibility.",
+          "value": null,
+          "adjudicable_from_pose": false,
+          "validation_status": "provisional"
+        },
+        {
+          "id": "bounce_sequence",
+          "kind": "official",
+          "text": "Legal return requires the correct bounce sequence; requires ball tracking.",
+          "value": null,
+          "adjudicable_from_pose": false,
+          "validation_status": "provisional"
+        },
+        {
+          "id": "scoring",
+          "kind": "official",
+          "text": "Game and match point thresholds are defined by the authoritative rules.",
+          "value": null,
+          "adjudicable_from_pose": false,
+          "validation_status": "provisional"
+        },
+        {
+          "id": "training_compact_stroke",
+          "kind": "coaching_heuristic",
+          "text": "Keep strokes compact and recover to the ready stance between shots.",
+          "value": null,
+          "adjudicable_from_pose": true,
+          "validation_status": "provisional"
+        }
+      ]
+    }
+  ]
+}

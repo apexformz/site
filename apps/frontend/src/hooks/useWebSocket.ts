@@ -13,13 +13,15 @@ const getSocketUrl = () => {
 
 export function useWebSocket(
   onFeedback: (analysis: FrameAnalysis) => void,
-  onCoWorkoutSync?: (data: { userId: string, score: number, session_id: string }) => void
+  onCoWorkoutSync?: (data: { userId: string, score: number, session_id: string }) => void,
+  onFeedbackError?: (message: string) => void
 ) {
   const socketRef = useRef<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const onFeedbackRef = useRef(onFeedback);
   const onCoWorkoutSyncRef = useRef(onCoWorkoutSync);
+  const onFeedbackErrorRef = useRef(onFeedbackError);
   
   const sessionStateRef = useRef<{ sessionId: string, sport: string, poseName?: string, circleId?: string } | null>(null);
   
@@ -30,6 +32,10 @@ export function useWebSocket(
   useEffect(() => {
     onCoWorkoutSyncRef.current = onCoWorkoutSync;
   }, [onCoWorkoutSync]);
+
+  useEffect(() => {
+    onFeedbackErrorRef.current = onFeedbackError;
+  }, [onFeedbackError]);
 
   const connect = useCallback(async () => {
     const token = getAccessToken();
@@ -82,6 +88,12 @@ export function useWebSocket(
 
     socket.on('feedback:result', (analysis: FrameAnalysis) => {
       onFeedbackRef.current(analysis);
+    });
+
+    socket.on('feedback:error', (data: { message?: string }) => {
+      const message = data?.message || 'AI feedback service unavailable';
+      console.error('❌ Feedback error:', message);
+      onFeedbackErrorRef.current?.(message);
     });
 
     socket.on('circle:coworkout_sync', (data: { userId: string, score: number, session_id: string }) => {

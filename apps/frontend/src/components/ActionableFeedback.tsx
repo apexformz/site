@@ -2,21 +2,20 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AlertCircle, CheckCircle2, Info } from 'lucide-react';
-import { JointFeedback } from '@smartcoach/types';
+import { AlertCircle, Info } from 'lucide-react';
+import { prioritizeCorrectionIssues } from '@apexformz/brain-client';
 
 import { CoachIssue } from '@smartcoach/types';
 
 interface ActionableFeedbackProps {
-  issues: CoachIssue[];
+  issues: (CoachIssue & { provisional?: boolean; phase?: string })[];
+  /** The Brain supplies an evidence-aware empty state; an empty issues list is not a technique verdict. */
+  emptyState?: { title: string; description: string };
 }
 
-export const ActionableFeedback: React.FC<ActionableFeedbackProps> = ({ issues }) => {
-  // Filter out 'none' severity or 'good' feedback and only show top 3 for clarity
-  const displayIssues = (issues || [])
-    .filter(i => i.severity !== 'none' && i.severity !== 'low') // Focus on medium/high
-    .sort((a, b) => (a.severity === 'high' ? -1 : 1))
-    .slice(0, 3);
+export const ActionableFeedback: React.FC<ActionableFeedbackProps> = ({ issues, emptyState }) => {
+  // Low-priority cues (for example, a low racket hand) remain actionable.
+  const displayIssues = prioritizeCorrectionIssues(issues || []);
 
   return (
     <div className="flex flex-col gap-3 w-full">
@@ -51,6 +50,8 @@ export const ActionableFeedback: React.FC<ActionableFeedbackProps> = ({ issues }
                     <h5 className="text-sm font-bold text-white leading-tight">
                       {issue.problem}
                     </h5>
+                    {issue.provisional && <span className="text-[10px] text-accent-warning">Preview correction</span>}
+                    {issue.phase && issue.phase !== 'hold' && <span className="text-[10px] text-white/50">Observed phase: {issue.phase.replace(/_/g, ' ')}</span>}
                  </div>
               </div>
 
@@ -68,19 +69,10 @@ export const ActionableFeedback: React.FC<ActionableFeedbackProps> = ({ issues }
             </motion.div>
           ))
         ) : (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="glass-card p-6 flex flex-col items-center gap-3 border-l-4 border-l-secondary bg-secondary/5 text-center"
-          >
-            <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
-              <CheckCircle2 className="w-6 h-6 text-secondary" />
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-sm font-black uppercase tracking-[0.3em] text-secondary">Perfect Form</span>
-              <p className="text-[10px] text-white/40 uppercase font-bold">Keep maintaining the blueprint.</p>
-            </div>
-          </motion.div>
+          <div className="glass-card p-4 flex flex-col gap-2 border-l-4 border-l-white/20 bg-white/[0.02]" role="status">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/50">{emptyState?.title ?? 'No correction available'}</span>
+            <p className="text-xs text-white/50 leading-relaxed">{emptyState?.description ?? 'No assessable correction has been reported. This does not confirm correct technique.'}</p>
+          </div>
         )}
       </AnimatePresence>
     </div>

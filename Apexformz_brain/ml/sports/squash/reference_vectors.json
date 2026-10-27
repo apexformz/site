@@ -1,0 +1,4255 @@
+{
+ "schema_version": "1.1.0",
+ "features": [
+  "left_knee_angle",
+  "right_knee_angle",
+  "left_hip_angle",
+  "right_hip_angle",
+  "dominant_elbow_angle",
+  "nondominant_elbow_angle",
+  "dominant_arm_elevation",
+  "nondominant_arm_elevation"
+ ],
+ "handedness": "right",
+ "dataset": "dataset_static_pose.json",
+ "captures_used": 241,
+ "captures_skipped": 16,
+ "rejected_frames": {
+  "FRAMING_INVALID": 16
+ },
+ "vectors": {
+  "squash.static.0051": [
+   {
+    "view": "back",
+    "execution_id": "capture-924ff9c876f098cf694ef719e2176838335a1250094631749195e3585c785a26",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     172.8,
+     161.9,
+     167,
+     170.3,
+     null,
+     102.7,
+     null,
+     0.2
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-8a977775819567afb6dd4a0dea072e79b7b6022086e78615daaf008a1c607e16",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     173.4,
+     161.6,
+     175.9,
+     164.1,
+     115.1,
+     null,
+     8.8,
+     null
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-6161aa67d125db4661c3976c0463c3f7686df13ef43f358803728c5af0db044a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     174.1,
+     161.9,
+     166,
+     166.2,
+     128.5,
+     114,
+     7.1,
+     29.1
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-29ef331ab4651669f8fd52d0c6927b567cebf6e5a686f7f0e36fd98780e2ea96",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     168.2,
+     165.5,
+     173.3,
+     169.1,
+     128.5,
+     null,
+     14,
+     22.5
+    ]
+   }
+  ],
+  "squash.static.0029": [
+   {
+    "view": "back",
+    "execution_id": "capture-83e15ccdf5ba83c89cd702418d7c60e9e612f61e66e11419091645e95f06c997",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     132.3,
+     148.6,
+     136.5,
+     151.2,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-5ead695c3463a9d1abc3b28cd79850b49aad64ff563d65079a8a2f6234b6597b",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     136.4,
+     142.9,
+     101.9,
+     160.5,
+     166.5,
+     68,
+     66.7,
+     46.8
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-1d06dad2d2909e78c60a282bb5d1a21155a4412ddd36bace0bb478ea013b429b",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     140.3,
+     172.7,
+     113.8,
+     161.7,
+     null,
+     165.8,
+     null,
+     36.6
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-86e90906c917748860a8ed74cfc38316abe90bb20a7b8a07c8377dd046803609",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     133.1,
+     161.8,
+     106.1,
+     164.2,
+     173,
+     128.9,
+     50.8,
+     25.1
+    ]
+   }
+  ],
+  "squash.static.0011": [
+   {
+    "view": "back",
+    "execution_id": "capture-7ff966cb1ef7b34e7fb8389827dc6a5e3ea3acef6b685a35dcf21a43a067fd4f",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     150.2,
+     169,
+     177.5,
+     169.9,
+     null,
+     177.7,
+     null,
+     38.4
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-9fc9cfe61c9eb29bd8646b17e4b13686ff7b222ec06f721319f6871862b0ee0c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     141.8,
+     138.3,
+     162.4,
+     113.3,
+     172.4,
+     null,
+     54.1,
+     null
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-a6bbd7b65261cc3e66c99fd290421828ff21421aadbc708d3a6ca99fc925a437",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.5,
+     177.2,
+     162.7,
+     157.1,
+     null,
+     176.3,
+     null,
+     22.8
+    ]
+   }
+  ],
+  "squash.static.0039": [
+   {
+    "view": "back",
+    "execution_id": "capture-db6b6df9dd35290093bc1dc53dfee19077f5247928d626c1f8c0c4fc13924334",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     171.3,
+     159,
+     155.7,
+     147.4,
+     116.4,
+     124.8,
+     92.6,
+     41
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-b4a59577cf1730db063acd48e0df068cf1b32b7abdb7e21dfc57461443aaf607",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     167.3,
+     158.3,
+     160,
+     143.3,
+     131,
+     104.6,
+     108.6,
+     54.8
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-90996dcb9abfb868fad39ae6ed8f25116cff4b393cec9a2a8a9a1c5de6b4b361",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     157.5,
+     161.7,
+     172.6,
+     177.9,
+     60.3,
+     137.3,
+     78,
+     11.7
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-b0171f436b62b06eba571362d62eb893b44fa3b6aea29509dd18fcbea243402c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     163.5,
+     162.2,
+     174.1,
+     179.3,
+     81.1,
+     140.2,
+     98.2,
+     14.7
+    ]
+   }
+  ],
+  "squash.static.0056": [
+   {
+    "view": "back",
+    "execution_id": "capture-ea7341c7915292936b29cf383edf8dd1ef7448e8fbb64f52a5c7c54ca4ea251d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.2,
+     178.8,
+     151.2,
+     160,
+     84.3,
+     53.7,
+     54.8,
+     33.8
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-a0cc43c8da5bc8fed1ef91b33b91b9a9b33bd9529e20d51a97ef3599585fde31",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177.8,
+     176.6,
+     155.2,
+     157.7,
+     83.8,
+     62.3,
+     51.1,
+     25
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-081fa97632864feae7c9db15450822720843242e08f43fb1fdca96981ed68fc9",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     165.7,
+     173.5,
+     172.7,
+     172.2,
+     null,
+     48.4,
+     null,
+     8.1
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-342091c9a7d1d45f139138be202a16813bb25d653f43036399819b1d895d3c5d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     169.5,
+     172.3,
+     170.8,
+     171.2,
+     42.4,
+     null,
+     2.4,
+     null
+    ]
+   }
+  ],
+  "squash.static.0055": [
+   {
+    "view": "back",
+    "execution_id": "capture-6fea5b1510cf62b3fcfe364a409557f453e4b4872069eef8a3c8006bec30c0c9",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     150.8,
+     173.9,
+     159.7,
+     175.9,
+     106.9,
+     null,
+     2,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-383caa68157e469012aabfb7f93f2ccf153b4cdbd18db907c89203602e229e52",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     152.2,
+     178.4,
+     165.6,
+     179.1,
+     19.3,
+     91.8,
+     53.1,
+     40.5
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-e86ac999242d6fca6a6e20effee79b9902c453a9487effdd55e58135d43aa289",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     166.2,
+     175.1,
+     155.9,
+     168.4,
+     null,
+     131.8,
+     null,
+     7.3
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-a7f3a4b125bf888c34652dcd7d5b808a2ec12c650a7e0d0fa3307fdbb6433d5f",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     173.2,
+     175.7,
+     168.7,
+     174.8,
+     99.5,
+     172.7,
+     27.2,
+     34.8
+    ]
+   }
+  ],
+  "squash.static.0065": [
+   {
+    "view": "back",
+    "execution_id": "capture-99993be1c3124d63e3556e210050a3194f84b08bc31661496954e8ae8ae47fe5",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     141.3,
+     167.8,
+     148.8,
+     177.5,
+     127.9,
+     null,
+     19.6,
+     null
+    ]
+   },
+   {
+    "view": "back",
+    "execution_id": "capture-fa84f05433d2c91ade58da4e6062510854dc973e269439429aee50ec6b5a01e4",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     163.7,
+     165.9,
+     170.3,
+     177.3,
+     75.5,
+     null,
+     12.2,
+     38.8
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-30161a6b1f68bf9e15b48fea8e9ab78a617f2fd1e236add619f4292600a4a209",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     111.5,
+     144.6,
+     87.7,
+     165.5,
+     166.5,
+     142.6,
+     83.2,
+     45
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-6ad6d83f7a338ffec941508f60c23a20713537102e288b7f3f889bd44af47758",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     170.2,
+     155.8,
+     172.9,
+     176.6,
+     131.2,
+     156.2,
+     18.2,
+     60.5
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-5cab11e3c99b4b6f3c0024947bed2ecd7f32c288516e86e8c2bb0f311610f6d1",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     159.9,
+     155.7,
+     171.8,
+     175.9,
+     88.5,
+     59.7,
+     20.4,
+     40.3
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-078ecb69ca66770dc8db0f589c6d900cc63194798235165b76a7f39a1173e915",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     162.5,
+     165.7,
+     154.2,
+     174.3,
+     null,
+     74.5,
+     null,
+     18.3
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-f703d39b5e190478c76bdfa14d7c930da2daf57d49a67ff9a739854e201c6f5e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     173.5,
+     158.2,
+     158.5,
+     175.3,
+     null,
+     109.3,
+     null,
+     10.2
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-e48857d1d3e7d7919b049f4ee218d6b55de2928009f51beab8f81f19417d5aea",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     168.5,
+     158.3,
+     164.5,
+     168.1,
+     82.9,
+     null,
+     5.6,
+     null
+    ]
+   }
+  ],
+  "squash.static.0035": [
+   {
+    "view": "back",
+    "execution_id": "capture-be5b849982549009c6ae77796d743a3e72a12830ad9b782869913ca79b74d37d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     145,
+     164.4,
+     147.3,
+     179.3,
+     13.1,
+     null,
+     41.4,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-c976d518275d45dbe220a3326b0f152076511f69ae3c6d93be22f6e0fada78c4",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     148.1,
+     160.6,
+     138,
+     179.4,
+     null,
+     87.9,
+     null,
+     2.4
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-18a9c2de6408266bf7758d0d25fc701a8c71875fa3ef9a5bbf7e3634c6a9e9b2",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     173.7,
+     168.8,
+     172.9,
+     152.7,
+     100.5,
+     null,
+     72.2,
+     38
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-8374beeb66e387e4a6806d5511465e7d3343d95cbff1e98dcdf706110c9dcede",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     173.9,
+     165.2,
+     171.5,
+     155.8,
+     91.5,
+     68.2,
+     62.6,
+     38
+    ]
+   }
+  ],
+  "squash.static.0034": [
+   {
+    "view": "back",
+    "execution_id": "capture-736cc86a0152013af497165406251ae2871e84bc9dc6dd778be24acf8c614079",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.9,
+     179.1,
+     160.6,
+     159.3,
+     76.7,
+     null,
+     50.7,
+     35.4
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-e5487f926f8269b6836dfb6730f16e9f02a5147f356d5f7b3c158bae05314666",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177.4,
+     179,
+     161.3,
+     157,
+     89.8,
+     133.4,
+     53.3,
+     14.6
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-0f8d11d9bcb86e5e81f9fe604cc12ef94c188e0ce1aac0ab1332c03ae3ae04cc",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     139.3,
+     146.6,
+     164.5,
+     146.7,
+     146,
+     null,
+     101.8,
+     null
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-475dd687a0ca486831ab12cdf7cf3e86fa7d63e3112e6de1b1700ae2edf19744",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     164.4,
+     178.5,
+     159.1,
+     160.4,
+     169.7,
+     151.7,
+     113.3,
+     26.1
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-76699fa1265d3c2f7ee84b705aba2aaf27c11d59d0fa07d9947dc1b5b323d9a5",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177.5,
+     174.2,
+     154,
+     152.8,
+     162.2,
+     96.8,
+     112.9,
+     32.6
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-98c8caacb1c3868e5d24d3dc2a7b6a97ad84c5afd183d9e63e59c9e7a5584cfc",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     172.5,
+     172.3,
+     179.6,
+     179.8,
+     null,
+     84.6,
+     null,
+     15.9
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-9d221da33bd97bf71cf72db6674d2faef5213b50c98fb18fec4b8030254db286",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     161.4,
+     168.4,
+     164.1,
+     148.2,
+     165.3,
+     168.9,
+     114.8,
+     94.7
+    ]
+   }
+  ],
+  "squash.static.0068": [
+   {
+    "view": "back",
+    "execution_id": "capture-1dd80892833dbb5bab816ba7c2c29734423813fa7c8b86b729048ffe5f40f8d3",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     160.5,
+     148.6,
+     175.3,
+     146.1,
+     null,
+     65.1,
+     null,
+     0.3
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-1e94b0a9caf71c8e0728c294fb24718f55bed79a359f425d05f86d4528cb6c43",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     152.9,
+     154.5,
+     176.2,
+     132.5,
+     null,
+     null,
+     21.8,
+     null
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-9ed92fb864a3259f19b88ff436b30eccd819b42e571a217ef52730931c68e5cb",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     156.1,
+     178.3,
+     159,
+     161.5,
+     94.4,
+     82.5,
+     23.9,
+     25.8
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-699aec299955f7c831a8689e2801cca3a6d06220a6440e504ea0fe119a888237",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     166,
+     179.1,
+     157.8,
+     156.6,
+     null,
+     110.1,
+     15.6,
+     60.3
+    ]
+   }
+  ],
+  "squash.static.0040": [
+   {
+    "view": "back",
+    "execution_id": "capture-122c4ce828b70c12d0879ef22d1767b75f2cb6a4fd1922e658e5ed58df8891e8",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179,
+     177.2,
+     159.7,
+     156.7,
+     105.4,
+     171.5,
+     103.9,
+     40.4
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-59332629fbb983b65d1b0fd2ee3aad663d825b781e2ba0c926b79329334d61f3",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     171.9,
+     178.2,
+     164.7,
+     160.8,
+     115.3,
+     179.9,
+     103.2,
+     38.4
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-8f1f3244ef6aa2a834a8b8f9de3d3753a9a78772f3b1d2abe13d3d81f50bcb18",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     156.7,
+     175.4,
+     178.8,
+     168.5,
+     151.3,
+     86.6,
+     115.6,
+     31.4
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-22cb1c4c9b635d84552ab0427cf4cb3526790df280dbbcf4af25e127564f9f99",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     152.6,
+     167.3,
+     175.5,
+     173.7,
+     155,
+     null,
+     104.7,
+     null
+    ]
+   }
+  ],
+  "squash.static.0037": [
+   {
+    "view": "back",
+    "execution_id": "capture-6cffa286b65be975a4ca8a0985f353c3b1a60d237c4adf2475c2aa76f1ad924a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     125.5,
+     137.6,
+     121.6,
+     156.2,
+     151.4,
+     null,
+     56.8,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-f508dd093cad83c60985f2c4d2a244c8fd94a80c95bc89f79509342d11d3fc9a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     130.6,
+     144.8,
+     113.2,
+     153.9,
+     136.8,
+     106.1,
+     42.5,
+     14
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-6829cb6eccd91f01c31c2527993598173a21b13dda9729129b873c130159511b",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     139.7,
+     166,
+     168,
+     134.2,
+     165.9,
+     156.4,
+     32.2,
+     53.7
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-73ee70deb7b42bea026ecc3c089e493bdb77f0a3d4ba8c351dfe33dad5d221eb",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     164,
+     143.1,
+     158.5,
+     132.8,
+     155.5,
+     164.9,
+     33.2,
+     45.2
+    ]
+   }
+  ],
+  "squash.static.0066": [
+   {
+    "view": "back",
+    "execution_id": "capture-f6dfe935b90d9239b2c37eb548966f5addad8108d273811a269834ef68ed8dfc",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     124.1,
+     157.7,
+     128.5,
+     177.2,
+     52.2,
+     null,
+     13.2,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-7290e0ed7232d4ae85392467466854658ab3d7efaa08bf53d84bfebbe49e22e4",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     135.7,
+     147.9,
+     122.6,
+     163.2,
+     null,
+     116.8,
+     null,
+     0.2
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-e8fcd5f7cf28f21d568bf9d0cf2fc4673594612caef8feea50442ba5478a583b",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     178.8,
+     173.3,
+     166.1,
+     144.9,
+     94.5,
+     null,
+     53.9,
+     50.9
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-4b8a4ba835f56554cd16dc2f58bac3adeae2dc08be0509759db0738bc4b18387",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     159.2,
+     175.2,
+     166.8,
+     168.9,
+     178.1,
+     169.9,
+     23.7,
+     12.5
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-8acd2f70a5f78ecba25d284496801a5d72bb7855d1f081890d2c2a8b64c93144",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177.9,
+     161.1,
+     178.6,
+     122.4,
+     95.9,
+     75.8,
+     74.2,
+     49.2
+    ]
+   }
+  ],
+  "squash.static.0001": [
+   {
+    "view": "back",
+    "execution_id": "capture-12cdfb1693bb8ab19d351b17ba14b6e24672611914cae30cb9faf504de513264",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     169.7,
+     173.1,
+     144.4,
+     170.1,
+     88.6,
+     null,
+     33.5,
+     17
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-1566921b898a58704e53fe9f5040e064240251125194fea2d393c516f8c610cf",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.1,
+     173.1,
+     160,
+     155.3,
+     93,
+     25.8,
+     31.2,
+     10.1
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-017f660679971c0b5c79a189a123c3f57ada7781dcd91150a1143ca7ec8bc775",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177,
+     170.5,
+     176.4,
+     174.3,
+     88.2,
+     null,
+     8.9,
+     null
+    ]
+   }
+  ],
+  "squash.static.0041": [
+   {
+    "view": "back",
+    "execution_id": "capture-70d50f95cbe2aa00daa747dbc1e85cc9ca233e0370bca86f99b17455af9c847e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     135.4,
+     159.3,
+     137.5,
+     169.2,
+     168.2,
+     107.2,
+     43.1,
+     48.8
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-2e397676579d9f3a945c5844cd74550a3239a6a2652a3b3443b7e9e2a4f78ef7",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     145.1,
+     159.1,
+     139.6,
+     165.8,
+     173.2,
+     126.4,
+     44.2,
+     45.2
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-6430842cd3847f8d10693ee7f4d0d5a7902b91c4a09772eb40aa2e03646729fe",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     158.4,
+     166.3,
+     150.7,
+     179.7,
+     null,
+     141.6,
+     null,
+     13.9
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-342b531083d2c2f1e530a95afb164e929f785858825baaef0573dd8e6adc0c92",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     161.9,
+     170,
+     160.1,
+     173.1,
+     156.7,
+     null,
+     51.6,
+     null
+    ]
+   }
+  ],
+  "squash.static.0026": [
+   {
+    "view": "back",
+    "execution_id": "capture-16fe780676449340e4a83ad6027439f5cdc897a0441431e7ff776394bf9e66f5",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     143.1,
+     166.9,
+     164.6,
+     177.1,
+     172.6,
+     131.9,
+     70.3,
+     45.1
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-ced7ff7ee8ef810858200854f009567df9964584454e069dda19dd8854043b4a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     141.7,
+     158.9,
+     143,
+     169.6,
+     168,
+     139,
+     83.9,
+     39.2
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-8222710b5fffc7092eccc9eac93e6deb3c789c6e8989f229e37e5058eed21446",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     168.5,
+     173.2,
+     163.1,
+     154.8,
+     null,
+     168.5,
+     null,
+     20.2
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-f6d57732c2d5496d6f5cc4a3fb3095b90e2f026fff23eaa9ba481ea2da386339",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     166.9,
+     168.8,
+     161.6,
+     155.8,
+     167.4,
+     160.7,
+     34.8,
+     12.1
+    ]
+   }
+  ],
+  "squash.static.0004": [
+   {
+    "view": "back",
+    "execution_id": "capture-854a33ccf43d07f4e0ee892c6388128fad13cdd6806f2cf332bb5d9df958be0e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     151.3,
+     129.8,
+     145.6,
+     170,
+     6.6,
+     null,
+     43,
+     null
+    ]
+   },
+   {
+    "view": "back",
+    "execution_id": "capture-aba69acaf8e2ceee7416152b9632fb81758429e36c40c0cb3516cf54868473e5",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     169.1,
+     141.3,
+     148.6,
+     178.9,
+     117,
+     null,
+     17.3,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-a2edcb6a8642b00a4c0c711b28344267544218c77eb39142e8ce5d1a53acab69",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     142.8,
+     129.1,
+     120.5,
+     145,
+     null,
+     56.7,
+     null,
+     2.3
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-15f9bb730fc287a104b96bb291054fc2669d594eb3dbe8addc632dd314cd30e1",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.1,
+     170.9,
+     166.9,
+     156.5,
+     148.8,
+     null,
+     64.4,
+     31.9
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-97b2b0a1e3329aa840bd62aa059b3649626aaddd98abfcade92d9a376bdb4f51",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177,
+     151.7,
+     173.1,
+     143.7,
+     99.1,
+     55,
+     41,
+     31
+    ]
+   }
+  ],
+  "squash.static.0010": [
+   {
+    "view": "back",
+    "execution_id": "capture-52105bc39e5af3fa5e76489b5e6ead7ff06967004c09258a41423979d9db61a7",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     168.2,
+     161.3,
+     150.1,
+     177.7,
+     146.8,
+     null,
+     44.9,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-37bf1e52c78274e9a4ce08b878642a6d05ad6c9ac433458d69e1661a80ce3cf0",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     133.1,
+     154.6,
+     135.3,
+     169.9,
+     170.7,
+     114.6,
+     64.3,
+     29.4
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-41da5420a4af6d993c28c3307aeb0021b75310e938b69872c5032c7ece8906c5",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     175.1,
+     171.5,
+     167.1,
+     161.6,
+     null,
+     169.5,
+     null,
+     22
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-48651ac96494a8a03f04f8423e6c4d839a18f68473bf39a6afb7c5d0ece9de9d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.3,
+     165.1,
+     165.3,
+     164.7,
+     169.8,
+     167.5,
+     15,
+     20.4
+    ]
+   }
+  ],
+  "squash.static.0054": [
+   {
+    "view": "back",
+    "execution_id": "capture-e8b0a62288914224da5107645069d833326ae217d579c413a56f8827c893c8e8",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     133.9,
+     110.9,
+     115.3,
+     130.5,
+     147.5,
+     null,
+     16.7,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-99f81a15c38d567c4fb573cf1c5b1b1d01ca592b8bc92784fd17d1fee794eae8",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     138.8,
+     133.5,
+     125,
+     167.9,
+     null,
+     155.4,
+     null,
+     17.9
+    ]
+   }
+  ],
+  "squash.static.0012": [
+   {
+    "view": "back",
+    "execution_id": "capture-fc3ae6d224a72cf151e069ef7113fe31d59f9b4692090bb9ec095cf94fbd7f8e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     174.9,
+     167.7,
+     150,
+     156.3,
+     140.1,
+     null,
+     103.9,
+     56.5
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-f362e8abb82897a8d9eee802d830269b50503c5c735b4520d2e71d1823181b8d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     165.3,
+     164.6,
+     155.8,
+     156.4,
+     145.4,
+     90.9,
+     108.1,
+     54.7
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-3cedc4c38f934580fe4a47db02814e1ded7e7bddf719354fb4381696ff9dd965",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     162.9,
+     165.6,
+     173,
+     175.8,
+     133.6,
+     146,
+     120.4,
+     30
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-a03ade4176669f42d825bb269fd19ca769fa05717660a52244aa71c93be2130d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     171.7,
+     171.6,
+     177.6,
+     168.8,
+     140.6,
+     132,
+     126.3,
+     21.8
+    ]
+   }
+  ],
+  "squash.static.0060": [
+   {
+    "view": "back",
+    "execution_id": "capture-eab37f8a58da9caff35aa90989ec019dd48c74ea14a435b950262955f099d47d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     169.8,
+     169.4,
+     157.7,
+     149.9,
+     null,
+     null,
+     26.4,
+     14.4
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-df1b918ad805409e8f7c1f2e08114381aac21728f0146570ebd4fcfd1bb635cb",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     166.7,
+     165.5,
+     154.5,
+     145.8,
+     156.8,
+     156.1,
+     23.7,
+     18.2
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-ce0859e3e5002e4af65e1e4f416bf6f58c0c494256722030bc362b77e17c5f2f",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     141.4,
+     141.8,
+     135.1,
+     136.9,
+     null,
+     67.6,
+     null,
+     5.8
+    ]
+   }
+  ],
+  "squash.static.0053": [
+   {
+    "view": "back",
+    "execution_id": "capture-a296f971a1e774a05993f73a195b9701924fad2caa87dc02d462305fa15d27a2",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     132.3,
+     141,
+     123.8,
+     140,
+     113.7,
+     137.7,
+     38.6,
+     13.4
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-24cf3e8aef932b0463b9ea8c23268fe9af88b4d7d2f6f03412019c87a0a0ade5",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     114.2,
+     161.9,
+     111.9,
+     143,
+     163,
+     161.2,
+     164.6,
+     28.3
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-2c9fd72de8d0f1820035221ade3b8a892bf14a3bc3c0158009c2c1c7597143af",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     146.6,
+     150.6,
+     127.3,
+     162.5,
+     114.8,
+     149.5,
+     68.1,
+     53.4
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-a70489037a1dd2213366a78c58939d333081340f508d841c4d294a5bb2452911",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     118.6,
+     147.4,
+     93,
+     174.6,
+     61.8,
+     125.9,
+     24,
+     44.2
+    ]
+   }
+  ],
+  "squash.static.0048": [
+   {
+    "view": "back",
+    "execution_id": "capture-1a4401aa8bfacbc0ed5e11051be20c871b0de1dcd41d5594eb7dd158546d4a15",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     152.3,
+     152.7,
+     148.2,
+     156.4,
+     150,
+     null,
+     84.4,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-7fb580e9a6904ae0e526256d9ac91fcab436d2bc2cc0027d27e8ba8bbee5f705",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     128.8,
+     125.3,
+     70,
+     124.8,
+     174.4,
+     151,
+     109.1,
+     46.8
+    ]
+   }
+  ],
+  "squash.static.0047": [
+   {
+    "view": "back",
+    "execution_id": "capture-20b2d2c0310f6ea97ea2a5f9d6f51e87550d90e941c67763da7eeafa796b23c6",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     164.7,
+     165.5,
+     161.7,
+     140.4,
+     172.2,
+     null,
+     68.6,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-7d6d04a21b0b59ea5924e4bcccf36b1ab46b1328d33c3e0b26f1d796896b13bf",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     116.7,
+     150.5,
+     87,
+     170.3,
+     167.8,
+     147.6,
+     72.7,
+     49.3
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-42d47a808d67138862e60e8f8a6399ce1e30596139cefd5ccfb22e48758cff5e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     125.2,
+     164.4,
+     84.8,
+     159.6,
+     null,
+     154.5,
+     null,
+     6.3
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-069c9272c97378df87c2a867bab682a07f89dd360eb25322cd697cf62d68718e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     134.9,
+     150.2,
+     103.3,
+     172.8,
+     161.1,
+     null,
+     60.6,
+     null
+    ]
+   }
+  ],
+  "squash.static.0067": [
+   {
+    "view": "back",
+    "execution_id": "capture-90e6eb70b84e4db202968ba23b71c269555be95faceecd85b183d6afa99a7e0f",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     146.9,
+     167.7,
+     140.3,
+     167.9,
+     29.5,
+     null,
+     51.7,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-44c23276e23ceb19e9f4377db807464e32997f03ec0fac8afa5d5bab19ae6bc3",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     141.1,
+     153.4,
+     119.6,
+     170.8,
+     35.7,
+     null,
+     46.3,
+     38
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-9b34a0d0c90bedafac8c39d8e46ef716e871d77436d4815bf90887c22f60cea2",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     174.5,
+     164.3,
+     179.3,
+     143.1,
+     108.2,
+     null,
+     82.3,
+     36
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-c88f8bb53265ff70a9952cb9f630a5b60e0c2d32438d503c71551db131815b75",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.2,
+     163.2,
+     172.5,
+     144,
+     108.9,
+     68.4,
+     82.2,
+     41.3
+    ]
+   }
+  ],
+  "squash.static.0059": [
+   {
+    "view": "back",
+    "execution_id": "capture-56d4a74dd5d9921e29dc78207fc18aab3dd1a40ab894fb594d988fa020c4a5c4",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.2,
+     170.6,
+     155.8,
+     158.9,
+     98.8,
+     null,
+     52.9,
+     30.9
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-b99bc9aabfbe8b26c210272d4e5dcec3eeb23195ac67502339c813211e3d4873",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     168.9,
+     175.7,
+     156.4,
+     163.2,
+     103.5,
+     57.7,
+     59.3,
+     36.8
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-9df61d98a1d2444f22db7fefc21c96fcc04b23a13a061882f6d343aee28d8d8a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     173.3,
+     171.8,
+     174.2,
+     169.1,
+     70.3,
+     86.4,
+     60.6,
+     5.5
+    ]
+   }
+  ],
+  "squash.static.0069": [
+   {
+    "view": "back",
+    "execution_id": "capture-4f0dce89b976764a1f18cc544a06bcbd80733e73aab5340c9a90f91fec6ab5f7",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.6,
+     174.4,
+     157.4,
+     161.1,
+     105.7,
+     102.5,
+     86.8,
+     44.4
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-9c3e8af00c04bab80ce2d66569177b5fc394cfce07ce7c49104f84480d652bd2",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.7,
+     177,
+     156.5,
+     158.4,
+     122.9,
+     133.1,
+     87,
+     45.8
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-2d52302f20881814072de5aa1eacd22b01b1916fe2f5301536b5293ca7ed852d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     158.1,
+     169.3,
+     176.4,
+     174.9,
+     145.7,
+     74.3,
+     90.3,
+     32.2
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-cb1015ff97bca3bd1925123902776c878c9d9b6362113aa907675208043c934b",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     157.9,
+     161.6,
+     174.8,
+     171.3,
+     140.6,
+     null,
+     83.7,
+     null
+    ]
+   }
+  ],
+  "squash.static.0018": [
+   {
+    "view": "back",
+    "execution_id": "capture-68d735c2e4d3df5bd308b9f57f68e66a6841152ced454c5f58637db5df9e1f7c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     168.5,
+     158.3,
+     162.4,
+     176.6,
+     0.9,
+     null,
+     23.9,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-509f954a6a28f67083a1203d3d0bca0b329eb7036098c25d88738d42bd14f4e4",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     162.6,
+     158.3,
+     158,
+     179.6,
+     null,
+     80.5,
+     null,
+     11.4
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-90fdc2020dfdfe92d282a8c673c20cd5af9523264bc0034824fbfe1149625c8e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     174,
+     171.5,
+     163.1,
+     159.4,
+     90.6,
+     null,
+     37.1,
+     28.7
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-8db857cb0838a8695a53f3de6051f84db4defd0fa5ec090bca8b59cb262505ff",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     174.5,
+     167,
+     163.7,
+     166.6,
+     85.5,
+     76.5,
+     31.7,
+     31
+    ]
+   }
+  ],
+  "squash.static.0021": [
+   {
+    "view": "back",
+    "execution_id": "capture-5def84dbff089b78d02c3d4cf94597a0307ff53b2acea07c10873f9882feb40c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177.8,
+     130.6,
+     147.4,
+     120,
+     59.6,
+     null,
+     27.9,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-8f141858e26a20883692b917878e8ddbaff08789b03788516936adf81919af0f",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     172.9,
+     123.4,
+     153.5,
+     97.2,
+     69.7,
+     94.9,
+     56.8,
+     33.7
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-746f4b6b07612e77e302d54856698d43f23374201f8dc88acc296a0f16a35ae0",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     170.3,
+     159.7,
+     173.6,
+     164.1,
+     43.9,
+     136.9,
+     41.5,
+     8.4
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-1478bcd17dfdd56cde09291c268c0e5bcd42ca0f7bb2416b3d6f62443b8e2ab9",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     170.9,
+     168.3,
+     173.3,
+     177,
+     54,
+     131.7,
+     53.8,
+     0.5
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-b64e5d1d3cda12f6707301da32803e5e786133e1d6104a7c35fa9d580b7b2d5e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     173.5,
+     170.3,
+     178.3,
+     174.4,
+     58.2,
+     142.8,
+     46.4,
+     9.3
+    ]
+   }
+  ],
+  "squash.static.0043": [
+   {
+    "view": "back",
+    "execution_id": "capture-816e4b9ddf8a6cd360ed73ed84eba02f1560db2bac8180c14f4697eb3db24e6c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     132,
+     157.6,
+     125.1,
+     163,
+     159.1,
+     null,
+     59.2,
+     43.7
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-d912a034c88d3376eec854ba30745de2bb45b6d5eefc4d9b9ce8d7b8b599ab18",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     138.5,
+     155,
+     117.2,
+     156.3,
+     162.1,
+     110.8,
+     67.3,
+     42.4
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-a2020d3c75b94b0542c5abca23dd220ecd9f62e26e5cfb95593709c2a1b3cc68",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     170.7,
+     170.7,
+     164.9,
+     165.1,
+     null,
+     161.4,
+     null,
+     25.1
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-ad0e8fb175820977c73e71deb245044c0bad0a352d753261a4d4ac1564319bbb",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     161.8,
+     170.1,
+     162.5,
+     166.1,
+     162.1,
+     157.8,
+     20.6,
+     23.2
+    ]
+   }
+  ],
+  "squash.static.0058": [
+   {
+    "view": "back",
+    "execution_id": "capture-2b51a1bdcd0907b38688d669f49db8a3143efe03683a7cc0f702b2087a30cdfb",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     175,
+     176.8,
+     159.6,
+     154.5,
+     68.8,
+     66,
+     24.8,
+     9.8
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-18d45cbc76aae6a8dedb7aab1314f13b08e32e17fdf8d43bfc7bed56a8b7e9be",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     173.9,
+     175.5,
+     157.5,
+     153.3,
+     78.1,
+     76.5,
+     25.8,
+     14.5
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-c3e97f85e80138bdc791d01acdaeb533c4b36ac433ae1bccf3ec0fb610083d2a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     159.4,
+     167.4,
+     165.5,
+     164.5,
+     null,
+     61.6,
+     null,
+     13.8
+    ]
+   }
+  ],
+  "squash.static.0052": [
+   {
+    "view": "back",
+    "execution_id": "capture-4bd48c986fe9a692fa2373f0aa2525568f640f764d31117e6e8ecdd87b6fbd77",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     146.2,
+     149.3,
+     154,
+     173.8,
+     116,
+     null,
+     19.5,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-115692cdefe49d21a7e6e3643a446c98e3140a7449e8196f831c48211bfc2636",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     140,
+     161.6,
+     133.4,
+     175.5,
+     156.7,
+     120.3,
+     82.6,
+     10.6
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-e3cde1fca1a6347372c77db057b44d00b05601ecc8f0a117e2e1e8032ad0f9e7",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     167.9,
+     129.9,
+     164,
+     132.1,
+     97.4,
+     121.7,
+     53,
+     48.4
+    ]
+   }
+  ],
+  "squash.static.0017": [
+   {
+    "view": "back",
+    "execution_id": "capture-ee445e02554d8bd9b8a8ccc8b51837213b822fb6feca43bda049c510357bf3d5",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     164.6,
+     158.8,
+     161,
+     174.8,
+     68.3,
+     null,
+     11.8,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-94e375c53a397c7c198d86f72e371bec61d6980dcf5da2580eb994463265f128",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     156.6,
+     152.8,
+     151.6,
+     173.2,
+     null,
+     83.6,
+     null,
+     14.2
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-a036af1df0069eee3e445fe0c6c1fa4ecfa1314b73d230b902b2ed476836b848",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     178,
+     174.8,
+     156.5,
+     161.5,
+     94.6,
+     null,
+     40.2,
+     31
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-81a40457f16fec03d448c3360c6ef7ff1f4bb96194b3c2ab76e1fd4528541a4c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     174.5,
+     163.1,
+     166.4,
+     162.9,
+     94,
+     83.3,
+     40.2,
+     32.3
+    ]
+   }
+  ],
+  "squash.static.0002": [
+   {
+    "view": "back",
+    "execution_id": "capture-5844e658b6cf12b1a7c89bf8b8a1ef5dd5227f9f1c5ef55f4d8e22e21a963a75",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179,
+     179.3,
+     164.9,
+     161.7,
+     null,
+     null,
+     28.1,
+     1.1
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-b5f33e5ba0f30815673c44b834a3d9863e9ccdbb5c42e8eedd608bd701eeac56",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.6,
+     172,
+     161.4,
+     156.1,
+     87.2,
+     163.9,
+     18.2,
+     15
+    ]
+   }
+  ],
+  "squash.static.0042": [
+   {
+    "view": "back",
+    "execution_id": "capture-3d26d9e7000a70e9313264f077e28381fc817cbd2469afb825ac5e1a47f9f3ec",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     129.6,
+     120.7,
+     125,
+     137,
+     166.6,
+     null,
+     61.4,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-ef649d9383d11705da85e8dc8bcad7b530c3554f1be340e69ff913b2ecd15cc5",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     131.7,
+     128.9,
+     117.1,
+     144,
+     169.1,
+     92.2,
+     67.7,
+     36.8
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-7fdb7016ae7ce563083654f5f885239a6fa358122d6b3e99c1b75282e2c7fc11",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177.1,
+     178.1,
+     173.9,
+     155,
+     null,
+     176.9,
+     null,
+     36.5
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-bebdf05f5efa1a20f759ee28ee94226a067d3ef5d5418c1f17e23c9b4df95817",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     175.9,
+     164.4,
+     172.1,
+     148,
+     168.8,
+     172,
+     8.6,
+     31.5
+    ]
+   }
+  ],
+  "squash.static.0008": [
+   {
+    "view": "back",
+    "execution_id": "capture-34bb5b90866f1865fec57181060092f669664c12ba5fc3e6e6f749d115f5b19c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     158,
+     165.1,
+     151,
+     166.5,
+     132,
+     null,
+     168.1,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-31444cea2e009a5e459792f9d44f9ced0bd673c0d9384c460a3a9fa270efc373",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     149.6,
+     160.4,
+     134,
+     176.8,
+     40.8,
+     null,
+     49.3,
+     28.5
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-045fd0069b4a71633fbeb91b49836d5da004594676bf1937040b502d6260a716",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     174.9,
+     167.3,
+     167.5,
+     161.6,
+     96.3,
+     null,
+     42.4,
+     29.2
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-cd3ef078a139ffd470c5877e0cb0af323a727dc50b66220e28d45ca36cc27847",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.8,
+     162.8,
+     172,
+     156.7,
+     116,
+     63.5,
+     70.5,
+     25.7
+    ]
+   }
+  ],
+  "squash.static.0027": [
+   {
+    "view": "back",
+    "execution_id": "capture-6824c6e94a74e03a30923f705a6f8f52296096914db4952233bf53a210324bdf",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.1,
+     176.3,
+     159.4,
+     159.7,
+     81.7,
+     54.5,
+     30.6,
+     23.1
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-be4c236e4969e498ff2ad14819b86ed3aa0591d2a634679a7c77c4cf15237a1f",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.6,
+     175.5,
+     159,
+     159.5,
+     72.3,
+     72,
+     20.9,
+     13.2
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-194a240bbeceee364f5bde8a842f11237ef9198b80dfe054b29ad8f43fc5a559",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     170.9,
+     171.4,
+     173.6,
+     172.1,
+     46.3,
+     null,
+     11.6,
+     null
+    ]
+   }
+  ],
+  "squash.static.0006": [
+   {
+    "view": "back",
+    "execution_id": "capture-1e57a9bd71c2f1a11c8e395e3fe0425f86bb5fe19651882108fc2d721e7f8744",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     174.6,
+     177.4,
+     172.5,
+     160.8,
+     null,
+     null,
+     22.5,
+     9.1
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-66e69cc3d324c7793d0d2949f8aef389ef4966a9af2634b7542ed106a8282605",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     175.9,
+     173.2,
+     162.9,
+     156.7,
+     68.7,
+     31.8,
+     18.3,
+     19.1
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-beae747319cc51d31eb7c5fb003143a51d4aa37b995dcf1016269a60f78e2e8c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     164.3,
+     159.3,
+     159.3,
+     162,
+     55.2,
+     null,
+     6.8,
+     null
+    ]
+   }
+  ],
+  "squash.static.0032": [
+   {
+    "view": "back",
+    "execution_id": "capture-54a3c333f9f1389ebd13d50c0241a42c029b4a842c511630c941b7bf19be6972",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     155.6,
+     127.4,
+     170.8,
+     105.9,
+     null,
+     71.8,
+     null,
+     28.5
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-a44de13e8e52f33a4547480c685478180a90136bf41c0de9b71a6cf6d15285f7",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     159.4,
+     126.3,
+     161.6,
+     88.9,
+     null,
+     null,
+     27.1,
+     null
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-3378f17e6206359412a4ed2c5c6b8d90c0e36a3e8e824cfb311eac446d2a6360",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     175.9,
+     162.7,
+     151.2,
+     133.5,
+     107.8,
+     104.5,
+     2.4,
+     22.8
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-4f18d135b6574633c8ba8eda093b5b87519f53ff7df279a2e1aca74f63317066",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     178.5,
+     173.1,
+     158,
+     146.5,
+     null,
+     null,
+     null,
+     28.9
+    ]
+   }
+  ],
+  "squash.static.0014": [
+   {
+    "view": "back",
+    "execution_id": "capture-b86afbde63557727452edfdc345adf0a309866ca2fc5b68b5b1f17cda7ccb015",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     160.9,
+     178.4,
+     170.5,
+     168.7,
+     162.3,
+     155.8,
+     3.9,
+     52.9
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-882d85d64e76e20991e5ed9d91d247da2aba46b9187b39ddd60e0490106cb039",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     164,
+     161.8,
+     170.4,
+     159.3,
+     null,
+     76.4,
+     null,
+     25.5
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-c9ba7b6b052068238f172ef982279f593dfe14170e8e8cd9ae9d4ee526ca2781",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     165.7,
+     174.1,
+     160,
+     172.1,
+     93.9,
+     null,
+     75.6,
+     50.8
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-2a41d38d67850bb77b30c38a7a8901a3d5e1e0502ea94901ca0f7b409664b8e7",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     161.3,
+     172.2,
+     159.8,
+     174.6,
+     103.8,
+     148.4,
+     75.7,
+     46.4
+    ]
+   }
+  ],
+  "squash.static.0046": [
+   {
+    "view": "back",
+    "execution_id": "capture-4736c5b5ff672a67a872b35e04e28ff26736cf556f34fb6ade5515c36b9f30dd",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     162.2,
+     163.1,
+     172.2,
+     154.2,
+     162.7,
+     171.7,
+     59.9,
+     106.8
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-858e65b29ce0ffcda3fad0ec8e6ea691dd4968c34b1d60d7c8fb8cebe3106c1a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     115.1,
+     132.2,
+     92.2,
+     159.4,
+     163.8,
+     137.1,
+     68.2,
+     39.7
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-be3cce1d9a0bb8fc0c0adc1cf57a0a30b8650bad8522a97298c022afbbc3bc28",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     146.4,
+     162.2,
+     95.9,
+     169.8,
+     null,
+     174.1,
+     null,
+     20.1
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-8335a6fb81494d9593851dad5f00a1dbf496edce6fac2f9f54b3827cca31c615",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     121.3,
+     148.8,
+     97.9,
+     162.9,
+     173.1,
+     null,
+     52.1,
+     null
+    ]
+   }
+  ],
+  "squash.static.0036": [
+   {
+    "view": "back",
+    "execution_id": "capture-2fd113fd9527047b8414ca1e2e572e03229fb3ab5e8bccba0f3ecde283e39032",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     131.7,
+     165.8,
+     135.4,
+     171.2,
+     null,
+     null,
+     58.8,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-68ee078e1e3b1e63b0fa1e17f6c01c7a0ef881f36a32574db887dedb0bf8cfc2",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     119.1,
+     153.7,
+     81.8,
+     155.4,
+     166.7,
+     108.2,
+     75.1,
+     43.3
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-f81a767e25dd8bc6636a3b46430ff1b5d3f0995912f5bc6cbee490e8c49f02ab",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     127.2,
+     156.5,
+     101.1,
+     170.5,
+     169.4,
+     null,
+     75.6,
+     null
+    ]
+   }
+  ],
+  "squash.static.0044": [
+   {
+    "view": "back",
+    "execution_id": "capture-986ba4536c5e79a03a25e7e54b1add238ee9e4452840ffeb02110080314c299e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     168,
+     131.4,
+     161.5,
+     120.6,
+     69.4,
+     null,
+     31.2,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-885f8bc56a32efe2de1a4ce84fbf83b758a107bbaa77de4e2a39c811a4d43e78",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     163.5,
+     139.9,
+     168.4,
+     127.7,
+     65.3,
+     111.9,
+     34.9,
+     43.1
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-9ecb81785346b3bbb4cafbc2f16e077968b018ad00fc154db593e995159878d2",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     165.9,
+     167.9,
+     168.9,
+     176.4,
+     59.8,
+     177.2,
+     48.4,
+     40.7
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-725cb67736eb72f2401737aefd2fcafd5c0b51d352b3b26a4aac31ecaef9c99a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.5,
+     179.5,
+     173.7,
+     156.6,
+     113.1,
+     160.9,
+     12.5,
+     29.4
+    ]
+   }
+  ],
+  "squash.static.0070": [
+   {
+    "view": "back",
+    "execution_id": "capture-d4a3079c17af49ecd04df6f12ecf33956f8dc7fdd9124a96c6fe773dd86d7eb2",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     133.7,
+     168.3,
+     169.9,
+     131.3,
+     175.7,
+     null,
+     23.5,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-ba648b70ef4a1ebf9254870fa78bbb8376fc9683672721613976bf4f5f0b8d91",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     115.9,
+     156.6,
+     81.4,
+     168.7,
+     null,
+     136.6,
+     null,
+     32
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-b15f61be947e7814c3bfe5e7ed1fef506e15260b05ddc1d719b7fde65174aaf0",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     97.2,
+     158.6,
+     69.4,
+     168.6,
+     null,
+     113.3,
+     null,
+     10.4
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-7550ec88754d3086565da71be5f08b88ad38a11acc6f2c66ff444665d170b83d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     152.1,
+     176.2,
+     140.9,
+     137.8,
+     93.9,
+     132.4,
+     68.1,
+     67.5
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-e8b3aab7f615a39ed1fa7586619be0fbb5907ca2c67ebc2e4669a3431dc69192",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     132,
+     179.5,
+     109.7,
+     128.4,
+     87,
+     165.8,
+     65.6,
+     47
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-97042992b8709d7db150bafc4943a158ed400bc77b46394ba1f13b1ed0c72a38",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     133.4,
+     169.6,
+     113.6,
+     130.4,
+     94.9,
+     143.9,
+     67.8,
+     80.6
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-a1793912deb5629859c5e1cf8a96546f8721f91a9bdf19233a4718b55be2c43e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     166.8,
+     160.6,
+     160.7,
+     166.4,
+     66,
+     null,
+     3.2,
+     null
+    ]
+   }
+  ],
+  "squash.static.0020": [
+   {
+    "view": "back",
+    "execution_id": "capture-d6c5a5eb1ae994220edfdbaee5a922b2cf62b23e8eeaaab013b9a31f350be3a4",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     123.4,
+     115.5,
+     135.7,
+     174.4,
+     124.3,
+     null,
+     47.6,
+     null
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-105bc6204c444f0290ebd8cca7bb5a57fddbfb61061e1fcbb0b54bd1528505ff",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     126.4,
+     99,
+     97.3,
+     124.1,
+     null,
+     99,
+     null,
+     19.8
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-ba04a3870997949973093823a423d0d201470db238446a25d20561443a7a90ca",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     161.4,
+     153.3,
+     102.7,
+     127.9,
+     120.4,
+     142.7,
+     6.7,
+     105
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-5b5050cb4c50ba58837929925a8a6152c5afb8f574141d72491bcec2631b407c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     167.8,
+     161.3,
+     156.4,
+     144.7,
+     57.6,
+     160.1,
+     30.3,
+     45.3
+    ]
+   }
+  ],
+  "squash.static.0031": [
+   {
+    "view": "back",
+    "execution_id": "capture-de091a1a164e2e89dbcda7decc15aca46e3a26d0e9a2c67bac4d40c597b8a2fa",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     153.2,
+     161.5,
+     173.9,
+     154.9,
+     null,
+     127.7,
+     null,
+     27
+    ]
+   },
+   {
+    "view": "front",
+    "execution_id": "capture-c255d19b0e8d236949462ac241b12b5002bf44947a4509ebb02b0bb016a6c184",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     151.5,
+     160.2,
+     178.7,
+     141.6,
+     null,
+     null,
+     13.6,
+     37.5
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-c4f3dc9a12b450bc0c5d137e749427afa3afd85fa3b72e703201bb2ea120719a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177.9,
+     178.8,
+     166.7,
+     166.7,
+     115.4,
+     162.4,
+     24,
+     21.8
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-9821998407de769e72781a8e45233c10de16b425138482ce62774614f5deb323",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.4,
+     178.7,
+     164.9,
+     166.4,
+     null,
+     171.4,
+     null,
+     27.1
+    ]
+   }
+  ],
+  "squash.static.0007": [
+   {
+    "view": "front",
+    "execution_id": "capture-2f8ae996c67ee1571f87313d9306d9afdfa8a90f5bc174fad3beb92bddb0e644",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     178.6,
+     178.7,
+     166.8,
+     169.8,
+     68.6,
+     14.1,
+     21.2,
+     21.2
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-4705ae0c3e95699041e77992761f2c9e63e2dea7371a1d458651aacf7b4c9122",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     170.3,
+     165.4,
+     167.6,
+     171,
+     52.3,
+     null,
+     8.6,
+     null
+    ]
+   }
+  ],
+  "squash.static.0015": [
+   {
+    "view": "front",
+    "execution_id": "capture-1ddeb8a24de76bd67a9b4536b2bda0ffa6fcd4acedd1040f49f1da68f9650188",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     129,
+     150,
+     111.2,
+     170.7,
+     15.4,
+     162.3,
+     45.5,
+     22.2
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-b61bf8d876d719a7708f4145f6cc0989ac5cf7483465f7b219ac9d83be90cfc7",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     173.1,
+     165.4,
+     175.9,
+     138.3,
+     105.2,
+     null,
+     63.5,
+     44.3
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-71ccc4ff0d6ad838a6c926020e6eb1da09affc6ecabf0106613b9a7f960b2f72",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     160.1,
+     173.7,
+     144.7,
+     140.7,
+     103,
+     70.8,
+     68.6,
+     59.3
+    ]
+   }
+  ],
+  "squash.static.0050": [
+   {
+    "view": "front",
+    "execution_id": "capture-ebd739da90026ed3321af1f9c672ffa2441e8fc0beccad0b957b9b3665c2e0f3",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     160,
+     168.4,
+     175.7,
+     173.9,
+     159.7,
+     79.9,
+     42.1,
+     52.5
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-51efbf878111eb3e8bc6f5531507187d7e67babcd016375fcffdc013c6abd64f",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     169.9,
+     170.6,
+     165.1,
+     168.9,
+     null,
+     131.7,
+     null,
+     21.4
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-bba611c404648e091ec7c5f69593332ef93f745da8a99d68bfaf82fb1c762142",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     172,
+     179.2,
+     171.6,
+     170.5,
+     152.1,
+     135.8,
+     6.5,
+     10.2
+    ]
+   }
+  ],
+  "squash.static.0063": [
+   {
+    "view": "front",
+    "execution_id": "capture-07550d6ed6ee5168b5b094f87c5c496112ce24b4fa10fe7b63125889d24a229f",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     106.7,
+     133.7,
+     63.7,
+     160.4,
+     166.7,
+     104.5,
+     90.2,
+     42.1
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-a014b0f13cab1a828ac0341c2d206d424a4b8b6d647128c35c28e89d07cf47de",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     126.7,
+     164.3,
+     115.3,
+     146.7,
+     null,
+     null,
+     null,
+     24.4
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-586b4b476f5483c73f2c671ed9a9239e1ca98280f8f11e83d0f885c7d1aadcc7",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     85.5,
+     140.8,
+     62.7,
+     160.6,
+     170.6,
+     166.7,
+     39.3,
+     37.3
+    ]
+   }
+  ],
+  "squash.static.0005": [
+   {
+    "view": "front",
+    "execution_id": "capture-7d3c54d023727a01274d063603f4486ce078fa6fde72c6d71801f8f184827718",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     174.5,
+     169,
+     154.7,
+     146.3,
+     95,
+     17.5,
+     31.3,
+     14.2
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-71a33bfe59260cfac4fa541d40c12722b9454899acf97cb8b294399367b58d09",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     152.3,
+     165.7,
+     158.8,
+     166.8,
+     null,
+     57,
+     null,
+     8.9
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-ebbd13e7f4fc9f8aa5ed71c6c2facf297094d0ade2946c6ab02b6ea3c8fa0fac",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.9,
+     154.8,
+     168,
+     148.8,
+     99.2,
+     56.9,
+     38.9,
+     30.4
+    ]
+   }
+  ],
+  "squash.static.0016": [
+   {
+    "view": "front",
+    "execution_id": "capture-4f16f30749f168d9e2f9b0f1099031296a541d977c7b4207fd6728117457c24c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.3,
+     178.6,
+     158.1,
+     159.2,
+     146.1,
+     117.1,
+     11,
+     23.3
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-a76a7a2305302da18b3f891c5cd6096da3089edd68967a3693b794d50834929b",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     170.8,
+     164.9,
+     165.4,
+     169.6,
+     98.4,
+     null,
+     12,
+     null
+    ]
+   }
+  ],
+  "squash.static.0019": [
+   {
+    "view": "front",
+    "execution_id": "capture-cc727c6d9900cfa1d0f15df1669cda92a4403ad1c2757dfbf9e47c03bec70ef5",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     113.3,
+     143.1,
+     86.7,
+     163.9,
+     null,
+     107.6,
+     null,
+     9.6
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-625a0b1de118b43980bb619bead3a5349b385115d65d38d0b8bb2e6315656b61",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.9,
+     166,
+     173,
+     106.7,
+     104.4,
+     null,
+     97.5,
+     40.4
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-c51d3aa2b28e33503b1c3639fc35b7ed9c51cdecea0db36f5fa2038fd80db02c",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     144.2,
+     156.3,
+     132.9,
+     127.9,
+     100.9,
+     155.2,
+     70.8,
+     51.9
+    ]
+   }
+  ],
+  "squash.static.0009": [
+   {
+    "view": "front",
+    "execution_id": "capture-cf185052f0ff307513c5620466fad3ce5b81cf18eb877ec35baab29f96c1ab2b",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     147.1,
+     153.4,
+     171.7,
+     136.6,
+     22.8,
+     null,
+     34.6,
+     null
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-214928dd13496651ed45fecdc107404e448f21fca36b6d57d69fc675e98d6905",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     177.6,
+     177.4,
+     160.6,
+     158,
+     111,
+     98.5,
+     17.1,
+     48.1
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-6afc7e66a37e7ebb9ee445d699f37d5bcebc23ea4c830f00e6c28f18a02a083d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     178.5,
+     177.6,
+     162.4,
+     160.2,
+     null,
+     null,
+     26.9,
+     46.1
+    ]
+   }
+  ],
+  "squash.static.0013": [
+   {
+    "view": "front",
+    "execution_id": "capture-20c1d3f1db60928da83a11993240aa2bff93a1fcd1da0a3cbcb84c500b6a2208",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.1,
+     167.8,
+     164.2,
+     150,
+     120.2,
+     102.6,
+     11.4,
+     24.6
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-74d55b0aa46f1ed52a3e506540c41309b5758abde46e37858ca6e1d08fb00e9a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     157.1,
+     152.4,
+     156.5,
+     150.7,
+     null,
+     82.5,
+     null,
+     10.8
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-442568b61e3c7fdf5ef31d830aa693920583d9212337effef23feba428bd17f0",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     152.1,
+     152.1,
+     147.3,
+     157.1,
+     94.3,
+     null,
+     2.2,
+     null
+    ]
+   }
+  ],
+  "squash.static.0061": [
+   {
+    "view": "front",
+    "execution_id": "capture-0399606c31beca05483687673ea25d0f927e5cc5b12e0ea17a1cf9e4c1c14727",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     124.1,
+     142.4,
+     104.6,
+     171.2,
+     115.4,
+     115.5,
+     56.7,
+     44
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-dc0f8581bd7806ccd261bd5c1f05287316c7e085d585c010bd82f5993fc5e55e",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     155.6,
+     175.6,
+     151.7,
+     130.2,
+     null,
+     165.5,
+     null,
+     28.8
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-3a9b70cde054df4d19e8639493da384fa66c110f3ee51a4d60cbad5f3f7e1b1d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     136.2,
+     156.6,
+     124.7,
+     151.7,
+     159.7,
+     147.4,
+     0.8,
+     4.3
+    ]
+   }
+  ],
+  "squash.static.0025": [
+   {
+    "view": "front",
+    "execution_id": "capture-744eb772f3bc6212cfbb786c90443bd340eb70f8f386362795e09a8a26a59caf",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     151.9,
+     165,
+     155.9,
+     171.2,
+     73.1,
+     150.3,
+     22.8,
+     15.8
+    ]
+   }
+  ],
+  "squash.static.0049": [
+   {
+    "view": "front",
+    "execution_id": "capture-fbcdfb62dbfcd59f43772bb4ceadf53108ae22cbe62368d8f50e9c5a0720337d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     125.3,
+     148.1,
+     87.7,
+     142.6,
+     157.8,
+     94.9,
+     78.2,
+     40.7
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-c4a8a3ecf3f3f0202a46197fafd8a5a640776953579a5e039b6e9408005a5956",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     172.3,
+     172.5,
+     170.9,
+     151.9,
+     null,
+     147.5,
+     null,
+     51.5
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-6c6f872b7f67438e7b0b6f170fc841bd896f60b63a2336adbca6c482fd10a957",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     146.7,
+     168,
+     139.6,
+     161.7,
+     165.8,
+     167.1,
+     36.2,
+     57.4
+    ]
+   }
+  ],
+  "squash.static.0030": [
+   {
+    "view": "front",
+    "execution_id": "capture-6300a8a92318100a165d46750a4869fdbf7ede9e46cbfe2278f8816d58c898e1",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     153.6,
+     158.6,
+     156,
+     171.6,
+     54.5,
+     145.8,
+     17.1,
+     27.9
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-be714b740ad8a8a8996d0bf955f1d66cb62bf8f17ff205fc0846f0c0c5079b35",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     168.3,
+     177.7,
+     157,
+     166.5,
+     null,
+     175.4,
+     null,
+     15.5
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-cae69aa3f26a8b11214a09ed27a29a45a05e74c93a8aaf1224e15e6554875b85",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     175.3,
+     167.7,
+     168.5,
+     167.5,
+     77.7,
+     null,
+     41.8,
+     null
+    ]
+   }
+  ],
+  "squash.static.0022": [
+   {
+    "view": "front",
+    "execution_id": "capture-9b06f1cdfe69b5658668dfcb14711cc58cb88837ec6a0d5d1b22f305f69f88ab",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     123.9,
+     146.7,
+     104.6,
+     178.4,
+     null,
+     87,
+     null,
+     23.9
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-b6d2abfbab193052ec75dc5e2c7a710bcefa41c5b7b2c001ea3a42d3a848bd4a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     149.8,
+     179.8,
+     129.8,
+     144.2,
+     96,
+     75.9,
+     62.7,
+     61.2
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-024dc8d3fdbcc9e79c28aac371d71032cb983e477d71809f3f42a56bde6549fe",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     142.6,
+     175.9,
+     128.8,
+     128.7,
+     78.5,
+     99.1,
+     66.4,
+     56.5
+    ]
+   }
+  ],
+  "squash.static.0038": [
+   {
+    "view": "front",
+    "execution_id": "capture-73910bef993e54317b6ea44b30b2ad2bb68e184b9fc32419c36edb6e87661330",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     125.7,
+     126.5,
+     98,
+     137.9,
+     165,
+     156.4,
+     73.9,
+     49.6
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-c79491c1bd9516482b11549e0dd07912d25f99b6f2312a8620904983dbd6bf99",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     172.3,
+     171.3,
+     112.9,
+     152.9,
+     null,
+     143.3,
+     null,
+     154.6
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-0dcf4010aa169e97bfe6eb28da3e0d97851669d5eb54c4631f38f448111c174f",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     124.3,
+     145.6,
+     104.3,
+     178.4,
+     168.7,
+     null,
+     74.4,
+     null
+    ]
+   }
+  ],
+  "squash.static.0033": [
+   {
+    "view": "front",
+    "execution_id": "capture-7b18b5ff395b001805baee572817c8daae35bc6fdf5dad3b0654f82a944109a0",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     158.9,
+     93.4,
+     168.9,
+     53.7,
+     169.3,
+     null,
+     73.1,
+     null
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-7e1a2a1370e332be5ce9c2716df6a26be62408a208b5e0b88f64f55567ea2228",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     165.3,
+     137.4,
+     155,
+     99.7,
+     176.5,
+     154.8,
+     54.6,
+     30.1
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-78efcc235b174e60b3688658c2f0a9a86121f6d1e8020ff9b66d33fd189f46a0",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     176.5,
+     174.4,
+     125.3,
+     165.2,
+     179.7,
+     163.3,
+     21,
+     47.4
+    ]
+   }
+  ],
+  "squash.static.0028": [
+   {
+    "view": "front",
+    "execution_id": "capture-b3e48aba38a9360d820bf5d91eaccbd92c2adc4a616a0f956939c683305e60b0",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     128,
+     148.5,
+     105.7,
+     174.9,
+     null,
+     75.6,
+     null,
+     37.3
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-8b319bc9c3373c425b715362342a505406f0c0ead3ca1e27a82259ebc0fc0a66",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     159.9,
+     176.3,
+     145.1,
+     144.9,
+     100.4,
+     99.4,
+     45.1,
+     58.7
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-f6f1d0234f21353943203b20a5f194309953b6e26e187109dfe7ebec8150962a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     151,
+     169.6,
+     133.9,
+     140.4,
+     87.8,
+     144.2,
+     41.1,
+     46.1
+    ]
+   }
+  ],
+  "squash.static.0062": [
+   {
+    "view": "front",
+    "execution_id": "capture-efe572175ed89f68421515756be5d856d81cb77784a400bdbc68ab9f1278ae4d",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     119.2,
+     92.5,
+     89.1,
+     108.1,
+     63.5,
+     93.5,
+     27.2,
+     27.4
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-1f8b630945d547bcd35277a1f1fc217d5457690b7b8ed41ad22f5f43faa40f8a",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     178.2,
+     177,
+     175.6,
+     152,
+     132.6,
+     168.9,
+     16.8,
+     32.1
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-796184ad2e301d7df94e9a230f9e786f76d80bd8c3ab338a9c6574137b7e9bb9",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     172.5,
+     172.6,
+     160.7,
+     156.4,
+     124.2,
+     171,
+     17.1,
+     38.3
+    ]
+   }
+  ],
+  "squash.static.0064": [
+   {
+    "view": "front",
+    "execution_id": "capture-aee4b0867b1c32c18243d6ab440a535eae0db0ea87e846741f8cc8dd282b1fcb",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     113.8,
+     138,
+     79.4,
+     150.6,
+     169.8,
+     157.3,
+     86.5,
+     43.8
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-b87a00bd4d217bf2a7e27cdc0d312bd7640d8b2696373022d21e86446e83a794",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     153.8,
+     163.8,
+     147.2,
+     150,
+     null,
+     166.2,
+     null,
+     19.1
+    ]
+   },
+   {
+    "view": "left",
+    "execution_id": "capture-632afc151ed5eb2ff638ebe4b310e6505a9b4deb76023766d12b15fa2f264e98",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     158.3,
+     161.2,
+     160.6,
+     148.3,
+     null,
+     129.1,
+     null,
+     78.7
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-27bea245911a533ce9ac621868309015fa709c748f862f0945e5dee8ed1428ef",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     121.8,
+     148.2,
+     109,
+     163.2,
+     176.9,
+     null,
+     53.5,
+     null
+    ]
+   }
+  ],
+  "squash.static.0045": [
+   {
+    "view": "left",
+    "execution_id": "capture-180c4b98e9a9dd823ee7cb22da3433cd67bd6877f9cb6269f6e1c71aadf86629",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     152.6,
+     167.8,
+     141,
+     159.4,
+     null,
+     163.5,
+     null,
+     21.6
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-3a08d423391525c9a591228f81a7b5c94e610378f57e188b455fee76c44446d2",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     147.4,
+     164.9,
+     137.4,
+     164.1,
+     138.9,
+     144,
+     1.1,
+     12.3
+    ]
+   }
+  ],
+  "squash.static.0024": [
+   {
+    "view": "left",
+    "execution_id": "capture-f1ac98b56372eca2a4f18b1c8a6a29a329fd4abe450e7364fdd396192cf5b407",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     162.1,
+     175.8,
+     169.1,
+     173.9,
+     81,
+     166.2,
+     41.8,
+     18.8
+    ]
+   },
+   {
+    "view": "right",
+    "execution_id": "capture-5e8c6d525e45859daa0ae15209e8b65825ef183a5fe432a5d5805cfb0fa37df1",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179,
+     165.2,
+     161.8,
+     169.3,
+     63.9,
+     164.5,
+     57.3,
+     31
+    ]
+   }
+  ],
+  "squash.static.0003": [
+   {
+    "view": "right",
+    "execution_id": "capture-9199c5ffb3a783244b0919b14abeb64e31515ed19204f4d5790e73a814c3a389",
+    "handedness": "right",
+    "handedness_assumed": false,
+    "handedness_source": "dataset",
+    "values": [
+     179.6,
+     176.7,
+     177.1,
+     175.4,
+     65.3,
+     null,
+     8.3,
+     null
+    ]
+   }
+  ]
+ }
+}

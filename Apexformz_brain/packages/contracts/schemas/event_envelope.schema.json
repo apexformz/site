@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/event_envelope.schema.json",
+  "title": "EventEnvelope",
+  "description": "Traceable append-only session event. Idempotent cloud ingestion keys on (session_id, event_id).",
+  "type": "object",
+  "allOf": [{ "$ref": "common.schema.json#/$defs/event_envelope_base" }],
+  "required": ["event_type", "payload"],
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "session.transition", "pose.quality", "movement.event", "assessment.set",
+        "feedback.action", "telemetry.sample", "error", "pack.activation", "calibration"
+      ]
+    },
+    "payload": { "type": "object" },
+    "sequence": { "type": "integer", "minimum": 0, "description": "Local append sequence for ordering within a session" }
+  }
+}

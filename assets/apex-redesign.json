@@ -1,0 +1,23 @@
+{
+  "identityAsset": "../apps/frontend/public/logo.png",
+  "heroAsset": "../apps/frontend/public/images/apex-motion-sculpture.webp",
+  "generator": "Built-in image_gen tool",
+  "prompt": "Use case: stylized-concept. Asset type: transparent 3D hero illustration for ApexFormz, a premium sports movement coaching application. A beautiful sculptural human athlete in a powerful mid-stride running pose facing right, three-quarter side view, full body visible. A refined gender-neutral athletic mannequin, smooth elegant anatomy, featureless face, no hair. Sculpted from satin pearl-white ceramic and translucent cobalt-blue optical resin: body predominantly pale frosted blue with deeper cobalt in the lower legs and arms, subtle luminous blue joint insets at shoulder, elbow, hip, knee and ankle. Premium industrial design object rendered with realistic soft studio lighting, broad gentle highlights, ambient occlusion, subtle refraction, no hard neon. Dynamic but composed and graceful. Both arms and legs anatomically correct. One clear subject, generous negative space around silhouette, centered in square composition. Must be isolated on genuinely transparent alpha background with no ground, no backdrop, no floor, no text, no letters, no logo, no watermarks, no extra objects, no rings, no frame. Soft luxurious aesthetic rather than gaming or superhero. High-quality 3D product render, lifelike proportions rather than cartoon. This is an art object, opaque enough to read clearly on both pale pearl and muted slate backgrounds.",
+  "direction": "Spacious pearl day and soft slate night themes. Manrope typography, 28px material surfaces, sculpted visual depth, full-size controls, and original blue identity.",
+  "themes": {
+    "default": "light",
+    "storageKey": "apexformz-theme",
+    "palette": "CSS semantic RGB variables in globals.css"
+  },
+  "references": [
+    "https://motion.dev/docs/react-layout-animations",
+    "https://motion.dev/docs/react-scroll-animations",
+    "https://kokonutui.com/docs/navigation/smooth-tab",
+    "https://21st.dev/",
+    "https://prompt-motion.com/",
+    "https://www.originkit.dev/",
+    "https://ui.watermelon.sh/animated-components",
+    "https://threejs.org/docs/"
+  ],
+  "heroImplementation": "Reconstructed textured GLB rendered by ReferenceAthleteModel.tsx; see apex-athlete-reference.json. The earlier generated heroAsset is retained for other site illustrations."
+}

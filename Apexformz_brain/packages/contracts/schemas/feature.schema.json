@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/feature.schema.json",
+  "title": "Feature contracts",
+  "description": "FeatureSpec is requested by sport packs; FeatureValue is the deterministic output of a pure feature function (TRD 04).",
+  "$defs": {
+    "feature_kind": {
+      "type": "string",
+      "enum": [
+        "angle_at", "line_inclination", "segment_orientation", "interjoint_distance_ratio",
+        "center_of_keypoints", "landmark_coordinate", "landmark_offset", "time_derivative",
+        "angular_velocity", "relative_phase_timing", "stability_variability", "path_smoothness",
+        "window_min", "window_max", "window_mean", "min_of", "max_of"
+      ]
+    },
+    "landmark_ref": {
+      "type": "string",
+      "description": "Landmark name (e.g. left_knee) or side token (dominant_knee, nondominant_knee) resolved at runtime",
+      "minLength": 1
+    },
+    "feature_spec": {
+      "type": "object",
+      "required": ["id", "kind", "params", "version", "coordinate_system", "view_applicability"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "kind": { "$ref": "#/$defs/feature_kind" },
+        "params": { "type": "object" },
+        "version": { "$ref": "common.schema.json#/$defs/semver" },
+        "coordinate_system": { "$ref": "common.schema.json#/$defs/coordinate_system" },
+        "view_applicability": { "$ref": "common.schema.json#/$defs/view_applicability" },
+        "description": { "type": "string" },
+        "unit": { "$ref": "common.schema.json#/$defs/unit" }
+      }
+    },
+    "feature_value": {
+      "type": "object",
+      "required": ["spec_id", "name", "value", "unit", "valid", "evidence_frame_ids", "confidence", "view_applicability", "coordinate_system", "timestamp_ms"],
+      "properties": {
+        "spec_id": { "type": "string" },
+        "name": { "type": "string" },
+        "value": { "type": ["number", "null"] },
+        "unit": { "$ref": "common.schema.json#/$defs/unit" },
+        "valid": { "type": "boolean" },
+        "reason": { "oneOf": [{ "$ref": "common.schema.json#/$defs/missing_reason" }, { "type": "null" }] },
+        "evidence_frame_ids": { "type": "array", "items": { "type": "integer" } },
+        "confidence": { "type": ["number", "null"] },
+        "view_applicability": { "$ref": "common.schema.json#/$defs/view_applicability" },
+        "coordinate_system": { "$ref": "common.schema.json#/$defs/coordinate_system" },
+        "timestamp_ms": { "$ref": "common.schema.json#/$defs/monotonic_ms" },
+        "derived_from": { "type": "array", "items": { "type": "string" } },
+        "retrospective": { "type": "boolean" },
+        "meta": { "type": "object" }
+      },
+      "allOf": [
+        { "if": { "properties": { "valid": { "const": false } } }, "then": { "required": ["reason"] } },
+        { "if": { "properties": { "value": { "type": "null" } } }, "then": { "properties": { "valid": { "const": false } } } }
+      ]
+    }
+  }
+}

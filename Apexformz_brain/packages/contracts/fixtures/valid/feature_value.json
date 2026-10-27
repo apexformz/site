@@ -1,0 +1,17 @@
+{
+  "spec_id": "left_knee_angle",
+  "name": "left_knee_angle",
+  "value": 134.2,
+  "unit": "deg",
+  "valid": true,
+  "reason": null,
+  "evidence_frame_ids": [
+    42
+  ],
+  "confidence": 0.91,
+  "view_applicability": "any",
+  "coordinate_system": "body_relative",
+  "timestamp_ms": 1400.5,
+  "derived_from": [],
+  "retrospective": false
+}

@@ -1,0 +1,664 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "badminton",
+  "rubric_version": "1.0.0",
+  "aggregation": {
+    "method": "weighted_mean_of_valid_criteria",
+    "minimum_coverage": 0.6
+  },
+  "features": [
+    {
+      "id": "left_knee_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "left_hip",
+        "b": "left_knee",
+        "c": "left_ankle",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg",
+      "description": "Interior knee angle, 180 = straight"
+    },
+    {
+      "id": "right_knee_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "right_hip",
+        "b": "right_knee",
+        "c": "right_ankle",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "lead_knee_angle",
+      "kind": "min_of",
+      "params": {
+        "features": [
+          "left_knee_angle",
+          "right_knee_angle"
+        ]
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg",
+      "description": "The more flexed knee is treated as the lead (lunging) leg"
+    },
+    {
+      "id": "max_knee_angle",
+      "kind": "max_of",
+      "params": {
+        "features": [
+          "left_knee_angle",
+          "right_knee_angle"
+        ]
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "lead_knee_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "lead_knee_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "dominant_elbow_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "dominant_shoulder",
+        "b": "dominant_elbow",
+        "c": "dominant_wrist",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "dominant_elbow_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "dominant_elbow_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "dominant_arm_elevation",
+      "kind": "angle_at",
+      "params": {
+        "a": "dominant_hip",
+        "b": "dominant_shoulder",
+        "c": "dominant_elbow",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg",
+      "description": "Angle hip-shoulder-elbow; ~180 when the arm is raised straight overhead"
+    },
+    {
+      "id": "trunk_lateral_lean",
+      "kind": "line_inclination",
+      "params": {
+        "from": [
+          "left_hip",
+          "right_hip"
+        ],
+        "to": [
+          "left_shoulder",
+          "right_shoulder"
+        ],
+        "reference": "vertical"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": [
+        "front",
+        "back"
+      ],
+      "unit": "deg"
+    },
+    {
+      "id": "trunk_forward_lean",
+      "kind": "line_inclination",
+      "params": {
+        "from": [
+          "left_hip",
+          "right_hip"
+        ],
+        "to": [
+          "left_shoulder",
+          "right_shoulder"
+        ],
+        "reference": "vertical"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": [
+        "left",
+        "right"
+      ],
+      "unit": "deg",
+      "description": "Sagittal trunk inclination; sign depends on which side faces the camera"
+    },
+    {
+      "id": "stance_width_ratio",
+      "kind": "interjoint_distance_ratio",
+      "params": {
+        "a": "left_ankle",
+        "b": "right_ankle",
+        "c": "left_shoulder",
+        "d": "right_shoulder",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": [
+        "front",
+        "back"
+      ],
+      "unit": "ratio"
+    },
+    {
+      "id": "left_knee_ankle_offset_x",
+      "kind": "landmark_offset",
+      "params": {
+        "a": "left_knee",
+        "b": "left_ankle",
+        "axis": "x"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": [
+        "front",
+        "back"
+      ],
+      "unit": "normalized"
+    },
+    {
+      "id": "right_knee_ankle_offset_x",
+      "kind": "landmark_offset",
+      "params": {
+        "a": "right_knee",
+        "b": "right_ankle",
+        "axis": "x"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": [
+        "front",
+        "back"
+      ],
+      "unit": "normalized"
+    },
+    {
+      "id": "hip_centre_x_image",
+      "kind": "center_of_keypoints",
+      "params": {
+        "landmarks": [
+          "left_hip",
+          "right_hip"
+        ],
+        "axis": "x"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any",
+      "unit": "normalized"
+    },
+    {
+      "id": "hip_centre_y_image",
+      "kind": "center_of_keypoints",
+      "params": {
+        "landmarks": [
+          "left_hip",
+          "right_hip"
+        ],
+        "axis": "y"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any",
+      "unit": "normalized"
+    },
+    {
+      "id": "body_motion",
+      "kind": "stability_variability",
+      "params": {
+        "of": "hip_centre_x_image",
+        "window_ms": 600,
+        "stat": "std",
+        "min_samples": 4
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any",
+      "description": "Proxy for whole-body stillness; NOT a centre-of-mass measure"
+    },
+    {
+      "id": "hip_vertical_velocity",
+      "kind": "time_derivative",
+      "params": {
+        "of": "hip_centre_y_image",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any"
+    },
+    {
+      "id": "lunge_sequencing",
+      "kind": "relative_phase_timing",
+      "params": {
+        "features": [
+          "lead_knee_angle",
+          "dominant_elbow_angle"
+        ],
+        "window_ms": 1500
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "score",
+      "description": "1.0 when the lead knee reaches peak angular speed before the racket elbow"
+    }
+  ],
+  "criteria": [
+    {
+      "criterion_id": "badminton.ready_stance.stance_width",
+      "movement_id": "badminton.ready_stance",
+      "phase_ids": [
+        "hold"
+      ],
+      "required_features": [
+        "stance_width_ratio"
+      ],
+      "evaluator": {
+        "kind": "range",
+        "aggregate": "window_mean",
+        "range": [
+          1.0,
+          1.9
+        ],
+        "tolerance": 0.3
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "back"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.ready_stance.stance_width_out_of_range",
+      "description": "Ankle spacing relative to shoulder width in the ready stance."
+    },
+    {
+      "criterion_id": "badminton.ready_stance.knee_flexion",
+      "movement_id": "badminton.ready_stance",
+      "phase_ids": [
+        "hold"
+      ],
+      "required_features": [
+        "max_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "max_value",
+        "aggregate": "window_mean",
+        "limit": 168,
+        "tolerance": 8
+      },
+      "technique_variant": null,
+      "view_constraints": "any",
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.ready_stance.knees_too_straight",
+      "description": "Both knees should be softly flexed; a fully straight knee indicates an unloaded stance."
+    },
+    {
+      "criterion_id": "badminton.ready_stance.trunk_lateral_lean",
+      "movement_id": "badminton.ready_stance",
+      "phase_ids": [
+        "hold"
+      ],
+      "required_features": [
+        "trunk_lateral_lean"
+      ],
+      "evaluator": {
+        "kind": "max_abs",
+        "aggregate": "window_mean",
+        "limit": 12,
+        "tolerance": 6
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "back"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "low",
+      "weight": 0.5,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.ready_stance.trunk_lateral_lean"
+    },
+    {
+      "criterion_id": "badminton.lunge.lead_knee_depth",
+      "movement_id": "badminton.lunge",
+      "phase_ids": [
+        "bottom"
+      ],
+      "required_features": [
+        "lead_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "range",
+        "aggregate": "phase_min",
+        "range": [
+          90,
+          130
+        ],
+        "tolerance": 15
+      },
+      "technique_variant": null,
+      "view_constraints": "any",
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.5,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.lunge.lead_knee_depth_out_of_range",
+      "description": "Minimum lead knee angle at the bottom of the lunge."
+    },
+    {
+      "criterion_id": "badminton.lunge.knee_foot_alignment",
+      "movement_id": "badminton.lunge",
+      "phase_ids": [
+        "bottom"
+      ],
+      "required_features": [
+        "left_knee_ankle_offset_x",
+        "right_knee_ankle_offset_x",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "feature_selector": {
+        "mode": "key_min",
+        "candidates": [
+          "left_knee_ankle_offset_x",
+          "right_knee_ankle_offset_x"
+        ],
+        "keys": [
+          "left_knee_angle",
+          "right_knee_angle"
+        ]
+      },
+      "evaluator": {
+        "kind": "max_abs",
+        "aggregate": "phase_mean",
+        "limit": 0.25,
+        "tolerance": 0.15
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "back"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "high",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.lunge.knee_not_over_foot",
+      "description": "Horizontal knee-to-ankle offset of the lead leg (torso lengths) where observable from the front."
+    },
+    {
+      "criterion_id": "badminton.lunge.trunk_forward_lean",
+      "movement_id": "badminton.lunge",
+      "phase_ids": [
+        "bottom"
+      ],
+      "required_features": [
+        "trunk_forward_lean"
+      ],
+      "evaluator": {
+        "kind": "max_abs",
+        "aggregate": "phase_max",
+        "limit": 35,
+        "tolerance": 10
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.lunge.excessive_trunk_lean"
+    },
+    {
+      "criterion_id": "badminton.lunge.recovery_time",
+      "movement_id": "badminton.lunge",
+      "phase_ids": [
+        "recovery"
+      ],
+      "required_features": [],
+      "evaluator": {
+        "kind": "phase_duration",
+        "aggregate": "phase_end",
+        "limit": 1200,
+        "tolerance": 400,
+        "params": {
+          "phase_id": "recovery",
+          "from_phase_id": "bottom",
+          "measure": "since_phase_start"
+        }
+      },
+      "technique_variant": null,
+      "view_constraints": "any",
+      "missing_data_policy": "not_assessable",
+      "severity": "low",
+      "weight": 0.75,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.lunge.slow_recovery",
+      "description": "Time from reaching the bottom of the lunge until standing back up (recovery phase entered). TODO_REQUIRES_VALIDATION."
+    },
+    {
+      "criterion_id": "badminton.lunge.racket_arm_extension",
+      "movement_id": "badminton.lunge",
+      "phase_ids": [
+        "bottom"
+      ],
+      "required_features": [
+        "dominant_elbow_angle"
+      ],
+      "evaluator": {
+        "kind": "range",
+        "aggregate": "phase_max",
+        "range": [
+          120,
+          180
+        ],
+        "tolerance": 15
+      },
+      "technique_variant": null,
+      "view_constraints": "any",
+      "missing_data_policy": "not_assessable",
+      "severity": "low",
+      "weight": 0.75,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.lunge.racket_arm_bent"
+    },
+    {
+      "criterion_id": "badminton.lunge.sequencing",
+      "movement_id": "badminton.lunge",
+      "phase_ids": [
+        "bottom",
+        "recovery"
+      ],
+      "required_features": [
+        "lunge_sequencing"
+      ],
+      "evaluator": {
+        "kind": "ordering",
+        "aggregate": "latest",
+        "limit": 1.0,
+        "expected_order": [
+          "lead_knee_angle",
+          "dominant_elbow_angle"
+        ]
+      },
+      "technique_variant": null,
+      "view_constraints": "any",
+      "missing_data_policy": "uncertain",
+      "severity": "low",
+      "weight": 0.5,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: coach panel review",
+        "status": "provisional"
+      },
+      "athlete_context": [
+        "intermediate",
+        "advanced"
+      ],
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.lunge.arm_before_legs",
+      "description": "Legs should initiate before the racket arm extends."
+    },
+    {
+      "criterion_id": "badminton.lunge.racket_contact_height",
+      "movement_id": "badminton.lunge",
+      "phase_ids": [
+        "bottom"
+      ],
+      "required_features": [],
+      "evaluator": {
+        "kind": "equipment_dependent",
+        "aggregate": "phase_end",
+        "params": {
+          "requires_contact": true,
+          "equipment": "racket",
+          "measurement_unit": "normalized"
+        }
+      },
+      "technique_variant": null,
+      "view_constraints": "any",
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "TODO_REQUIRES_VALIDATION: requires racket adapter and coach review",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "optional_implement"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "0.1-seed",
+      "error_id": "badminton.lunge.contact_too_low",
+      "description": "Racket head height at estimated shuttle contact. Needs the optional racket adapter and observed contact; otherwise NOT_ASSESSABLE."
+    }
+  ]
+}

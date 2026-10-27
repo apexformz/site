@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/ml/capture_inventory.schema.json",
+  "title": "ApexFormz source capture inventory",
+  "description": "Read-only media inventory. Eligibility means no detected media blocker; it does not confer training authorization or production readiness.",
+  "type": "object",
+  "required": ["schema_version", "kind", "created_at", "source", "records", "summary"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "kind": {"const": "apexformz.capture_inventory"},
+    "created_at": {"type": "string"},
+    "source": {
+      "type": "object",
+      "required": ["bucket", "prefix", "sport"],
+      "properties": {
+        "bucket": {"type": "string", "minLength": 1},
+        "prefix": {"type": "string", "minLength": 1},
+        "sport": {"type": "string"},
+        "manifest_bucket": {"type": ["string", "null"]},
+        "manifest_prefix": {"type": "array", "items": {"type": "string"}},
+        "max_objects": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}},
+    "summary": {
+      "type": "object",
+      "required": ["records", "eligible_media", "downloaded", "known_athletes", "unknown_athlete_records", "production_ready", "release_blockers"],
+      "properties": {
+        "records": {"type": "integer", "minimum": 0},
+        "eligible_media": {"type": "integer", "minimum": 0},
+        "downloaded": {"type": "integer", "minimum": 0},
+        "known_athletes": {"type": "integer", "minimum": 0},
+        "unknown_athlete_records": {"type": "integer", "minimum": 0},
+        "production_ready": {"const": false},
+        "release_blockers": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  },
+  "$defs": {
+    "nullable_text": {"type": ["string", "null"]},
+    "nullable_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "object_source": {
+      "type": "object",
+      "required": ["bucket", "key", "uri", "version_id", "etag", "size", "sha256", "sha256_source", "encryption"],
+      "properties": {
+        "bucket": {"type": "string"},
+        "key": {"type": "string"},
+        "uri": {"type": "string", "pattern": "^s3://"},
+        "version_id": {"$ref": "#/$defs/nullable_text"},
+        "etag": {"$ref": "#/$defs/nullable_text"},
+        "size": {"type": "integer", "minimum": 0},
+        "last_modified": {"$ref": "#/$defs/nullable_text"},
+        "sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "sha256_source": {"enum": ["s3_metadata", "capture_manifest", "downloaded_bytes", null]},
+        "encryption": {"$ref": "#/$defs/nullable_text"}
+      }
+    },
+    "record": {
+      "type": "object",
+      "required": ["record_id", "source", "local_path", "local_sha256", "media_kind", "capture_id", "capture_session_id", "athlete_id", "source_movement_id", "source_movement_name", "movement_type", "level", "view", "handedness", "split_group_id", "synchronization", "superseded", "consent", "metadata_sources", "validation"],
+      "properties": {
+        "record_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "source": {"$ref": "#/$defs/object_source"},
+        "local_path": {"$ref": "#/$defs/nullable_text"},
+        "local_sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "media_kind": {"enum": ["image", "video"]},
+        "capture_id": {"$ref": "#/$defs/nullable_text"},
+        "capture_session_id": {"$ref": "#/$defs/nullable_text"},
+        "athlete_id": {"$ref": "#/$defs/nullable_text"},
+        "source_movement_id": {"$ref": "#/$defs/nullable_text"},
+        "source_movement_name": {"$ref": "#/$defs/nullable_text"},
+        "movement_type": {"enum": ["static", "dynamic", null]},
+        "level": {"$ref": "#/$defs/nullable_text"},
+        "view": {"enum": ["front", "back", "left", "right", "unknown"]},
+        "handedness": {"const": "unknown"},
+        "split_group_id": {"type": "string", "minLength": 1},
+        "synchronization": {"const": "not_established"},
+        "superseded": {"type": "boolean"},
+        "consent": {
+          "type": "object", "required": ["status", "purpose", "retention_until"],
+          "properties": {
+            "status": {"enum": ["GRANTED", "WITHDRAWN", "PENDING", "unknown"]},
+            "purpose": {"type": "array", "maxItems": 0},
+            "retention_until": {"type": "null"}
+          }
+        },
+        "metadata_sources": {"type": "array", "items": {"$ref": "#/$defs/object_source"}},
+        "validation": {
+          "type": "object", "required": ["eligible_media", "blockers", "warnings"],
+          "properties": {
+            "eligible_media": {"type": "boolean"},
+            "blockers": {"type": "array", "items": {"type": "string"}},
+            "warnings": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      }
+    }
+  }
+}

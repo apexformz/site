@@ -1,0 +1,70 @@
+{
+ "kind": "reference_set",
+ "movement_id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse",
+ "features": [
+  "left_elbow_angle",
+  "right_elbow_angle",
+  "left_shoulder_angle",
+  "right_shoulder_angle",
+  "left_hip_angle",
+  "right_hip_angle",
+  "left_knee_angle",
+  "right_knee_angle"
+ ],
+ "weights": [
+  0.4,
+  0.4,
+  0.7,
+  0.7,
+  1.5,
+  1.5,
+  1.6,
+  1.6
+ ],
+ "reference_vectors": [
+  [
+   150.8,
+   126.9,
+   28.0,
+   4.9,
+   177.5,
+   null,
+   171.8,
+   null
+  ],
+  [
+   150.8,
+   126.9,
+   28.0,
+   4.9,
+   177.5,
+   null,
+   171.8,
+   null
+  ],
+  [
+   71.3,
+   null,
+   20.6,
+   null,
+   75.3,
+   176.9,
+   81.5,
+   177.8
+  ],
+  [
+   71.3,
+   null,
+   20.6,
+   null,
+   75.3,
+   176.9,
+   81.5,
+   177.8
+  ]
+ ],
+ "threshold": 20.0,
+ "tolerance": 15.0,
+ "validation_status": "provisional",
+ "provenance": "Legacy taekwondo_reference_frames.json extracted from front/left/right expert videos; weighted RMS distance in degrees. TODO_REQUIRES_VALIDATION."
+}

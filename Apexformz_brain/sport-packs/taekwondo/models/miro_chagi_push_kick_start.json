@@ -1,0 +1,90 @@
+{
+ "kind": "reference_set",
+ "movement_id": "taekwondo.miro_chagi_push_kick",
+ "features": [
+  "left_elbow_angle",
+  "right_elbow_angle",
+  "left_shoulder_angle",
+  "right_shoulder_angle",
+  "left_hip_angle",
+  "right_hip_angle",
+  "left_knee_angle",
+  "right_knee_angle"
+ ],
+ "weights": [
+  0.4,
+  0.4,
+  0.7,
+  0.7,
+  1.5,
+  1.5,
+  1.6,
+  1.6
+ ],
+ "reference_vectors": [
+  [
+   142.7,
+   68.0,
+   34.7,
+   23.8,
+   153.4,
+   112.0,
+   151.7,
+   103.5
+  ],
+  [
+   142.7,
+   68.0,
+   34.7,
+   23.8,
+   153.4,
+   112.0,
+   151.7,
+   103.5
+  ],
+  [
+   null,
+   null,
+   32.7,
+   22.4,
+   139.3,
+   71.4,
+   171.5,
+   84.7
+  ],
+  [
+   null,
+   null,
+   32.7,
+   22.4,
+   139.3,
+   71.4,
+   171.5,
+   84.7
+  ],
+  [
+   166.7,
+   null,
+   5.5,
+   null,
+   166.7,
+   177.7,
+   176.0,
+   174.7
+  ],
+  [
+   166.7,
+   null,
+   5.5,
+   null,
+   166.7,
+   177.7,
+   176.0,
+   174.7
+  ]
+ ],
+ "threshold": 20.0,
+ "tolerance": 15.0,
+ "validation_status": "provisional",
+ "provenance": "Legacy taekwondo_reference_frames.json extracted from front/left/right expert videos; weighted RMS distance in degrees. TODO_REQUIRES_VALIDATION."
+}

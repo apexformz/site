@@ -1,0 +1,1245 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "squash",
+  "model_task": "static_pose",
+  "model_url": "static_pose.onnx",
+  "model": {
+    "model_id": "squash.static_pose.tcn",
+    "version": "tcn-1792952301195117500",
+    "digest": "sha256:dca7452c903630713451239ceb2b6a91d80e5476cfc9215fc498002fbe5c8ed2"
+  },
+  "classes": [
+    "squash.static.0001",
+    "squash.static.0002",
+    "squash.static.0003",
+    "squash.static.0004",
+    "squash.static.0005",
+    "squash.static.0006",
+    "squash.static.0007",
+    "squash.static.0008",
+    "squash.static.0009",
+    "squash.static.0010",
+    "squash.static.0011",
+    "squash.static.0012",
+    "squash.static.0013",
+    "squash.static.0014",
+    "squash.static.0015",
+    "squash.static.0016",
+    "squash.static.0017",
+    "squash.static.0018",
+    "squash.static.0019",
+    "squash.static.0020",
+    "squash.static.0021",
+    "squash.static.0022",
+    "squash.static.0024",
+    "squash.static.0025",
+    "squash.static.0026",
+    "squash.static.0027",
+    "squash.static.0028",
+    "squash.static.0029",
+    "squash.static.0030",
+    "squash.static.0031",
+    "squash.static.0032",
+    "squash.static.0033",
+    "squash.static.0034",
+    "squash.static.0035",
+    "squash.static.0036",
+    "squash.static.0037",
+    "squash.static.0038",
+    "squash.static.0039",
+    "squash.static.0040",
+    "squash.static.0041",
+    "squash.static.0042",
+    "squash.static.0043",
+    "squash.static.0044",
+    "squash.static.0045",
+    "squash.static.0046",
+    "squash.static.0047",
+    "squash.static.0048",
+    "squash.static.0049",
+    "squash.static.0050",
+    "squash.static.0051",
+    "squash.static.0052",
+    "squash.static.0053",
+    "squash.static.0054",
+    "squash.static.0055",
+    "squash.static.0056",
+    "squash.static.0058",
+    "squash.static.0059",
+    "squash.static.0060",
+    "squash.static.0061",
+    "squash.static.0062",
+    "squash.static.0063",
+    "squash.static.0064",
+    "squash.static.0065",
+    "squash.static.0066",
+    "squash.static.0067",
+    "squash.static.0068",
+    "squash.static.0069",
+    "squash.static.0070",
+    "UNKNOWN"
+  ],
+  "input": {
+    "landmark_set": "mediapipe_pose_33",
+    "window_frames": 1,
+    "hz": 15.0,
+    "max_hold_ms": 100.0,
+    "min_visibility": 0.5,
+    "min_observed_fraction": 0.6,
+    "frame_gate": "identity_only",
+    "subject_continuity": "tracker_root_v1",
+    "canonical_handedness": "right",
+    "normalization": "world_bodyframe_v1",
+    "smoothing": "none"
+  },
+  "calibration": {
+    "temperature": 1.0,
+    "margin": 0.1,
+    "thresholds": {
+      "squash.static.0001": 1.0,
+      "squash.static.0002": 1.0,
+      "squash.static.0003": 1.0,
+      "squash.static.0004": 1.0,
+      "squash.static.0005": 1.0,
+      "squash.static.0006": 1.0,
+      "squash.static.0007": 1.0,
+      "squash.static.0008": 1.0,
+      "squash.static.0009": 1.0,
+      "squash.static.0010": 1.0,
+      "squash.static.0011": 1.0,
+      "squash.static.0012": 1.0,
+      "squash.static.0013": 1.0,
+      "squash.static.0014": 1.0,
+      "squash.static.0015": 1.0,
+      "squash.static.0016": 1.0,
+      "squash.static.0017": 1.0,
+      "squash.static.0018": 1.0,
+      "squash.static.0019": 1.0,
+      "squash.static.0020": 1.0,
+      "squash.static.0021": 1.0,
+      "squash.static.0022": 1.0,
+      "squash.static.0024": 1.0,
+      "squash.static.0025": 1.0,
+      "squash.static.0026": 1.0,
+      "squash.static.0027": 1.0,
+      "squash.static.0028": 1.0,
+      "squash.static.0029": 1.0,
+      "squash.static.0030": 1.0,
+      "squash.static.0031": 1.0,
+      "squash.static.0032": 1.0,
+      "squash.static.0033": 1.0,
+      "squash.static.0034": 1.0,
+      "squash.static.0035": 1.0,
+      "squash.static.0036": 1.0,
+      "squash.static.0037": 1.0,
+      "squash.static.0038": 1.0,
+      "squash.static.0039": 1.0,
+      "squash.static.0040": 1.0,
+      "squash.static.0041": 1.0,
+      "squash.static.0042": 1.0,
+      "squash.static.0043": 1.0,
+      "squash.static.0044": 1.0,
+      "squash.static.0045": 1.0,
+      "squash.static.0046": 1.0,
+      "squash.static.0047": 1.0,
+      "squash.static.0048": 1.0,
+      "squash.static.0049": 1.0,
+      "squash.static.0050": 1.0,
+      "squash.static.0051": 1.0,
+      "squash.static.0052": 1.0,
+      "squash.static.0053": 1.0,
+      "squash.static.0054": 1.0,
+      "squash.static.0055": 1.0,
+      "squash.static.0056": 1.0,
+      "squash.static.0058": 1.0,
+      "squash.static.0059": 1.0,
+      "squash.static.0060": 1.0,
+      "squash.static.0061": 1.0,
+      "squash.static.0062": 1.0,
+      "squash.static.0063": 1.0,
+      "squash.static.0064": 1.0,
+      "squash.static.0065": 1.0,
+      "squash.static.0066": 1.0,
+      "squash.static.0067": 1.0,
+      "squash.static.0068": 1.0,
+      "squash.static.0069": 1.0,
+      "squash.static.0070": 1.0
+    },
+    "status": "provisional"
+  },
+  "unknown_support": 0,
+  "production_eligible": false,
+  "live_compatible": true,
+  "coverage": {
+    "partial": false,
+    "allow_partial_coverage": true,
+    "source_catalog_available": false,
+    "source_class_count": 68,
+    "modeled_class_count": 68,
+    "source_classes": [
+      "squash.static.0001",
+      "squash.static.0002",
+      "squash.static.0003",
+      "squash.static.0004",
+      "squash.static.0005",
+      "squash.static.0006",
+      "squash.static.0007",
+      "squash.static.0008",
+      "squash.static.0009",
+      "squash.static.0010",
+      "squash.static.0011",
+      "squash.static.0012",
+      "squash.static.0013",
+      "squash.static.0014",
+      "squash.static.0015",
+      "squash.static.0016",
+      "squash.static.0017",
+      "squash.static.0018",
+      "squash.static.0019",
+      "squash.static.0020",
+      "squash.static.0021",
+      "squash.static.0022",
+      "squash.static.0024",
+      "squash.static.0025",
+      "squash.static.0026",
+      "squash.static.0027",
+      "squash.static.0028",
+      "squash.static.0029",
+      "squash.static.0030",
+      "squash.static.0031",
+      "squash.static.0032",
+      "squash.static.0033",
+      "squash.static.0034",
+      "squash.static.0035",
+      "squash.static.0036",
+      "squash.static.0037",
+      "squash.static.0038",
+      "squash.static.0039",
+      "squash.static.0040",
+      "squash.static.0041",
+      "squash.static.0042",
+      "squash.static.0043",
+      "squash.static.0044",
+      "squash.static.0045",
+      "squash.static.0046",
+      "squash.static.0047",
+      "squash.static.0048",
+      "squash.static.0049",
+      "squash.static.0050",
+      "squash.static.0051",
+      "squash.static.0052",
+      "squash.static.0053",
+      "squash.static.0054",
+      "squash.static.0055",
+      "squash.static.0056",
+      "squash.static.0058",
+      "squash.static.0059",
+      "squash.static.0060",
+      "squash.static.0061",
+      "squash.static.0062",
+      "squash.static.0063",
+      "squash.static.0064",
+      "squash.static.0065",
+      "squash.static.0066",
+      "squash.static.0067",
+      "squash.static.0068",
+      "squash.static.0069",
+      "squash.static.0070"
+    ],
+    "modeled_classes": [
+      "squash.static.0001",
+      "squash.static.0002",
+      "squash.static.0003",
+      "squash.static.0004",
+      "squash.static.0005",
+      "squash.static.0006",
+      "squash.static.0007",
+      "squash.static.0008",
+      "squash.static.0009",
+      "squash.static.0010",
+      "squash.static.0011",
+      "squash.static.0012",
+      "squash.static.0013",
+      "squash.static.0014",
+      "squash.static.0015",
+      "squash.static.0016",
+      "squash.static.0017",
+      "squash.static.0018",
+      "squash.static.0019",
+      "squash.static.0020",
+      "squash.static.0021",
+      "squash.static.0022",
+      "squash.static.0024",
+      "squash.static.0025",
+      "squash.static.0026",
+      "squash.static.0027",
+      "squash.static.0028",
+      "squash.static.0029",
+      "squash.static.0030",
+      "squash.static.0031",
+      "squash.static.0032",
+      "squash.static.0033",
+      "squash.static.0034",
+      "squash.static.0035",
+      "squash.static.0036",
+      "squash.static.0037",
+      "squash.static.0038",
+      "squash.static.0039",
+      "squash.static.0040",
+      "squash.static.0041",
+      "squash.static.0042",
+      "squash.static.0043",
+      "squash.static.0044",
+      "squash.static.0045",
+      "squash.static.0046",
+      "squash.static.0047",
+      "squash.static.0048",
+      "squash.static.0049",
+      "squash.static.0050",
+      "squash.static.0051",
+      "squash.static.0052",
+      "squash.static.0053",
+      "squash.static.0054",
+      "squash.static.0055",
+      "squash.static.0056",
+      "squash.static.0058",
+      "squash.static.0059",
+      "squash.static.0060",
+      "squash.static.0061",
+      "squash.static.0062",
+      "squash.static.0063",
+      "squash.static.0064",
+      "squash.static.0065",
+      "squash.static.0066",
+      "squash.static.0067",
+      "squash.static.0068",
+      "squash.static.0069",
+      "squash.static.0070"
+    ],
+    "class_support": {
+      "squash.static.0001": {
+        "class_name": "Ready stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0002": {
+        "class_name": "Neutral standing stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0003": {
+        "class_name": "Athletic crouched stance",
+        "source_capture_count": 1,
+        "prepared_capture_count": 1,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 1,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0004": {
+        "class_name": "Low ready stance",
+        "source_capture_count": 5,
+        "prepared_capture_count": 5,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 5,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0005": {
+        "class_name": "Open stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0006": {
+        "class_name": "Semi-open stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0007": {
+        "class_name": "Closed stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0008": {
+        "class_name": "Forehand preparation stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0009": {
+        "class_name": "Backhand preparation stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0010": {
+        "class_name": "Forehand hitting stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0011": {
+        "class_name": "Backhand hitting stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0012": {
+        "class_name": "Volley stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0013": {
+        "class_name": "Defensive stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0014": {
+        "class_name": "Attacking stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0015": {
+        "class_name": "Front-court stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0016": {
+        "class_name": "Mid-court stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0017": {
+        "class_name": "Back-court stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0018": {
+        "class_name": "Corner stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0019": {
+        "class_name": "Deep lunge stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0020": {
+        "class_name": "Low lunge stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0021": {
+        "class_name": "Side-lunge stance",
+        "source_capture_count": 5,
+        "prepared_capture_count": 5,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 5,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0022": {
+        "class_name": "Extended-reach stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0024": {
+        "class_name": "Recovery stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0025": {
+        "class_name": "Follow-through position",
+        "source_capture_count": 2,
+        "prepared_capture_count": 2,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 2,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0026": {
+        "class_name": "Open forehand stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0027": {
+        "class_name": "Closed forehand stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0028": {
+        "class_name": "Forehand lunge position",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0029": {
+        "class_name": "Extended forehand reach",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0030": {
+        "class_name": "Forehand follow-through",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0031": {
+        "class_name": "Backhand stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0032": {
+        "class_name": "Backhand lunge position",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0033": {
+        "class_name": "Extended backhand reach",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0034": {
+        "class_name": "Backhand follow-through",
+        "source_capture_count": 8,
+        "prepared_capture_count": 8,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 8,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0035": {
+        "class_name": "Drive hitting pose",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0036": {
+        "class_name": "Drop-shot hitting pose",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0037": {
+        "class_name": "Boast hitting pose",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0038": {
+        "class_name": "Lob hitting pose",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0039": {
+        "class_name": "Volley hitting pose",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0040": {
+        "class_name": "Kill-shot hitting pose",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0041": {
+        "class_name": "Cross-court hitting pose",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0042": {
+        "class_name": "Straight-drive hitting pose",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0043": {
+        "class_name": "Defensive shot pose",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0044": {
+        "class_name": "Attacking shot pose",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0045": {
+        "class_name": "Front-court ready stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0046": {
+        "class_name": "Front-court lunge",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0047": {
+        "class_name": "Deep front-court lunge",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0048": {
+        "class_name": "Low-ball reaching stance",
+        "source_capture_count": 1,
+        "prepared_capture_count": 1,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 1,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0049": {
+        "class_name": "Front-court hitting position",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0050": {
+        "class_name": "Front-court recovery position",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0051": {
+        "class_name": "Back-court ready stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0052": {
+        "class_name": "Back-court hitting stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0053": {
+        "class_name": "Deep back-court stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0054": {
+        "class_name": "Defensive back-court stance",
+        "source_capture_count": 3,
+        "prepared_capture_count": 3,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 3,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0055": {
+        "class_name": "Back-court follow-through",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0056": {
+        "class_name": "T-position ready stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0058": {
+        "class_name": "T-position defensive stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0059": {
+        "class_name": "T-position attacking stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0060": {
+        "class_name": "Defensive ready stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0061": {
+        "class_name": "Defensive lunge",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0062": {
+        "class_name": "Low defensive stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0063": {
+        "class_name": "Extended defensive reach",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0064": {
+        "class_name": "Defensive hitting position",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0065": {
+        "class_name": "Defensive recovery position",
+        "source_capture_count": 9,
+        "prepared_capture_count": 9,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 9,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0066": {
+        "class_name": "Attacking ready stance",
+        "source_capture_count": 5,
+        "prepared_capture_count": 5,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 5,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0067": {
+        "class_name": "Attacking forehand stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0068": {
+        "class_name": "Attacking backhand stance",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0069": {
+        "class_name": "Kill-shot position",
+        "source_capture_count": 4,
+        "prepared_capture_count": 4,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 4,
+          "val": 0,
+          "test": 0
+        }
+      },
+      "squash.static.0070": {
+        "class_name": "Aggressive lunge position",
+        "source_capture_count": 6,
+        "prepared_capture_count": 6,
+        "preparation_exclusion_reasons": {},
+        "usable_windows": {
+          "train": 6,
+          "val": 0,
+          "test": 0
+        }
+      }
+    },
+    "excluded_classes": []
+  },
+  "class_names": {
+    "squash.static.0001": "Ready stance",
+    "squash.static.0002": "Neutral standing stance",
+    "squash.static.0003": "Athletic crouched stance",
+    "squash.static.0004": "Low ready stance",
+    "squash.static.0005": "Open stance",
+    "squash.static.0006": "Semi-open stance",
+    "squash.static.0007": "Closed stance",
+    "squash.static.0008": "Forehand preparation stance",
+    "squash.static.0009": "Backhand preparation stance",
+    "squash.static.0010": "Forehand hitting stance",
+    "squash.static.0011": "Backhand hitting stance",
+    "squash.static.0012": "Volley stance",
+    "squash.static.0013": "Defensive stance",
+    "squash.static.0014": "Attacking stance",
+    "squash.static.0015": "Front-court stance",
+    "squash.static.0016": "Mid-court stance",
+    "squash.static.0017": "Back-court stance",
+    "squash.static.0018": "Corner stance",
+    "squash.static.0019": "Deep lunge stance",
+    "squash.static.0020": "Low lunge stance",
+    "squash.static.0021": "Side-lunge stance",
+    "squash.static.0022": "Extended-reach stance",
+    "squash.static.0024": "Recovery stance",
+    "squash.static.0025": "Follow-through position",
+    "squash.static.0026": "Open forehand stance",
+    "squash.static.0027": "Closed forehand stance",
+    "squash.static.0028": "Forehand lunge position",
+    "squash.static.0029": "Extended forehand reach",
+    "squash.static.0030": "Forehand follow-through",
+    "squash.static.0031": "Backhand stance",
+    "squash.static.0032": "Backhand lunge position",
+    "squash.static.0033": "Extended backhand reach",
+    "squash.static.0034": "Backhand follow-through",
+    "squash.static.0035": "Drive hitting pose",
+    "squash.static.0036": "Drop-shot hitting pose",
+    "squash.static.0037": "Boast hitting pose",
+    "squash.static.0038": "Lob hitting pose",
+    "squash.static.0039": "Volley hitting pose",
+    "squash.static.0040": "Kill-shot hitting pose",
+    "squash.static.0041": "Cross-court hitting pose",
+    "squash.static.0042": "Straight-drive hitting pose",
+    "squash.static.0043": "Defensive shot pose",
+    "squash.static.0044": "Attacking shot pose",
+    "squash.static.0045": "Front-court ready stance",
+    "squash.static.0046": "Front-court lunge",
+    "squash.static.0047": "Deep front-court lunge",
+    "squash.static.0048": "Low-ball reaching stance",
+    "squash.static.0049": "Front-court hitting position",
+    "squash.static.0050": "Front-court recovery position",
+    "squash.static.0051": "Back-court ready stance",
+    "squash.static.0052": "Back-court hitting stance",
+    "squash.static.0053": "Deep back-court stance",
+    "squash.static.0054": "Defensive back-court stance",
+    "squash.static.0055": "Back-court follow-through",
+    "squash.static.0056": "T-position ready stance",
+    "squash.static.0058": "T-position defensive stance",
+    "squash.static.0059": "T-position attacking stance",
+    "squash.static.0060": "Defensive ready stance",
+    "squash.static.0061": "Defensive lunge",
+    "squash.static.0062": "Low defensive stance",
+    "squash.static.0063": "Extended defensive reach",
+    "squash.static.0064": "Defensive hitting position",
+    "squash.static.0065": "Defensive recovery position",
+    "squash.static.0066": "Attacking ready stance",
+    "squash.static.0067": "Attacking forehand stance",
+    "squash.static.0068": "Attacking backhand stance",
+    "squash.static.0069": "Kill-shot position",
+    "squash.static.0070": "Aggressive lunge position",
+    "UNKNOWN": "Unknown / other movement"
+  },
+  "release_blockers": [
+    "Insufficient independent known athletes: grouped development split, not evidence of generalization to new athletes.",
+    "No independent validation group available; thresholds cannot be calibrated on held-out validation data.",
+    "No independent test group available; training-set accuracy must not be presented as test accuracy.",
+    "No labeled UNKNOWN/other-movement examples: unknown rejection remains unvalidated.",
+    "Athlete-disjoint evidence is unavailable or failed; this remains a development model.",
+    "No usable held-out validation set; calibration is unavailable.",
+    "No usable held-out test set; no test accuracy will be reported.",
+    "No validation UNKNOWN samples; acceptance thresholds remain 1 and unvalidated.",
+    "Expert approval and sustained reference-device release checks are outstanding."
+  ],
+  "pose_model": {
+    "model_id": "mediapipe_pose_landmarker",
+    "version": "full/float16/1/mediapipe-0.10.35",
+    "delegate": "CPU",
+    "digest": "sha256:5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+    "model_url": "/models/pose_landmarker_full.task"
+  },
+  "display_name_provenance": {
+    "method": "exact_movement_id",
+    "catalog_path": "C:\\Users\\ASUS\\Desktop\\IITK Composit\\Apexformz_brain\\ml\\sports\\squash\\source_catalog.json",
+    "catalog_sha256": "1132ca6a3e3268e25833cd0858cd0acee9e72e1e97415c3ed280c370ec327df9",
+    "catalog_source": {
+      "uri": "s3://apexformz-datacapture-prod-350445709199-ap-southeast-2-labels/catalog/1.0.0.json",
+      "sha256": "231f7c9a203221d5ae4953aa9d5b2b25b811f92bcf6964fe85ed8092d1426fb9",
+      "subset": "sport_id == squash",
+      "copied_at": "2026-10-25"
+    },
+    "original_manifest_class_names": {
+      "squash.static.0001": "Ready stance",
+      "squash.static.0002": "Neutral standing stance",
+      "squash.static.0003": "Athletic crouched stance",
+      "squash.static.0004": "Low ready stance",
+      "squash.static.0005": "Open stance",
+      "squash.static.0006": "Semi-open stance",
+      "squash.static.0007": "Closed stance",
+      "squash.static.0008": "Forehand preparation stance",
+      "squash.static.0009": "Backhand preparation stance",
+      "squash.static.0010": "Forehand hitting stance",
+      "squash.static.0011": "Backhand hitting stance",
+      "squash.static.0012": "Volley stance",
+      "squash.static.0013": "Defensive stance",
+      "squash.static.0014": "Attacking stance",
+      "squash.static.0015": "Front-court stance",
+      "squash.static.0016": "Mid-court stance",
+      "squash.static.0017": "Back-court stance",
+      "squash.static.0018": "Corner stance",
+      "squash.static.0019": "Deep lunge stance",
+      "squash.static.0020": "Low lunge stance",
+      "squash.static.0021": "Side-lunge stance",
+      "squash.static.0022": "Extended-reach stance",
+      "squash.static.0024": "Recovery stance",
+      "squash.static.0025": "Follow-through position",
+      "squash.static.0026": "Open forehand stance",
+      "squash.static.0027": "Closed forehand stance",
+      "squash.static.0028": "Forehand lunge position",
+      "squash.static.0029": "Extended forehand reach",
+      "squash.static.0030": "Forehand follow-through",
+      "squash.static.0031": "Backhand stance",
+      "squash.static.0032": "Backhand lunge position",
+      "squash.static.0033": "Extended backhand reach",
+      "squash.static.0034": "Backhand follow-through",
+      "squash.static.0035": "Drive hitting pose",
+      "squash.static.0036": "Drop-shot hitting pose",
+      "squash.static.0037": "Boast hitting pose",
+      "squash.static.0038": "Lob hitting pose",
+      "squash.static.0039": "Volley hitting pose",
+      "squash.static.0040": "Kill-shot hitting pose",
+      "squash.static.0041": "Cross-court hitting pose",
+      "squash.static.0042": "Straight-drive hitting pose",
+      "squash.static.0043": "Defensive shot pose",
+      "squash.static.0044": "Attacking shot pose",
+      "squash.static.0045": "Front-court ready stance",
+      "squash.static.0046": "Front-court lunge",
+      "squash.static.0047": "Deep front-court lunge",
+      "squash.static.0048": "Low-ball reaching stance",
+      "squash.static.0049": "Front-court hitting position",
+      "squash.static.0050": "Front-court recovery position",
+      "squash.static.0051": "Back-court ready stance",
+      "squash.static.0052": "Back-court hitting stance",
+      "squash.static.0053": "Deep back-court stance",
+      "squash.static.0054": "Defensive back-court stance",
+      "squash.static.0055": "Back-court follow-through",
+      "squash.static.0056": "T-position ready stance",
+      "squash.static.0058": "T-position defensive stance",
+      "squash.static.0059": "T-position attacking stance",
+      "squash.static.0060": "Defensive ready stance",
+      "squash.static.0061": "Defensive lunge",
+      "squash.static.0062": "Low defensive stance",
+      "squash.static.0063": "Extended defensive reach",
+      "squash.static.0064": "Defensive hitting position",
+      "squash.static.0065": "Defensive recovery position",
+      "squash.static.0066": "Attacking ready stance",
+      "squash.static.0067": "Attacking forehand stance",
+      "squash.static.0068": "Attacking backhand stance",
+      "squash.static.0069": "Kill-shot position",
+      "squash.static.0070": "Aggressive lunge position",
+      "UNKNOWN": "Unknown / other movement"
+    },
+    "corrected_class_names": {},
+    "unmatched_class_ids": []
+  },
+  "source_dataset_version": "squash-static_pose-be82806aa342e28f"
+}

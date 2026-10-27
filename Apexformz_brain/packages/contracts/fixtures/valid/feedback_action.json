@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "sess-fixture",
+  "event_id": "sess-fixture:fb:00000001",
+  "timestamp_ms": 1600,
+  "kind": "technique_cue",
+  "priority": "primary",
+  "error_id": "badminton.lunge.knee_not_over_foot",
+  "criterion_id": "badminton.lunge.knee_foot_alignment",
+  "movement_id": "badminton.lunge",
+  "text": "Keep your front knee tracking over your foot.",
+  "rationale": "Knee drifting inward or outward loads the joint unevenly.",
+  "modality": [
+    "visual",
+    "audio"
+  ],
+  "cooldown_ms": 8000,
+  "expires_ms": 9600,
+  "evidence_frame_ids": [
+    100,
+    101,
+    102
+  ],
+  "provenance": {
+    "feedback_catalog_version": "1.0.0",
+    "sport_pack": "1.0.0",
+    "review_status": "draft"
+  },
+  "suppressed_reason": null,
+  "queued_secondary": []
+}

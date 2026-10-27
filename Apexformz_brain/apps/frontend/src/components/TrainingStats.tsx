@@ -1,0 +1,114 @@
+"use client";
+
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Activity, Zap, Timer, Target } from 'lucide-react';
+
+interface TrainingStatsProps {
+  score: number;
+  duration: number;
+  frameCount: number;
+  isConnected: boolean;
+  connectionError?: string | null;
+  repCount?: number;
+  repLabel?: string;
+  /** When false the Brain abstained from scoring; show a dash instead of a fake number. */
+  scoreAvailable?: boolean;
+  scoreLabel?: string;
+}
+
+export const TrainingStats: React.FC<TrainingStatsProps> = ({ 
+  score, 
+  duration, 
+  frameCount, 
+  isConnected,
+  connectionError,
+  repCount,
+  repLabel = 'Reps',
+  scoreAvailable = true,
+  scoreLabel = 'Score'
+}) => {
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Connection Status & Error */}
+      <div className="flex flex-col gap-2">
+        <div className={`flex items-center gap-2 px-4 py-2 glass-card border-none ${isConnected ? 'bg-secondary/20' : 'bg-accent-danger/20'}`}>
+          <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-secondary animate-pulse' : 'bg-accent-danger'}`} />
+          <span className="text-sm font-bold uppercase tracking-widest">
+            AI {isConnected ? 'Online' : 'Offline'}
+          </span>
+        </div>
+        
+        {!isConnected && connectionError && (
+          <div className="px-3 py-1.5 bg-accent-danger/10 border border-accent-danger/20 rounded-lg max-w-[200px]">
+            <p className="text-[10px] text-accent-danger font-bold uppercase leading-tight">
+              Error: {connectionError}
+            </p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="mt-1.5 text-[9px] text-white/60 hover:text-white underline uppercase tracking-widest transition-colors"
+            >
+              Try Reconnect
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Real-time Score Ring */}
+      <div className="relative w-32 h-32 flex items-center justify-center">
+        <svg className="w-full h-full transform -rotate-90">
+          <circle
+            cx="64"
+            cy="64"
+            r="60"
+            stroke="currentColor"
+            strokeWidth="8"
+            fill="transparent"
+            className="text-white/10"
+          />
+          <motion.circle
+            cx="64"
+            cy="64"
+            r="60"
+            stroke="currentColor"
+            strokeWidth="8"
+            fill="transparent"
+            strokeDasharray={377}
+            initial={{ strokeDashoffset: 377 }}
+            animate={{ strokeDashoffset: scoreAvailable ? 377 - (377 * score) / 100 : 377 }}
+            className="text-primary"
+          />
+        </svg>
+        <div className="absolute flex flex-col items-center">
+          <span className="text-3xl font-bold">{scoreAvailable ? Math.round(score) : '—'}</span>
+          <span className="text-xs text-white/50 uppercase tracking-widest">{scoreAvailable ? scoreLabel : 'Not scored'}</span>
+        </div>
+      </div>
+
+      {/* Connection Status */}
+      <div className="flex items-center gap-2 px-4 py-2 glass-card border-none bg-white/10">
+        <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-secondary animate-pulse' : 'bg-accent-danger'}`} />
+        <span className="text-sm font-medium uppercase tracking-tighter">AI {isConnected ? 'Live' : 'Offline'}</span>
+      </div>
+
+      {/* Grid Stats */}
+      <div className="grid grid-cols-3 gap-2">
+        <div className="glass-card p-3 flex flex-col items-center">
+          <Timer className="w-4 h-4 text-primary mb-1" />
+          <span className="text-lg font-mono">{Math.floor(duration / 60)}:{(duration % 60).toString().padStart(2, '0')}</span>
+          <span className="text-[10px] text-white/40 uppercase">Time</span>
+        </div>
+        <div className="glass-card p-3 flex flex-col items-center">
+          <Activity className="w-4 h-4 text-accent-success mb-1" />
+          <span className="text-lg font-mono">{repCount || 0}</span>
+          <span className="text-[10px] text-white/40 uppercase">{repLabel}</span>
+        </div>
+        <div className="glass-card p-3 flex flex-col items-center">
+          <Zap className="w-4 h-4 text-secondary mb-1" />
+          <span className="text-lg font-mono">{frameCount}</span>
+          <span className="text-[10px] text-white/40 uppercase">Frames</span>
+        </div>
+      </div>
+    </div>
+  );
+};

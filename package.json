@@ -8,10 +8,20 @@
     "packages/types"
   ],
   "scripts": {
-    "dev": "npm run db:generate --workspace=apps/backend && concurrently \"npm run dev --workspace=apps/backend\" \"npm run dev --workspace=apps/frontend\"",
-    "build": "npm run db:generate --workspace=apps/backend && npm run build --workspaces --if-present",
+    "dev": "concurrently --kill-others-on-fail \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "npm run build:backend && npm run build:frontend",
     "test": "npm run test --workspaces --if-present",
-    "db:push": "cd apps/backend && npx prisma db push --accept-data-loss"
+    "db:push": "npm run db:prepare",
+    "dev:frontend": "npm run dev --workspace=apps/frontend --",
+    "dev:backend": "node scripts/brain-backend.mjs dev",
+    "build:frontend": "npm run build --workspace=apps/frontend",
+    "build:backend": "node scripts/brain-backend.mjs build",
+    "db:generate": "node scripts/brain-backend.mjs db:generate",
+    "db:plan": "node scripts/brain-backend.mjs db:plan",
+    "db:prepare": "node scripts/brain-backend.mjs db:prepare",
+    "prepare:brain": "node scripts/prepare-brain.mjs",
+    "demo": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-demo.ps1",
+    "setup:brain": "npm ci --prefix Apexformz_brain --ignore-scripts && npm run db:generate"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

@@ -1,0 +1,80 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "webworker"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@smartcoach/types": [
+        "../../packages/legacy-types/index.ts"
+      ],
+      "@apexformz/contracts": [
+        "../../packages/contracts/src/index.ts"
+      ],
+      "@apexformz/signal": [
+        "../../packages/signal/src/index.ts"
+      ],
+      "@apexformz/features": [
+        "../../packages/features/src/index.ts"
+      ],
+      "@apexformz/perception": [
+        "../../packages/perception/src/index.ts"
+      ],
+      "@apexformz/sport-runtime": [
+        "../../packages/sport-runtime/src/index.ts"
+      ],
+      "@apexformz/analysis": [
+        "../../packages/analysis/src/index.ts"
+      ],
+      "@apexformz/scoring": [
+        "../../packages/scoring/src/index.ts"
+      ],
+      "@apexformz/coaching": [
+        "../../packages/coaching/src/index.ts"
+      ],
+      "@apexformz/runtime": [
+        "../../packages/runtime/src/index.ts"
+      ],
+      "@apexformz/brain-client": [
+        "../../packages/brain-client/src/index.ts"
+      ],
+      "@apexformz/brain-client/react": [
+        "../../packages/brain-client/src/react/useApexBrain.ts"
+      ],
+      "@apexformz/brain-client/worker": [
+        "../../packages/brain-client/src/worker.ts"
+      ]
+    },
+    "target": "ES2022"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

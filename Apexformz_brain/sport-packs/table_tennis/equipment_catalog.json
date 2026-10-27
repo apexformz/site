@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "table_tennis",
+  "items": [
+    {
+      "id": "paddle",
+      "object_class": "table_tennis_racket",
+      "description": "Racket/paddle in the dominant hand",
+      "tracking": "optional_adapter",
+      "adapter_capability": "optional_implement",
+      "validation_status": "provisional"
+    },
+    {
+      "id": "ball",
+      "object_class": "table_tennis_ball",
+      "description": "40 mm class ball",
+      "tracking": "offline_only",
+      "adapter_capability": "optional_projectile",
+      "validation_status": "provisional",
+      "note": "Phone frame rates are inadequate for bounce and spin inference."
+    }
+  ]
+}

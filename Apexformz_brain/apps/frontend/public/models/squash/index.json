@@ -1,0 +1,10 @@
+[
+  {
+    "deployment_url": "dynamic_movement.deployment.json",
+    "model_url": "dynamic_movement.onnx"
+  },
+  {
+    "deployment_url": "static_pose.deployment.json",
+    "model_url": "static_pose.onnx"
+  }
+]

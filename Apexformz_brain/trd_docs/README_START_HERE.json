@@ -1,0 +1,92 @@
+{
+  "library": "ApexFormz Brain Technical Requirements",
+  "version": "1.0.0",
+  "date": "2026-10-24",
+  "files": [
+    {
+      "filename": "00_MASTER_TRD_AND_BUILD_ORDER.docx",
+      "title": "00 MASTER TRD AND BUILD ORDER"
+    },
+    {
+      "filename": "01_CORE_RUNTIME_AND_DATAFLOW.docx",
+      "title": "01 CORE RUNTIME AND DATAFLOW"
+    },
+    {
+      "filename": "02_PERCEPTION_ENGINE.docx",
+      "title": "02 PERCEPTION ENGINE"
+    },
+    {
+      "filename": "03_SIGNAL_AND_COORDINATES.docx",
+      "title": "03 SIGNAL AND COORDINATES"
+    },
+    {
+      "filename": "04_BIOMECHANICS_AND_FEATURES.docx",
+      "title": "04 BIOMECHANICS AND FEATURES"
+    },
+    {
+      "filename": "05_SPORT_ENGINE_FRAMEWORK.docx",
+      "title": "05 SPORT ENGINE FRAMEWORK"
+    },
+    {
+      "filename": "06_BADMINTON_SPORT_BRAIN.docx",
+      "title": "06 BADMINTON SPORT BRAIN"
+    },
+    {
+      "filename": "07_SHOOTING_SPORT_BRAIN.docx",
+      "title": "07 SHOOTING SPORT BRAIN"
+    },
+    {
+      "filename": "08_PICKLEBALL_SPORT_BRAIN.docx",
+      "title": "08 PICKLEBALL SPORT BRAIN"
+    },
+    {
+      "filename": "09_TABLE_TENNIS_SPORT_BRAIN.docx",
+      "title": "09 TABLE TENNIS SPORT BRAIN"
+    },
+    {
+      "filename": "10_TEMPORAL_INTELLIGENCE.docx",
+      "title": "10 TEMPORAL INTELLIGENCE"
+    },
+    {
+      "filename": "11_EVIDENCE_SCORING_COACHING.docx",
+      "title": "11 EVIDENCE SCORING COACHING"
+    },
+    {
+      "filename": "12_DATA_MLOPS_TRAINING.docx",
+      "title": "12 DATA MLOPS TRAINING"
+    },
+    {
+      "filename": "13_CLOUD_API_STORAGE_DEPLOYMENT.docx",
+      "title": "13 CLOUD API STORAGE DEPLOYMENT"
+    },
+    {
+      "filename": "14_QA_SECURITY_SRE_RELEASE.docx",
+      "title": "14 QA SECURITY SRE RELEASE"
+    },
+    {
+      "filename": "15_IMPLEMENTATION_PLAYBOOK_AND_TESTS.docx",
+      "title": "15 IMPLEMENTATION PLAYBOOK AND TESTS"
+    }
+  ],
+  "mandatory_ownership": {
+    "shared_core": [
+      "pose",
+      "time",
+      "normalization",
+      "generic geometry",
+      "execution",
+      "evidence",
+      "coaching workflow"
+    ],
+    "sport_packages": [
+      "court/range/table geometry",
+      "game and competition rules",
+      "equipment schema",
+      "movement taxonomies",
+      "phase graphs",
+      "sport model artifacts",
+      "rubrics",
+      "expert references"
+    ]
+  }
+}

@@ -1,0 +1,1185 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "taekwondo",
+  "rubric_version": "1.0.0-legacy",
+  "aggregation": {
+    "method": "weighted_mean_of_valid_criteria",
+    "minimum_coverage": 0.5
+  },
+  "features": [
+    {
+      "id": "left_elbow_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "left_shoulder",
+        "b": "left_elbow",
+        "c": "left_wrist",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "left_elbow_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "left_elbow_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "right_elbow_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "right_shoulder",
+        "b": "right_elbow",
+        "c": "right_wrist",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "right_elbow_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "right_elbow_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "left_shoulder_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "left_hip",
+        "b": "left_shoulder",
+        "c": "left_elbow",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "left_shoulder_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "left_shoulder_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "right_shoulder_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "right_hip",
+        "b": "right_shoulder",
+        "c": "right_elbow",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "right_shoulder_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "right_shoulder_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "left_hip_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "left_shoulder",
+        "b": "left_hip",
+        "c": "left_knee",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "left_hip_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "left_hip_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "right_hip_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "right_shoulder",
+        "b": "right_hip",
+        "c": "right_knee",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "right_hip_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "right_hip_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "left_knee_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "left_hip",
+        "b": "left_knee",
+        "c": "left_ankle",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "left_knee_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "left_knee_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "right_knee_angle",
+      "kind": "angle_at",
+      "params": {
+        "a": "right_hip",
+        "b": "right_knee",
+        "c": "right_ankle",
+        "dims": "2d"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any",
+      "unit": "deg"
+    },
+    {
+      "id": "right_knee_velocity",
+      "kind": "angular_velocity",
+      "params": {
+        "of": "right_knee_angle",
+        "window_ms": 150,
+        "method": "finite"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "body_relative",
+      "view_applicability": "any"
+    },
+    {
+      "id": "hip_centre_x_image",
+      "kind": "center_of_keypoints",
+      "params": {
+        "landmarks": [
+          "left_hip",
+          "right_hip"
+        ],
+        "axis": "x"
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any",
+      "unit": "normalized"
+    },
+    {
+      "id": "body_motion",
+      "kind": "stability_variability",
+      "params": {
+        "of": "hip_centre_x_image",
+        "window_ms": 600,
+        "stat": "std",
+        "min_samples": 4
+      },
+      "version": "1.0.0",
+      "coordinate_system": "image_normalized",
+      "view_applicability": "any"
+    }
+  ],
+  "criteria": [
+    {
+      "criterion_id": "taekwondo.ap_chagi_front_kick.stance_match",
+      "movement_id": "taekwondo.ap_chagi_front_kick",
+      "phase_ids": [
+        "stance"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/ap_chagi_front_kick_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.ap_chagi_front_kick.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.ap_chagi_front_kick.form_match",
+      "movement_id": "taekwondo.ap_chagi_front_kick",
+      "phase_ids": [
+        "knee_chamber",
+        "extension_strike",
+        "retraction",
+        "recovery"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/ap_chagi_front_kick_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.ap_chagi_front_kick.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    },
+    {
+      "criterion_id": "taekwondo.dollyo_chagi_roundhouse_kick.stance_match",
+      "movement_id": "taekwondo.dollyo_chagi_roundhouse_kick",
+      "phase_ids": [
+        "stance"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/dollyo_chagi_roundhouse_kick_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.dollyo_chagi_roundhouse_kick.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.dollyo_chagi_roundhouse_kick.form_match",
+      "movement_id": "taekwondo.dollyo_chagi_roundhouse_kick",
+      "phase_ids": [
+        "pivot",
+        "chamber",
+        "hip_rotation",
+        "extension",
+        "recovery"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/dollyo_chagi_roundhouse_kick_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.dollyo_chagi_roundhouse_kick.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    },
+    {
+      "criterion_id": "taekwondo.yeop_chagi_side_kick.stance_match",
+      "movement_id": "taekwondo.yeop_chagi_side_kick",
+      "phase_ids": [
+        "stance"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/yeop_chagi_side_kick_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.yeop_chagi_side_kick.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.yeop_chagi_side_kick.form_match",
+      "movement_id": "taekwondo.yeop_chagi_side_kick",
+      "phase_ids": [
+        "chamber",
+        "turn_and_rotate",
+        "extension",
+        "recovery"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/yeop_chagi_side_kick_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.yeop_chagi_side_kick.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    },
+    {
+      "criterion_id": "taekwondo.dwi_chagi_back_kick.stance_match",
+      "movement_id": "taekwondo.dwi_chagi_back_kick",
+      "phase_ids": [
+        "stance"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/dwi_chagi_back_kick_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.dwi_chagi_back_kick.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.dwi_chagi_back_kick.form_match",
+      "movement_id": "taekwondo.dwi_chagi_back_kick",
+      "phase_ids": [
+        "turn",
+        "chamber",
+        "drive_extension",
+        "recovery"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/dwi_chagi_back_kick_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.dwi_chagi_back_kick.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    },
+    {
+      "criterion_id": "taekwondo.miro_chagi_push_kick.stance_match",
+      "movement_id": "taekwondo.miro_chagi_push_kick",
+      "phase_ids": [
+        "stance"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/miro_chagi_push_kick_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.miro_chagi_push_kick.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.miro_chagi_push_kick.form_match",
+      "movement_id": "taekwondo.miro_chagi_push_kick",
+      "phase_ids": [
+        "chamber",
+        "push_extension",
+        "recovery"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/miro_chagi_push_kick_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.miro_chagi_push_kick.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    },
+    {
+      "criterion_id": "taekwondo.bandae_dollyo_chagi_reverse_roundhouse.stance_match",
+      "movement_id": "taekwondo.bandae_dollyo_chagi_reverse_roundhouse",
+      "phase_ids": [
+        "setup"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/bandae_dollyo_chagi_reverse_roundhouse_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.bandae_dollyo_chagi_reverse_roundhouse.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.bandae_dollyo_chagi_reverse_roundhouse.form_match",
+      "movement_id": "taekwondo.bandae_dollyo_chagi_reverse_roundhouse",
+      "phase_ids": [
+        "pivot_and_spin",
+        "load_chamber",
+        "extension_strike",
+        "follow_through",
+        "recovery"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/bandae_dollyo_chagi_reverse_roundhouse_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.bandae_dollyo_chagi_reverse_roundhouse.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    },
+    {
+      "criterion_id": "taekwondo.twio_ap_chagi_jumping_front_kick.stance_match",
+      "movement_id": "taekwondo.twio_ap_chagi_jumping_front_kick",
+      "phase_ids": [
+        "preparation"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/twio_ap_chagi_jumping_front_kick_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.twio_ap_chagi_jumping_front_kick.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.twio_ap_chagi_jumping_front_kick.form_match",
+      "movement_id": "taekwondo.twio_ap_chagi_jumping_front_kick",
+      "phase_ids": [
+        "load_takeoff",
+        "jump_drive",
+        "chamber_in_air",
+        "extension_kick",
+        "retraction",
+        "landing_recovery"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/twio_ap_chagi_jumping_front_kick_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.twio_ap_chagi_jumping_front_kick.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    },
+    {
+      "criterion_id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse.stance_match",
+      "movement_id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse",
+      "phase_ids": [
+        "preparation"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/twio_dollyo_chagi_jumping_roundhouse_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse.form_match",
+      "movement_id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse",
+      "phase_ids": [
+        "take_off",
+        "air_rotation",
+        "chamber",
+        "striking_extension",
+        "retraction",
+        "landing_recovery"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/twio_dollyo_chagi_jumping_roundhouse_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.twio_dollyo_chagi_jumping_roundhouse.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    },
+    {
+      "criterion_id": "taekwondo.baka_chagi_side_slide_roundhouse.stance_match",
+      "movement_id": "taekwondo.baka_chagi_side_slide_roundhouse",
+      "phase_ids": [
+        "ready_stance"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/baka_chagi_side_slide_roundhouse_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.baka_chagi_side_slide_roundhouse.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.baka_chagi_side_slide_roundhouse.form_match",
+      "movement_id": "taekwondo.baka_chagi_side_slide_roundhouse",
+      "phase_ids": [
+        "side_slide",
+        "loading_phase",
+        "hip_rotation",
+        "roundhouse_extension",
+        "retraction_recovery"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/baka_chagi_side_slide_roundhouse_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.baka_chagi_side_slide_roundhouse.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    },
+    {
+      "criterion_id": "taekwondo.preamble_dollyo_chagi_front_leg_slide.stance_match",
+      "movement_id": "taekwondo.preamble_dollyo_chagi_front_leg_slide",
+      "phase_ids": [
+        "initial_stance"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/preamble_dollyo_chagi_front_leg_slide_start.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 1.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.preamble_dollyo_chagi_front_leg_slide.stance_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert start stance frame."
+    },
+    {
+      "criterion_id": "taekwondo.preamble_dollyo_chagi_front_leg_slide.form_match",
+      "movement_id": "taekwondo.preamble_dollyo_chagi_front_leg_slide",
+      "phase_ids": [
+        "front_leg_slide",
+        "weight_transfer",
+        "pivot_hip_rotation",
+        "roundhouse_kick"
+      ],
+      "required_features": [
+        "left_elbow_angle",
+        "right_elbow_angle",
+        "left_shoulder_angle",
+        "right_shoulder_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_knee_angle",
+        "right_knee_angle"
+      ],
+      "evaluator": {
+        "kind": "reference_nearest",
+        "aggregate": "phase_mean",
+        "model_reference": "models/preamble_dollyo_chagi_front_leg_slide_frames.json",
+        "tolerance": 15.0,
+        "min_confidence": 0.5
+      },
+      "technique_variant": null,
+      "view_constraints": [
+        "front",
+        "left",
+        "right"
+      ],
+      "missing_data_policy": "not_assessable",
+      "severity": "medium",
+      "weight": 2.0,
+      "expert_citation": {
+        "source": "Legacy expert reference videos (3 views); coach review pending",
+        "status": "provisional"
+      },
+      "athlete_context": "any",
+      "requires_capabilities": [
+        "body_pose"
+      ],
+      "validation_status": "provisional",
+      "validation_version": "legacy-1.0.0",
+      "error_id": "taekwondo.preamble_dollyo_chagi_front_leg_slide.form_match_off",
+      "description": "Weighted joint-angle distance to the nearest expert movement frame."
+    }
+  ]
+}

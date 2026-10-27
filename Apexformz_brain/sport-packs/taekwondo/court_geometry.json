@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "taekwondo",
+  "coordinate_frame": {
+    "id": "taekwondo_mat_frame",
+    "origin": "centre of the contest area",
+    "axes": "+x right, +y away from camera, +z up",
+    "units": "m"
+  },
+  "formats": [
+    "kyorugi",
+    "poomsae"
+  ],
+  "named_landmarks": [
+    {
+      "id": "contest_area_side",
+      "description": "Side length of the contest area",
+      "value_m": null,
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved World Taekwondo rule edition."
+    }
+  ],
+  "polygons": [],
+  "validation_status": "provisional",
+  "provenance": {
+    "source": "World Taekwondo Competition Rules",
+    "ref": "TODO_REQUIRES_VALIDATION",
+    "status": "provisional"
+  },
+  "notes": [
+    "Legacy data contained no court geometry."
+  ]
+}

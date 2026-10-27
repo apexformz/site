@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: apexformz-perception
+Version: 1.0.0
+Summary: ApexFormz Brain server-side perception adapters: pose backends, point/object trackers, 3D lifting, smoothing. Wraps top open-source models behind contract-typed interfaces.
+Requires-Python: >=3.10
+Requires-Dist: numpy
+Requires-Dist: opencv-python-headless<5,>=4.10
+Requires-Dist: pydantic>=2
+Requires-Dist: apexformz-contracts
+Provides-Extra: pose
+Requires-Dist: mediapipe; extra == "pose"
+Requires-Dist: rtmlib; extra == "pose"
+Requires-Dist: onnxruntime; extra == "pose"
+Provides-Extra: tracking
+Requires-Dist: torch; extra == "tracking"
+Requires-Dist: torchvision; extra == "tracking"
+Requires-Dist: imageio[ffmpeg]; extra == "tracking"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"

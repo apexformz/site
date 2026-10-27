@@ -1,0 +1,73 @@
+{
+  "name": "apexformz-brain",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ApexFormz Brain - hybrid local-first sports coaching runtime built from the ApexFormz TRD v1.0",
+  "workspaces": [
+    "packages/*",
+    "tests/*",
+    "apps/frontend",
+    "apps/backend"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:models": "vitest run --config vitest.models.config.ts",
+    "models:verify": "tsx tools/browser_model_artifacts.ts verify",
+    "models:export": "tsx tools/browser_model_artifacts.ts export",
+    "models:restore": "tsx tools/browser_model_artifacts.ts restore",
+    "test:watch": "vitest",
+    "golden": "vitest run --project golden",
+    "contracts": "vitest run --project contracts",
+    "bench": "tsx tests/performance/bench.ts",
+    "validate:packs": "tsx packages/sport-runtime/scripts/validate-packs.ts",
+    "py:test": "python -m pytest packages/contracts/python/tests packages/perception-py/tests ml/tests apps/ai-service/tests -q",
+    "dev:frontend": "npm run dev --workspace=apps/frontend",
+    "dev:backend": "npm run dev --workspace=apps/backend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:frontend": "npm run build --workspace=apps/frontend",
+    "build:backend": "npm run build --workspace=apps/backend",
+    "seal:packs": "tsx packages/sport-runtime/scripts/seal-packs.ts",
+    "gen:seed-packs": "python tools/gen_seed_packs.py",
+    "extract:real": "python tools/extract_real_sequences.py",
+    "extract:features": "tsx tools/extract_features.ts",
+    "replay:squash": "tsx tools/replay_squash_brain.ts",
+    "prepare:browser-fixtures": "python tools/prepare_browser_squash_fixtures.py",
+    "validate:browser": "node tools/validate_squash_browser.mjs",
+    "gen:squash-pack": "python tools/gen_squash_pack.py",
+    "build:squash-taxonomy": "python ml/sports/squash/build_taxonomy.py",
+    "refresh:recognition-taxonomies": "python tools/refresh_recognition_taxonomies.py",
+    "build:squash-engine": "python ml/sports/squash/build_taxonomy.py && python tools/gen_squash_pack.py && tsx tools/extract_reference_vectors.ts --specs ml/sports/squash/reference_feature_specs.json --dataset data/squash/dataset_static_pose.json --out ml/sports/squash/reference_vectors.json && python tools/gen_squash_pack.py && tsx packages/sport-runtime/scripts/seal-packs.ts && tsx packages/sport-runtime/scripts/validate-packs.ts",
+    "release:verify": "tsx tools/release_artifacts.ts verify",
+    "verify:release-packs": "tsx packages/sport-runtime/scripts/verify-release-packs.ts",
+    "release:check": "tsx tools/release_checks.ts",
+    "release:containers": "tsx tools/release_artifacts.ts containers",
+    "release:candidate": "tsx tools/release_artifacts.ts candidate",
+    "test:postgres": "node tools/test_backend_postgres.mjs",
+    "release:promote": "tsx tools/release_artifacts.ts promote",
+    "sign:packs": "tsx packages/sport-runtime/scripts/sign-release-packs.ts"
+  },
+  "devDependencies": {
+    "@mediapipe/tasks-vision": "^0.10.22",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "concurrently": "^8.2.2",
+    "esbuild": "0.28.2",
+    "onnxruntime-web": "^1.30.0",
+    "playwright": "^1.62.1",
+    "postcss-nested": "7.0.2",
+    "postcss-selector-parser": "7.1.7",
+    "react": "^18.3.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.2",
+    "vitest": "4.1.12"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "overrides": {
+    "postcss": "8.5.31",
+    "postcss-selector-parser": "7.1.7",
+    "postcss-nested": "7.0.2"
+  }
+}

@@ -1,0 +1,907 @@
+{
+  "schema_version": "1.0.0",
+  "researched_on": "2026-10-26",
+  "status": "provisional_engineering_proposal",
+  "purpose": "Exact-first recognition with meaningful nearest/group/family fallback",
+  "sources": [
+    {
+      "id": "squash_nz_drive",
+      "title": "Squash Start Manual: The Drive",
+      "publisher": "Squash New Zealand",
+      "url": "https://exam.squashnz.co.nz/content/Coach/Coaching_Resources/Squash%20Start%20Manual%20first%20lesson.pdf",
+      "support": [
+        "Treats straight and cross-court drives as drive variants, differentiated partly by the ball's route and target area.",
+        "Organises the forehand swing into preparation, downswing, impact and follow-through, with return to the T."
+      ]
+    },
+    {
+      "id": "squash_nz_lob",
+      "title": "Squash Start coaching posters",
+      "publisher": "Squash New Zealand",
+      "url": "https://squashnz.co.nz/resources/squashnz/content/Coach/Coaching_Resources/Squash%20Start%20Posters.pdf",
+      "support": [
+        "Presents forehand and backhand variants with preparation, execution and follow-through.",
+        "Describes the lob using soft contact, a high ball path and recovery to the T; a defensive use can create an attacking opportunity."
+      ]
+    },
+    {
+      "id": "england_squash_beginner",
+      "title": "Raise Your Game: Squash for Beginners",
+      "publisher": "England Squash",
+      "url": "https://www.englandsquash.com/membership/players/raise-your-game---beginner",
+      "support": [
+        "Names straight volley drive, straight drop and playing off the back wall as distinct technical topics."
+      ]
+    },
+    {
+      "id": "bwf_shuttle_time",
+      "title": "BWF Schools Badminton Teachers' Manual, second edition",
+      "publisher": "Badminton World Federation; hosted by Badminton Australia",
+      "url": "https://www.badminton.org.au/wp-content/uploads/2022/11/1.-BWF-ST-Teachers-Manual_Inclusivity_ENGLISH.pdf",
+      "pages": [
+        "44-45: lunging",
+        "68-74: overhead strokes"
+      ],
+      "support": [
+        "Clear and drop use matching preparation and closely related hitting actions; the contact action and shuttle outcome distinguish them.",
+        "Rear-court teaching groups clear, drop and smash; a smash uses an overhead reaching and rotating action.",
+        "Footwork includes split step, chasse, lunge and recovery; a lunge may be used in multiple court zones."
+      ]
+    },
+    {
+      "id": "ittf_basic_strokes",
+      "title": "How to play table tennis: Block",
+      "publisher": "ITTF Education",
+      "url": "https://www.ittfeducation.com/how-to-play-table-tennis-block/",
+      "support": [
+        "The official basic-stroke series covers service, forehand topspin, backhand drive, backhand topspin, forehand drive, service receive and block."
+      ]
+    },
+    {
+      "id": "tte_forehand",
+      "title": "Developing Forehand Strokes",
+      "publisher": "Table Tennis England",
+      "url": "https://newsarchive.tabletennisengland.co.uk/news/archived/developing-forehand-strokes/",
+      "support": [
+        "Uses the drive as a foundation for related forehand strokes; topspin changes racket angle, brushing contact and acceleration.",
+        "Describes the block as a compact action whose racket adjustment depends on incoming ball spin.",
+        "Distinguishes preparation, backswing, forward movement and recovery, and notes that left-handed descriptions reverse the right-handed example."
+      ]
+    },
+    {
+      "id": "usap_terms",
+      "title": "Pickleball Basic Terms",
+      "publisher": "USA Pickleball",
+      "url": "https://usapickleball.org/blog-category/pickleball-basic-terms/",
+      "support": [
+        "Separates dink, drop, volley, lob, overhead and serve.",
+        "Dink and drop are distinguished partly by court location and ball landing; volley depends on striking before the bounce.",
+        "Dink uses a compact lifting action; the basic volley uses a short blocking action.",
+        "Lob can have offensive or defensive use, depending on the situation."
+      ]
+    },
+    {
+      "id": "usap_skills",
+      "title": "Player Skill Level Definitions",
+      "publisher": "USA Pickleball",
+      "url": "https://usapickleball.org/docs/levels/Player-Skill-Level-Matrix.pdf",
+      "support": [
+        "Treats forehand, backhand, serve/return, dink, third shot, volley and strategy as distinct skill areas."
+      ]
+    },
+    {
+      "id": "kukkiwon_terms",
+      "title": "Taekwondo Technical Terminology",
+      "publisher": "Kukkiwon, World Taekwondo Headquarters",
+      "url": "https://research.kukkiwon.or.kr/homepage/boardMedia/11621",
+      "support": [
+        "Defines front, pushing, side, back and roundhouse kicks as named techniques.",
+        "Describes jumping and skipping variants within named kick types; back kick involves backward thrust.",
+        "Provides a terminology source, not evidence that these application groups have been validated on athletes."
+      ]
+    },
+    {
+      "id": "kukkiwon_motion",
+      "title": "Systematisation of Taekwondo techniques based on human structure and function",
+      "publisher": "Kukkiwon Research Institute",
+      "url": "https://research.kukkiwon.or.kr/board/data/article/55550",
+      "support": [
+        "A research classification separates limb/body technique from locomotor actions such as stepping, jumping and turning.",
+        "This supports storing approach modifiers separately from the main kick when recognition evidence allows."
+      ]
+    },
+    {
+      "id": "usa_shooting_hold",
+      "title": "Pistol Lifts, USA Shooting News, January/February 2010",
+      "publisher": "USA Shooting; Keith Sanderson",
+      "url": "https://usashooting.org/app/uploads/2023/07/JanFeb_2010.pdf",
+      "support": [
+        "Describes maintaining a similar aiming posture through the shot and follow-through, followed by recovery or lowering the arm.",
+        "The similarity motivates a broad hold label when body pose does not distinguish the shot event."
+      ]
+    },
+    {
+      "id": "issf_positions",
+      "title": "ISSF Academy launches first athlete courses in Air Rifle and Small-bore Rifle",
+      "publisher": "International Shooting Sport Federation",
+      "url": "https://www.issf-sports.org/news/4929",
+      "support": [
+        "Distinguishes standing air-rifle technique from the prone, kneeling and standing positions of small-bore rifle.",
+        "These are future rifle catalogue categories, not aliases for the present standing pistol-style catalogue."
+      ]
+    }
+  ],
+  "interpretation_rules": [
+    "Sources justify terminology and related actions; proposed groups are engineering inferences, not federation-approved model classifications.",
+    "Keep exact catalogue movement identities unchanged. A closest match must be labelled approximate.",
+    "Prefer observable direction, stroke side, limb configuration and temporal pattern in broad names.",
+    "Attack/defence, court destination, ball bounce, contact, spin and shot outcome require their own evidence; do not fabricate these from body skeletons.",
+    "A camera-relative forward movement is not automatically movement toward the front wall. Court coordinates or a known view are needed.",
+    "Keep static and dynamic members in separate families under the existing contract.",
+    "Grouping does not add missing trained classes or validate thresholds.",
+    "No subject, unusable pose, ambiguous identity and unsupported motion can still produce no reliable label."
+  ],
+  "squash_recommendations": [
+    {
+      "recommendation": "Retain forehand/backhand stroke families and separate travel/recovery families where the corrected pose data supports them.",
+      "source_ids": [
+        "squash_nz_drive",
+        "squash_nz_lob"
+      ]
+    },
+    {
+      "recommendation": "Use names such as forehand stroke, backhand stroke, forward lunge, lateral travel and recovery steps. Broader labels should not claim attacking/defensive intent.",
+      "source_ids": [
+        "squash_nz_drive",
+        "squash_nz_lob"
+      ]
+    },
+    {
+      "recommendation": "Keep straight/cross-court drive, volley, drop, boast and lob exact labels, but allow a common stroke group when body motion cannot establish ball/racket context.",
+      "source_ids": [
+        "squash_nz_drive",
+        "squash_nz_lob",
+        "england_squash_beginner"
+      ]
+    },
+    {
+      "recommendation": "Recompute memberships from corrected captures rather than keeping the historical 616-capture clustering. Do not force source-based semantic families over contradictory pose evidence.",
+      "source_ids": [],
+      "basis": "local dataset audit"
+    },
+    {
+      "recommendation": "Treat the old explosive-transitions/emergency-reaches family as a candidate for splitting because its historical within/outside cohesion exceeded 1.",
+      "source_ids": [],
+      "basis": "docs/08_SQUASH_TAXONOMY.md historical data"
+    }
+  ],
+  "taxonomies": {
+    "badminton": {
+      "version": "1.1.0",
+      "levels": [
+        "family",
+        "group",
+        "movement"
+      ],
+      "validation_status": "provisional",
+      "method": {
+        "kind": "source_grounded_semantic_hierarchy",
+        "source_ids": [
+          "bwf_shuttle_time"
+        ],
+        "research_file": "ml/sports/recognition_taxonomy_sources.json",
+        "preserves_catalogue_ids": true,
+        "accuracy_validated": false
+      },
+      "recognition": {
+        "group_threshold": 0.6,
+        "family_threshold": 0.6,
+        "margin": 0.1,
+        "validation_status": "provisional"
+      },
+      "families": [
+        {
+          "id": "badminton.family.ready_positions",
+          "name": "Ready positions",
+          "type": "static",
+          "groups": [
+            {
+              "id": "badminton.group.ready_stance",
+              "name": "Ready stance",
+              "members": [
+                "badminton.ready_stance"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "bwf_shuttle_time"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "A posture category; no stroke intent is inferred."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "bwf_shuttle_time"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        },
+        {
+          "id": "badminton.family.court_footwork",
+          "name": "Court footwork",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "badminton.group.preparation_recovery_steps",
+              "name": "Preparation and recovery steps",
+              "members": [
+                "badminton.split_step",
+                "badminton.recovery_footwork"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "bwf_shuttle_time"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Preparatory and repositioning footwork remain distinct exact labels."
+              }
+            },
+            {
+              "id": "badminton.group.lunging_reaches",
+              "name": "Lunging reaches",
+              "members": [
+                "badminton.lunge"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "bwf_shuttle_time"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Court destination requires additional context."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "bwf_shuttle_time"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        },
+        {
+          "id": "badminton.family.racket_strokes",
+          "name": "Racket strokes",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "badminton.group.overhead_strokes",
+              "name": "Overhead strokes",
+              "members": [
+                "badminton.overhead_clear",
+                "badminton.overhead_smash",
+                "badminton.drop_shot"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "bwf_shuttle_time"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Clear/drop/smash share overhead preparation; do not infer shuttle trajectory from body pose alone."
+              }
+            },
+            {
+              "id": "badminton.group.forehand_drives",
+              "name": "Forehand drive strokes",
+              "members": [
+                "badminton.forehand_drive"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "bwf_shuttle_time"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Preserve racket-side evidence."
+              }
+            },
+            {
+              "id": "badminton.group.backhand_drives",
+              "name": "Backhand drive strokes",
+              "members": [
+                "badminton.backhand_drive"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "bwf_shuttle_time"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Preserve racket-side evidence."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "bwf_shuttle_time"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        }
+      ]
+    },
+    "table_tennis": {
+      "version": "1.1.0",
+      "levels": [
+        "family",
+        "group",
+        "movement"
+      ],
+      "validation_status": "provisional",
+      "method": {
+        "kind": "source_grounded_semantic_hierarchy",
+        "source_ids": [
+          "tte_forehand",
+          "ittf_basic_strokes"
+        ],
+        "research_file": "ml/sports/recognition_taxonomy_sources.json",
+        "preserves_catalogue_ids": true,
+        "accuracy_validated": false
+      },
+      "recognition": {
+        "group_threshold": 0.6,
+        "family_threshold": 0.6,
+        "margin": 0.1,
+        "validation_status": "provisional"
+      },
+      "families": [
+        {
+          "id": "table_tennis.family.ready_positions",
+          "name": "Ready positions",
+          "type": "static",
+          "groups": [
+            {
+              "id": "table_tennis.group.ready_stance",
+              "name": "Ready stance",
+              "members": [
+                "table_tennis.ready_stance"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "tte_forehand"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Static athletic preparation."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "tte_forehand"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        },
+        {
+          "id": "table_tennis.family.racket_strokes",
+          "name": "Racket strokes",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "table_tennis.group.forehand_swings",
+              "name": "Forehand swings",
+              "members": [
+                "table_tennis.forehand_drive",
+                "table_tennis.forehand_topspin"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "tte_forehand",
+                  "ittf_basic_strokes"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Drive and topspin are related swings; exact spin requires evidence beyond gross pose."
+              }
+            },
+            {
+              "id": "table_tennis.group.backhand_swings",
+              "name": "Backhand swings",
+              "members": [
+                "table_tennis.backhand_drive",
+                "table_tennis.backhand_topspin"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "ittf_basic_strokes"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Preserve side while allowing fine stroke uncertainty."
+              }
+            },
+            {
+              "id": "table_tennis.group.compact_strokes",
+              "name": "Compact push and block strokes",
+              "members": [
+                "table_tennis.push",
+                "table_tennis.block"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "tte_forehand",
+                  "ittf_basic_strokes"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Proposed compact-stroke group; ball spin and contact distinguish push from block."
+              }
+            },
+            {
+              "id": "table_tennis.group.service_actions",
+              "name": "Service actions",
+              "members": [
+                "table_tennis.serve"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "ittf_basic_strokes"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "A serve label needs shot-sequence/context evidence."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "tte_forehand",
+              "ittf_basic_strokes"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        },
+        {
+          "id": "table_tennis.family.court_footwork",
+          "name": "Court footwork",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "table_tennis.group.recovery_steps",
+              "name": "Recovery steps",
+              "members": [
+                "table_tennis.footwork_recovery"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "tte_forehand"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Repositioning after the stroke."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "tte_forehand"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        }
+      ]
+    },
+    "pickleball": {
+      "version": "1.1.0",
+      "levels": [
+        "family",
+        "group",
+        "movement"
+      ],
+      "validation_status": "provisional",
+      "method": {
+        "kind": "source_grounded_semantic_hierarchy",
+        "source_ids": [
+          "usap_terms",
+          "usap_skills"
+        ],
+        "research_file": "ml/sports/recognition_taxonomy_sources.json",
+        "preserves_catalogue_ids": true,
+        "accuracy_validated": false
+      },
+      "recognition": {
+        "group_threshold": 0.6,
+        "family_threshold": 0.6,
+        "margin": 0.1,
+        "validation_status": "provisional"
+      },
+      "families": [
+        {
+          "id": "pickleball.family.ready_positions",
+          "name": "Ready positions",
+          "type": "static",
+          "groups": [
+            {
+              "id": "pickleball.group.ready_position",
+              "name": "Ready position",
+              "members": [
+                "pickleball.ready_position"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usap_terms"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Body preparation rather than a shot label."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "usap_terms"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        },
+        {
+          "id": "pickleball.family.paddle_strokes",
+          "name": "Paddle strokes",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "pickleball.group.forehand_swings",
+              "name": "Forehand swings",
+              "members": [
+                "pickleball.forehand_drive"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usap_skills"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Side is kept explicit."
+              }
+            },
+            {
+              "id": "pickleball.group.backhand_swings",
+              "name": "Backhand swings",
+              "members": [
+                "pickleball.backhand_drive"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usap_skills"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Side is kept explicit."
+              }
+            },
+            {
+              "id": "pickleball.group.compact_paddle_strokes",
+              "name": "Compact paddle strokes",
+              "members": [
+                "pickleball.dink",
+                "pickleball.volley"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usap_terms"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Both can use short actions; bounce/contact/court evidence distinguishes the exact shot."
+              }
+            },
+            {
+              "id": "pickleball.group.overhead_strokes",
+              "name": "Overhead strokes",
+              "members": [
+                "pickleball.overhead"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usap_terms"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Do not infer winning outcome or tactical intent."
+              }
+            },
+            {
+              "id": "pickleball.group.service_actions",
+              "name": "Service actions",
+              "members": [
+                "pickleball.serve"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usap_terms"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "A serve label needs shot-sequence/context evidence."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "usap_terms",
+              "usap_skills"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        },
+        {
+          "id": "pickleball.family.court_footwork",
+          "name": "Court footwork",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "pickleball.group.preparation_recovery_steps",
+              "name": "Preparation and recovery steps",
+              "members": [
+                "pickleball.split_step",
+                "pickleball.recovery"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usap_skills"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Footwork category; exact phase remains separate."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "usap_skills"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        }
+      ]
+    },
+    "taekwondo": {
+      "version": "1.1.0",
+      "levels": [
+        "family",
+        "group",
+        "movement"
+      ],
+      "validation_status": "provisional",
+      "method": {
+        "kind": "source_grounded_semantic_hierarchy",
+        "source_ids": [
+          "kukkiwon_terms",
+          "kukkiwon_motion"
+        ],
+        "research_file": "ml/sports/recognition_taxonomy_sources.json",
+        "preserves_catalogue_ids": true,
+        "accuracy_validated": false
+      },
+      "recognition": {
+        "group_threshold": 0.6,
+        "family_threshold": 0.6,
+        "margin": 0.1,
+        "validation_status": "provisional"
+      },
+      "families": [
+        {
+          "id": "taekwondo.family.forward_kicks",
+          "name": "Forward kicks",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "taekwondo.group.front_kick_variants",
+              "name": "Front-kick variants",
+              "members": [
+                "taekwondo.ap_chagi_front_kick",
+                "taekwondo.twio_ap_chagi_jumping_front_kick"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "kukkiwon_terms"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Jumping is an approach/execution modifier."
+              }
+            },
+            {
+              "id": "taekwondo.group.pushing_kicks",
+              "name": "Pushing kicks",
+              "members": [
+                "taekwondo.miro_chagi_push_kick"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "kukkiwon_terms"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Retains the catalogue spelling and id."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "kukkiwon_terms"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        },
+        {
+          "id": "taekwondo.family.roundhouse_turning_kicks",
+          "name": "Roundhouse and turning kicks",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "taekwondo.group.roundhouse_variants",
+              "name": "Roundhouse variants",
+              "members": [
+                "taekwondo.dollyo_chagi_roundhouse_kick",
+                "taekwondo.twio_dollyo_chagi_jumping_roundhouse",
+                "taekwondo.baka_chagi_side_slide_roundhouse",
+                "taekwondo.preamble_dollyo_chagi_front_leg_slide"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "kukkiwon_terms",
+                  "kukkiwon_motion"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Existing local names/ids are retained; jumping and sliding modify the shared kick pattern."
+              }
+            },
+            {
+              "id": "taekwondo.group.reverse_turning_kicks",
+              "name": "Reverse turning kicks",
+              "members": [
+                "taekwondo.bandae_dollyo_chagi_reverse_roundhouse"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "kukkiwon_terms"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Keep the reverse turning pattern distinct from ordinary roundhouse."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "kukkiwon_terms",
+              "kukkiwon_motion"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        },
+        {
+          "id": "taekwondo.family.side_backward_kicks",
+          "name": "Side and backward kicks",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "taekwondo.group.side_kicks",
+              "name": "Side kicks",
+              "members": [
+                "taekwondo.yeop_chagi_side_kick"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "kukkiwon_terms"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Sideward extension category."
+              }
+            },
+            {
+              "id": "taekwondo.group.back_kicks",
+              "name": "Back kicks",
+              "members": [
+                "taekwondo.dwi_chagi_back_kick"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "kukkiwon_terms"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Backward thrust category."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "kukkiwon_terms"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        }
+      ]
+    },
+    "shooting": {
+      "version": "1.1.0",
+      "levels": [
+        "family",
+        "group",
+        "movement"
+      ],
+      "validation_status": "provisional",
+      "method": {
+        "kind": "source_grounded_semantic_hierarchy",
+        "source_ids": [
+          "usa_shooting_hold"
+        ],
+        "research_file": "ml/sports/recognition_taxonomy_sources.json",
+        "preserves_catalogue_ids": true,
+        "accuracy_validated": false
+      },
+      "recognition": {
+        "group_threshold": 0.6,
+        "family_threshold": 0.6,
+        "margin": 0.1,
+        "validation_status": "provisional"
+      },
+      "families": [
+        {
+          "id": "shooting.family.standing_hold_positions",
+          "name": "Standing hold positions",
+          "type": "static",
+          "groups": [
+            {
+              "id": "shooting.group.setup_aiming_holds",
+              "name": "Setup and aiming holds",
+              "members": [
+                "shooting.setup_stance",
+                "shooting.aiming_hold"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usa_shooting_hold"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Current catalogue is standing pistol-style posture; no rifle discipline is inferred."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "usa_shooting_hold"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        },
+        {
+          "id": "shooting.family.shot_cycle_posture",
+          "name": "Shot-cycle posture and reset",
+          "type": "dynamic",
+          "groups": [
+            {
+              "id": "shooting.group.steady_shot_phase_holds",
+              "name": "Steady holds around the shot phase",
+              "members": [
+                "shooting.trigger_phase_proxy",
+                "shooting.follow_through_hold"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usa_shooting_hold"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Body pose cannot establish an actual trigger event. Retain proxy wording unless a hardware event is available."
+              }
+            },
+            {
+              "id": "shooting.group.recovery_reset",
+              "name": "Recovery and reset",
+              "members": [
+                "shooting.recovery_reset"
+              ],
+              "evidence": {
+                "source_ids": [
+                  "usa_shooting_hold"
+                ],
+                "basis": "engineering semantic proposal",
+                "note": "Repositioning after the held phase."
+              }
+            }
+          ],
+          "evidence": {
+            "source_ids": [
+              "usa_shooting_hold"
+            ],
+            "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+          }
+        }
+      ]
+    }
+  }
+}

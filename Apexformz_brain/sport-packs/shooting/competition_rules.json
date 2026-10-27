@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "shooting",
+  "rule_sets": [
+    {
+      "id": "issf_air_pistol_10m",
+      "authority": "International Shooting Sport Federation",
+      "source": { "source": "ISSF Rules", "ref": "TODO_REQUIRES_VALIDATION: edition/section", "status": "provisional" },
+      "edition": null,
+      "effective_date": null,
+      "discipline": "air_pistol_10m",
+      "format": "individual",
+      "locale": "en",
+      "validation_status": "provisional",
+      "rules": [
+        { "id": "shot_scoring", "kind": "official", "text": "Shot value is determined by the target scoring system; posture scores are training feedback and never shooting scores.", "value": null, "adjudicable_from_pose": false, "validation_status": "provisional" },
+        { "id": "allowed_stance", "kind": "official", "text": "Standing, unsupported, pistol held with one hand only (discipline rule).", "adjudicable_from_pose": false, "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: cite rule number." },
+        { "id": "equipment_limits", "kind": "official", "text": "Pistol weight, trigger pull and grip dimensions are regulated by the discipline rules.", "value": null, "adjudicable_from_pose": false, "validation_status": "provisional" },
+        { "id": "safety_muzzle", "kind": "safety", "text": "Muzzle always points downrange; the camera and operator stay behind the firing line.", "adjudicable_from_pose": false, "validation_status": "provisional" },
+        { "id": "training_hold_consistency", "kind": "coaching_heuristic", "text": "Reproduce the same stance geometry on every shot during dry-fire drills.", "adjudicable_from_pose": true, "validation_status": "provisional" }
+      ]
+    },
+    {
+      "id": "issf_air_rifle_10m",
+      "authority": "International Shooting Sport Federation",
+      "source": { "source": "ISSF Rules", "ref": "TODO_REQUIRES_VALIDATION: edition/section", "status": "provisional" },
+      "edition": null,
+      "effective_date": null,
+      "discipline": "air_rifle_10m",
+      "format": "individual",
+      "locale": "en",
+      "validation_status": "provisional",
+      "rules": [
+        { "id": "shot_scoring", "kind": "official", "text": "Shot value is determined by the target scoring system.", "value": null, "adjudicable_from_pose": false, "validation_status": "provisional" },
+        { "id": "allowed_stance", "kind": "official", "text": "Standing position with discipline-specific support and clothing limits.", "adjudicable_from_pose": false, "validation_status": "provisional" }
+      ]
+    }
+  ]
+}

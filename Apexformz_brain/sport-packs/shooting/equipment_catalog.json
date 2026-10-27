@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "shooting",
+  "items": [
+    { "id": "air_pistol", "object_class": "air_pistol", "description": "10 m air pistol", "tracking": "optional_adapter", "adapter_capability": "optional_implement", "validation_status": "provisional", "note": "Barrel orientation and sight alignment require a calibrated camera or dedicated hardware; body pose alone never certifies them." },
+    { "id": "air_rifle", "object_class": "air_rifle", "description": "10 m air rifle", "tracking": "optional_adapter", "adapter_capability": "optional_implement", "validation_status": "provisional" },
+    { "id": "electronic_target", "object_class": "target_system", "description": "Electronic scoring target", "tracking": "optional_adapter", "adapter_capability": "optional_target_system", "validation_status": "provisional", "note": "Shot scores come from the target system via a separate validated data pathway, not from pose." },
+    { "id": "shooting_glasses", "object_class": "eyewear", "description": "Shooting glasses with blinder", "tracking": "none", "adapter_capability": null, "validation_status": "provisional", "note": "May occlude face landmarks; face landmarks are never used by criteria." }
+  ]
+}

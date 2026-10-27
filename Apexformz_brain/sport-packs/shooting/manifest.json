@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "id": "shooting",
+  "version": "1.0.0",
+  "minimum_core_version": "1.0.0",
+  "supported_platforms": [
+    "web",
+    "android",
+    "ios"
+  ],
+  "capabilities": [
+    "body_pose",
+    "optional_implement",
+    "optional_target_system"
+  ],
+  "dependencies": [
+    {
+      "id": "common_features",
+      "version": "^1.0"
+    }
+  ],
+  "game_rules": "competition_rules.json",
+  "court_geometry": "court_geometry.json",
+  "equipment_catalog": "equipment_catalog.json",
+  "movements": "movement_catalog.json",
+  "phase_graphs": "phase_graphs.json",
+  "technique_rubrics": "technique_criteria.json",
+  "feedback_templates": "feedback_templates.json",
+  "provenance": "provenance.json",
+  "models": [],
+  "asset_hashes": {
+    "competition_rules.json": "90cfb9f6b275c13ad4cad0fbe66e6f9bc9f669465679e513969751e92697fbf9",
+    "court_geometry.json": "d56ceb50ad3e9fc6aa69ed8a82fd1a2e4bb52a273082c268879bbc5a44240949",
+    "equipment_catalog.json": "14b670207991792d11b27b53261b1b8de147a519117473812eb585cb95f0d94b",
+    "movement_catalog.json": "3bbf7a9810199fff23d6fad73a2dfbb5f96ea124444d39f37bffd6b399efe08a",
+    "phase_graphs.json": "fc7f1a53d42f5d333d2748cdd4dad6d744f7b9910353e8889c7c1f426b3a2ada",
+    "technique_criteria.json": "89cc9c7221dd458a8fae4b616cc7cbac4d9139971c3073dd8d254603c44e09bd",
+    "feedback_templates.json": "62d57bc9a88ea0ee30311503dd988bcc9cab27dcb46d36be0bbac9d77e4fb39c",
+    "provenance.json": "9cc661ed1994af1ba4a3902894926c7f9a5e90f707c58fffb7a5f1ed59e2d39d"
+  },
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "dev-local-2026",
+    "value": "46d39dd0d031f3c738040de07e5c42ac78f9dca163eac3c726c1b54c54396087"
+  },
+  "display": {
+    "name": "Shooting",
+    "description": "Air pistol and air rifle posture coaching seeds. First vertical slice: setup stance (static).",
+    "color": "#ff6b35",
+    "status": "seed"
+  }
+}

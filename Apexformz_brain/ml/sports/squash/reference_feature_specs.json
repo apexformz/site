@@ -1,0 +1,444 @@
+{
+ "features": [
+  {
+   "id": "left_knee_angle",
+   "kind": "angle_at",
+   "params": {
+    "a": "left_hip",
+    "b": "left_knee",
+    "c": "left_ankle",
+    "dims": "2d"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg"
+  },
+  {
+   "id": "right_knee_angle",
+   "kind": "angle_at",
+   "params": {
+    "a": "right_hip",
+    "b": "right_knee",
+    "c": "right_ankle",
+    "dims": "2d"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg"
+  },
+  {
+   "id": "lead_knee_angle",
+   "kind": "min_of",
+   "params": {
+    "features": [
+     "left_knee_angle",
+     "right_knee_angle"
+    ]
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg",
+   "description": "More flexed knee = lunging leg"
+  },
+  {
+   "id": "max_knee_angle",
+   "kind": "max_of",
+   "params": {
+    "features": [
+     "left_knee_angle",
+     "right_knee_angle"
+    ]
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg"
+  },
+  {
+   "id": "left_hip_angle",
+   "kind": "angle_at",
+   "params": {
+    "a": "left_shoulder",
+    "b": "left_hip",
+    "c": "left_knee",
+    "dims": "2d"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg",
+   "description": "Trunk-thigh angle (hip flexion proxy)"
+  },
+  {
+   "id": "right_hip_angle",
+   "kind": "angle_at",
+   "params": {
+    "a": "right_shoulder",
+    "b": "right_hip",
+    "c": "right_knee",
+    "dims": "2d"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg"
+  },
+  {
+   "id": "lead_knee_velocity",
+   "kind": "angular_velocity",
+   "params": {
+    "of": "lead_knee_angle",
+    "window_ms": 150,
+    "method": "finite"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any"
+  },
+  {
+   "id": "dominant_elbow_angle",
+   "kind": "angle_at",
+   "params": {
+    "a": "dominant_shoulder",
+    "b": "dominant_elbow",
+    "c": "dominant_wrist",
+    "dims": "2d"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg"
+  },
+  {
+   "id": "nondominant_elbow_angle",
+   "kind": "angle_at",
+   "params": {
+    "a": "nondominant_shoulder",
+    "b": "nondominant_elbow",
+    "c": "nondominant_wrist",
+    "dims": "2d"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg"
+  },
+  {
+   "id": "dominant_elbow_velocity",
+   "kind": "angular_velocity",
+   "params": {
+    "of": "dominant_elbow_angle",
+    "window_ms": 150,
+    "method": "finite"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "description": "Proxy for swing speed; racket speed itself needs the implement adapter"
+  },
+  {
+   "id": "dominant_arm_elevation",
+   "kind": "angle_at",
+   "params": {
+    "a": "dominant_hip",
+    "b": "dominant_shoulder",
+    "c": "dominant_elbow",
+    "dims": "2d"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg"
+  },
+  {
+   "id": "nondominant_arm_elevation",
+   "kind": "angle_at",
+   "params": {
+    "a": "nondominant_hip",
+    "b": "nondominant_shoulder",
+    "c": "nondominant_elbow",
+    "dims": "2d"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "deg"
+  },
+  {
+   "id": "dominant_wrist_rel_y",
+   "kind": "landmark_offset",
+   "params": {
+    "a": "dominant_wrist",
+    "b": "dominant_shoulder",
+    "axis": "y"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "normalized",
+   "description": "Racket-hand height relative to the shoulder in torso lengths; negative = above the shoulder (racket prepared high)"
+  },
+  {
+   "id": "dominant_wrist_jerk",
+   "kind": "path_smoothness",
+   "params": {
+    "landmark": "dominant_wrist",
+    "window_ms": 500
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "description": "RMS jerk of the racket hand path; lower is smoother"
+  },
+  {
+   "id": "trunk_lateral_lean",
+   "kind": "line_inclination",
+   "params": {
+    "from": [
+     "left_hip",
+     "right_hip"
+    ],
+    "to": [
+     "left_shoulder",
+     "right_shoulder"
+    ],
+    "reference": "vertical"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": [
+    "front",
+    "back"
+   ],
+   "unit": "deg"
+  },
+  {
+   "id": "trunk_forward_lean",
+   "kind": "line_inclination",
+   "params": {
+    "from": [
+     "left_hip",
+     "right_hip"
+    ],
+    "to": [
+     "left_shoulder",
+     "right_shoulder"
+    ],
+    "reference": "vertical"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": [
+    "left",
+    "right"
+   ],
+   "unit": "deg"
+  },
+  {
+   "id": "shoulder_line_xz",
+   "kind": "segment_orientation",
+   "params": {
+    "from": "left_shoulder",
+    "to": "right_shoulder",
+    "plane": "xz"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": [
+    "back",
+    "front"
+   ],
+   "unit": "deg",
+   "description": "Shoulder rotation toward the side wall using model depth; depth ambiguity is a known failure mode"
+  },
+  {
+   "id": "stance_width_ratio",
+   "kind": "interjoint_distance_ratio",
+   "params": {
+    "a": "left_ankle",
+    "b": "right_ankle",
+    "c": "left_shoulder",
+    "d": "right_shoulder",
+    "dims": "2d"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": [
+    "front",
+    "back"
+   ],
+   "unit": "ratio"
+  },
+  {
+   "id": "left_knee_ankle_offset_x",
+   "kind": "landmark_offset",
+   "params": {
+    "a": "left_knee",
+    "b": "left_ankle",
+    "axis": "x"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": [
+    "front",
+    "back"
+   ],
+   "unit": "normalized"
+  },
+  {
+   "id": "right_knee_ankle_offset_x",
+   "kind": "landmark_offset",
+   "params": {
+    "a": "right_knee",
+    "b": "right_ankle",
+    "axis": "x"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": [
+    "front",
+    "back"
+   ],
+   "unit": "normalized"
+  },
+  {
+   "id": "hip_centre_x_image",
+   "kind": "center_of_keypoints",
+   "params": {
+    "landmarks": [
+     "left_hip",
+     "right_hip"
+    ],
+    "axis": "x"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "image_normalized",
+   "view_applicability": "any",
+   "unit": "normalized"
+  },
+  {
+   "id": "hip_centre_y_image",
+   "kind": "center_of_keypoints",
+   "params": {
+    "landmarks": [
+     "left_hip",
+     "right_hip"
+    ],
+    "axis": "y"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "image_normalized",
+   "view_applicability": "any",
+   "unit": "normalized"
+  },
+  {
+   "id": "body_motion",
+   "kind": "stability_variability",
+   "params": {
+    "of": "hip_centre_x_image",
+    "window_ms": 600,
+    "stat": "std",
+    "min_samples": 4
+   },
+   "version": "1.0.0",
+   "coordinate_system": "image_normalized",
+   "view_applicability": "any",
+   "description": "Whole-body stillness proxy (sideways in the image); not a centre of mass"
+  },
+  {
+   "id": "hip_motion_y",
+   "kind": "stability_variability",
+   "params": {
+    "of": "hip_centre_y_image",
+    "window_ms": 600,
+    "stat": "std",
+    "min_samples": 4
+   },
+   "version": "1.0.0",
+   "coordinate_system": "image_normalized",
+   "view_applicability": "any",
+   "description": "Vertical hip movement in the image: travel toward or away from a front/back camera"
+  },
+  {
+   "id": "body_travel",
+   "kind": "max_of",
+   "params": {
+    "features": [
+     "body_motion",
+     "hip_motion_y"
+    ]
+   },
+   "version": "1.0.0",
+   "coordinate_system": "image_normalized",
+   "view_applicability": "any",
+   "description": "Travel in any image direction (max of horizontal and vertical hip variability)"
+  },
+  {
+   "id": "hip_vertical_velocity",
+   "kind": "time_derivative",
+   "params": {
+    "of": "hip_centre_y_image",
+    "window_ms": 150,
+    "method": "finite"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "image_normalized",
+   "view_applicability": "any"
+  },
+  {
+   "id": "nose_x_image",
+   "kind": "landmark_coordinate",
+   "params": {
+    "landmark": "nose",
+    "axis": "x"
+   },
+   "version": "1.0.0",
+   "coordinate_system": "image_normalized",
+   "view_applicability": "any",
+   "unit": "normalized"
+  },
+  {
+   "id": "head_stability",
+   "kind": "stability_variability",
+   "params": {
+    "of": "nose_x_image",
+    "window_ms": 500,
+    "stat": "std",
+    "min_samples": 4
+   },
+   "version": "1.0.0",
+   "coordinate_system": "image_normalized",
+   "view_applicability": "any",
+   "description": "Head stillness through the swing"
+  },
+  {
+   "id": "stroke_sequencing",
+   "kind": "relative_phase_timing",
+   "params": {
+    "features": [
+     "lead_knee_angle",
+     "dominant_elbow_angle"
+    ],
+    "window_ms": 1500
+   },
+   "version": "1.0.0",
+   "coordinate_system": "body_relative",
+   "view_applicability": "any",
+   "unit": "score",
+   "description": "1.0 when the legs reach peak speed before the racket arm"
+  }
+ ],
+ "reference_features": [
+  "left_knee_angle",
+  "right_knee_angle",
+  "left_hip_angle",
+  "right_hip_angle",
+  "dominant_elbow_angle",
+  "nondominant_elbow_angle",
+  "dominant_arm_elevation",
+  "nondominant_arm_elevation"
+ ]
+}

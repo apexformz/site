@@ -1,0 +1,90 @@
+{
+ "kind": "reference_set",
+ "movement_id": "taekwondo.yeop_chagi_side_kick",
+ "features": [
+  "left_elbow_angle",
+  "right_elbow_angle",
+  "left_shoulder_angle",
+  "right_shoulder_angle",
+  "left_hip_angle",
+  "right_hip_angle",
+  "left_knee_angle",
+  "right_knee_angle"
+ ],
+ "weights": [
+  0.4,
+  0.4,
+  0.7,
+  0.7,
+  1.5,
+  1.5,
+  1.6,
+  1.6
+ ],
+ "reference_vectors": [
+  [
+   155.4,
+   174.4,
+   29.4,
+   24.6,
+   175.9,
+   170.2,
+   170.9,
+   178.9
+  ],
+  [
+   155.4,
+   174.4,
+   29.4,
+   24.6,
+   175.9,
+   170.2,
+   170.9,
+   178.9
+  ],
+  [
+   null,
+   133.6,
+   null,
+   0.9,
+   169.1,
+   152.6,
+   160.8,
+   115.2
+  ],
+  [
+   null,
+   133.6,
+   null,
+   0.9,
+   169.1,
+   152.6,
+   160.8,
+   115.2
+  ],
+  [
+   166.0,
+   167.9,
+   16.6,
+   10.0,
+   172.1,
+   147.6,
+   167.6,
+   111.5
+  ],
+  [
+   166.0,
+   167.9,
+   16.6,
+   10.0,
+   172.1,
+   147.6,
+   167.6,
+   111.5
+  ]
+ ],
+ "threshold": 20.0,
+ "tolerance": 15.0,
+ "validation_status": "provisional",
+ "provenance": "Legacy taekwondo_reference_frames.json extracted from front/left/right expert videos; weighted RMS distance in degrees. TODO_REQUIRES_VALIDATION."
+}

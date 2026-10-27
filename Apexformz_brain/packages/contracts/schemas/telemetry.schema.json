@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/telemetry.schema.json",
+  "title": "TelemetrySample",
+  "description": "Per-stage processing metrics (TRD 00/14). Never contains raw images or identifying media.",
+  "type": "object",
+  "required": ["schema_version", "session_id", "monotonic_ms", "stage_durations_ms", "queue_age_ms", "discarded_frames", "dropped_inferences", "timeouts", "abstention_reasons"],
+  "properties": {
+    "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+    "session_id": { "$ref": "common.schema.json#/$defs/id" },
+    "monotonic_ms": { "$ref": "common.schema.json#/$defs/monotonic_ms" },
+    "stage_durations_ms": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0 } },
+    "queue_age_ms": { "type": "number", "minimum": 0 },
+    "discarded_frames": { "type": "integer", "minimum": 0 },
+    "dropped_inferences": { "type": "integer", "minimum": 0 },
+    "timeouts": { "type": "integer", "minimum": 0 },
+    "memory_mb": { "type": ["number", "null"] },
+    "observed_fps": { "type": ["number", "null"] },
+    "abstention_reasons": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 0 } },
+    "unknown_movement_rate": { "type": ["number", "null"] },
+    "criteria_coverage": { "type": ["number", "null"] },
+    "executed_packs": { "type": "array", "items": { "type": "string" } },
+    "thermal_state": { "type": ["string", "null"] }
+  }
+}

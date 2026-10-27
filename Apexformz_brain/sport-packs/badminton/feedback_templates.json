@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "badminton",
+  "catalog_version": "1.0.0",
+  "default_locale": "en",
+  "policy": { "global_min_interval_ms": 6000, "positive_reinforcement_interval_ms": 15000, "max_secondary_queue": 3 },
+  "entries": [
+    { "error_id": "badminton.ready_stance.stance_width_out_of_range", "cue": { "en": "Set your feet about shoulder-width apart." }, "rationale": { "en": "A base that is too narrow or too wide slows the first step." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 8000, "persistence_count": 3, "severity": "medium", "positive_cue": { "en": "Good base width." } },
+    { "error_id": "badminton.ready_stance.knees_too_straight", "cue": { "en": "Soften your knees so you are ready to move." }, "rationale": { "en": "Straight knees delay the split step." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 8000, "persistence_count": 3, "severity": "medium", "positive_cue": { "en": "Nice loaded knees." } },
+    { "error_id": "badminton.ready_stance.trunk_lateral_lean", "cue": { "en": "Keep your shoulders level over your hips." }, "rationale": { "en": "Lateral lean shifts weight off the balls of the feet." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 10000, "persistence_count": 3, "severity": "low" },
+    { "error_id": "badminton.lunge.lead_knee_depth_out_of_range", "cue": { "en": "Load the front knee a little more as you reach." }, "rationale": { "en": "Controlled knee flexion absorbs the lunge and sets up the push back." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 8000, "persistence_count": 2, "severity": "medium", "positive_cue": { "en": "Good lunge depth." } },
+    { "error_id": "badminton.lunge.knee_not_over_foot", "cue": { "en": "Keep your front knee tracking over your foot." }, "rationale": { "en": "Knee drifting inward or outward loads the joint unevenly." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 8000, "persistence_count": 2, "severity": "high", "positive_cue": { "en": "Knee lined up well." } },
+    { "error_id": "badminton.lunge.excessive_trunk_lean", "cue": { "en": "Stay taller through the chest as you lunge." }, "rationale": { "en": "Excess forward lean makes the recovery slower." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 8000, "persistence_count": 2, "severity": "medium" },
+    { "error_id": "badminton.lunge.slow_recovery", "cue": { "en": "Push back to base faster after the lunge." }, "rationale": { "en": "Quick recovery keeps you ready for the next shuttle." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 10000, "persistence_count": 2, "severity": "low", "positive_cue": { "en": "Quick recovery." } },
+    { "error_id": "badminton.lunge.racket_arm_bent", "cue": { "en": "Reach with a longer racket arm at the bottom of the lunge." }, "rationale": { "en": "Arm extension increases reach without extra lunge depth." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 10000, "persistence_count": 2, "severity": "low" },
+    { "error_id": "badminton.lunge.arm_before_legs", "cue": { "en": "Let your legs start the lunge before the racket arm reaches." }, "rationale": { "en": "Leg-led sequencing keeps balance through the reach." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 12000, "persistence_count": 2, "severity": "low" },
+    { "error_id": "badminton.lunge.contact_too_low", "cue": { "en": "Meet the shuttle higher in front of you." }, "rationale": { "en": "Higher contact gives more net options." }, "demonstration_ref": null, "review_status": "draft", "cooldown_ms": 10000, "persistence_count": 2, "severity": "medium" }
+  ],
+  "generic": {
+    "AMBIGUOUS_SUBJECT": { "en": "Two people are in view. Please make sure only you are in the frame." },
+    "FRAMING_INVALID": { "en": "Step back so your whole body, including your feet, is visible." },
+    "MISSING_JOINT": { "en": "Some joints are hidden. Keep your full body in view." },
+    "LOW_CONFIDENCE": { "en": "Tracking is unsteady. Improve lighting and face the camera." },
+    "VIEW_INVALID": { "en": "This check needs a different camera angle; it is paused for now." },
+    "TIME_GAP": { "en": "Tracking paused. Resume when you are ready." },
+    "TRACK_CHANGED": { "en": "Lost track of you for a moment. Checks restart now." },
+    "HANDEDNESS_UNKNOWN": { "en": "Set your racket hand in the session setup to enable arm checks." },
+    "CAPABILITY_MISSING": { "en": "Racket tracking is not active, so contact checks are off." },
+    "CONTACT_UNOBSERVED": { "en": "Shuttle contact cannot be seen from body tracking alone." }
+  }
+}

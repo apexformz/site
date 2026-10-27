@@ -1,0 +1,16 @@
+{
+  "name": "@apexformz/features",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pure biomechanical feature primitives and feature engine (TRD 04)",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@apexformz/contracts": "1.0.0",
+    "@apexformz/signal": "1.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+[
+  {"name":"clean track","rows":[{"t":0,"dx":0},{"t":33,"dx":0.01},{"t":66,"dx":0.02}],"valid":[true,true,true],"breaks":[false,false,false]},
+  {"name":"same-id root jump then original returns","rows":[{"t":0,"dx":0},{"t":33,"dx":0.8},{"t":66,"dx":0}],"valid":[true,false,true],"breaks":[false,true,false]},
+  {"name":"competing people stay unsafe","rows":[{"t":0,"dx":0},{"t":33,"dx":0,"ambiguous":true},{"t":66,"dx":0}],"valid":[true,false,true],"breaks":[false,true,false]},
+  {"name":"tracker marks identity change","rows":[{"t":0,"dx":0},{"t":33,"dx":0,"changed":true},{"t":66,"dx":0}],"valid":[true,false,true],"breaks":[false,true,false]},
+  {"name":"new identity clears root anchor","rows":[{"t":0,"dx":0},{"t":33,"dx":0.8,"track":"other"},{"t":66,"dx":0.8,"track":"other"}],"valid":[true,true,true],"breaks":[false,true,false]},
+  {"name":"gap clears root anchor","rows":[{"t":0,"dx":0},{"t":700,"dx":0.8}],"valid":[true,true],"breaks":[false,true]},
+  {"name":"camera clears root anchor","rows":[{"t":0,"dx":0},{"t":33,"dx":0.8,"camera":"other"}],"valid":[true,true],"breaks":[false,true]}
+]

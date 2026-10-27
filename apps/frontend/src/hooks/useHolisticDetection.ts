@@ -51,13 +51,13 @@ async function getHolisticInstance() {
       }
 
       instance.setOptions({
-        modelComplexity: 0, // 0=Lite (Fastest), 1=Full, 2=Heavy. 0 is better for low-spec or floor poses.
+        modelComplexity: 1, // 1=Full, essential for complex athletic poses like kicks
         smoothLandmarks: true,
         enableSegmentation: false,
         smoothSegmentation: true,
-        refineFaceLandmarks: true,
-        minDetectionConfidence: 0.2, // Extremely permissive for initial lock
-        minTrackingConfidence: 0.2
+        refineFaceLandmarks: false, // Disable to save massive CPU, unneeded for Taekwondo
+        minDetectionConfidence: 0.5, // Standard lock to prevent garbage tracking
+        minTrackingConfidence: 0.5   // Standard track to prevent severe distortion
       });
 
       instance.onResults((results: any) => {
@@ -200,6 +200,7 @@ export function useHolisticDetection() {
           const rawPoseKps = results.poseLandmarks.map((kp: any, i: number) => ({
             x: kp.x * video.videoWidth,
             y: kp.y * video.videoHeight,
+            z: typeof kp.z === 'number' ? kp.z * video.videoWidth : undefined,
             score: kp.visibility || 1.0,
             name: BLAZEPOSE_KEYPOINT_NAMES[i] || `point_${i}`
           }));

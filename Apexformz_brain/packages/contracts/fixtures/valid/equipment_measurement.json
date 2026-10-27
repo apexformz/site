@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "measurement-fixture",
+  "camera_id": "camera-1",
+  "tracked_subject_id": "athlete-1",
+  "view": "front",
+  "frame_id": 10,
+  "timestamp_ms": 400,
+  "image_size": [1280, 720],
+  "mirror": false,
+  "orientation": "landscape",
+  "retrospective": true,
+  "measurements": [{
+    "measurement_id": "implement-height",
+    "equipment_id": "implement",
+    "quantity": "height_above_hip_torso",
+    "value": 0.4,
+    "unit": "normalized",
+    "confidence": 0.9,
+    "source": {"model_id": "point-tracker", "version": "1"},
+    "validation_status": "provisional",
+    "contact": {"kind": "reviewed_annotation", "event": "implement_projectile", "source_id": "review-record", "version": "1", "frame_id": 10, "timestamp_ms": 400, "confidence": 0.95}
+  }]
+}

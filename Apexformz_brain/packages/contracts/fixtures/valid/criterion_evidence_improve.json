@@ -1,0 +1,45 @@
+{
+  "criterion_id": "badminton.lunge.knee_foot_alignment",
+  "movement_id": "badminton.lunge",
+  "phase_id": "bottom",
+  "state": "IMPROVE",
+  "score": 0.4,
+  "measurement": {
+    "value": 0.41,
+    "unit": "normalized",
+    "reason": null,
+    "feature_id": "right_knee_ankle_offset_x"
+  },
+  "confidence": {
+    "movement": 0.97,
+    "assessment": 0.82,
+    "evidence_quality": 0.82
+  },
+  "evidence": {
+    "frame_ids": [
+      100,
+      101,
+      102
+    ],
+    "view": "front",
+    "feature_ids": [
+      "left_knee_ankle_offset_x",
+      "right_knee_ankle_offset_x"
+    ],
+    "selected_feature_id": "right_knee_ankle_offset_x"
+  },
+  "feedback": {
+    "error_id": "badminton.lunge.knee_not_over_foot",
+    "cue": "Keep your front knee tracking over your foot.",
+    "rationale": "Knee drifting inward or outward loads the joint unevenly."
+  },
+  "provenance": {
+    "sport_pack": "1.0.0",
+    "rubric": "1.0.0",
+    "validation_status": "provisional",
+    "evaluator": "max_abs",
+    "provisional": true
+  },
+  "severity": "high",
+  "timestamp_ms": 1500
+}

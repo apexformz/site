@@ -3,6 +3,7 @@ import collections
 from .base import BaseAnalyzer
 from .plank import PlankAnalyzer
 from .squat import SquatAnalyzer
+from .squash import SquashAnalyzer
 
 # Global session buffer for temporal smoothing (moving average)
 # In a production environment, this should move to Redis or a session-aware cache.
@@ -21,7 +22,7 @@ class AnalyzerRegistry:
         """
         Returns the specialized analyzer if it exists, otherwise Default BaseAnalyzer.
         """
-        analyzer_class = cls._MAPPING.get(pose_id, BaseAnalyzer)
+        analyzer_class = SquashAnalyzer if sport == 'squash' else cls._MAPPING.get(pose_id, BaseAnalyzer)
         return analyzer_class(sport, pose_id)
 
     @classmethod
@@ -31,6 +32,12 @@ class AnalyzerRegistry:
         """
         analyzer = cls.get_analyzer(sport, pose_id)
         raw_result = analyzer.analyze(keypoints, actual_angles)
+
+        # The experimental static guide evaluates each submitted frame. Do not
+        # mix one athlete's Squash score with another via the legacy global
+        # sport/pose buffer, or suppress a newly observed alignment problem.
+        if sport == 'squash':
+            return raw_result
 
         # 1. Initialize buffer for this session (pose_id + sport combination)
         session_key = f"{sport}_{pose_id}"

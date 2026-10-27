@@ -1,5 +1,67 @@
 {
-  "cricket": {
+  "squash": {
+    "ready_stance": {
+      "left_elbow": 100,
+      "right_elbow": 100,
+      "left_shoulder": 35,
+      "right_shoulder": 35,
+      "left_hip": 165,
+      "right_hip": 165,
+      "left_knee": 150,
+      "right_knee": 150,
+      "cues": {
+        "left_elbow": "Keep a comfortable bend in your arm; compare your position with the selected guide.",
+        "right_elbow": "Keep a comfortable bend in your arm; compare your position with the selected guide.",
+        "left_shoulder": "Check your arm preparation while keeping your shoulder relaxed.",
+        "right_shoulder": "Check your arm preparation while keeping your shoulder relaxed.",
+        "left_hip": "Keep a comfortable, balanced position. Reframe the camera if the view is unclear.",
+        "right_hip": "Keep a comfortable, balanced position. Reframe the camera if the view is unclear.",
+        "left_knee": "Keep a small, comfortable knee bend for the ready position.",
+        "right_knee": "Keep a small, comfortable knee bend for the ready position."
+      }
+    },
+    "forehand_volley_preparation": {
+      "left_elbow": 115,
+      "right_elbow": 90,
+      "left_shoulder": 35,
+      "right_shoulder": 85,
+      "left_hip": 165,
+      "right_hip": 165,
+      "left_knee": 150,
+      "right_knee": 150,
+      "cues": {
+        "left_elbow": "Keep a comfortable bend in your arm; compare your position with the selected guide.",
+        "right_elbow": "Keep a comfortable bend in your arm; compare your position with the selected guide.",
+        "left_shoulder": "Check your arm preparation while keeping your shoulder relaxed.",
+        "right_shoulder": "Check your arm preparation while keeping your shoulder relaxed.",
+        "left_hip": "Keep a comfortable, balanced position. Reframe the camera if the view is unclear.",
+        "right_hip": "Keep a comfortable, balanced position. Reframe the camera if the view is unclear.",
+        "left_knee": "Keep a small, comfortable knee bend for the ready position.",
+        "right_knee": "Keep a small, comfortable knee bend for the ready position."
+      }
+    },
+    "backhand_volley_preparation": {
+      "left_elbow": 120,
+      "right_elbow": 70,
+      "left_shoulder": 40,
+      "right_shoulder": 65,
+      "left_hip": 160,
+      "right_hip": 160,
+      "left_knee": 150,
+      "right_knee": 150,
+      "cues": {
+        "left_elbow": "Keep a comfortable bend in your arm; compare your position with the selected guide.",
+        "right_elbow": "Keep a comfortable bend in your arm; compare your position with the selected guide.",
+        "left_shoulder": "Check your arm preparation while keeping your shoulder relaxed.",
+        "right_shoulder": "Check your arm preparation while keeping your shoulder relaxed.",
+        "left_hip": "Keep a comfortable, balanced position. Reframe the camera if the view is unclear.",
+        "right_hip": "Keep a comfortable, balanced position. Reframe the camera if the view is unclear.",
+        "left_knee": "Keep a small, comfortable knee bend for the ready position.",
+        "right_knee": "Keep a small, comfortable knee bend for the ready position."
+      }
+    }
+  },
+"cricket": {
     "batting_stance": { 
       "left_elbow": 160, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90,
       "cues": {
@@ -212,5 +274,59 @@
     "sliding_tackle": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 60, "right_hip": 180, "left_knee": 60, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
     "volley_kick": { "left_elbow": 120, "right_elbow": 120, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 160, "right_hip": 90, "left_knee": 170, "right_knee": 45, "left_ankle": 90, "right_ankle": 110 },
     "penalty_look": { "left_elbow": 140, "right_elbow": 140, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 }
+  },
+  "taekwondo": {
+    "ready_stance": { 
+      "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 150, "right_hip": 150, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_knee_straight": "Keep your knees bent to maintain agility.",
+        "left_shoulder_low": "Keep your guard up to protect your torso."
+      }
+    },
+    "front_kick_chamber": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 90, "right_hip": 180, "left_knee": 45, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "front_kick_extension": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 90, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 135, "right_ankle": 90 },
+    "roundhouse_chamber": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 90, "right_hip": 180, "left_knee": 45, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "roundhouse_extension": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 90, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 180, "right_ankle": 90 },
+    "side_kick_chamber": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 90, "right_hip": 180, "left_knee": 45, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "side_kick_extension": { "left_elbow": 90, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 90, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "high_block": { "left_elbow": 45, "right_elbow": 90, "left_shoulder": 135, "right_shoulder": 45, "left_hip": 180, "right_hip": 180, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "low_block": { "left_elbow": 160, "right_elbow": 90, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 180, "right_hip": 180, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 },
+    "punch_extension": { "left_elbow": 180, "right_elbow": 45, "left_shoulder": 90, "right_shoulder": 45, "left_hip": 180, "right_hip": 180, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 }
+  },
+  "pickleball": {
+    "ready_position": { 
+      "left_elbow": 130, "right_elbow": 130, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_knee_straight": "Stay low in your ready stance with knees bent.",
+        "left_shoulder_high": "Keep your paddle out in front of your body."
+      }
+    },
+    "dink_prep": { "left_elbow": 140, "right_elbow": 160, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 120, "right_hip": 120, "left_knee": 130, "right_knee": 130, "left_ankle": 90, "right_ankle": 90 },
+    "dink_contact": { "left_elbow": 160, "right_elbow": 170, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 140, "right_hip": 140, "left_knee": 150, "right_knee": 150, "left_ankle": 90, "right_ankle": 90 },
+    "forehand_drive_prep": { "left_elbow": 160, "right_elbow": 120, "left_shoulder": 45, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "forehand_drive_contact": { "left_elbow": 180, "right_elbow": 160, "left_shoulder": 90, "right_shoulder": 120, "left_hip": 170, "right_hip": 170, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "backhand_drive_prep": { "left_elbow": 140, "right_elbow": 160, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 170, "right_hip": 170, "left_knee": 130, "right_knee": 130, "left_ankle": 90, "right_ankle": 90 },
+    "backhand_drive_contact": { "left_elbow": 160, "right_elbow": 180, "left_shoulder": 60, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "serve_prep": { "left_elbow": 170, "right_elbow": 170, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 160, "right_hip": 160, "left_knee": 150, "right_knee": 150, "left_ankle": 90, "right_ankle": 90 },
+    "serve_contact": { "left_elbow": 180, "right_elbow": 180, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 180, "right_hip": 180, "left_knee": 180, "right_knee": 180, "left_ankle": 90, "right_ankle": 90 },
+    "overhead_smash": { "left_elbow": 170, "right_elbow": 170, "left_shoulder": 160, "right_shoulder": 160, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90 }
+  },
+  "paddle": {
+    "ready_stance": { 
+      "left_elbow": 130, "right_elbow": 130, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 140, "right_hip": 140, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90,
+      "cues": {
+        "left_knee_straight": "Keep a low center of gravity for quick reactions.",
+        "left_shoulder_high": "Keep your paddle up and out in front."
+      }
+    },
+    "forehand_volley_prep": { "left_elbow": 110, "right_elbow": 110, "left_shoulder": 60, "right_shoulder": 60, "left_hip": 160, "right_hip": 160, "left_knee": 150, "right_knee": 150, "left_ankle": 90, "right_ankle": 90 },
+    "forehand_volley_contact": { "left_elbow": 140, "right_elbow": 160, "left_shoulder": 90, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 160, "right_knee": 160, "left_ankle": 90, "right_ankle": 90 },
+    "backhand_volley_prep": { "left_elbow": 120, "right_elbow": 140, "left_shoulder": 45, "right_shoulder": 60, "left_hip": 150, "right_hip": 150, "left_knee": 140, "right_knee": 140, "left_ankle": 90, "right_ankle": 90 },
+    "backhand_volley_contact": { "left_elbow": 150, "right_elbow": 170, "left_shoulder": 60, "right_shoulder": 90, "left_hip": 160, "right_hip": 160, "left_knee": 150, "right_knee": 150, "left_ankle": 90, "right_ankle": 90 },
+    "bandeja_prep": { "left_elbow": 150, "right_elbow": 90, "left_shoulder": 135, "right_shoulder": 90, "left_hip": 170, "right_hip": 170, "left_knee": 150, "right_knee": 140, "left_ankle": 110, "right_ankle": 120 },
+    "bandeja_contact": { "left_elbow": 160, "right_elbow": 160, "left_shoulder": 90, "right_shoulder": 135, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90 },
+    "vibora_prep": { "left_elbow": 160, "right_elbow": 80, "left_shoulder": 140, "right_shoulder": 100, "left_hip": 160, "right_hip": 160, "left_knee": 150, "right_knee": 150, "left_ankle": 100, "right_ankle": 100 },
+    "vibora_contact": { "left_elbow": 170, "right_elbow": 160, "left_shoulder": 100, "right_shoulder": 150, "left_hip": 180, "right_hip": 180, "left_knee": 170, "right_knee": 170, "left_ankle": 90, "right_ankle": 90 },
+    "glass_rebound_prep": { "left_elbow": 160, "right_elbow": 160, "left_shoulder": 45, "right_shoulder": 45, "left_hip": 120, "right_hip": 120, "left_knee": 120, "right_knee": 120, "left_ankle": 90, "right_ankle": 90 }
   }
 }

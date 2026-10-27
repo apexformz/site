@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": [
+      "ES2020",
+      "DOM"
+    ],
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@smartcoach/types": [
+        "../../packages/legacy-types/index.ts"
+      ],
+      "@apexformz/contracts": [
+        "../../packages/contracts/src/index.ts"
+      ],
+      "@apexformz/runtime": [
+        "../../packages/runtime/src/index.ts"
+      ],
+      "@apexformz/*": [
+        "../../packages/*/src/index.ts"
+      ]
+    },
+    "rootDir": "../..",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "prisma",
+    "src/**/*.test.ts"
+  ]
+}

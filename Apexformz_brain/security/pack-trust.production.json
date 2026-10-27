@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "keys": [
+    {
+      "key_id": "apexformz-release-20261026",
+      "algorithm": "ed25519",
+      "public_key": "82ccb6506738c9c0b79605c45a63724b94c010defda7683387191ff93c100784",
+      "status": "active",
+      "purpose": "production"
+    }
+  ]
+}

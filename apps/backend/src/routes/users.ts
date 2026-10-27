@@ -1,9 +1,10 @@
-import { Router, Response } from 'express';
-import { body, validationResult } from 'express-validator';
-import { prisma } from '../utils/prisma';
-import { authenticateToken, AuthRequest } from '../middleware/auth';
-import { ApiResponse, User, UserStats } from '../types';
-import logger from '../utils/logger';
+import { SUPPORTED_SESSION_SPORTS } from "../utils/supportedSports";
+import { Router, Response } from "express";
+import { body, validationResult } from "express-validator";
+import { prisma } from "../utils/prisma";
+import { authenticateToken, AuthRequest } from "../middleware/auth";
+import { ApiResponse, User, UserStats } from "../types";
+import logger from "../utils/logger";
 
 const router = Router();
 
@@ -11,40 +12,43 @@ const router = Router();
 router.use(authenticateToken);
 
 // GET /api/users/me
-router.get('/me', async (req: AuthRequest, res: Response) => {
+router.get("/me", async (req: AuthRequest, res: Response) => {
   try {
     const user = await prisma.user.findUnique({
       where: { id: req.userId },
-      include: { 
-        stats: true, 
+      include: {
+        stats: true,
         achievements: true,
         enhanced_streak: true,
-        circle_members: { include: { circle: true } }
+        circle_members: { include: { circle: true } },
       },
     });
 
-    if (!user) return res.status(404).json({ success: false, error: 'User not found' });
+    if (!user)
+      return res.status(404).json({ success: false, error: "User not found" });
 
     const { password_hash, ...safeUser } = user;
     return res.json({ success: true, data: safeUser });
   } catch (error) {
-    logger.error('Get user error:', error);
-    return res.status(500).json({ success: false, error: 'Server error' });
+    logger.error("Get user error:", error);
+    return res.status(500).json({ success: false, error: "Server error" });
   }
 });
 
 // PATCH /api/users/me
 router.patch(
-  '/me',
+  "/me",
   [
-    body('name').optional().trim().isLength({ min: 2 }),
-    body('preferred_sport').optional().isIn(['cricket', 'tennis', 'yoga', 'running']),
-    body('avatar_url').optional().isURL(),
+    body("name").optional().trim().isLength({ min: 2 }),
+    body("preferred_sport").optional().isIn(SUPPORTED_SESSION_SPORTS),
+    body("avatar_url").optional().isURL(),
   ],
   async (req: AuthRequest, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ success: false, error: errors.array()[0].msg });
+      return res
+        .status(400)
+        .json({ success: false, error: errors.array()[0].msg });
     }
 
     const { name, preferred_sport, avatar_url } = req.body;
@@ -62,21 +66,24 @@ router.patch(
       const { password_hash, ...safeUser } = user;
       return res.json({ success: true, data: safeUser });
     } catch (error) {
-      logger.error('Update user error:', error);
-      return res.status(500).json({ success: false, error: 'Server error' });
+      logger.error("Update user error:", error);
+      return res.status(500).json({ success: false, error: "Server error" });
     }
-  }
+  },
 );
 
 // GET /api/users/:id/stats
-router.get('/:id/stats', async (req: AuthRequest, res: Response) => {
+router.get("/:id/stats", async (req: AuthRequest, res: Response) => {
   try {
-    const stats = await prisma.userStats.findUnique({ where: { user_id: req.params.id } });
-    if (!stats) return res.status(404).json({ success: false, error: 'Stats not found' });
+    const stats = await prisma.userStats.findUnique({
+      where: { user_id: req.params.id },
+    });
+    if (!stats)
+      return res.status(404).json({ success: false, error: "Stats not found" });
     return res.json({ success: true, data: stats });
   } catch (error) {
-    logger.error('Get stats error:', error);
-    return res.status(500).json({ success: false, error: 'Server error' });
+    logger.error("Get stats error:", error);
+    return res.status(500).json({ success: false, error: "Server error" });
   }
 });
 

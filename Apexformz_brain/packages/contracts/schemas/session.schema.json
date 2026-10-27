@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/session.schema.json",
+  "title": "Session state contracts",
+  "description": "Session state machine (TRD 01) and calibration record (TRD 02).",
+  "$defs": {
+    "session_state": {
+      "type": "string",
+      "enum": ["IDLE", "PERMISSIONS", "CALIBRATING", "READY", "ACTIVE", "PAUSED", "DEGRADED", "COMPLETING", "LOCAL_COMMITTED", "SYNC_PENDING", "SYNCED", "FAILED"]
+    },
+    "session_transition": {
+      "type": "object",
+      "required": ["from", "to", "monotonic_ms", "reason"],
+      "properties": {
+        "from": { "$ref": "#/$defs/session_state" },
+        "to": { "$ref": "#/$defs/session_state" },
+        "monotonic_ms": { "$ref": "common.schema.json#/$defs/monotonic_ms" },
+        "reason": { "type": "string" },
+        "error_code": { "oneOf": [{ "$ref": "common.schema.json#/$defs/error_code" }, { "type": "null" }] }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "required": ["full_body_framing", "camera_tilt_deg", "nominal_view", "handedness", "scale_known"],
+      "properties": {
+        "full_body_framing": { "type": "boolean" },
+        "camera_tilt_deg": { "type": ["number", "null"] },
+        "nominal_view": { "$ref": "common.schema.json#/$defs/view_label" },
+        "handedness": { "type": "string", "enum": ["left", "right", "unknown"] },
+        "handedness_assumed": { "type": "boolean" },
+        "floor_orientation_available": { "type": "boolean" },
+        "scale_known": { "type": "boolean" },
+        "scale_marker_m": { "type": ["number", "null"] },
+        "athlete_context": { "type": "string", "enum": ["novice", "intermediate", "advanced", "unknown"] }
+      }
+    },
+    "session_start_request": {
+      "type": "object",
+      "required": ["session_id", "sport_pack_id", "sport_pack_version", "movement_id", "calibration"],
+      "properties": {
+        "session_id": { "$ref": "common.schema.json#/$defs/id" },
+        "athlete_id": { "type": "string" },
+        "sport_pack_id": { "type": "string" },
+        "sport_pack_version": { "type": "string" },
+        "movement_id": { "type": "string" },
+        "calibration": { "$ref": "#/$defs/calibration" },
+        "pinned_models": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/model_provenance" } }
+      }
+    }
+  }
+}

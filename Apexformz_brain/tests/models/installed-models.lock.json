@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "artifact_set": "squash-identity-20261025-reid-osnet-development",
+  "usage": "Development/evaluation only. See reid/reid.json for weight licence restrictions; model cards retain validation blockers.",
+  "files": [
+    {
+      "path": "apps/frontend/public/models/pose_landmarker_full.task",
+      "sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+      "bytes": 9398198
+    },
+    {
+      "path": "apps/frontend/public/models/reid/osnet_ain_x0_25.onnx",
+      "sha256": "8cc91c9579795aa61de5f1596e450cab8383014ed447dc2f2c5690394adbd3c4",
+      "bytes": 900078
+    },
+    {
+      "path": "apps/frontend/public/models/reid/reid.json",
+      "sha256": "ce964b6af62ca92f080219524eec6d6047ce0608fe361bbb9d13017e1c350b0f",
+      "bytes": 1049
+    },
+    {
+      "path": "apps/frontend/public/models/squash/dynamic_movement.deployment.json",
+      "sha256": "2ec1bb44d0d5cfd24c7fc5de4cf5089a7698d66fec1dc1448e433fee76396f74",
+      "bytes": 66873
+    },
+    {
+      "path": "apps/frontend/public/models/squash/dynamic_movement.model_card.json",
+      "sha256": "46b4bc5c555c716d8da1c89e3b822db635e8904311fd8e076bf1660d21aeef8b",
+      "bytes": 22045
+    },
+    {
+      "path": "apps/frontend/public/models/squash/dynamic_movement.onnx",
+      "sha256": "0d7e361ce8e9d901ea92509a78c62f3af3e0515a789a23bb578bcf52e7b1d2c6",
+      "bytes": 2025734
+    },
+    {
+      "path": "apps/frontend/public/models/squash/index.json",
+      "sha256": "38a060bf7706c4938c9e861ea9c88abe42c67988b83cbba3bb590ed14133e9bf",
+      "bytes": 219
+    },
+    {
+      "path": "apps/frontend/public/models/squash/static_pose.deployment.json",
+      "sha256": "ec819da93fa507a9ab047f2ee602e21bc8cdb35a480a681310cac3698bc58e0f",
+      "bytes": 39948
+    },
+    {
+      "path": "apps/frontend/public/models/squash/static_pose.model_card.json",
+      "sha256": "a98671140988427859a665f6d028c966454459b2e7ec37cb57addf99aec2d840",
+      "bytes": 43683
+    },
+    {
+      "path": "apps/frontend/public/models/squash/static_pose.onnx",
+      "sha256": "dca7452c903630713451239ceb2b6a91d80e5476cfc9215fc498002fbe5c8ed2",
+      "bytes": 74230
+    }
+  ]
+}

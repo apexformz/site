@@ -1,39 +1,60 @@
-import { Router, Request, Response } from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { body, validationResult } from 'express-validator';
-import { prisma } from '../utils/prisma';
-import { authenticateToken, AuthRequest } from '../middleware/auth';
-import { ApiResponse, AuthTokens, RegisterRequest, LoginRequest } from '../types';
-import logger from '../utils/logger';
-import crypto from 'crypto';
+import { SUPPORTED_SESSION_SPORTS } from "../utils/supportedSports";
+import { Router, Request, Response } from "express";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { body, validationResult } from "express-validator";
+import { prisma } from "../utils/prisma";
+import { authenticateToken, AuthRequest } from "../middleware/auth";
+import {
+  ApiResponse,
+  AuthTokens,
+  RegisterRequest,
+  LoginRequest,
+} from "../types";
+import logger from "../utils/logger";
+import crypto from "crypto";
 
-import { generateAuthTokens, verifyToken } from '../utils/auth.utils';
+import { generateAuthTokens, verifyToken } from "../utils/auth.utils";
 
 const router = Router();
 
+function isDatabaseUnavailable(error: any): boolean {
+  return (
+    error?.code === "P1001" ||
+    String(error?.message || "").includes("Can't reach database server")
+  );
+}
+
 // POST /api/auth/register
 router.post(
-  '/register',
+  "/register",
   [
-    body('email').isEmail().normalizeEmail(),
-    body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
-    body('name').trim().isLength({ min: 2 }),
-    body('preferred_sport').isIn(['cricket', 'tennis', 'yoga', 'running', 'boxing', 'football']),
+    body("email").isEmail().normalizeEmail(),
+    body("password")
+      .isLength({ min: 8 })
+      .withMessage("Password must be at least 8 characters"),
+    body("name").trim().isLength({ min: 2 }),
+    body("preferred_sport").isIn(SUPPORTED_SESSION_SPORTS),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const response: ApiResponse<null> = { success: false, error: errors.array()[0].msg };
+      const response: ApiResponse<null> = {
+        success: false,
+        error: errors.array()[0].msg,
+      };
       return res.status(400).json(response);
     }
 
-    const { email, password, name, preferred_sport } = req.body as RegisterRequest;
+    const { email, password, name, preferred_sport } =
+      req.body as RegisterRequest;
 
     try {
       const existing = await prisma.user.findUnique({ where: { email } });
       if (existing) {
-        return res.status(409).json({ success: false, error: 'Email already registered' });
+        return res
+          .status(409)
+          .json({ success: false, error: "Email already registered" });
       }
 
       const password_hash = await bcrypt.hash(password, 12);
@@ -51,19 +72,27 @@ router.post(
         data: { user_id: user.id, sport: preferred_sport },
       });
 
-      const { access_token, refresh_token } = generateAuthTokens(user.id, user.email);
+      const { access_token, refresh_token } = generateAuthTokens(
+        user.id,
+        user.email,
+      );
 
       // Store refresh token
       await prisma.refreshToken.create({
         data: {
-          token: crypto.createHash('sha256').update(refresh_token).digest('hex'),
+          token: crypto
+            .createHash("sha256")
+            .update(refresh_token)
+            .digest("hex"),
           user_id: user.id,
           expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         },
       });
 
       logger.info(`New user registered: ${email}`);
-      const response: ApiResponse<AuthTokens & { user: { id: string; name: string; email: string } }> = {
+      const response: ApiResponse<
+        AuthTokens & { user: { id: string; name: string; email: string } }
+      > = {
         success: true,
         data: {
           access_token,
@@ -74,23 +103,29 @@ router.post(
       };
       return res.status(201).json(response);
     } catch (error: any) {
-      logger.error('Register error:', error);
-      return res.status(500).json({ success: false, error: `Server error: ${error.message}` });
+      logger.error("Register error:", error);
+      if (isDatabaseUnavailable(error)) {
+        return res.status(503).json({
+          success: false,
+          error:
+            "Database unavailable. Please start Docker Desktop and try again.",
+        });
+      }
+      return res.status(500).json({ success: false, error: "Server error" });
     }
-  }
+  },
 );
 
 // POST /api/auth/login
 router.post(
-  '/login',
-  [
-    body('email').isEmail().normalizeEmail(),
-    body('password').notEmpty(),
-  ],
+  "/login",
+  [body("email").isEmail().normalizeEmail(), body("password").notEmpty()],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ success: false, error: errors.array()[0].msg });
+      return res
+        .status(400)
+        .json({ success: false, error: errors.array()[0].msg });
     }
 
     const { email, password } = req.body as LoginRequest;
@@ -98,25 +133,37 @@ router.post(
     try {
       const user = await prisma.user.findUnique({ where: { email } });
       if (!user) {
-        return res.status(401).json({ success: false, error: 'Invalid credentials' });
+        return res
+          .status(401)
+          .json({ success: false, error: "Invalid credentials" });
       }
 
       const valid = await bcrypt.compare(password, user.password_hash);
       if (!valid) {
-        return res.status(401).json({ success: false, error: 'Invalid credentials' });
+        return res
+          .status(401)
+          .json({ success: false, error: "Invalid credentials" });
       }
 
-      const { access_token, refresh_token } = generateAuthTokens(user.id, user.email);
+      const { access_token, refresh_token } = generateAuthTokens(
+        user.id,
+        user.email,
+      );
 
       await prisma.refreshToken.create({
         data: {
-          token: crypto.createHash('sha256').update(refresh_token).digest('hex'),
+          token: crypto
+            .createHash("sha256")
+            .update(refresh_token)
+            .digest("hex"),
           user_id: user.id,
           expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         },
       });
 
-      const stats = await prisma.userStats.findUnique({ where: { user_id: user.id } });
+      const stats = await prisma.userStats.findUnique({
+        where: { user_id: user.id },
+      });
       logger.info(`User logged in: ${email}`);
 
       return res.json({
@@ -136,54 +183,88 @@ router.post(
         },
       });
     } catch (error) {
-      logger.error('Login error:', error);
-      return res.status(500).json({ success: false, error: 'Server error' });
+      logger.error("Login error:", error);
+      if (isDatabaseUnavailable(error)) {
+        return res.status(503).json({
+          success: false,
+          error:
+            "Database unavailable. Please start Docker Desktop and try again.",
+        });
+      }
+      return res.status(500).json({ success: false, error: "Server error" });
     }
-  }
+  },
 );
 
 // POST /api/auth/refresh
-router.post('/refresh', async (req: Request, res: Response) => {
+router.post("/refresh", async (req: Request, res: Response) => {
   const { refresh_token } = req.body;
   if (!refresh_token) {
-    return res.status(401).json({ success: false, error: 'Refresh token required' });
+    return res
+      .status(401)
+      .json({ success: false, error: "Refresh token required" });
   }
   try {
-    const payload = verifyToken(refresh_token, process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET as string);
+    const payload = verifyToken(
+      refresh_token,
+      process.env.JWT_REFRESH_SECRET || (process.env.JWT_SECRET as string),
+    );
 
-    const hashed = crypto.createHash('sha256').update(refresh_token).digest('hex');
-    const stored = await prisma.refreshToken.findUnique({ where: { token: hashed } });
+    const hashed = crypto
+      .createHash("sha256")
+      .update(refresh_token)
+      .digest("hex");
+    const stored = await prisma.refreshToken.findUnique({
+      where: { token: hashed },
+    });
 
     if (!stored || stored.expires_at < new Date()) {
-      return res.status(401).json({ success: false, error: 'REFRESH TOKEN EXPIRED OR REVOKED' });
+      return res
+        .status(401)
+        .json({ success: false, error: "REFRESH TOKEN EXPIRED OR REVOKED" });
     }
 
     // Rotate token
     await prisma.refreshToken.delete({ where: { id: stored.id } });
-    const { access_token, refresh_token: new_refresh } = generateAuthTokens(payload.userId, payload.email);
+    const { access_token, refresh_token: new_refresh } = generateAuthTokens(
+      payload.userId,
+      payload.email,
+    );
 
     await prisma.refreshToken.create({
       data: {
-        token: crypto.createHash('sha256').update(new_refresh).digest('hex'),
+        token: crypto.createHash("sha256").update(new_refresh).digest("hex"),
         user_id: payload.userId,
         expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       },
     });
 
-    return res.json({ success: true, data: { access_token, refresh_token: new_refresh, expires_in: 900 } });
+    return res.json({
+      success: true,
+      data: { access_token, refresh_token: new_refresh, expires_in: 900 },
+    });
   } catch (err: any) {
-    return res.status(401).json({ success: false, error: err.message.toUpperCase() });
+    return res
+      .status(401)
+      .json({ success: false, error: err.message.toUpperCase() });
   }
 });
 
 // POST /api/auth/logout
-router.post('/logout', authenticateToken, async (req: AuthRequest, res: Response) => {
-  const { refresh_token } = req.body;
-  if (refresh_token) {
-    const hashed = crypto.createHash('sha256').update(refresh_token).digest('hex');
-    await prisma.refreshToken.deleteMany({ where: { token: hashed } });
-  }
-  return res.json({ success: true, message: 'Logged out successfully' });
-});
+router.post(
+  "/logout",
+  authenticateToken,
+  async (req: AuthRequest, res: Response) => {
+    const { refresh_token } = req.body;
+    if (refresh_token) {
+      const hashed = crypto
+        .createHash("sha256")
+        .update(refresh_token)
+        .digest("hex");
+      await prisma.refreshToken.deleteMany({ where: { token: hashed } });
+    }
+    return res.json({ success: true, message: "Logged out successfully" });
+  },
+);
 
 export default router;

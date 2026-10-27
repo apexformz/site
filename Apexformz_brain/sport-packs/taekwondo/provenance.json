@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "taekwondo",
+  "version": "1.0.0",
+  "created_at": "2026-10-25",
+  "authors": [
+    "ApexFormz Brain engineering (legacy migration)"
+  ],
+  "sources": [
+    {
+      "id": "legacy_blueprints",
+      "type": "legacy_data",
+      "citation": "Original ApexFormz apps/ai-service/app/data/reference_movements.json (hand-authored phase blueprints)",
+      "status": "provisional"
+    },
+    {
+      "id": "legacy_expert_frames",
+      "type": "legacy_data",
+      "citation": "Original ApexFormz taekwondo_reference_frames.json extracted with MediaPipe from front/left/right expert videos",
+      "status": "provisional"
+    },
+    {
+      "id": "coach_panel",
+      "type": "coach_review",
+      "citation": "Coach review panel (not yet convened)",
+      "status": "provisional"
+    }
+  ],
+  "validation_summary": {
+    "approved": 0,
+    "provisional": 20,
+    "disabled": 0
+  },
+  "open_items": [
+    "TODO_REQUIRES_VALIDATION: taekwondo.baka_chagi_side_slide_roundhouse/hip_rotation legacy angular_velocity threshold 1.0 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: taekwondo.baka_chagi_side_slide_roundhouse/side_slide legacy angular_velocity threshold 0.5 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: taekwondo.bandae_dollyo_chagi_reverse_roundhouse/follow_through legacy angular_velocity threshold 1.0 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: taekwondo.bandae_dollyo_chagi_reverse_roundhouse/pivot_and_spin legacy angular_velocity threshold 1.5 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: taekwondo.dollyo_chagi_roundhouse_kick/hip_rotation legacy angular_velocity threshold 1.5 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: taekwondo.dollyo_chagi_roundhouse_kick/pivot legacy angular_velocity threshold 1.0 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: taekwondo.dwi_chagi_back_kick/turn legacy angular_velocity threshold 1.0 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: taekwondo.preamble_dollyo_chagi_front_leg_slide/front_leg_slide legacy angular_velocity threshold 0.5 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: taekwondo.twio_dollyo_chagi_jumping_roundhouse/air_rotation legacy angular_velocity threshold 1.0 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: taekwondo.yeop_chagi_side_kick/turn_and_rotate legacy angular_velocity threshold 1.0 has ambiguous units (legacy mixed deg/frame and deg/s); re-fit on recordings",
+    "TODO_REQUIRES_VALIDATION: legacy angle blueprints and expert-frame distances are not approved coaching cutoffs",
+    "TODO_REQUIRES_VALIDATION: legacy DTW trajectory scoring and ST-GCN grading remain on the Python service; not migrated"
+  ]
+}

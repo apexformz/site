@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/frame_packet.schema.json",
+  "title": "FramePacket",
+  "description": "Camera frame metadata handed from the input controller to the pose worker. Pixel data travels as a transferable alongside, never inside this JSON.",
+  "type": "object",
+  "required": ["schema_version", "session_id", "frame_id", "timestamp_ms", "camera_id", "image_size", "mirror", "orientation"],
+  "properties": {
+    "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+    "session_id": { "$ref": "common.schema.json#/$defs/id" },
+    "frame_id": { "$ref": "common.schema.json#/$defs/frame_id" },
+    "timestamp_ms": { "$ref": "common.schema.json#/$defs/monotonic_ms" },
+    "camera_id": { "type": "string" },
+    "image_size": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 2, "maxItems": 2 },
+    "mirror": { "type": "boolean" },
+    "orientation": { "type": "string", "enum": ["landscape", "portrait", "landscape_flipped", "portrait_flipped", "unknown"] },
+    "nominal_fps": { "type": "number", "minimum": 0 },
+    "dropped_since_last": { "type": "integer", "minimum": 0 }
+  }
+}

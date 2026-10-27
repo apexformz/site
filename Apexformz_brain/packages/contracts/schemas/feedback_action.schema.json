@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/feedback_action.schema.json",
+  "title": "FeedbackAction",
+  "description": "Output of the coaching policy state machine (TRD 11). At most one primary correction at a time during active motion.",
+  "type": "object",
+  "required": ["schema_version", "session_id", "event_id", "timestamp_ms", "kind", "priority", "text", "modality", "cooldown_ms", "expires_ms", "evidence_frame_ids", "provenance"],
+  "properties": {
+    "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+    "session_id": { "$ref": "common.schema.json#/$defs/id" },
+    "event_id": { "$ref": "common.schema.json#/$defs/id" },
+    "timestamp_ms": { "$ref": "common.schema.json#/$defs/monotonic_ms" },
+    "kind": { "type": "string", "enum": ["setup_instruction", "quality_instruction", "technique_cue", "positive_reinforcement", "phase_marker", "none"] },
+    "priority": { "type": "string", "enum": ["safety", "setup", "primary", "secondary"] },
+    "error_id": { "type": ["string", "null"] },
+    "criterion_id": { "type": ["string", "null"] },
+    "movement_id": { "type": ["string", "null"] },
+    "text": { "type": "string" },
+    "rationale": { "type": ["string", "null"] },
+    "modality": { "type": "array", "items": { "type": "string", "enum": ["visual", "audio", "haptic"] } },
+    "cooldown_ms": { "type": "number", "minimum": 0 },
+    "expires_ms": { "type": "number", "minimum": 0 },
+    "evidence_frame_ids": { "type": "array", "items": { "type": "integer" } },
+    "provenance": {
+      "type": "object",
+      "required": ["feedback_catalog_version", "sport_pack"],
+      "properties": {
+        "feedback_catalog_version": { "type": "string" },
+        "sport_pack": { "type": "string" },
+        "review_status": { "type": "string", "enum": ["approved", "draft"] }
+      }
+    },
+    "suppressed_reason": { "type": ["string", "null"] },
+    "queued_secondary": { "type": "array", "items": { "type": "string" } }
+  }
+}

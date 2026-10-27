@@ -1,0 +1,12 @@
+# Run from the repository root: python -m pip install -r ml/requirements-training.txt
+# Choose the appropriate PyTorch CPU/CUDA installation for the local machine first.
+numpy>=1.26
+torch>=2.4
+onnx>=1.16
+onnxruntime>=1.19
+pydantic>=2.6
+jsonschema>=4.22
+boto3[crt]>=1.42
+mediapipe>=0.10.22
+opencv-python>=4.10
+-e packages/contracts/python

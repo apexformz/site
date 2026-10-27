@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "table_tennis",
+  "version": "1.0.0",
+  "created_at": "2026-10-25",
+  "authors": [
+    "ApexFormz Brain engineering (seed content)"
+  ],
+  "sources": [
+    {
+      "id": "trd 09 table tennis sport brain",
+      "type": "internal",
+      "citation": "ApexFormz TRD 09 Table Tennis Sport Brain v1.0 (24 Oct 2026)",
+      "status": "provisional"
+    },
+    {
+      "id": "official_rules",
+      "type": "official_rules",
+      "citation": "ITTF Handbook (edition to be recorded)",
+      "status": "provisional"
+    },
+    {
+      "id": "coach_panel",
+      "type": "coach_review",
+      "citation": "Coach review panel (not yet convened)",
+      "status": "provisional"
+    }
+  ],
+  "validation_summary": {
+    "approved": 0,
+    "provisional": 2,
+    "disabled": 0
+  },
+  "open_items": [
+    "TODO_REQUIRES_VALIDATION: court/table geometry values from the approved rule edition",
+    "TODO_REQUIRES_VALIDATION: coach panel approval of the movement ontology seeds",
+    "TODO_REQUIRES_VALIDATION: all phase thresholds and criterion limits are engineering seeds",
+    "TODO_REQUIRES_VALIDATION: paddle and ball adapters are unimplemented; contact criteria must abstain"
+  ]
+}

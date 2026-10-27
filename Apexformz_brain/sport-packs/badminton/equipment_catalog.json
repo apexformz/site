@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "badminton",
+  "items": [
+    { "id": "racket", "object_class": "badminton_racket", "description": "Badminton racket held in the dominant hand", "tracking": "optional_adapter", "adapter_capability": "optional_implement", "dimensions": { "max_length_m": null, "note": "TODO_REQUIRES_VALIDATION" }, "validation_status": "provisional", "note": "Racket keypoints enable contact-dependent criteria. Without the adapter those criteria abstain." },
+    { "id": "shuttlecock", "object_class": "shuttlecock", "description": "Feather or synthetic shuttlecock", "tracking": "offline_only", "adapter_capability": "optional_projectile", "validation_status": "provisional", "note": "Small fast object; mobile cameras generally cannot track it live. Permitted in offline deep analysis only." },
+    { "id": "net", "object_class": "net", "description": "Court net", "tracking": "none", "adapter_capability": null, "validation_status": "provisional" }
+  ]
+}

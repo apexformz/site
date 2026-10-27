@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "badminton",
+  "graphs": [
+    {
+      "id": "pg.badminton.ready_stance",
+      "movement_id": "badminton.ready_stance",
+      "kind": "static_hold",
+      "window_ms": 1500,
+      "confirm_hold_ms": 600,
+      "phases": [
+        {
+          "id": "hold", "name": "Ready hold", "kind": "hold", "contact_evidence": "none", "min_duration_ms": 600, "max_duration_ms": null,
+          "enter": [
+            { "feature": "body_motion", "op": "lt", "value": 0.006, "validation_status": "provisional" },
+            { "feature": "max_knee_angle", "op": "lt", "value": 175, "validation_status": "provisional" }
+          ],
+          "hold_ms": 600,
+          "cue_allowed": true
+        }
+      ],
+      "edges": [],
+      "initial": "hold",
+      "terminal": ["hold"],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: motion and knee thresholds are engineering seeds pending coach review."
+    },
+    {
+      "id": "pg.badminton.lunge",
+      "movement_id": "badminton.lunge",
+      "kind": "dynamic_sequence",
+      "window_ms": 3000,
+      "abort_timeout_ms": 4000,
+      "confirm_hold_ms": 100,
+      "allow_skip": false,
+      "phases": [
+        { "id": "ready", "name": "Ready", "kind": "rest", "contact_evidence": "none", "min_duration_ms": 150, "max_duration_ms": null,
+          "enter": [ { "feature": "lead_knee_angle", "op": "gt", "value": 148, "validation_status": "provisional" } ], "hold_ms": 150, "cue_allowed": true },
+        { "id": "drive", "name": "Drive out", "kind": "action", "contact_evidence": "none", "min_duration_ms": 80, "max_duration_ms": 1500,
+          "enter": [ { "feature": "lead_knee_angle", "op": "lt", "value": 138, "validation_status": "provisional" } ], "hold_ms": 60, "cue_allowed": false },
+        { "id": "bottom", "name": "Lunge bottom (estimated contact)", "kind": "contact", "contact_evidence": "unobserved", "min_duration_ms": 60, "max_duration_ms": 1500,
+          "enter": [ { "feature": "lead_knee_angle", "op": "lt", "value": 125, "validation_status": "provisional" } ], "hold_ms": 60, "cue_allowed": false },
+        { "id": "recovery", "name": "Recovery", "kind": "recovery", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 3000,
+          "enter": [ { "feature": "lead_knee_angle", "op": "gt", "value": 150, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "ready", "to": "drive" }, { "from": "drive", "to": "bottom" }, { "from": "bottom", "to": "recovery" }, { "from": "recovery", "to": "ready" } ],
+      "initial": "ready",
+      "terminal": ["recovery"],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: knee angle thresholds are seeds for the first vertical slice; shuttle contact is never observed from body pose, so the bottom phase is labelled estimated/unobserved."
+    },
+    {
+      "id": "pg.badminton.split_step", "movement_id": "badminton.split_step", "kind": "dynamic_sequence", "window_ms": 2000, "abort_timeout_ms": 3000, "confirm_hold_ms": 80,
+      "phases": [
+        { "id": "ready", "name": "Ready", "kind": "rest", "contact_evidence": "none", "min_duration_ms": 150, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.006, "validation_status": "provisional" } ], "hold_ms": 150, "cue_allowed": true },
+        { "id": "hop", "name": "Hop", "kind": "action", "contact_evidence": "none", "min_duration_ms": 60, "max_duration_ms": 800, "enter": [ { "feature": "hip_vertical_velocity", "op": "abs_gt", "value": 0.25, "validation_status": "provisional" } ], "hold_ms": 40, "cue_allowed": false },
+        { "id": "land", "name": "Land", "kind": "recovery", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 1500, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.01, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "ready", "to": "hop" }, { "from": "hop", "to": "land" }, { "from": "land", "to": "ready" } ],
+      "initial": "ready", "terminal": ["land"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: generic seed graph."
+    },
+    {
+      "id": "pg.badminton.overhead_clear", "movement_id": "badminton.overhead_clear", "kind": "dynamic_sequence", "window_ms": 3000, "abort_timeout_ms": 4000, "confirm_hold_ms": 80,
+      "phases": [
+        { "id": "preparation", "name": "Preparation", "kind": "preparation", "contact_evidence": "none", "min_duration_ms": 150, "enter": [ { "feature": "dominant_arm_elevation", "op": "gt", "value": 80, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true },
+        { "id": "acceleration", "name": "Acceleration", "kind": "action", "contact_evidence": "none", "min_duration_ms": 40, "max_duration_ms": 800, "enter": [ { "feature": "dominant_elbow_velocity", "op": "gt", "value": 250, "validation_status": "provisional" } ], "hold_ms": 30, "cue_allowed": false },
+        { "id": "estimated_contact", "name": "Estimated contact", "kind": "contact", "contact_evidence": "unobserved", "min_duration_ms": 30, "max_duration_ms": 600, "enter": [ { "feature": "dominant_elbow_angle", "op": "gt", "value": 150, "validation_status": "provisional" } ], "hold_ms": 30, "cue_allowed": false },
+        { "id": "follow_through", "name": "Follow through", "kind": "follow_through", "contact_evidence": "none", "min_duration_ms": 60, "max_duration_ms": 1200, "enter": [ { "feature": "dominant_elbow_velocity", "op": "lt", "value": 0, "validation_status": "provisional" } ], "hold_ms": 40, "cue_allowed": false },
+        { "id": "recovery", "name": "Recovery", "kind": "recovery", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 3000, "enter": [ { "feature": "dominant_arm_elevation", "op": "lt", "value": 60, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "preparation", "to": "acceleration" }, { "from": "acceleration", "to": "estimated_contact" }, { "from": "estimated_contact", "to": "follow_through" }, { "from": "follow_through", "to": "recovery" }, { "from": "recovery", "to": "preparation" } ],
+      "initial": "preparation", "terminal": ["recovery"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: generic overhead seed graph (preparation -> loading/acceleration -> estimated contact -> follow-through -> recovery)."
+    },
+    {
+      "id": "pg.badminton.overhead_smash", "movement_id": "badminton.overhead_smash", "kind": "dynamic_sequence", "window_ms": 3000, "abort_timeout_ms": 4000, "confirm_hold_ms": 80,
+      "phases": [
+        { "id": "preparation", "name": "Preparation", "kind": "preparation", "contact_evidence": "none", "min_duration_ms": 150, "enter": [ { "feature": "dominant_arm_elevation", "op": "gt", "value": 80, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true },
+        { "id": "acceleration", "name": "Acceleration", "kind": "action", "contact_evidence": "none", "min_duration_ms": 40, "max_duration_ms": 800, "enter": [ { "feature": "dominant_elbow_velocity", "op": "gt", "value": 300, "validation_status": "provisional" } ], "hold_ms": 30, "cue_allowed": false },
+        { "id": "estimated_contact", "name": "Estimated contact", "kind": "contact", "contact_evidence": "unobserved", "min_duration_ms": 30, "max_duration_ms": 600, "enter": [ { "feature": "dominant_elbow_angle", "op": "gt", "value": 150, "validation_status": "provisional" } ], "hold_ms": 30, "cue_allowed": false },
+        { "id": "follow_through", "name": "Follow through", "kind": "follow_through", "contact_evidence": "none", "min_duration_ms": 60, "max_duration_ms": 1200, "enter": [ { "feature": "dominant_elbow_velocity", "op": "lt", "value": 0, "validation_status": "provisional" } ], "hold_ms": 40, "cue_allowed": false },
+        { "id": "recovery", "name": "Recovery", "kind": "recovery", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 3000, "enter": [ { "feature": "dominant_arm_elevation", "op": "lt", "value": 60, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "preparation", "to": "acceleration" }, { "from": "acceleration", "to": "estimated_contact" }, { "from": "estimated_contact", "to": "follow_through" }, { "from": "follow_through", "to": "recovery" }, { "from": "recovery", "to": "preparation" } ],
+      "initial": "preparation", "terminal": ["recovery"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: smash and clear share preparation; discriminating them needs a trained classifier with hard negatives."
+    },
+    {
+      "id": "pg.badminton.drop_shot", "movement_id": "badminton.drop_shot", "kind": "dynamic_sequence", "window_ms": 3000, "abort_timeout_ms": 4000, "confirm_hold_ms": 80,
+      "phases": [
+        { "id": "preparation", "name": "Preparation", "kind": "preparation", "contact_evidence": "none", "min_duration_ms": 150, "enter": [ { "feature": "dominant_arm_elevation", "op": "gt", "value": 80, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true },
+        { "id": "estimated_contact", "name": "Estimated contact", "kind": "contact", "contact_evidence": "unobserved", "min_duration_ms": 30, "max_duration_ms": 900, "enter": [ { "feature": "dominant_elbow_angle", "op": "gt", "value": 140, "validation_status": "provisional" } ], "hold_ms": 30, "cue_allowed": false },
+        { "id": "recovery", "name": "Recovery", "kind": "recovery", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 3000, "enter": [ { "feature": "dominant_arm_elevation", "op": "lt", "value": 60, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "preparation", "to": "estimated_contact" }, { "from": "estimated_contact", "to": "recovery" }, { "from": "recovery", "to": "preparation" } ],
+      "initial": "preparation", "terminal": ["recovery"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: generic seed graph."
+    },
+    {
+      "id": "pg.badminton.forehand_drive", "movement_id": "badminton.forehand_drive", "kind": "dynamic_sequence", "window_ms": 2500, "abort_timeout_ms": 3500, "confirm_hold_ms": 60,
+      "phases": [
+        { "id": "preparation", "name": "Preparation", "kind": "preparation", "contact_evidence": "none", "min_duration_ms": 100, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.012, "validation_status": "provisional" } ], "hold_ms": 80, "cue_allowed": true },
+        { "id": "swing", "name": "Swing", "kind": "action", "contact_evidence": "unobserved", "min_duration_ms": 40, "max_duration_ms": 800, "enter": [ { "feature": "dominant_elbow_velocity", "op": "abs_gt", "value": 200, "validation_status": "provisional" } ], "hold_ms": 30, "cue_allowed": false },
+        { "id": "recovery", "name": "Recovery", "kind": "recovery", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 2500, "enter": [ { "feature": "dominant_elbow_velocity", "op": "abs_lt", "value": 60, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "preparation", "to": "swing" }, { "from": "swing", "to": "recovery" }, { "from": "recovery", "to": "preparation" } ],
+      "initial": "preparation", "terminal": ["recovery"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: generic seed graph."
+    },
+    {
+      "id": "pg.badminton.backhand_drive", "movement_id": "badminton.backhand_drive", "kind": "dynamic_sequence", "window_ms": 2500, "abort_timeout_ms": 3500, "confirm_hold_ms": 60,
+      "phases": [
+        { "id": "preparation", "name": "Preparation", "kind": "preparation", "contact_evidence": "none", "min_duration_ms": 100, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.012, "validation_status": "provisional" } ], "hold_ms": 80, "cue_allowed": true },
+        { "id": "swing", "name": "Swing", "kind": "action", "contact_evidence": "unobserved", "min_duration_ms": 40, "max_duration_ms": 800, "enter": [ { "feature": "dominant_elbow_velocity", "op": "abs_gt", "value": 200, "validation_status": "provisional" } ], "hold_ms": 30, "cue_allowed": false },
+        { "id": "recovery", "name": "Recovery", "kind": "recovery", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 2500, "enter": [ { "feature": "dominant_elbow_velocity", "op": "abs_lt", "value": 60, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "preparation", "to": "swing" }, { "from": "swing", "to": "recovery" }, { "from": "recovery", "to": "preparation" } ],
+      "initial": "preparation", "terminal": ["recovery"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: generic seed graph."
+    },
+    {
+      "id": "pg.badminton.recovery_footwork", "movement_id": "badminton.recovery_footwork", "kind": "dynamic_sequence", "window_ms": 3000, "abort_timeout_ms": 4000, "confirm_hold_ms": 80,
+      "phases": [
+        { "id": "displaced", "name": "Displaced", "kind": "preparation", "contact_evidence": "none", "min_duration_ms": 100, "enter": [ { "feature": "body_motion", "op": "gt", "value": 0.02, "validation_status": "provisional" } ], "hold_ms": 60, "cue_allowed": false },
+        { "id": "recovering", "name": "Recovering", "kind": "recovery", "contact_evidence": "none", "min_duration_ms": 100, "max_duration_ms": 3000, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.012, "validation_status": "provisional" } ], "hold_ms": 100, "cue_allowed": true },
+        { "id": "ready", "name": "Ready", "kind": "rest", "contact_evidence": "none", "min_duration_ms": 150, "max_duration_ms": null, "enter": [ { "feature": "body_motion", "op": "lt", "value": 0.006, "validation_status": "provisional" }, { "feature": "max_knee_angle", "op": "lt", "value": 175, "validation_status": "provisional" } ], "hold_ms": 150, "cue_allowed": true }
+      ],
+      "edges": [ { "from": "displaced", "to": "recovering" }, { "from": "recovering", "to": "ready" }, { "from": "ready", "to": "displaced" } ],
+      "initial": "displaced", "terminal": ["ready"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: generic seed graph."
+    }
+  ]
+}

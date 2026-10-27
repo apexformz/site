@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "squash",
+  "note": "Facts about captured athletes confirmed by the project owner that the Data Capture records do not carry. Applied to prepared datasets by tools/athlete_attestations.py; the original recorded values are kept beside each attested value. Not a substitute for the signed consent documents, which are held by the project owner.",
+  "athletes": {
+    "ATH_0005": {
+      "role": "coach",
+      "handedness": "right",
+      "consent": {
+        "status": "GRANTED",
+        "scope": "Stamped consent from the coach and the club, held offline by the project owner.",
+        "purpose": ["training", "evaluation"],
+        "retention_until": "per signed consent document",
+        "evidence": "signed_stamped_document_offline"
+      },
+      "attested_by": "project owner",
+      "attested_at": "2026-10-25"
+    }
+  }
+}

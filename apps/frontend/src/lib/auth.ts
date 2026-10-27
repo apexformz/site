@@ -1,13 +1,21 @@
 import axios from 'axios';
 import { AuthTokens, ApiResponse } from '@smartcoach/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 /**
  * Shared utility to refresh authentication tokens.
  * This can be used by both Axios interceptors and WebSocket connection handlers.
  */
-export async function refreshAuthTokens(): Promise<AuthTokens | null> {
+let pendingRefresh: Promise<AuthTokens | null> | null = null;
+
+// Event sync, history and profile requests may expire together. Rotate once.
+export function refreshAuthTokens(): Promise<AuthTokens | null> {
+  if (!pendingRefresh) pendingRefresh = requestRefresh().finally(() => { pendingRefresh = null; });
+  return pendingRefresh;
+}
+
+async function requestRefresh(): Promise<AuthTokens | null> {
   const refreshToken = typeof window !== 'undefined' ? localStorage.getItem('refresh_token') : null;
   
   if (!refreshToken) {
@@ -26,9 +34,11 @@ export async function refreshAuthTokens(): Promise<AuthTokens | null> {
     }
     return null;
   } catch (err) {
-    console.error('❌ Token refresh failed:', err);
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
+    // A connection loss must not sign out an athlete with pending session evidence.
+    if (axios.isAxiosError(err) && [400, 401, 403].includes(err.response?.status ?? 0)) {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+    }
     return null;
   }
 }

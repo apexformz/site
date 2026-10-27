@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "id": "table_tennis",
+  "version": "1.0.0",
+  "minimum_core_version": "1.0.0",
+  "supported_platforms": [
+    "web",
+    "android",
+    "ios"
+  ],
+  "capabilities": [
+    "body_pose",
+    "optional_implement",
+    "optional_projectile"
+  ],
+  "dependencies": [
+    {
+      "id": "common_features",
+      "version": "^1.0"
+    }
+  ],
+  "game_rules": "competition_rules.json",
+  "court_geometry": "court_geometry.json",
+  "equipment_catalog": "equipment_catalog.json",
+  "movements": "movement_catalog.json",
+  "phase_graphs": "phase_graphs.json",
+  "technique_rubrics": "technique_criteria.json",
+  "feedback_templates": "feedback_templates.json",
+  "provenance": "provenance.json",
+  "models": [],
+  "asset_hashes": {
+    "competition_rules.json": "9b93c06aea10bf392cc49b19b37a0cd88380088d10bb0dc80bca4095317f5dc2",
+    "court_geometry.json": "d1fe570b76bda98c9d2e91925bfc096451b0112b0f4a9739b115a1cce39ea27a",
+    "equipment_catalog.json": "05a5fe38aaab99d22a72918d4e81e4120b03825112375743657149b19d9cdeb4",
+    "movement_catalog.json": "d94adc7823b55dcf55cf2b1ebafd4b7106b27ac981c19b4fe9272ce837803717",
+    "phase_graphs.json": "bc9dd4cc771c6750f5d59bf3507861afa8d97c820f2157fc903f8c8755544606",
+    "technique_criteria.json": "f3bd1a35a55d0adf2ff45e05fe035251dc706d68c4f825e58810f47c81930685",
+    "feedback_templates.json": "53f842aa17d7cfcabd8e29e142256dfd522f075b637b869964c95f42e893b9e6",
+    "provenance.json": "2ddc012e0434eea0d508c0ee7a5e3a34de88451fa9cfe34c1973c01d2cfe3f6a"
+  },
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "dev-local-2026",
+    "value": "330842325bcb0acc5b4543fb8b85be8ccc6057f9514780134f5e46786dc820d8"
+  },
+  "display": {
+    "name": "Table Tennis",
+    "description": "Table Tennis seed pack: ontology, generic phase graphs and ready-position criteria pending coach review.",
+    "color": "#6e56cf",
+    "status": "seed"
+  }
+}

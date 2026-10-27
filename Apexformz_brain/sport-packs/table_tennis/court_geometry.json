@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "table_tennis",
+  "coordinate_frame": {
+    "id": "table_tennis_court_frame",
+    "origin": "centre of the playing surface at the net",
+    "axes": "+x right sideline, +y far end, +z up",
+    "units": "m"
+  },
+  "formats": [
+    "singles",
+    "doubles"
+  ],
+  "named_landmarks": [
+    {
+      "id": "table_length",
+      "description": "Table length",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    },
+    {
+      "id": "table_width",
+      "description": "Table width",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    },
+    {
+      "id": "table_height",
+      "description": "Playing surface height",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    },
+    {
+      "id": "net_height",
+      "description": "Net height",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    },
+    {
+      "id": "net_overhang",
+      "description": "Net overhang beyond the sideline",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    }
+  ],
+  "polygons": [],
+  "validation_status": "provisional",
+  "provenance": {
+    "source": "ITTF Handbook",
+    "ref": "TODO_REQUIRES_VALIDATION: edition/section",
+    "status": "provisional"
+  },
+  "notes": [
+    "Geometry is pack-owned declarative data; the shared Brain never hardcodes it."
+  ]
+}

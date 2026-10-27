@@ -1,13 +1,21 @@
 import React from 'react';
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../styles/globals.css";
+import type { Metadata } from 'next';
+import { Manrope } from 'next/font/google';
+import '../styles/globals.css';
+import { MotionProvider } from '@/components/ui/MotionProvider';
+import { ThemeProvider } from '@/components/ui/ThemeProvider';
 
-const inter = Inter({ subsets: ["latin"] });
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-ui',
+  display: 'swap',
+});
+const themeScript = `(function(){var t='light';try{if(localStorage.getItem('apexformz-theme')==='dark')t='dark'}catch(e){}document.documentElement.dataset.theme=t;document.documentElement.classList.toggle('dark',t==='dark');document.documentElement.style.colorScheme=t})();`;
 
 export const metadata: Metadata = {
-  title: "Apexformz | AI Sports Trainer",
-  description: "Democratizing elite coaching with real-time AI pose estimation.",
+  title: 'ApexFormz | Precision in Motion',
+  description:
+    'AI-powered sports training. Analyse your technique, train with real-time feedback, and track your performance across seven disciplines.',
 };
 
 export default function RootLayout({
@@ -16,11 +24,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} bg-background text-foreground min-h-screen antialiased`}>
-        <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] -z-10" />
-        <div className="fixed top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent z-50" />
-        {children}
+    <html lang="en" data-theme="light" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body
+        className={`${manrope.className} ${manrope.variable} bg-background text-foreground min-h-screen antialiased`}
+      >
+        <ThemeProvider>
+          <MotionProvider>{children}</MotionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

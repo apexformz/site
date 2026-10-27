@@ -1,0 +1,14 @@
+{
+  "spec_id": "x",
+  "name": "x",
+  "value": null,
+  "unit": "deg",
+  "valid": false,
+  "evidence_frame_ids": [
+    1
+  ],
+  "confidence": null,
+  "view_applicability": "any",
+  "coordinate_system": "body_relative",
+  "timestamp_ms": 1
+}

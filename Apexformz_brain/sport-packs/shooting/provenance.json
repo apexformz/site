@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "shooting",
+  "version": "1.0.0",
+  "created_at": "2026-10-25",
+  "authors": ["ApexFormz Brain engineering (seed content)"],
+  "sources": [
+    { "id": "trd_07", "type": "internal", "citation": "ApexFormz TRD 07 Shooting Sport Brain v1.0 (24 Oct 2026)", "status": "provisional" },
+    { "id": "issf_rules", "type": "official_rules", "citation": "ISSF General Technical Rules and 10 m air pistol / air rifle rules (edition to be recorded)", "status": "provisional" },
+    { "id": "coach_panel", "type": "coach_review", "citation": "Coach review panel (not yet convened)", "status": "provisional" }
+  ],
+  "validation_summary": { "approved": 0, "provisional": 8, "disabled": 0 },
+  "open_items": [
+    "TODO_REQUIRES_VALIDATION: range geometry (target distance, lane width, target height) from the approved ISSF edition",
+    "TODO_REQUIRES_VALIDATION: stance and hold criterion limits are engineering seeds; posture scores must never be presented as shooting scores",
+    "TODO_REQUIRES_VALIDATION: trigger event detection requires a sensed hardware signal; the proxy phase is not a trigger detector",
+    "TODO_REQUIRES_VALIDATION: camera placement safety protocol must be approved by a range safety officer",
+    "TODO_REQUIRES_VALIDATION: feedback cues are drafts pending human review"
+  ]
+}

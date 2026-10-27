@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "apexformz-perception"
+version = "1.0.0"
+description = "ApexFormz Brain server-side perception adapters: pose backends, point/object trackers, 3D lifting, smoothing. Wraps top open-source models behind contract-typed interfaces."
+requires-python = ">=3.10"
+dependencies = ["numpy", "opencv-python-headless>=4.10,<5", "pydantic>=2", "apexformz-contracts"]
+
+[project.optional-dependencies]
+pose = ["mediapipe", "rtmlib", "onnxruntime"]
+tracking = ["torch", "torchvision", "imageio[ffmpeg]"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["apexformz_perception*"]

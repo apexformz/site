@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/track_set.schema.json",
+  "title": "TrackSet",
+  "description": "Output of a point, object or pose tracker over a clip (TRD 02 equipment adapters, TRD 12 annotation propagation). Image-space coordinates with per-frame visibility; model provenance mandatory; offline trackers are retrospective.",
+  "type": "object",
+  "required": ["schema_version", "source", "kind", "coordinate_system", "frame_count", "tracks", "retrospective"],
+  "properties": {
+    "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+    "session_id": { "type": ["string", "null"] },
+    "video_ref": { "type": ["string", "null"], "description": "Opaque reference to the analysed clip (never a raw media payload)" },
+    "source": { "$ref": "common.schema.json#/$defs/model_provenance" },
+    "kind": { "type": "string", "enum": ["point", "object", "pose"] },
+    "coordinate_system": { "type": "string", "enum": ["image_normalized", "image_pixel"] },
+    "image_size": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 2, "maxItems": 2 },
+    "frame_count": { "type": "integer", "minimum": 0 },
+    "fps": { "type": ["number", "null"] },
+    "tracks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["track_id", "points"],
+        "properties": {
+          "track_id": { "type": "string" },
+          "label": { "type": ["string", "null"], "description": "Semantic label such as an equipment object_class or a landmark name" },
+          "assigned_subject_id": { "type": ["string", "null"] },
+          "query": {
+            "oneOf": [
+              { "type": "null" },
+              { "type": "object", "required": ["frame_id", "x", "y"], "properties": { "frame_id": { "type": "integer" }, "x": { "type": "number" }, "y": { "type": "number" } } }
+            ]
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["frame_id", "x", "y", "visible"],
+              "properties": {
+                "frame_id": { "type": "integer", "minimum": 0 },
+                "timestamp_ms": { "type": ["number", "null"] },
+                "x": { "type": "number" },
+                "y": { "type": "number" },
+                "visible": { "type": "boolean" },
+                "confidence": { "type": ["number", "null"] },
+                "bbox": { "type": ["array", "null"], "items": { "type": "number" }, "minItems": 4, "maxItems": 4 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "retrospective": { "type": "boolean" },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

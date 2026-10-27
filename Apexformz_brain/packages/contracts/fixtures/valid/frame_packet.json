@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "sess-fixture",
+  "frame_id": 42,
+  "timestamp_ms": 1400.5,
+  "camera_id": "cam0",
+  "image_size": [
+    1280,
+    720
+  ],
+  "mirror": false,
+  "orientation": "portrait",
+  "nominal_fps": 30,
+  "dropped_since_last": 0
+}

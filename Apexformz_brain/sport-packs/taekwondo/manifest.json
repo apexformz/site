@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0.0",
+  "id": "taekwondo",
+  "version": "1.0.0",
+  "minimum_core_version": "1.0.0",
+  "supported_platforms": [
+    "web",
+    "android",
+    "ios"
+  ],
+  "capabilities": [
+    "body_pose",
+    "optional_sensor"
+  ],
+  "dependencies": [
+    {
+      "id": "common_features",
+      "version": "^1.0"
+    }
+  ],
+  "game_rules": "competition_rules.json",
+  "court_geometry": "court_geometry.json",
+  "equipment_catalog": "equipment_catalog.json",
+  "movements": "movement_catalog.json",
+  "phase_graphs": "phase_graphs.json",
+  "technique_rubrics": "technique_criteria.json",
+  "feedback_templates": "feedback_templates.json",
+  "provenance": "provenance.json",
+  "models": [
+    {
+      "role": "reference_set",
+      "path": "models/ap_chagi_front_kick_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/ap_chagi_front_kick_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/dollyo_chagi_roundhouse_kick_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/dollyo_chagi_roundhouse_kick_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/yeop_chagi_side_kick_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/yeop_chagi_side_kick_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/dwi_chagi_back_kick_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/dwi_chagi_back_kick_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/miro_chagi_push_kick_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/miro_chagi_push_kick_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/bandae_dollyo_chagi_reverse_roundhouse_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/bandae_dollyo_chagi_reverse_roundhouse_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/twio_ap_chagi_jumping_front_kick_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/twio_ap_chagi_jumping_front_kick_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/twio_dollyo_chagi_jumping_roundhouse_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/twio_dollyo_chagi_jumping_roundhouse_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/baka_chagi_side_slide_roundhouse_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/baka_chagi_side_slide_roundhouse_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/preamble_dollyo_chagi_front_leg_slide_start.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    },
+    {
+      "role": "reference_set",
+      "path": "models/preamble_dollyo_chagi_front_leg_slide_frames.json",
+      "version": "legacy-1.0.0",
+      "format": "json",
+      "required": false
+    }
+  ],
+  "asset_hashes": {
+    "competition_rules.json": "d1052f7269cd11ee3def52c0d1e0499b60327591436d7354310a859f7ac8cbeb",
+    "court_geometry.json": "ded2817778ca5afe8732fde055d6b9cd5208d0f4c3f8c5b9955faba274b7692a",
+    "equipment_catalog.json": "6096563cad8df7cb82100b151fc55acc6d5ba16c96fbf08dcb2fe35c3c272ff1",
+    "movement_catalog.json": "65211f2819e6bc528cb10f353acaaa1281795bc5cf84f014526f31ce9f2b3494",
+    "phase_graphs.json": "09d8f4a93fa5034a67d54dfbbea0e610b6502389fe454d15bf41d0fb6bb83692",
+    "technique_criteria.json": "469fa0ea46f3f1e48b4d89e1d789ec123c06e83fb084aa3c67093697073f6c3b",
+    "feedback_templates.json": "6192a4fd220cca4d12903fddf92e6ccaacad870510eff4bf09be059272ddcf98",
+    "provenance.json": "83f9756d73110e8e09bd1f43ea44e791eba57963e70ecba24ff30e34abb06232",
+    "models/ap_chagi_front_kick_start.json": "86829b751343dc5c2bb0d80a10e4980e41a2959e7a90672b93bf67c71363d35e",
+    "models/ap_chagi_front_kick_frames.json": "92f9d71c3f09a57bda53aa8bcea18ec2f527365813689b8378dccdb1351cb6fd",
+    "models/dollyo_chagi_roundhouse_kick_start.json": "c5ee1243a4aa6ace3e2f73ac45f9d814738b175098a6d88cc5453b3f303499f2",
+    "models/dollyo_chagi_roundhouse_kick_frames.json": "eb3f31b92a94fe4c1c842f057cae8fa607045337aac73956131f3a226afd366d",
+    "models/yeop_chagi_side_kick_start.json": "822f085351de83aa30544153a6987f26680758bfc4a45d2bd5d37a483e6a1261",
+    "models/yeop_chagi_side_kick_frames.json": "ae989aa214c9d8fce2e525b21e4c30b765b93591f0546df9a11545af9ed83ca5",
+    "models/dwi_chagi_back_kick_start.json": "25980a909421076a88ded52a092fc9773f532c75357a337f2ac354b812909672",
+    "models/dwi_chagi_back_kick_frames.json": "c8996e3311c67be3d068b378056e2d8719f3e33650550c7ff090138abac0a1ac",
+    "models/miro_chagi_push_kick_start.json": "0018768f34ee5b3221a110f0be1523671176275f37bfd466939e48e27d8df27f",
+    "models/miro_chagi_push_kick_frames.json": "78b2d25c8792c6833c8bc05900b4aa4a6e85406e713c91c8bc4c6b93ec2a136e",
+    "models/bandae_dollyo_chagi_reverse_roundhouse_start.json": "f6f2f13d33dd4e26c9b2026d4f672c7de35a422bc47f6ca795651d4fede13052",
+    "models/bandae_dollyo_chagi_reverse_roundhouse_frames.json": "0592a52811ef5e67344cc98747c6515fde90aa23eb336c8801f75ad5e8cd85db",
+    "models/twio_ap_chagi_jumping_front_kick_start.json": "7457cbbc320b6576ea2678a36e43be076d0619ec0cff8be7b393e16a3b3deeba",
+    "models/twio_ap_chagi_jumping_front_kick_frames.json": "6434f1be0d9738dca1c2f21fd2fea7f61139fdbfe72d4ed8282a06a703b741e5",
+    "models/twio_dollyo_chagi_jumping_roundhouse_start.json": "62c6fbc286783f9615ebdeca9d438421ac8f53a196398f62c1c766cfdc9600a0",
+    "models/twio_dollyo_chagi_jumping_roundhouse_frames.json": "9f1acbcac689881d3e15b4b99310a73cd12b9b1be93456cf49443afe6a896191",
+    "models/baka_chagi_side_slide_roundhouse_start.json": "818eb98ff806535704e779397d79875057102b31c6314bd9a68d09399ce74da7",
+    "models/baka_chagi_side_slide_roundhouse_frames.json": "f7d1328526fef7969573c7c8700d10fdcce3a5d72dedb95642fe95a50d29add4",
+    "models/preamble_dollyo_chagi_front_leg_slide_start.json": "d0c73a215b3ab606c72744f22bfe8dd0903db34632614a42bcc16523aeea00bf",
+    "models/preamble_dollyo_chagi_front_leg_slide_frames.json": "d9f54d26fa46959402501e8a9799fc548c7305152ca5b5047a441a702ef6216a"
+  },
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "dev-local-2026",
+    "value": "4eff15e98f7e48c26dcafcc34afe23822b4d50e9ac18392c1eabf5232897c4c3"
+  },
+  "display": {
+    "name": "Taekwondo (legacy migration)",
+    "description": "Ten kicks migrated from the original ApexFormz blueprints and expert reference frames. Provisional; the legacy Python pipeline remains the default for this sport.",
+    "color": "#FFD700",
+    "status": "legacy_migrated"
+  }
+}

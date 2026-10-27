@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/movement_event.schema.json",
+  "title": "MovementEvent",
+  "description": "Temporal engine output (TRD 10). Transitions are monotonic and idempotent. UNKNOWN is an explicit class.",
+  "type": "object",
+  "required": ["schema_version", "session_id", "event_id", "movement_id", "phase_id", "start_ms", "confidence", "evidence_frames", "state", "model_version", "retrospective", "sport_pack_id", "sport_pack_version"],
+  "properties": {
+    "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+    "session_id": { "$ref": "common.schema.json#/$defs/id" },
+    "event_id": { "$ref": "common.schema.json#/$defs/id" },
+    "execution_id": { "type": ["string", "null"] },
+    "movement_id": { "type": ["string", "null"] },
+    "phase_id": { "type": ["string", "null"] },
+    "start_ms": { "$ref": "common.schema.json#/$defs/monotonic_ms" },
+    "end_ms": { "type": ["number", "null"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "evidence_frames": { "type": "array", "items": { "type": "integer" } },
+    "state": { "type": "string", "enum": ["IDLE", "CANDIDATE", "CONFIRMED", "EXECUTING", "COMPLETE", "ABORTED", "UNKNOWN"] },
+    "model_version": { "type": "string" },
+    "unknown_reason": { "type": ["string", "null"] },
+    "contact_evidence": { "type": "string", "enum": ["none", "unobserved", "estimated_contact", "sensed_contact"] },
+    "retrospective": { "type": "boolean" },
+    "sport_pack_id": { "type": "string" },
+    "sport_pack_version": { "type": "string" }
+  }
+}

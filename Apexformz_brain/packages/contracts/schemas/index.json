@@ -1,0 +1,20 @@
+{
+  "contract_version": "1.0.0",
+  "description": "Registry of ApexFormz Brain JSON Schemas. JSON Schema is the source of truth; TypeScript and Pydantic mirrors are validated against the fixtures in ../fixtures.",
+  "schemas": [
+    "common.schema.json",
+    "event_envelope.schema.json",
+    "frame_packet.schema.json",
+    "pose_frame.schema.json",
+    "feature.schema.json",
+    "movement_event.schema.json",
+    "assessment.schema.json",
+    "feedback_action.schema.json",
+    "session.schema.json",
+    "telemetry.schema.json",
+    "sport_pack_manifest.schema.json",
+    "sport_pack_assets.schema.json",
+    "track_set.schema.json",
+    "equipment_measurement.schema.json"
+  ]
+}

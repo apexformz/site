@@ -1,0 +1,44 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:ListBucketVersions"
+      ],
+      "Resource": "arn:aws:s3:::apexformz-brain-350445709199-f075de79"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::apexformz-brain-350445709199-f075de79/assets/*",
+        "arn:aws:s3:::apexformz-brain-350445709199-f075de79/deletions/*",
+        "arn:aws:s3:::apexformz-brain-350445709199-f075de79/backups/*",
+        "arn:aws:s3:::apexformz-brain-350445709199-f075de79/telemetry/*",
+        "arn:aws:s3:::apexformz-brain-350445709199-f075de79/releases/*",
+        "arn:aws:s3:::apexformz-brain-350445709199-f075de79/canary/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:DeleteObjectVersion",
+      "Resource": "arn:aws:s3:::apexformz-brain-350445709199-f075de79/assets/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "cloudwatch:PutMetricData",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "cloudwatch:namespace": "ApexFormz/Operations"
+        }
+      }
+    }
+  ]
+}

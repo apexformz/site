@@ -1,6 +1,8 @@
-import React from 'react';
-import { Trophy, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
+import { Trophy, X, LockKeyhole, Check } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export interface Badge {
   id: string;
@@ -11,93 +13,144 @@ export interface Badge {
   date?: string;
   color: string;
 }
-
 interface BadgesModalProps {
   isOpen: boolean;
   onClose: () => void;
   badges: Badge[];
 }
 
-export const BadgesModal: React.FC<BadgesModalProps> = ({ isOpen, onClose, badges }) => {
-  if (!isOpen) return null;
-
+export const BadgesModal: React.FC<BadgesModalProps> = ({
+  isOpen,
+  onClose,
+  badges,
+}) => {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const reducedMotion = useReducedMotion();
+  useEffect(() => {
+    const element = dialog.current;
+    if (!element) return;
+    if (isOpen && !element.open) element.showModal();
+    if (!isOpen && element.open) element.close();
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return;
+      const controls = Array.from(
+        element.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((control) => control.getClientRects().length > 0);
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (!first) {
+        event.preventDefault();
+        element.focus();
+        return;
+      }
+      if (!element.contains(document.activeElement)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+      } else if (
+        event.shiftKey &&
+        (document.activeElement === first || document.activeElement === element)
+      ) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', trapFocus, true);
+    return () => {
+      document.removeEventListener('keydown', trapFocus, true);
+      document.body.style.overflow = previous;
+      if (element.open) element.close();
+    };
+  }, [isOpen]);
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm"
-        onClick={onClose}
-      >
+    <dialog
+      ref={dialog}
+      aria-labelledby="achievements-title"
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+      className="m-auto w-[calc(100%-32px)] max-w-3xl max-h-[90dvh] p-0 bg-transparent text-foreground backdrop:bg-background/70 backdrop:backdrop-blur-md rounded-[28px]"
+    >
+      {isOpen && (
         <motion.div
-          initial={{ scale: 0.95, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.95, opacity: 0, y: 20 }}
-          onClick={(e) => e.stopPropagation()}
-          className="w-[90vw] max-w-4xl lg:max-w-5xl bg-slate-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden relative"
+          initial={reducedMotion ? false : { opacity: 0, y: 16, scale: 0.975 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          className="border border-border rounded-[28px] bg-surface-raised overflow-hidden"
+          style={{ boxShadow: 'var(--shadow-card)' }}
         >
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary/50" />
-          
-          <div className="p-6 sm:p-8 border-b border-white/10 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/20 flex shrink-0 items-center justify-center border border-primary/30">
-                <Trophy className="w-5 h-5 text-primary" />
-              </div>
-              <h2 className="text-xl sm:text-2xl font-black uppercase italic tracking-wider text-white">Lifetime Achievements</h2>
+          <div className="p-6 sm:p-8 flex items-start justify-between gap-5 border-b border-border">
+            <div className="min-w-0">
+              <span className="clay-icon w-14 h-14 rounded-[20px] mb-5">
+                <Trophy size={25} strokeWidth={1.6} />
+              </span>
+              <h2
+                id="achievements-title"
+                className="text-2xl sm:text-3xl font-semibold tracking-tight"
+              >
+                Athlete achievements
+              </h2>
+              <p className="text-sm text-muted mt-3 leading-relaxed">
+                {badges.filter((badge) => badge.unlocked).length} of{' '}
+                {badges.length} milestones reached. Every one earned.
+              </p>
             </div>
-            <button 
+            <button
               onClick={onClose}
-              className="p-2 shrink-0 rounded-full hover:bg-white/10 transition-colors text-white/50 hover:text-white"
+              aria-label="Close achievements"
+              className="p-3 shrink-0 rounded-2xl border border-border bg-surface text-muted hover:text-foreground hover:bg-surface-inset transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X size={19} />
             </button>
           </div>
-
-          <div className="p-6 sm:p-8 max-h-[70vh] overflow-y-auto custom-scrollbar">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+          <div className="p-5 sm:p-7 max-h-[58dvh] overflow-y-auto custom-scrollbar">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {badges.map((badge) => {
                 const Icon = badge.icon;
                 return (
-                  <div 
+                  <div
                     key={badge.id}
-                    className={`p-4 sm:p-5 rounded-2xl border flex flex-col items-center text-center gap-3 transition-all duration-300 ${
-                      badge.unlocked 
-                        ? 'bg-gradient-to-b from-white/5 to-transparent border-white/10 hover:bg-white/10 hover:shadow-glow hover:-translate-y-1' 
-                        : 'bg-black/20 border-white/5 opacity-50 grayscale hover:grayscale-0 hover:opacity-100'
-                    }`}
+                    className={`p-5 sm:p-6 rounded-[22px] border flex flex-col items-start ${badge.unlocked ? 'border-primary/20 bg-primary/[.035]' : 'border-border bg-surface'}`}
                   >
-                    <div className={`w-14 h-14 sm:w-16 sm:h-16 shrink-0 rounded-full flex items-center justify-center border-2 shadow-inner ${
-                      badge.unlocked 
-                        ? `${badge.color} shadow-current/20` 
-                        : 'bg-white/5 border-white/10 text-white/20'
-                    }`}>
-                      <Icon className={`w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 ${badge.unlocked ? `text-current ${badge.color.includes('border-primary/40') ? 'fill-current' : ''}` : ''}`} />
+                    <div
+                      className={`w-14 h-14 shrink-0 rounded-[18px] flex items-center justify-center mb-5 ${badge.unlocked ? 'clay-icon' : 'bg-surface-inset border border-border text-subtle'}`}
+                    >
+                      <Icon size={26} strokeWidth={1.5} />
                     </div>
-                    
-                    <div className="flex flex-col items-center mt-1 w-full flex-1">
-                      <h4 className="font-black text-white text-[11px] sm:text-xs uppercase tracking-widest mb-1.5 line-clamp-2 leading-tight">{badge.title}</h4>
-                      <p className="text-[10px] sm:text-[11px] text-white/50 leading-snug font-medium line-clamp-3 mb-2">{badge.description}</p>
-                      
-                      <div className="mt-auto pt-2 w-full">
-                        {badge.unlocked && badge.date ? (
-                          <span className="text-[9px] text-primary uppercase font-black tracking-widest bg-primary/10 border border-primary/20 px-2 py-1 rounded-full inline-block">
-                            {badge.date}
-                          </span>
-                        ) : (
-                          <span className="text-[9px] text-white/30 uppercase font-black tracking-widest bg-white/5 border border-white/10 px-2 py-1 rounded-full inline-block">
-                            LOCKED
-                          </span>
-                        )}
-                      </div>
-                    </div>
+                    <h3 className="text-base font-semibold">{badge.title}</h3>
+                    <p className="text-sm text-muted leading-relaxed mt-2 mb-5 flex-1">
+                      {badge.description}
+                    </p>
+                    <span
+                      className={`inline-flex gap-2 items-center text-sm ${badge.unlocked ? 'text-primary' : 'text-subtle'}`}
+                    >
+                      {badge.unlocked ? (
+                        <Check size={16} />
+                      ) : (
+                        <LockKeyhole size={15} />
+                      )}
+                      {badge.unlocked
+                        ? badge.date || 'Unlocked'
+                        : 'Still ahead'}
+                    </span>
                   </div>
                 );
               })}
             </div>
           </div>
         </motion.div>
-      </motion.div>
-    </AnimatePresence>
+      )}
+    </dialog>
   );
 };

@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-10-24T19:43:19.679Z",
+  "machine": {
+    "platform": "win32",
+    "arch": "x64",
+    "node": "v25.2.1"
+  },
+  "config": {
+    "minutes": 20,
+    "fps": 30,
+    "sport": "badminton",
+    "movement": "badminton.lunge",
+    "frames": 36000
+  },
+  "per_frame_ms": {
+    "p50": 0.03029999999989741,
+    "p95": 0.10160000000007585,
+    "p99": 0.16749999999956344,
+    "max": 3.664099999999962
+  },
+  "throughput_fps_equivalent": 19859,
+  "wall_ms": 1813,
+  "memory_mb": {
+    "start": 23,
+    "max": 84.6,
+    "end": 74.1
+  },
+  "outcomes": {
+    "executions_completed": 300,
+    "assessments": 1200,
+    "feedback_issued": 131,
+    "summary": {
+      "session_id": "sess-badminton-badminton.lunge",
+      "sport_pack_id": "badminton",
+      "sport_pack_version": "1.0.0",
+      "movement_id": "badminton.lunge",
+      "frames_processed": 36000,
+      "frames_discarded": 0,
+      "executions_completed": 300,
+      "executions_aborted": 0,
+      "assessments": 1200,
+      "feedback_issued": 131,
+      "last_score": 0.5454545454545454,
+      "criterion_state_counts": {
+        "PASS": 1629,
+        "IMPROVE": 975,
+        "NOT_ASSESSABLE": 1200,
+        "UNCERTAIN": 96
+      },
+      "abstention_reasons": {
+        "feature:VIEW_INVALID": 36000,
+        "feature:INSUFFICIENT_HISTORY": 2,
+        "criterion:VIEW_INVALID": 600,
+        "criterion:CAPABILITY_MISSING": 600,
+        "criterion:CONTRADICTORY_EVIDENCE": 96
+      },
+      "outbox_pending": 3380,
+      "transitions": 6
+    }
+  },
+  "stage_durations_ms": {
+    "quality_ms_ema": 0,
+    "quality_ms_max": 0.106,
+    "signal_ms_ema": 0.02,
+    "signal_ms_max": 2.78,
+    "features_ms_ema": 0.015,
+    "features_ms_max": 1.507,
+    "temporal_ms_ema": 0.001,
+    "temporal_ms_max": 1.033,
+    "scoring_ms_ema": 0.001,
+    "scoring_ms_max": 0.884,
+    "coaching_ms_ema": 0,
+    "coaching_ms_max": 0.325
+  },
+  "note": "Synthetic athlete on a development machine; not a device benchmark. TRD P95 targets remain aspirational until measured on reference hardware."
+}

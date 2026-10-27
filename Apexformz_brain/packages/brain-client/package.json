@@ -1,0 +1,39 @@
+{
+  "name": "@apexformz/brain-client",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser glue: worker protocol, pose landmarker bridge and legacy UI adapter",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./worker": "./src/worker.ts",
+    "./react": "./src/react/useApexBrain.ts",
+    "./inference-worker": "./src/inference_worker.ts"
+  },
+  "dependencies": {
+    "@apexformz/analysis": "1.0.0",
+    "@apexformz/contracts": "1.0.0",
+    "@apexformz/perception": "1.0.0",
+    "@apexformz/runtime": "1.0.0",
+    "@apexformz/sport-runtime": "1.0.0",
+    "@apexformz/signal": "1.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "@mediapipe/tasks-vision": ">=0.10",
+    "onnxruntime-web": ">=1.17"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "@mediapipe/tasks-vision": {
+      "optional": true
+    },
+    "onnxruntime-web": {
+      "optional": true
+    }
+  }
+}

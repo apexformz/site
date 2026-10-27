@@ -1,0 +1,17 @@
+numpy
+opencv-python-headless<5,>=4.10
+pydantic>=2
+apexformz-contracts
+
+[dev]
+pytest
+
+[pose]
+mediapipe
+rtmlib
+onnxruntime
+
+[tracking]
+torch
+torchvision
+imageio[ffmpeg]

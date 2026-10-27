@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "taekwondo",
+  "rule_sets": [
+    {
+      "id": "wt_kyorugi",
+      "authority": "World Taekwondo",
+      "source": {
+        "source": "WT Competition Rules",
+        "ref": "TODO_REQUIRES_VALIDATION",
+        "status": "provisional"
+      },
+      "edition": null,
+      "effective_date": null,
+      "discipline": "kyorugi",
+      "format": "individual",
+      "locale": "en",
+      "validation_status": "provisional",
+      "rules": [
+        {
+          "id": "scoring",
+          "kind": "official",
+          "text": "Point values for kicks and punches are defined by the authoritative rules and electronic scoring systems.",
+          "value": null,
+          "adjudicable_from_pose": false,
+          "validation_status": "provisional"
+        },
+        {
+          "id": "training_rechamber",
+          "kind": "coaching_heuristic",
+          "text": "Re-chamber the kicking leg before returning to stance.",
+          "adjudicable_from_pose": true,
+          "validation_status": "provisional"
+        }
+      ]
+    }
+  ]
+}

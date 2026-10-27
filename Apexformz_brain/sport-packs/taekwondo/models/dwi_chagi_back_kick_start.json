@@ -1,0 +1,90 @@
+{
+ "kind": "reference_set",
+ "movement_id": "taekwondo.dwi_chagi_back_kick",
+ "features": [
+  "left_elbow_angle",
+  "right_elbow_angle",
+  "left_shoulder_angle",
+  "right_shoulder_angle",
+  "left_hip_angle",
+  "right_hip_angle",
+  "left_knee_angle",
+  "right_knee_angle"
+ ],
+ "weights": [
+  0.4,
+  0.4,
+  0.7,
+  0.7,
+  1.5,
+  1.5,
+  1.6,
+  1.6
+ ],
+ "reference_vectors": [
+  [
+   142.0,
+   176.4,
+   36.2,
+   33.9,
+   163.3,
+   140.8,
+   163.4,
+   115.5
+  ],
+  [
+   142.0,
+   176.4,
+   36.2,
+   33.9,
+   163.3,
+   140.8,
+   163.4,
+   115.5
+  ],
+  [
+   150.4,
+   null,
+   37.8,
+   null,
+   128.4,
+   117.3,
+   174.7,
+   166.6
+  ],
+  [
+   150.4,
+   null,
+   37.8,
+   null,
+   128.4,
+   117.3,
+   174.7,
+   166.6
+  ],
+  [
+   null,
+   null,
+   9.3,
+   7.3,
+   167.8,
+   168.8,
+   171.3,
+   179.1
+  ],
+  [
+   null,
+   null,
+   9.3,
+   7.3,
+   167.8,
+   168.8,
+   171.3,
+   179.1
+  ]
+ ],
+ "threshold": 20.0,
+ "tolerance": 15.0,
+ "validation_status": "provisional",
+ "provenance": "Legacy taekwondo_reference_frames.json extracted from front/left/right expert videos; weighted RMS distance in degrees. TODO_REQUIRES_VALIDATION."
+}

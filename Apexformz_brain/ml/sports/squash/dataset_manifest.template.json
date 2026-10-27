@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_version": "squash-core-2026.11-v1",
+  "created_at": "2026-11-01T00:00:00Z",
+  "sport_pack_id": "squash",
+  "sport_pack_version": "1.0.0",
+  "pose_model": { "model_id": "mediapipe_pose_landmarker_heavy", "version": "0.10.14", "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000" },
+  "athletes": [
+    { "athlete_id": "ath-sq-0001", "handedness": "right", "context": "intermediate", "consent": { "purpose": ["training", "evaluation"], "retention_until": "2029-11-01", "guardian_authorized": null, "withdrawn_at": null } },
+    { "athlete_id": "ath-sq-0002", "handedness": "left", "context": "advanced", "consent": { "purpose": ["training", "evaluation", "deep_analysis"], "retention_until": "2029-11-01", "guardian_authorized": null, "withdrawn_at": null } }
+  ],
+  "capture_sessions": [
+    { "capture_session_id": "cap-0001", "athlete_id": "ath-sq-0001", "location_id": "court-A-glassback", "captured_at": "2026-11-01T09:00:00Z", "camera_ids": ["cam-back", "cam-right"] }
+  ],
+  "cameras": [
+    { "camera_id": "cam-back", "view": "back", "nominal_fps": 50, "resolution": [1920, 1080], "device_class": "phone_rear" },
+    { "camera_id": "cam-right", "view": "right", "nominal_fps": 50, "resolution": [1920, 1080], "device_class": "phone_rear" }
+  ],
+  "view_streams": [
+    { "view_stream_id": "cap-0001/back", "capture_session_id": "cap-0001", "camera_id": "cam-back", "object_uri": "s3://apexformz-raw/squash/cap-0001/back.mp4", "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "encrypted": true, "duration_ms": 1800000 },
+    { "view_stream_id": "cap-0001/right", "capture_session_id": "cap-0001", "camera_id": "cam-right", "object_uri": "s3://apexformz-raw/squash/cap-0001/right.mp4", "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "encrypted": true, "duration_ms": 1800000 }
+  ],
+  "executions": [
+    { "execution_id": "ex-0001", "capture_session_id": "cap-0001", "athlete_id": "ath-sq-0001", "movement_id": "squash.lunge", "view_stream_ids": ["cap-0001/back", "cap-0001/right"], "start_ms": 61200, "end_ms": 63100 },
+    { "execution_id": "ex-0002", "capture_session_id": "cap-0001", "athlete_id": "ath-sq-0001", "movement_id": "squash.ready_position_t", "view_stream_ids": ["cap-0001/back"], "start_ms": 12000, "end_ms": 15000 },
+    { "execution_id": "ex-0003", "capture_session_id": "cap-0001", "athlete_id": "ath-sq-0001", "movement_id": "squash.forehand_drive", "view_stream_ids": ["cap-0001/back", "cap-0001/right"], "start_ms": 420000, "end_ms": 422400 },
+    { "execution_id": "ex-0004", "capture_session_id": "cap-0001", "athlete_id": "ath-sq-0001", "movement_id": "UNKNOWN", "view_stream_ids": ["cap-0001/back"], "start_ms": 1500000, "end_ms": 1503000 }
+  ],
+  "annotations": [
+    {
+      "annotation_id": "ann-0001", "execution_id": "ex-0001", "annotator_id": "coach-01", "version": 1, "supersedes": null, "created_at": "2026-11-03T10:00:00Z",
+      "labels": {
+        "movement_id": "squash.lunge", "static": false, "view": "back", "handedness": "right",
+        "boundaries_ms": [61200, 63100],
+        "phases": [
+          { "phase_id": "ready", "start_ms": 61200, "end_ms": 61700 },
+          { "phase_id": "drive", "start_ms": 61700, "end_ms": 62000 },
+          { "phase_id": "bottom", "start_ms": 62000, "end_ms": 62400 },
+          { "phase_id": "recovery", "start_ms": 62400, "end_ms": 63100 }
+        ],
+        "criteria": { "squash.lunge.lead_knee_depth": "PASS", "squash.lunge.knee_foot_alignment": "NOT_ASSESSABLE", "squash.lunge.recovery_time": "IMPROVE" },
+        "visibility": "full", "capture_quality": "good", "attributes": { "corner": "front_left", "drill": "ghosting" }
+      },
+      "disagreement": null
+    }
+  ],
+  "splits": {
+    "seed": 20261025,
+    "assignments": { "ex-0001": "train", "ex-0002": "train", "ex-0003": "train", "ex-0004": "train" },
+    "holdouts": { "locations": [], "cameras": [] }
+  },
+  "provenance": {
+    "algorithm_commit": "0000000000000000000000000000000000000000",
+    "dependency_lockfile_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "processing_config": {
+      "capture_protocol": "docs/06_SQUASH_DOMAIN.md section 7",
+      "annotation_handbook": "ml/datasets/annotation_handbook.md",
+      "label_schema": "ml/sports/squash/label_schema.json",
+      "pose_extraction": { "backend": "mediapipe", "variant": "heavy", "mirror": false, "canonical": true, "max_side": 1280 },
+      "notes": ["Template only: every zero digest, example id and timestamp must be replaced before use.", "All views of one execution share a split (enforced by ml/datasets/split.py)."]
+    }
+  }
+}

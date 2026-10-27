@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "pickleball",
+  "items": [
+    {
+      "id": "paddle",
+      "object_class": "pickleball_paddle",
+      "description": "Paddle in the dominant hand",
+      "tracking": "optional_adapter",
+      "adapter_capability": "optional_implement",
+      "validation_status": "provisional"
+    },
+    {
+      "id": "ball",
+      "object_class": "pickleball",
+      "description": "Perforated plastic ball",
+      "tracking": "offline_only",
+      "adapter_capability": "optional_projectile",
+      "validation_status": "provisional",
+      "note": "Ball is small in frame; live tracking is unreliable on mobile cameras."
+    }
+  ]
+}

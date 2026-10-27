@@ -1,0 +1,291 @@
+{
+ "schema_version": "1.0.0",
+ "sport_id": "shooting",
+ "movements": [
+  {
+   "uuid": "9a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c01",
+   "id": "shooting.setup_stance",
+   "canonical_name": "Setup stance",
+   "aliases": [
+    {
+     "name": "stance",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "set-up",
+     "locale": "en",
+     "status": "proposed"
+    }
+   ],
+   "type": "static",
+   "permitted_views": [
+    "front",
+    "back",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.shooting.setup_stance",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "shooting.setup_stance.stance_width",
+    "shooting.setup_stance.trunk_lateral_lean",
+    "shooting.setup_stance.shooting_elbow_extension",
+    "shooting.setup_stance.shoulder_line_level",
+    "shooting.setup_stance.wrist_stability",
+    "shooting.setup_stance.sight_alignment"
+   ],
+   "similar": [
+    {
+     "movement_id": "shooting.aiming_hold",
+     "relation": "precedes",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "description": "Static standing position with the shooting arm raised toward the target before the aiming hold.",
+   "difficulty": "beginner",
+   "family_id": "shooting.family.standing_hold_positions",
+   "group_id": "shooting.group.setup_aiming_holds"
+  },
+  {
+   "uuid": "9a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c02",
+   "id": "shooting.aiming_hold",
+   "canonical_name": "Aiming hold",
+   "aliases": [
+    {
+     "name": "hold",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "static",
+   "permitted_views": [
+    "front",
+    "back",
+    "left",
+    "right"
+   ],
+   "phase_graph_id": "pg.shooting.aiming_hold",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [
+    "shooting.aiming_hold.hold_stability",
+    "shooting.aiming_hold.drift"
+   ],
+   "similar": [
+    {
+     "movement_id": "shooting.setup_stance",
+     "relation": "follows",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "description": "Steady hold while aiming; stability proxies from body keypoints only.",
+   "difficulty": "intermediate",
+   "family_id": "shooting.family.standing_hold_positions",
+   "group_id": "shooting.group.setup_aiming_holds"
+  },
+  {
+   "uuid": "9a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c03",
+   "id": "shooting.trigger_phase_proxy",
+   "canonical_name": "Trigger phase proxy",
+   "aliases": [
+    {
+     "name": "trigger-phase_proxy",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "left",
+    "right",
+    "front"
+   ],
+   "phase_graph_id": "pg.shooting.trigger_phase_proxy",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "shooting.follow_through_hold",
+     "relation": "precedes",
+     "hard_negative": false
+    }
+   ],
+   "review_status": "coach_review_required",
+   "description": "Proxy for the trigger phase from body keypoints; the actual trigger event is only labelled when sensed by hardware.",
+   "difficulty": "advanced",
+   "family_id": "shooting.family.shot_cycle_posture",
+   "group_id": "shooting.group.steady_shot_phase_holds"
+  },
+  {
+   "uuid": "9a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c04",
+   "id": "shooting.follow_through_hold",
+   "canonical_name": "Follow-through hold",
+   "aliases": [
+    {
+     "name": "follow-through_hold",
+     "locale": "en",
+     "status": "approved"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "left",
+    "right",
+    "front"
+   ],
+   "phase_graph_id": "pg.shooting.follow_through_hold",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [
+    {
+     "movement_id": "shooting.aiming_hold",
+     "relation": "resembles",
+     "hard_negative": true
+    }
+   ],
+   "review_status": "coach_review_required",
+   "difficulty": "intermediate",
+   "family_id": "shooting.family.shot_cycle_posture",
+   "group_id": "shooting.group.steady_shot_phase_holds"
+  },
+  {
+   "uuid": "9a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c05",
+   "id": "shooting.recovery_reset",
+   "canonical_name": "Recovery / reset",
+   "aliases": [
+    {
+     "name": "recovery/reset",
+     "locale": "en",
+     "status": "approved"
+    },
+    {
+     "name": "reset",
+     "locale": "en",
+     "status": "proposed"
+    }
+   ],
+   "type": "dynamic",
+   "permitted_views": [
+    "left",
+    "right",
+    "front"
+   ],
+   "phase_graph_id": "pg.shooting.recovery_reset",
+   "required_capabilities": [
+    "body_pose"
+   ],
+   "criteria": [],
+   "similar": [],
+   "review_status": "coach_review_required",
+   "difficulty": "beginner",
+   "family_id": "shooting.family.shot_cycle_posture",
+   "group_id": "shooting.group.recovery_reset"
+  }
+ ],
+ "taxonomy": {
+  "version": "1.1.0",
+  "levels": [
+   "family",
+   "group",
+   "movement"
+  ],
+  "validation_status": "provisional",
+  "method": {
+   "kind": "source_grounded_semantic_hierarchy",
+   "source_ids": [
+    "usa_shooting_hold"
+   ],
+   "research_file": "ml/sports/recognition_taxonomy_sources.json",
+   "preserves_catalogue_ids": true,
+   "accuracy_validated": false
+  },
+  "recognition": {
+   "group_threshold": 0.6,
+   "family_threshold": 0.6,
+   "margin": 0.1,
+   "validation_status": "provisional"
+  },
+  "families": [
+   {
+    "id": "shooting.family.standing_hold_positions",
+    "name": "Standing hold positions",
+    "type": "static",
+    "groups": [
+     {
+      "id": "shooting.group.setup_aiming_holds",
+      "name": "Setup and aiming holds",
+      "members": [
+       "shooting.setup_stance",
+       "shooting.aiming_hold"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usa_shooting_hold"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Current catalogue is standing pistol-style posture; no rifle discipline is inferred."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "usa_shooting_hold"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   },
+   {
+    "id": "shooting.family.shot_cycle_posture",
+    "name": "Shot-cycle posture and reset",
+    "type": "dynamic",
+    "groups": [
+     {
+      "id": "shooting.group.steady_shot_phase_holds",
+      "name": "Steady holds around the shot phase",
+      "members": [
+       "shooting.trigger_phase_proxy",
+       "shooting.follow_through_hold"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usa_shooting_hold"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Body pose cannot establish an actual trigger event. Retain proxy wording unless a hardware event is available."
+      }
+     },
+     {
+      "id": "shooting.group.recovery_reset",
+      "name": "Recovery and reset",
+      "members": [
+       "shooting.recovery_reset"
+      ],
+      "evidence": {
+       "source_ids": [
+        "usa_shooting_hold"
+       ],
+       "basis": "engineering semantic proposal",
+       "note": "Repositioning after the held phase."
+      }
+     }
+    ],
+    "evidence": {
+     "source_ids": [
+      "usa_shooting_hold"
+     ],
+     "basis": "engineering semantic proposal; no measured multi-athlete clustering"
+    }
+   }
+  ]
+ }
+}

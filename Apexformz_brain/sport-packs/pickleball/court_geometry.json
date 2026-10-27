@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "pickleball",
+  "coordinate_frame": {
+    "id": "pickleball_court_frame",
+    "origin": "centre of the playing surface at the net",
+    "axes": "+x right sideline, +y far end, +z up",
+    "units": "m"
+  },
+  "formats": [
+    "singles",
+    "doubles"
+  ],
+  "named_landmarks": [
+    {
+      "id": "court_length",
+      "description": "Baseline to baseline",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    },
+    {
+      "id": "court_width",
+      "description": "Sideline to sideline",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    },
+    {
+      "id": "non_volley_zone_depth",
+      "description": "Net to non-volley zone line",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    },
+    {
+      "id": "net_height_centre",
+      "description": "Net height at centre",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    },
+    {
+      "id": "net_height_posts",
+      "description": "Net height at posts",
+      "value_m": null,
+      "applies_to": [
+        "singles",
+        "doubles"
+      ],
+      "validation_status": "provisional",
+      "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source."
+    }
+  ],
+  "polygons": [],
+  "validation_status": "provisional",
+  "provenance": {
+    "source": "Official pickleball rulebook",
+    "ref": "TODO_REQUIRES_VALIDATION: edition/section",
+    "status": "provisional"
+  },
+  "notes": [
+    "Geometry is pack-owned declarative data; the shared Brain never hardcodes it."
+  ]
+}

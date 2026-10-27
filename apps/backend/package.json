@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
+    "dev": "node ../../scripts/brain-backend.mjs dev",
+    "build": "node ../../scripts/brain-backend.mjs build",
+    "start": "node ../../scripts/brain-backend.mjs start",
     "test": "jest",
-    "db:generate": "npx prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:seed": "ts-node prisma/seed.ts"
+    "db:generate": "node ../../scripts/brain-backend.mjs db:generate",
+    "db:migrate": "node ../../scripts/brain-backend.mjs db:prepare",
+    "db:seed": "ts-node prisma/seed.ts",
+    "db:prepare": "node ../../scripts/brain-backend.mjs db:prepare",
+    "db:plan": "node ../../scripts/brain-backend.mjs db:plan"
   },
   "dependencies": {
     "@prisma/client": "5.22.0",

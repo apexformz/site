@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apexformz.ai/schemas/assessment.schema.json",
+  "title": "Criterion evidence and assessment set",
+  "description": "Criterion state model and coverage-gated aggregate score (TRD 11).",
+  "$defs": {
+    "criterion_state": { "type": "string", "enum": ["PASS", "IMPROVE", "UNCERTAIN", "NOT_ASSESSABLE", "NOT_APPLICABLE"] },
+    "criterion_evidence": {
+      "type": "object",
+      "required": ["criterion_id", "movement_id", "state", "score", "measurement", "confidence", "evidence", "feedback", "provenance", "timestamp_ms"],
+      "properties": {
+        "criterion_id": { "type": "string" },
+        "movement_id": { "type": "string" },
+        "phase_id": { "type": ["string", "null"] },
+        "state": { "$ref": "#/$defs/criterion_state" },
+        "score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "measurement": { "$ref": "common.schema.json#/$defs/nullable_measurement" },
+        "confidence": {
+          "type": "object",
+          "required": ["movement", "assessment"],
+          "properties": {
+            "movement": { "type": ["number", "null"] },
+            "assessment": { "type": ["number", "null"] },
+            "evidence_quality": { "type": ["number", "null"] }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "required": ["frame_ids", "view"],
+          "properties": {
+            "frame_ids": { "type": "array", "items": { "type": "integer" } },
+            "view": { "$ref": "common.schema.json#/$defs/view_label" },
+            "feature_ids": { "type": "array", "items": { "type": "string" } },
+            "selected_feature_id": { "type": ["string", "null"] }
+          }
+        },
+        "feedback": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "required": ["error_id", "cue"],
+              "properties": {
+                "error_id": { "type": "string" },
+                "cue": { "type": "string" },
+                "rationale": { "type": "string" }
+              }
+            }
+          ]
+        },
+        "provenance": {
+          "type": "object",
+          "required": ["sport_pack", "rubric", "validation_status", "evaluator"],
+          "properties": {
+            "sport_pack": { "type": "string" },
+            "rubric": { "type": "string" },
+            "validation_status": { "$ref": "common.schema.json#/$defs/validation_status" },
+            "evaluator": { "type": "string" },
+            "provisional": { "type": "boolean" }
+          }
+        },
+        "severity": { "$ref": "common.schema.json#/$defs/severity" },
+        "timestamp_ms": { "$ref": "common.schema.json#/$defs/monotonic_ms" },
+        "retrospective": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "state": { "enum": ["UNCERTAIN", "NOT_ASSESSABLE", "NOT_APPLICABLE"] } } },
+          "then": { "properties": { "feedback": { "type": "null" }, "score": { "type": "null" } } }
+        }
+      ]
+    },
+    "assessment_set": {
+      "type": "object",
+      "required": ["schema_version", "session_id", "event_id", "timestamp_ms", "movement_id", "criteria", "score", "coverage", "method", "weights", "rubric_version", "sport_pack_id", "sport_pack_version", "retrospective"],
+      "properties": {
+        "schema_version": { "$ref": "common.schema.json#/$defs/schema_version" },
+        "session_id": { "$ref": "common.schema.json#/$defs/id" },
+        "event_id": { "$ref": "common.schema.json#/$defs/id" },
+        "execution_id": { "type": ["string", "null"] },
+        "timestamp_ms": { "$ref": "common.schema.json#/$defs/monotonic_ms" },
+        "movement_id": { "type": "string" },
+        "phase_id": { "type": ["string", "null"] },
+        "criteria": { "type": "array", "items": { "$ref": "#/$defs/criterion_evidence" } },
+        "score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "coverage": {
+          "type": "object",
+          "required": ["evaluated", "required", "ratio", "minimum", "omitted"],
+          "properties": {
+            "evaluated": { "type": "integer", "minimum": 0 },
+            "required": { "type": "integer", "minimum": 0 },
+            "ratio": { "type": "number", "minimum": 0, "maximum": 1 },
+            "minimum": { "type": "number", "minimum": 0, "maximum": 1 },
+            "omitted": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["criterion_id", "reason"],
+                "properties": { "criterion_id": { "type": "string" }, "reason": { "type": "string" } }
+              }
+            }
+          }
+        },
+        "method": { "type": "string" },
+        "weights": { "type": "object", "additionalProperties": { "type": "number" } },
+        "uncertainty": { "type": ["number", "null"] },
+        "rubric_version": { "type": "string" },
+        "sport_pack_id": { "type": "string" },
+        "sport_pack_version": { "type": "string" },
+        "retrospective": { "type": "boolean" }
+      }
+    }
+  }
+}

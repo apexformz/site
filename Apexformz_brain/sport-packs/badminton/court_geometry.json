@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "sport_id": "badminton",
+  "coordinate_frame": {
+    "id": "badminton_court_frame",
+    "origin": "centre of the court at the net line, on the floor",
+    "axes": "+x toward the right sideline when facing the far baseline, +y toward the far baseline, +z up",
+    "units": "m"
+  },
+  "formats": ["singles", "doubles"],
+  "named_landmarks": [
+    { "id": "court_length", "description": "Baseline to baseline length", "value_m": null, "applies_to": ["singles", "doubles"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION: fill from the approved authoritative rule source recorded in provenance; do not infer." },
+    { "id": "court_width_doubles", "description": "Doubles sideline to sideline width", "value_m": null, "applies_to": ["doubles"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION" },
+    { "id": "court_width_singles", "description": "Singles sideline to sideline width", "value_m": null, "applies_to": ["singles"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION" },
+    { "id": "short_service_line_from_net", "description": "Distance from net to short service line", "value_m": null, "applies_to": ["singles", "doubles"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION" },
+    { "id": "doubles_long_service_line_from_baseline", "description": "Distance from baseline to doubles long service line", "value_m": null, "applies_to": ["doubles"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION" },
+    { "id": "net_height_centre", "description": "Net height at the centre", "value_m": null, "applies_to": ["singles", "doubles"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION" },
+    { "id": "net_height_posts", "description": "Net height at the posts", "value_m": null, "applies_to": ["singles", "doubles"], "validation_status": "provisional", "note": "TODO_REQUIRES_VALIDATION" }
+  ],
+  "polygons": [],
+  "validation_status": "provisional",
+  "provenance": {
+    "source": "Badminton World Federation Laws of Badminton",
+    "ref": "TODO_REQUIRES_VALIDATION: record edition and section numbers once the authoritative copy is approved",
+    "status": "provisional"
+  },
+  "notes": [
+    "Court geometry is structured metric data owned by this pack; it is never embedded in model weights.",
+    "The shared Brain does not read these values for coaching; they exist for session labelling and future calibrated court-frame features."
+  ]
+}

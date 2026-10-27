@@ -1,0 +1,14 @@
+{
+  "description": "Provisional bounded experiment grid, matching the calibration guide; not coach-approved error costs or tolerances.",
+  "relative_candidates": [0, 0.025, 0.05, 0.1],
+  "context_scale_candidates": [0.8, 1, 1.2],
+  "consistency_candidates": [
+    {"enabled": false},
+    {"enabled": true, "window": 8, "min_reps": 3, "k_sd": 2, "fail_fraction": 0.5}
+  ],
+  "costs": {"false_acceptance": 2, "false_correction": 1, "abstention": 0.25},
+  "min_train_per_outcome": 3,
+  "min_train_athletes": 2,
+  "min_coverage": 0.6,
+  "max_threshold_candidates": 33
+}

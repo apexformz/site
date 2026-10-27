@@ -5,7 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prepare:brain": "node ../../scripts/prepare-brain.mjs",
+    "predev": "npm run prepare:brain",
+    "prebuild": "npm run prepare:brain",
+    "pretypecheck": "npm run prepare:brain",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@mediapipe/holistic": "^0.5.1675471629",
@@ -15,17 +20,31 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.5.6",
     "lucide-react": "^0.446.0",
-    "next": "^14.2.35",
+    "next": "15.5.28",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "recharts": "^2.12.7",
     "socket.io-client": "^4.8.0",
-    "tailwind-merge": "^2.5.2"
+    "tailwind-merge": "^2.5.2",
+    "three": "0.186.1",
+    "@mediapipe/tasks-vision": "^0.10.22",
+    "onnxruntime-web": "^1.30.0",
+    "@apexformz/contracts": "file:../../Apexformz_brain/packages/contracts",
+    "@apexformz/signal": "file:../../Apexformz_brain/packages/signal",
+    "@apexformz/features": "file:../../Apexformz_brain/packages/features",
+    "@apexformz/perception": "file:../../Apexformz_brain/packages/perception",
+    "@apexformz/sport-runtime": "file:../../Apexformz_brain/packages/sport-runtime",
+    "@apexformz/analysis": "file:../../Apexformz_brain/packages/analysis",
+    "@apexformz/scoring": "file:../../Apexformz_brain/packages/scoring",
+    "@apexformz/coaching": "file:../../Apexformz_brain/packages/coaching",
+    "@apexformz/runtime": "file:../../Apexformz_brain/packages/runtime",
+    "@apexformz/brain-client": "file:../../Apexformz_brain/packages/brain-client"
   },
   "devDependencies": {
     "@types/node": "^20.16.5",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "@types/three": "0.186.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
