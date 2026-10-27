@@ -42,7 +42,7 @@ The root `prepare:brain` command stages the maintained Brain browser adapter and
 
 `npm --prefix Apexformz_brain run test:models` executes the installed static, dynamic, and athlete-tracking models against known reference outputs without private training data. This confirms that inference runs; it does not establish coaching accuracy for every athlete or movement. Git attributes preserve the exact signed pack and model bytes during checkout, including on Windows.
 
-The optional `docker-compose.brain.yml` is a local recipe that reuses an existing PostgreSQL service. `npm run demo` is a Windows convenience command for an existing `smartcoach-db` container.
+The optional `docker-compose.brain.yml` is a local recipe that reuses an existing PostgreSQL service. On Windows, run `npm run demo` or double-click `Start ApexFormz.bat` in the project folder. The launcher starts or reuses the database, Brain API, interface, and Python sports analysis service, then opens the home page. If the Python service needs its first Docker build, the interface opens while that build continues.
 
 ## Squash coaching coverage
 
